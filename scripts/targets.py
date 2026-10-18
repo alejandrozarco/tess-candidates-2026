@@ -1,13 +1,19 @@
 """Target definitions shared by the scripts in this folder.
 
-Both candidates: TIC 402710280 (Gaia DR3 5828441289812582400) and TIC 324429952 (Gaia DR3 6416596855786566528).
+Candidates: TIC 402710280 (Gaia DR3 5828441289812582400), TIC 324429952 (Gaia DR3 6416596855786566528) and
+TIC 89247735 (Gaia DR3 6708071581514074368).
 Positions are Gaia DR3 (epoch 2016.0) unless noted; `tic_ra/tic_dec` are the TIC v8.2 coordinates used for the
-TESScut requests. Ephemerides are the final linear ephemerides of README.md; `tc_guess` are the starting values
-of the per-epoch fits (from the detection stage); `ncyc` are the cycle numbers relative to T0.
+TESScut requests (`cut_center='gaia'`: the cutout is requested at the Gaia DR3 position and the target pixel is the
+proper-motion-corrected Gaia position at the median time of each sector). Ephemerides are the final linear
+ephemerides of README.md; `tc_guess` are the starting values of the per-epoch fits (from the detection stage); `ncyc`
+are the cycle numbers relative to T0. Transit epochs are labelled by their sector number; when a sector contains two
+transits they are labelled '<sector>a', '<sector>b' (TIC 89247735, sector 93); `sector_of` returns the sector.
+`diff` holds per-target settings of difference_images.py (defaults there when absent); `star` the TIC v8.2 stellar
+parameters used by dilution_correction.py and gaia_companion_limits.py.
 Work directory layout (set with --work, default ./work): <work>/<tic>/cut/s<sector>.npz (cutouts),
 <work>/<tic>/cut/lc_s<sector>.npz (photometry), <work>/<tic>/dl/ (MAST products), <work>/<tic>/fit_*.json (fits).
 """
-import os
+import os, re
 
 TARGETS = {
     402710280: dict(
@@ -47,7 +53,37 @@ TARGETS = {
                  'G 15.07 (77")': (285.93786990, -73.13440608, 0, 0),
                  'G 14.33 (86")': (285.95625500, -73.09025762, 0, 0)},
     ),
+    89247735: dict(
+        gaia_dr3='6708071581514074368',
+        ra=275.2234460704073, dec=-45.56163775820568, pmra=-39.073, pmdec=-105.840,
+        tic_ra=275.22369241, tic_dec=-45.56116720, cut_center='gaia',
+        sectors=[13, 66, 93, 104],
+        P=18.323173, eP=0.000031, T0=4196.80899, eT0=0.00100,
+        ncyc={66: -59, '93a': -20, '93b': -19, 104: 0},
+        tc_guess={k: 4196.8100 + n * 18.323343 for k, n in {66: -59, '93a': -20, '93b': -19, 104: 0}.items()},
+        epochs_fit=[66, '93a', '93b', 104],
+        u=[0.52, 0.18],                     # Teff ~4400 K, log g 4.5
+        k0=0.1, b0=0.3, aR0=30.0, fix=None,
+        T14h=4.50, spoc_2min=None, ttv_min=None,
+        star=dict(R=0.785, eR=0.066, M=0.69, eM=0.08, rho=1.43, erho=0.43, d_pc=105.66),   # TIC v8.2
+        diff=dict(hw=0.07, oot_min=0.13, oot_order=1, cen_radius=4.0, sigma0=0.8, sigma_min=0.3, seed=1, fake_excl=1.0, fake_min_frac=0.7,
+                  gaia_radius=60.0, gaia_gmax=19.0),
+        sources={'target': (275.2234460704073, -45.56163775820568, -39.073, -105.840),
+                 'Gaia DR3 6708071581515491456 (G 15.49, 9.5")': (275.22077987, -45.56282528, 1.694, -6.031),
+                 'Gaia DR3 6708071581515486720 (G 17.66, 12.4")': (275.22804007, -45.56279934, -0.457, 0.556),
+                 'Gaia DR3 6708071207865931392 (G 14.84, 27.9")': (275.21905155, -45.56818791, -1.346, 0.273),
+                 'Gaia DR3 6708071203558361728 (G 15.39, 27.8")': (275.21553903, -45.56637706, -15.105, -21.808)},
+    ),
 }
+
+
+def lab(x):
+    """epoch label: int for a plain sector number, str for '<sector>a/b'"""
+    return int(x) if str(x).isdigit() else str(x)
+
+
+def sector_of(label):
+    return int(re.match(r'\d+', str(label)).group())
 
 
 def workdir(args, tic):

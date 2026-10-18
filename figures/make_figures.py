@@ -20,8 +20,10 @@ THEMES = {
                  pts="#5a5953", mark="#3987e5", mark2="#e8813a", mark3="#43b27e", cmap="RdBu_r"),
 }
 SAVE = dict(metadata={"Date": None})
-TICS = [402710280, 324429952]
-NAMES = {402710280: "TIC 402710280", 324429952: "TIC 324429952"}
+TICS = [402710280, 324429952, 89247735]
+NAMES = {402710280: "TIC 402710280", 324429952: "TIC 324429952", 89247735: "TIC 89247735"}
+YLIM_FOLD = {89247735: (0.983, 1.006)}       # default: (min(0.3rd percentile, 0.9965), 1.0025)
+YLIM_EPOCHS = {89247735: (0.981, 1.008)}     # default: (0.9955, 1.0035)
 
 
 def read(name):
@@ -70,9 +72,9 @@ def fig_fold(t, name, tic):
     xb, yb, eb = binned(x, y, 20 / 60)
     ax.errorbar(xb, yb, eb, fmt="o", color=t["ink"], ms=3.5, lw=0.8, label="20-min bins")
     ax.plot(M["dt_days"] * 24, M["flux"], "-", color=t["mark2"], lw=1.6, label="transit model")
-    ax.set_xlim(-12, 12); lo = np.percentile(y, 0.3); ax.set_ylim(min(lo, 0.9965), 1.0025)
+    ax.set_xlim(-12, 12); lo = np.percentile(y, 0.3); ax.set_ylim(*YLIM_FOLD.get(tic, (min(lo, 0.9965), 1.0025)))
     ax.set_xlabel("hours from fitted mid-transit"); ax.set_ylabel("relative flux")
-    n = len(np.unique(F["sector"][m])); style(ax, t)
+    n = len(np.unique(F["epoch"][m])); style(ax, t)
     title(ax, t, f"{NAMES[tic]}: {n} transits folded on the per-epoch mid-transit times")
     ax.legend(loc="lower right", fontsize=8, frameon=False, labelcolor=t["ink2"])
     fig.tight_layout(); save(fig, t, name)
@@ -80,20 +82,20 @@ def fig_fold(t, name, tic):
 
 def fig_epochs(t, name, tic):
     F = read(f"folded_{tic}.csv"); M = read(f"model_{tic}.csv"); T = read(f"transit_times_{tic}.csv")
-    secs = [int(s) for s in np.unique(F["sector"])]; secs.sort(key=lambda s: F["time_btjd"][F["sector"] == s].min())
-    n = len(secs); nc = 4 if n > 4 else n; nr = int(np.ceil(n / nc))
+    eps = [int(e) for e in np.unique(F["epoch"])]; eps.sort(key=lambda e: F["time_btjd"][F["epoch"] == e].min())
+    n = len(eps); nc = 4 if n > 4 else n; nr = int(np.ceil(n / nc))
     fig, axs = plt.subplots(nr, nc, figsize=(3.3 * nc, 2.9 * nr), squeeze=False, sharey=True); fig.patch.set_facecolor(t["surface"])
-    for k, s in enumerate(secs):
-        ax = axs[k // nc, k % nc]; m = F["sector"] == s; x = F["dt_days"][m] * 24; y = F["flux"][m]
+    for k, ep in enumerate(eps):
+        ax = axs[k // nc, k % nc]; m = F["epoch"] == ep; x = F["dt_days"][m] * 24; y = F["flux"][m]
         ax.plot(x, y, ".", color=t["pts"], ms=2); xb, yb, eb = binned(x, y, 30 / 60); ax.plot(xb, yb, "o", color=t["ink"], ms=3)
         ax.plot(M["dt_days"] * 24, M["flux"], "-", color=t["mark2"], lw=1.3); ax.set_xlim(-12, 12)
-        j = np.where(T["sector"] == s)[0][0]; note = "" if T["note"][j].startswith("used") else " (scattered light)"
-        style(ax, t); title(ax, t, f"S{s}, epoch {int(T['epoch'][j])}{note}\n$t_c$ = BTJD {T['tc_btjd'][j]:.4f}, depth {T['depth_ppm'][j]:.0f} ppm")
+        j = np.where(T["epoch"] == ep)[0][0]; note = "" if T["note"][j].startswith("used") else " (scattered light)"
+        style(ax, t); title(ax, t, f"S{int(T['sector'][j])}, epoch {ep}{note}\n$t_c$ = BTJD {T['tc_btjd'][j]:.4f}, depth {T['depth_ppm'][j]:.0f} ppm")
         if k // nc == nr - 1: ax.set_xlabel("hours from mid-transit")
         if k % nc == 0: ax.set_ylabel("relative flux")
     for k in range(n, nr * nc):
         axs[k // nc, k % nc].axis("off")
-    axs[0, 0].set_ylim(0.9955, 1.0035)
+    axs[0, 0].set_ylim(*YLIM_EPOCHS.get(tic, (0.9955, 1.0035)))
     prods = sorted(set(F["product"])); lab = "TESScut r = 2.0 px aperture photometry" + ("; sector 13: SPOC 2-min SAP" if any(p.startswith("SPOC") for p in prods) else "")
     fig.suptitle(f"{NAMES[tic]}: individual transits ({lab})", color=t["ink"], fontsize=10, x=0.01, ha="left")
     fig.tight_layout(); save(fig, t, name)
@@ -116,15 +118,16 @@ def fig_oc(t, name, tic):
 
 
 def fig_diff(t, name, tic):
-    D = read(f"diffimage_{tic}.csv"); S = read(f"diffimage_sources_{tic}.csv"); secs = sorted(int(s) for s in np.unique(D["sector"]))
-    n = len(secs); nc = 4 if n > 4 else n; nr = int(np.ceil(n / nc))
+    D = read(f"diffimage_{tic}.csv"); S = read(f"diffimage_sources_{tic}.csv")
+    key = "epoch" if "epoch" in D else "sector"       # one image per epoch (two transits in one sector for TIC 89247735)
+    keys = sorted(int(s) for s in np.unique(D[key])); n = len(keys); nc = 4 if n > 4 else n; nr = int(np.ceil(n / nc))
     fig, axs = plt.subplots(nr, nc, figsize=(3.2 * nc, 3.2 * nr), squeeze=False); fig.patch.set_facecolor(t["surface"])
-    for k, s in enumerate(secs):
-        ax = axs[k // nc, k % nc]; m = D["sector"] == s; img = np.zeros((21, 21)); img[D["y"][m].astype(int), D["x"][m].astype(int)] = D["diff"][m]
-        yy, xx = np.indices(img.shape); tx, ty = [S[c][(S["sector"] == s) & (S["source"] == "target")][0] for c in ("x_px", "y_px")]
+    for k, s in enumerate(keys):
+        ax = axs[k // nc, k % nc]; m = D[key] == s; img = np.zeros((21, 21)); img[D["y"][m].astype(int), D["x"][m].astype(int)] = D["diff"][m]
+        yy, xx = np.indices(img.shape); tx, ty = [S[c][(S[key] == s) & (S["source"] == "target")][0] for c in ("x_px", "y_px")]
         img = img - np.median(img[np.hypot(xx - tx, yy - ty) > 6])      # display only: remove the uniform sky offset of the difference image
         v = np.nanpercentile(np.abs(img), 99.5); ax.imshow(img, origin="lower", cmap=t["cmap"], vmin=-v, vmax=v, interpolation="nearest")
-        ms = S["sector"] == s
+        ms = S[key] == s
         for src, x, y in zip(S["source"][ms], S["x_px"][ms], S["y_px"][ms]):
             if src == "target":
                 ax.plot(x, y, "+", color=t["mark3"], ms=14, mew=1.8)
@@ -133,7 +136,7 @@ def fig_diff(t, name, tic):
         ax.set_xticks([]); ax.set_yticks([]); ax.set_facecolor(t["surface"])
         for sp in ax.spines.values():
             sp.set_color(t["axis"])
-        title(ax, t, f"S{s}")
+        title(ax, t, f"S{s}" if key == "sector" else f"S{int(D['sector'][m][0])}, epoch {s}")
     for k in range(n, nr * nc):
         axs[k // nc, k % nc].axis("off")
     fig.suptitle(f"{NAMES[tic]}: difference images (out-of-transit minus in-transit, uniform offset removed for display; 21 arcsec pixels); + target, x other Gaia DR3 sources of diffimage_sources_{tic}.csv", color=t["ink"], fontsize=9, x=0.01, ha="left")

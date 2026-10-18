@@ -1,0 +1,6 @@
+# TIC 89247735: TESS sectors in which tess-point places the target on silicon, with nominal sector windows (midtime +- 13.7 d) and the linear-ephemeris transits inside them, 2026-10-18
+sector,window_start_utc,window_end_utc,predicted_transits_btjd,status
+13,2019-06-20,2019-07-17,1668.211,observed
+66,2023-06-04,2023-07-01,3115.742,observed
+93,2025-06-02,2025-06-29,3830.346;3848.669,observed
+104,2026-05-16,2026-06-13,4178.486;4196.809,observed

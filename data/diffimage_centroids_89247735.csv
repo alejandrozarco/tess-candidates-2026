@@ -1,0 +1,7 @@
+# TIC 89247735: per-epoch offset of the difference-image centroid from the out-of-transit centroid, with errors from fake transit windows (scripts/difference_images.py), 2026-10-18
+# dE, dN = offset in arcsec (East, North); dx, dy = offset in cutout pixels (21 arcsec/px); psf_sigma_px = Gaussian sigma fitted to the out-of-transit image
+sector,epoch,dE_arcsec,dN_arcsec,err_E_arcsec,err_N_arcsec,dx_px,dy_px,err_x_px,err_y_px,psf_sigma_px
+66,-59,-0.09,1.49,2.97,5.87,0.003,0.072,0.144,0.285,0.672
+93,-20,3.29,3.87,3.36,4.42,0.179,0.166,0.163,0.214,0.728
+93,-19,0.28,1.51,3.28,3.67,0.021,0.070,0.159,0.178,0.686
+104,0,0.81,1.56,3.31,3.13,-0.081,-0.021,0.157,0.148,0.578

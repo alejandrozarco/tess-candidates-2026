@@ -1,5 +1,6 @@
 # TRICERATOPS FPP/NFPP per configuration over seeds, 2026-10-18 (see runs.csv for the configurations)
 tic,label,cc_hypothetical,n_seeds,FPP_mean,FPP_std,FPP_median,FPP_min,FPP_max,NFPP_mean,NFPP_max
+89247735,nominal,False,3,1.383e-03,1.33e-03,1.488e-03,4.22e-15,2.66e-03,8.64e-63,1.68e-62
 324429952,J1.0,False,5,9.458e-02,2.51e-02,1.045e-01,6.02e-02,1.20e-01,7.81e-05,1.36e-04
 324429952,J1.0,True,5,3.055e-02,1.17e-02,3.445e-02,1.76e-02,4.42e-02,9.87e-05,1.75e-04
 324429952,drop93_100,False,5,5.206e-02,1.91e-02,5.463e-02,2.70e-02,7.93e-02,2.58e-06,5.48e-06
