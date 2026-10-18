@@ -1,0 +1,8 @@
+# TIC 402710280 = Gaia DR3 5828441289812582400: the two PUBLIC HARPS epochs in the ESO Science Archive (programme 112.261U.004), DRS 3.8 pipeline products, K5 mask cross-correlation, 2026-10-18
+# Values are taken from the DRS CCF products (ccf_K5_A / bis_K5_A) in the ancillary tar files; rv_ms = drift-corrected CCF radial velocity (RVC), rv_err_ms = DRS photon-noise error; bis_span_ms = bisector span
+# phase = ((bjd_tdb - T0)/P) mod 1 with T0 = BJD_TDB 2461128.92695, P = 36.34005 d (transit at phase 0)
+# Retrieved anonymously from https://dataportal.eso.org/dataPortal/file/<adp_id> (s1d spectrum) and <adp_tar_id> (DRS tar); sha256 of the downloaded files given
+# Three further epochs (programme 116.29B6.001, 2026-02/03) are proprietary and were not accessed
+date_obs_utc,bjd_tdb,rv_ms,rv_err_ms,fwhm_kms,contrast_pct,bis_span_ms,phase,texp_s,sn_order55,berv_kms,drift_ms,adp_id,adp_tar_id,sha256_s1d,sha256_tar
+2025-08-25T01:18:46.083,2460912.562865,800.94,1.07,6.329,42.7,44.9,0.0461,1200.0,88.2,-21.580,-0.196,ADP.2025-08-26T01:00:42.037,ADP.2025-08-26T01:00:42.038,2fc225c9d71312c26a4d1344177aab74a5866012d0c2f23f431ca46a31ecdee0,afe5e18d13feb83785cc829d44e14224ca43ebf0f6cdd890da36f372768728bf
+2025-08-26T01:32:11.934,2460913.572387,796.85,1.42,6.323,42.8,35.1,0.0739,1200.0,69.0,-21.691,-0.221,ADP.2025-08-27T01:04:15.751,ADP.2025-08-27T01:04:15.752,ffaa7d9bdfe436c7c3bd7cb9ef379e92a163777df35ddf7801e7a1a5c971f9b1,1a1e1ac8eb8e34595f58874f0f85dd2f35ec5efcf080ce011d8b5b3b9079f511

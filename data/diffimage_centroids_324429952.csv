@@ -1,0 +1,10 @@
+# TIC 324429952: per-sector offset of the difference-image centroid from the out-of-transit centroid (arcsec, East and North), with errors from fake transit windows (scripts/difference_images.py), 2026-10-18
+sector,dE_arcsec,dN_arcsec,err_E_arcsec,err_N_arcsec
+13,14.88,62.48,26.78,30.98
+27,-4.55,-4.55,8.01,11.13
+66,3.16,3.01,5.28,10.60
+93,5.96,13.06,4.67,7.64
+94,2.17,0.29,5.15,8.11
+100,1.35,-7.23,10.26,12.03
+102,-6.90,7.78,2.25,4.91
+103,-1.21,4.02,8.44,10.39

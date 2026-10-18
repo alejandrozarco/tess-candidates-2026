@@ -1,0 +1,21 @@
+{
+  "title": "TESS transit candidates 2026: TIC 402710280 and TIC 324429952",
+  "upload_type": "dataset",
+  "creators": [
+    {
+      "name": "Zarco, A."
+    }
+  ],
+  "description": "<p>Transit timing, light-curve tables, false-positive checks, TRICERATOPS runs and predicted transit times for two transit candidates found in TESS full-frame images: TIC 402710280 (Gaia DR3 5828441289812582400; P = 36.34005 d, depth about 1680 ppm, 5.3 h, transit-timing variations up to 29 min; two archival HARPS epochs) and TIC 324429952 (Gaia DR3 6416596855786566528; P = 42.37574 d, depth about 1500 ppm). The tables are recomputed from public MAST, Gaia and ESO archive products by the scripts in the repository. AI-produced, not peer reviewed; the candidates are not confirmed.</p>",
+  "keywords": [
+    "TESS",
+    "transit candidates",
+    "exoplanets",
+    "transit timing variations",
+    "TIC 402710280",
+    "TIC 324429952",
+    "TRICERATOPS"
+  ],
+  "notes": "Not peer reviewed. Produced by AI models under the direction of the repository owner; see AI_DISCLOSURE.md. Data, figures and text: CC BY 4.0; scripts: MIT.",
+  "license": "CC-BY-4.0"
+}

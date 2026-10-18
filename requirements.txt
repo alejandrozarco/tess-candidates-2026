@@ -1,0 +1,11 @@
+# Versions used for the tables and figures (Python 3.12.11)
+numpy==2.5.3
+scipy==1.18.1
+matplotlib==3.11.2
+astropy==8.0.1
+astroquery==0.4.11
+batman-package==2.5.3
+wotan==1.10
+tess-point==0.9.5.post1
+# TRICERATOPS runs were made in a separate environment: triceratops==1.1.0, numpy==1.26.4, astropy==7.2.3,
+# lightkurve==2.5.1, pandas==3.0.6, scipy==1.13.1, pytransit==2.2.0, batman-package==2.5.3
