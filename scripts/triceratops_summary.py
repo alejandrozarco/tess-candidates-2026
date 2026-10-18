@@ -20,7 +20,8 @@ else:
 rows = []
 for key in sorted(R, key=lambda k: (k[0], k[1], k[2])):
     v = sorted(R[key]); F = np.array([x[1] for x in v]); N = np.array([x[2] for x in v])
-    print(f"\n=== TIC {key[0]}  {key[1]}  {'ASSUMED contrast curve' if key[2] else 'no imaging constraint'}  seeds={len(v)}")
+    cct = 'ASSUMED contrast curve' if key[2] else ('measured SOAR contrast curve' if key[1] == 'SOARcc' else 'no imaging constraint')
+    print(f"\n=== TIC {key[0]}  {key[1]}  {cct}  seeds={len(v)}")
     print(f"  FPP  mean {F.mean():.3g} +- {F.std(ddof=1) if len(F) > 1 else 0:.2g}; median {np.median(F):.3g}; range [{F.min():.2g}, {F.max():.2g}]")
     print(f"  NFPP mean {N.mean():.3g}; range [{N.min():.2g}, {N.max():.2g}]")
     P = pd.concat([pd.read_csv(x[3]).assign(seed=x[0]) for x in v]); P['who'] = np.where(P.ID == key[0], 'target', P.ID.astype(str))

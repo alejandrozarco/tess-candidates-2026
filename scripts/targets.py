@@ -1,7 +1,7 @@
 """Target definitions shared by the scripts in this folder.
 
-Candidates: TIC 402710280 (Gaia DR3 5828441289812582400), TIC 324429952 (Gaia DR3 6416596855786566528) and
-TIC 89247735 (Gaia DR3 6708071581514074368).
+Candidates: TIC 402710280 (Gaia DR3 5828441289812582400), TIC 324429952 (Gaia DR3 6416596855786566528),
+TIC 89247735 (Gaia DR3 6708071581514074368) and TIC 455017950 (HD 134147, Gaia DR3 5825217968423162752).
 Positions are Gaia DR3 (epoch 2016.0) unless noted; `tic_ra/tic_dec` are the TIC v8.2 coordinates used for the
 TESScut requests (`cut_center='gaia'`: the cutout is requested at the Gaia DR3 position and the target pixel is the
 proper-motion-corrected Gaia position at the median time of each sector). Ephemerides are the final linear
@@ -9,8 +9,9 @@ ephemerides of README.md; `tc_guess` are the starting values of the per-epoch fi
 are the cycle numbers relative to T0. Transit epochs are labelled by their sector number; when a sector contains two
 transits they are labelled '<sector>a', '<sector>b' (TIC 89247735, sector 93); `sector_of` returns the sector.
 `diff` holds per-target settings of difference_images.py (defaults there when absent); `star` the TIC v8.2 stellar
-parameters used by dilution_correction.py and gaia_companion_limits.py; `star_sed` (TIC 89247735) the adopted stellar
-parameters of README section 3.1 (SED fit, sed_fit.py), used by fit_free_dilution.py.
+parameters used by dilution_correction.py and gaia_companion_limits.py; `star_sed` (TIC 89247735, TIC 455017950) the
+adopted stellar parameters of README sections 3.1 and 4.1 (SED fit, sed_fit.py), used by fit_free_dilution.py;
+`free_dilution` the priors and starting point of fit_free_dilution.py (f_t prior, optional stellar-density prior).
 Work directory layout (set with --work, default ./work): <work>/<tic>/cut/s<sector>.npz (cutouts),
 <work>/<tic>/cut/lc_s<sector>.npz (photometry), <work>/<tic>/dl/ (MAST products), <work>/<tic>/fit_*.json (fits).
 """
@@ -28,7 +29,7 @@ TARGETS = {
         epochs_fit=[39, 93, 100, 102],      # S66 is in scattered light and is fitted separately
         u=[0.46, 0.19],                     # quadratic limb darkening, TESS band, Teff ~5100 K, log g 4.5
         k0=0.043, b0=0.3, aR0=50.0, fix=None,
-        T14h=5.27, spoc_2min=None, ttv_min=30.0,
+        T14h=5.27, spoc_2min=None, ttv_min=30.0, ttv_note='observed O-C up to +-29 min',
         sources={'target': (248.5242026111537, -63.54961908541294, 59.909, 13.685),
                  'Gaia DR3 5828441289812582656 (G 16.15)': (248.52270239, -63.55016350, 0, 0),
                  'G 14.46 (39")': (248.53744129, -63.55879284, 0, 0),
@@ -68,6 +69,7 @@ TARGETS = {
         T14h=4.50, spoc_2min=None, ttv_min=None,
         star=dict(R=0.785, eR=0.066, M=0.69, eM=0.08, rho=1.43, erho=0.43, d_pc=105.66),   # TIC v8.2
         star_sed=dict(Teff=4430, eTeff=100, L=0.190, eL=0.008, R=0.74, eR=0.04, M=0.69, eM=0.03, rho=2.40, erho=0.40),   # README 3.1
+        free_dilution=dict(ft=(0.735, 0.03), p0=(0.106, 0.2, 2.3, 0.4, 0.35), rho_prior=None),   # README 3.2
         diff=dict(hw=0.07, oot_min=0.13, oot_order=1, cen_radius=4.0, sigma0=0.8, sigma_min=0.3, seed=1, fake_excl=1.0, fake_min_frac=0.7,
                   gaia_radius=60.0, gaia_gmax=19.0),
         sources={'target': (275.2234460704073, -45.56163775820568, -39.073, -105.840),
@@ -75,6 +77,31 @@ TARGETS = {
                  'Gaia DR3 6708071581515486720 (G 17.66, 12.4")': (275.22804007, -45.56279934, -0.457, 0.556),
                  'Gaia DR3 6708071207865931392 (G 14.84, 27.9")': (275.21905155, -45.56818791, -1.346, 0.273),
                  'Gaia DR3 6708071203558361728 (G 15.39, 27.8")': (275.21553903, -45.56637706, -15.105, -21.808)},
+    ),
+    455017950: dict(
+        gaia_dr3='5825217968423162752',
+        ra=227.9087992432127, dec=-64.9369219229812, pmra=-38.134, pmdec=-46.527,
+        tic_ra=227.90881181, tic_dec=-64.93691547, cut_center='gaia',
+        sectors=[12, 38, 39, 65, 99, 100, 101, 102],
+        P=40.605660, eP=0.000074, T0=4055.48930, eT0=0.00179,
+        ncyc={38: -42, 65: -24, 99: 0, 100: 1, 102: 2},
+        tc_guess={s: 4055.48889 + n * 40.6056453 for s, n in {38: -42, 65: -24, 99: 0, 100: 1, 102: 2}.items()},
+        epochs_fit=[38, 65, 99, 100, 102],
+        u=[0.42, 0.20],                     # Teff ~5300 K, log g 4.6
+        k0=0.035, b0=0.3, aR0=65.0, fix=None,
+        T14h=4.74, spoc_2min=None, ttv_min=15.0, ttv_note='observed O-C up to +12 min',
+        star=dict(R=0.794, eR=0.042, M=0.91, eM=0.11, rho=2.56, erho=0.58, d_pc=65.09),   # TIC v8.2
+        star_sed=dict(Teff=5300, eTeff=60, L=0.455, eL=0.02, R=0.800, eR=0.024, M=0.88, eM=0.05, rho=2.42, erho=0.26),   # README 4.1
+        free_dilution=dict(ft=(0.966, 0.010), p0=(0.0350, 0.3, 2.5, 0.38, 0.34), rho_prior=(2.40, 0.30)),   # README 4.2
+        diff=dict(hw=0.07, oot_min=0.13, oot_order=2, cen_radius=4.0, sigma0=0.8, sigma_min=0.3, seed=1, fake_excl=1.0, fake_min_frac=0.7,
+                  gaia_radius=60.0, gaia_gmax=19.0),
+        sources={'target': (227.9087992432127, -64.9369219229812, -38.134, -46.527),
+                 'Gaia DR3 5825217964086439552 (G 14.91, 10.0")': (227.91094627, -64.93428973, -6.808, -6.405),
+                 'Gaia DR3 5825217968399119488 (G 17.77, 6.1")': (227.90566857, -64.93588642, -5.635, -9.088),
+                 'Gaia DR3 5825217762264810752 (G 16.27, 27.5")': (227.91292922, -64.94436290, -5.035, -6.333),
+                 'Gaia DR3 5825217762264718976 (G 14.92, 45.3")': (227.90302521, -64.94926701, -8.561, -5.465),
+                 'Gaia DR3 5825218002782625024 (G 14.49, 51.4")': (227.90523379, -64.92272793, -6.597, -8.488),
+                 'Gaia DR3 5825217796624167808 (G 13.91, 53.1")': (227.94087808, -64.94269542, -10.296, -10.438)},
     ),
 }
 

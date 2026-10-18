@@ -18,12 +18,21 @@ after the MAST notice of a timing error in sectors 99-104. For TIC 89247735 the 
 superseded by the dilution-corrected value (9.1-9.4 R⊕), and the radius 9.1-9.4 R⊕ (TIC stellar radius) was superseded
 by 8.7 ± 0.6 R⊕ after an SED fit of the host star; the TRICERATOPS runs were repeated on the circular-aperture
 photometry (the detection-stage runs on 3 × 3-pixel photometry gave FPP of 10⁻⁷ to 10⁻⁵). The UTC columns of the predicted-transit tables of all three
-targets first showed BJD_TDB printed as a calendar date; they now give geocentric UTC (3-4 min earlier).
+targets first showed BJD_TDB printed as a calendar date; they now give geocentric UTC (3-4 min earlier). For TIC 455017950 the
+detection-stage rotation period (3.39 d, the Gaia DR3 `vari_rotation_modulation` value) was superseded by 8.3 d, measured
+in all eight TESS sectors; the detection-stage description of the transit as flat-bottomed is not supported by the data
+(ingress and egress are not resolved, and diluted eclipses of larger bodies fit equally well); the detection-stage FPP
+(0.006-0.013 without and 0.0008-0.0012 with the SOAR contrast curve, 3 seeds each) and depth (about 1460 ppm, the
+limb-darkened central depth of the raw aperture flux) were superseded by the TRICERATOPS runs of README section 4.7 and
+the dilution-corrected density-prior fit of section 4.2, and the detection-stage period (40.605645 ± 0.000052 d) by the
+common-shape fit of the five transits (40.605660 ± 0.000074 d).
 
 **What the software checks and what is trusted.** The scripts recompute the tables from public products (TESScut, SPOC,
 QLP, TESS-SPOC, TARS, Gaia DR3, TIC, ESO archive); exceptions are listed in README.md (Data and reproduction). Stellar
-parameters are TIC v8.2 values and are not re-derived, except for TIC 89247735 (SED fit; README section 3.1). The TRICERATOPS false-positive probabilities depend on that
-code's priors and on a single flux-error value per light curve; no high-resolution imaging constraint was available.
+parameters are TIC v8.2 values and are not re-derived, except for TIC 89247735 and TIC 455017950 (SED fits; README
+sections 3.1 and 4.1). The TRICERATOPS false-positive probabilities depend on that
+code's priors and on a single flux-error value per light curve; no high-resolution imaging constraint was available,
+except the published SOAR speckle limits for TIC 455017950.
 
 **What this means for use.** The candidates are leads to be checked independently; nothing here is confirmed. Credit
 for confirming, refining or refuting any of them belongs to whoever does that work. Questions, checks and corrections:

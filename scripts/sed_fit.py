@@ -1,41 +1,62 @@
-"""Spectral-energy-distribution fit of TIC 89247735: Teff, radius and luminosity from catalogue photometry.
+"""Spectral-energy-distribution fit: Teff, radius and luminosity from catalogue photometry (TIC 89247735, TIC 455017950).
 
-usage: python scripts/sed_fit.py [--work ./work] [--out data]
-input:  the catalogue photometry listed in PHOT below (Gaia DR3, SkyMapper DR4 PSF, APASS DR9, 2MASS, AllWISE; VizieR
-        values at the Gaia DR3 position), the Gaia DR3 parallax; Castelli & Kurucz (2003) ODFNEW model spectra
-        (Teff 3750-5000 K in 250 K steps, log g 4.5 and 5.0, [M/H] 0.0, +0.2, +0.5) and the filter curves and zero
-        points from the SVO Theoretical Spectra and Filter Profile services, downloaded once into <work>/89247735/sed/
-        (bounded timeouts, three attempts per file)
-output: printed fits, <work>/89247735/sed.json and <out>/sed_89247735.csv (photometry, model magnitudes, residuals)
+usage: python scripts/sed_fit.py [--tic 89247735] [--work ./work] [--out data]
+input:  the catalogue photometry listed in CONF below (VizieR values at the Gaia DR3 position), the Gaia DR3 parallax;
+        Castelli & Kurucz (2003) ODFNEW model spectra and the filter curves and zero points from the SVO Theoretical
+        Spectra and Filter Profile services, downloaded once into <work>/<tic>/sed/ (bounded timeouts, three attempts
+        per file). TIC 89247735: Gaia DR3, SkyMapper DR4 PSF, APASS DR9, 2MASS, AllWISE; models Teff 3750-5000 K in
+        250 K steps, log g 4.5 and 5.0, [M/H] 0.0, +0.2, +0.5. TIC 455017950: Gaia DR3, Tycho-2, SkyMapper DR4 PSF,
+        2MASS, AllWISE W1-W2; models Teff 4750-6000 K, log g 4.5 and 5.0, [M/H] -0.5, 0.0, +0.2.
+output: printed fits, <work>/<tic>/sed.json and <out>/sed_<tic>.csv (photometry, model magnitudes, residuals)
 Model: log-linear interpolation of the model spectra in Teff (10 K grid), photon-counting synthetic magnitudes with the
 SVO transmission curves and zero points (AB for SkyMapper), a free scale (R/d)^2 fitted as a weighted magnitude
 offset, A_V = 0 (Cardelli, Clayton & Mathis 1989 law with R_V = 3.1 for
-the A_V checks), error floor 0.02 mag; d = 1/parallax.
+the A_V checks), error = max(catalogue error, floor) with a floor of 0.02 mag (TIC 89247735) or 0.03 mag
+(TIC 455017950); d = 1/parallax (TIC 455017950: 1/(parallax + 0.02 mas)).
 R = sqrt(scale) d, L = 4 pi d^2 sigma Teff^4 scale. Fits: all bands; without SkyMapper u and v (model ultraviolet
 unreliable for K dwarfs; the reference fit); [M/H] and log g dependence; A_V = 0.05, 0.10, 0.20; Monte Carlo over
 the photometric and parallax errors (60 draws). WISE W4 is an upper limit and is not fitted. The adopted parameters
-of README section 3.1 combine this fit with the other Teff estimates listed there.
+of README sections 3.1 and 4.1 combine this fit with the other Teff estimates listed there.
 """
 import argparse, csv, json, os, re, time, urllib.request
 import numpy as np
 
 p = argparse.ArgumentParser(description=__doc__); p.add_argument('--work', default='./work'); p.add_argument('--out', default='data')
-p.add_argument('--date', default='')
-args = p.parse_args(); TIC = 89247735; SD = os.path.join(args.work, str(TIC), 'sed'); os.makedirs(SD, exist_ok=True)
+p.add_argument('--date', default=''); p.add_argument('--tic', type=int, default=89247735, choices=[89247735, 455017950])
+args = p.parse_args(); TIC = args.tic; SD = os.path.join(args.work, str(TIC), 'sed'); os.makedirs(SD, exist_ok=True)
 DATE = args.date or __import__('datetime').datetime.now(__import__('datetime').timezone.utc).strftime('%Y-%m-%d')
-# (SVO filter id, magnitude, error, system, catalogue); W4 is an upper limit (no error)
-PHOT = [('GAIA/GAIA3.G', 11.8509, 0.0028, 'Vega', 'Gaia DR3'), ('GAIA/GAIA3.Gbp', 12.5209, 0.0030, 'Vega', 'Gaia DR3'),
-        ('GAIA/GAIA3.Grp', 11.0690, 0.0039, 'Vega', 'Gaia DR3'),
-        ('SkyMapper/SkyMapper.u', 15.3792, 0.0142, 'AB', 'SkyMapper DR4 PSF'), ('SkyMapper/SkyMapper.v', 15.0495, 0.0114, 'AB', 'SkyMapper DR4 PSF'),
-        ('SkyMapper/SkyMapper.g', 12.5626, 0.0107, 'AB', 'SkyMapper DR4 PSF'), ('SkyMapper/SkyMapper.r', 11.8553, 0.0111, 'AB', 'SkyMapper DR4 PSF'),
-        ('SkyMapper/SkyMapper.i', 11.4054, 0.0097, 'AB', 'SkyMapper DR4 PSF'), ('SkyMapper/SkyMapper.z', 11.2245, 0.0120, 'AB', 'SkyMapper DR4 PSF'),
-        ('Generic/Johnson.B', 13.451, 0.029, 'Vega', 'APASS DR9'), ('Generic/Johnson.V', 12.225, 0.018, 'Vega', 'APASS DR9'),
-        ('2MASS/2MASS.J', 10.154, 0.024, 'Vega', '2MASS'), ('2MASS/2MASS.H', 9.606, 0.026, 'Vega', '2MASS'), ('2MASS/2MASS.Ks', 9.444, 0.019, 'Vega', '2MASS'),
-        ('WISE/WISE.W1', 9.352, 0.024, 'Vega', 'AllWISE'), ('WISE/WISE.W2', 9.441, 0.020, 'Vega', 'AllWISE'), ('WISE/WISE.W3', 9.335, 0.037, 'Vega', 'AllWISE'),
-        ('WISE/WISE.W4', 8.480, None, 'Vega', 'AllWISE (upper limit)')]
+# PHOT: (SVO filter id, magnitude, error, system, catalogue); W4 is an upper limit (no error)
+CONF = {
+    89247735: dict(
+        gaia_dr3='6708071581514074368',
+        PHOT=[('GAIA/GAIA3.G', 11.8509, 0.0028, 'Vega', 'Gaia DR3'), ('GAIA/GAIA3.Gbp', 12.5209, 0.0030, 'Vega', 'Gaia DR3'),
+              ('GAIA/GAIA3.Grp', 11.0690, 0.0039, 'Vega', 'Gaia DR3'),
+              ('SkyMapper/SkyMapper.u', 15.3792, 0.0142, 'AB', 'SkyMapper DR4 PSF'), ('SkyMapper/SkyMapper.v', 15.0495, 0.0114, 'AB', 'SkyMapper DR4 PSF'),
+              ('SkyMapper/SkyMapper.g', 12.5626, 0.0107, 'AB', 'SkyMapper DR4 PSF'), ('SkyMapper/SkyMapper.r', 11.8553, 0.0111, 'AB', 'SkyMapper DR4 PSF'),
+              ('SkyMapper/SkyMapper.i', 11.4054, 0.0097, 'AB', 'SkyMapper DR4 PSF'), ('SkyMapper/SkyMapper.z', 11.2245, 0.0120, 'AB', 'SkyMapper DR4 PSF'),
+              ('Generic/Johnson.B', 13.451, 0.029, 'Vega', 'APASS DR9'), ('Generic/Johnson.V', 12.225, 0.018, 'Vega', 'APASS DR9'),
+              ('2MASS/2MASS.J', 10.154, 0.024, 'Vega', '2MASS'), ('2MASS/2MASS.H', 9.606, 0.026, 'Vega', '2MASS'), ('2MASS/2MASS.Ks', 9.444, 0.019, 'Vega', '2MASS'),
+              ('WISE/WISE.W1', 9.352, 0.024, 'Vega', 'AllWISE'), ('WISE/WISE.W2', 9.441, 0.020, 'Vega', 'AllWISE'), ('WISE/WISE.W3', 9.335, 0.037, 'Vega', 'AllWISE'),
+              ('WISE/WISE.W4', 8.480, None, 'Vega', 'AllWISE (upper limit)')],
+        PLX=9.5397e-3, EPLX=0.0202e-3, ZP=0.0, TEFFS=[3750, 4000, 4250, 4500, 4750, 5000], LOGGS=[4.5, 5.0], MHS=[0.0, 0.2, 0.5], FLOOR=0.02,
+        adopted='README 3.1: Teff 4430 +- 100 K, L 0.190 +- 0.008 Lsun, R 0.74 +- 0.04 Rsun'),
+    455017950: dict(
+        gaia_dr3='5825217968423162752',
+        PHOT=[('GAIA/GAIA3.G', 9.6589, 0.0028, 'Vega', 'Gaia DR3'), ('GAIA/GAIA3.Gbp', 10.0671, 0.0028, 'Vega', 'Gaia DR3'),
+              ('GAIA/GAIA3.Grp', 9.0819, 0.0038, 'Vega', 'Gaia DR3'),
+              ('TYCHO/TYCHO.B', 10.844, 0.034, 'Vega', 'Tycho-2'), ('TYCHO/TYCHO.V', 10.008, 0.024, 'Vega', 'Tycho-2'),
+              ('SkyMapper/SkyMapper.u', 11.8178, 0.0377, 'AB', 'SkyMapper DR4 PSF'), ('SkyMapper/SkyMapper.v', 11.5416, 0.0126, 'AB', 'SkyMapper DR4 PSF'),
+              ('SkyMapper/SkyMapper.g', 10.0340, 0.0135, 'AB', 'SkyMapper DR4 PSF'), ('SkyMapper/SkyMapper.r', 9.6212, 0.0151, 'AB', 'SkyMapper DR4 PSF'),
+              ('SkyMapper/SkyMapper.i', 9.4096, 0.0176, 'AB', 'SkyMapper DR4 PSF'), ('SkyMapper/SkyMapper.z', 9.3378, 0.0265, 'AB', 'SkyMapper DR4 PSF'),
+              ('2MASS/2MASS.J', 8.448, 0.039, 'Vega', '2MASS'), ('2MASS/2MASS.H', 8.065, 0.042, 'Vega', '2MASS'), ('2MASS/2MASS.Ks', 7.977, 0.033, 'Vega', '2MASS'),
+              ('WISE/WISE.W1', 7.907, 0.025, 'Vega', 'AllWISE'), ('WISE/WISE.W2', 7.951, 0.020, 'Vega', 'AllWISE')],
+        PLX=15.3588e-3, EPLX=0.0129e-3, ZP=0.02e-3, TEFFS=[4750, 5000, 5250, 5500, 5750, 6000], LOGGS=[4.5, 5.0], MHS=[-0.5, 0.0, 0.2], FLOOR=0.03,
+        adopted='README 4.1: Teff 5300 +- 60 K, L 0.455 +- 0.02 Lsun, R 0.800 +- 0.024 Rsun'),
+}
+CF = CONF[TIC]; PHOT = CF['PHOT']
 FITTED = [r[0] for r in PHOT if r[2] is not None]; NOUV = [f for f in FITTED if not f.endswith(('.u', '.v'))]
-PLX, EPLX = 9.5397e-3, 0.0202e-3   # Gaia DR3 parallax (arcsec)
-TEFFS = [3750, 4000, 4250, 4500, 4750, 5000]; LOGGS = [4.5, 5.0]; MHS = [0.0, 0.2, 0.5]
+PLX, EPLX, ZP = CF['PLX'], CF['EPLX'], CF['ZP']   # Gaia DR3 parallax and the zero-point offset added to it (arcsec)
+TEFFS = CF['TEFFS']; LOGGS = CF['LOGGS']; MHS = CF['MHS']; FLOOR = CF['FLOOR']
 
 
 def get(url, fn):
@@ -56,7 +77,7 @@ def votab(txt):
     return np.array([[float(v) for v in re.findall(r'<TD>(.*?)</TD>', r)] for r in rows])
 
 
-lst = get('http://svo2.cab.inta-csic.es/theory/newov2/ssap.php?model=Kurucz2003&REQUEST=queryData&teff_min=3750&teff_max=5000&logg_min=4.5&logg_max=5.0',
+lst = get(f'http://svo2.cab.inta-csic.es/theory/newov2/ssap.php?model=Kurucz2003&REQUEST=queryData&teff_min={TEFFS[0]}&teff_max={TEFFS[-1]}&logg_min={LOGGS[0]}&logg_max={LOGGS[-1]}',
           os.path.join(SD, 'kurucz_list.xml'))
 MOD = {}
 for row in re.findall(r'<TR>(.*?)</TR>', lst, re.S):
@@ -70,7 +91,7 @@ for f, m, e, sy, cat in PHOT:
     txt = get(f'http://svo2.cab.inta-csic.es/theory/fps/fps.php?ID={f}', os.path.join(SD, 'filt_' + f.replace('/', '_') + '.xml')); a = votab(txt)
     zp = float(re.search(r'name="ZeroPoint"[^>]*value="([^"]+)"', txt).group(1))
     FIL[f] = (a[:, 0], a[:, 1], 3631.0 if sy == 'AB' else zp)
-C = 2.99792458e18; PC = 3.0857e18; RSUN = 6.957e10; SIG = 5.6704e-5; LSUN = 3.828e33; d_pc = 1 / PLX
+C = 2.99792458e18; PC = 3.0857e18; RSUN = 6.957e10; SIG = 5.6704e-5; LSUN = 3.828e33; d_pc = 1 / (PLX + ZP)
 
 
 def synmag(lam, flam, f):
@@ -93,12 +114,12 @@ def model_flux(T, lg, mh):
     return lam, np.exp((1 - w) * np.log(np.clip(a[:, 1], 1e-30, None)) + w * np.log(np.clip(np.interp(lam, b[:, 0], b[:, 1]), 1e-30, None)))
 
 
-def fit(use, floor=0.02, Av=0.0, mags=None):
+def fit(use, floor=FLOOR, Av=0.0, mags=None):
     mags = mags or {f: m for f, m, e, sy, cat in PHOT}; err = {f: e for f, m, e, sy, cat in PHOT}
     ob = np.array([mags[f] for f in use]); w = 1 / np.array([max(err[f], floor) for f in use]) ** 2; best = None; grid = []
     for lg in LOGGS:
         for mh in MHS:
-            for T in np.arange(3800, 4951, 10):
+            for T in np.arange(TEFFS[0] + 50, TEFFS[-1] - 49, 10):
                 lam, fl = model_flux(T, lg, mh)
                 if Av:
                     fl = fl * 10 ** (-0.4 * ccm(lam, Av))
@@ -131,8 +152,8 @@ for Av in (0.05, 0.10, 0.20):
     out[f'no_uv_Av{Av:.2f}'] = dict(Teff=float(T), chi2=float(chi2), R=float(R), L=float(L)); print(f'A_V = {Av:.2f}: Teff {T:.0f} K, chi2 {chi2:.1f}, R {R:.3f}, L {L:.4f}')
 rng = np.random.default_rng(3); mc = []
 for i in range(60):
-    mags = {f: m + (rng.normal(0, max(e, 0.02)) if e is not None else 0) for f, m, e, sy, cat in PHOT}
-    b, _ = fit(NOUV, mags=mags); R, L = derived(b[1], b[4], 1 / (PLX + rng.normal(0, EPLX))); mc.append((b[1], R, L))
+    mags = {f: m + (rng.normal(0, max(e, FLOOR)) if e is not None else 0) for f, m, e, sy, cat in PHOT}
+    b, _ = fit(NOUV, mags=mags); R, L = derived(b[1], b[4], 1 / (PLX + ZP + rng.normal(0, EPLX))); mc.append((b[1], R, L))
 mc = np.array(mc); out['monte_carlo'] = {k: [float(np.mean(mc[:, i])), float(np.std(mc[:, i]))] for i, k in enumerate(('Teff', 'R', 'L'))}
 print('Monte Carlo (60 draws, no u, v):', out['monte_carlo'])
 json.dump(out, open(os.path.join(args.work, str(TIC), 'sed.json'), 'w'), indent=1)
@@ -140,15 +161,16 @@ ref = out['no_uv']; lam, fl = model_flux(ref['Teff'], ref['logg'], ref['mh'])
 os.makedirs(args.out, exist_ok=True); fn = os.path.join(args.out, f'sed_{TIC}.csv')
 with open(fn, 'w', newline='') as fo:
     a = out['all_bands']; mcv = out['monte_carlo']
-    fo.write(f'# TIC {TIC} = Gaia DR3 6708071581514074368: SED fit (scripts/sed_fit.py), {DATE}\n'
-             f'# model: Castelli & Kurucz (2003) ODFNEW spectra (SVO), photon-counting synthetic photometry, A_V = 0, error floor 0.02 mag, d = 1/parallax = {d_pc:.2f} pc\n'
+    dtxt = f'1/(parallax + {ZP * 1e3:.2f} mas)' if ZP else '1/parallax'
+    fo.write(f'# TIC {TIC} = Gaia DR3 {CF["gaia_dr3"]}: SED fit (scripts/sed_fit.py), {DATE}\n'
+             f'# model: Castelli & Kurucz (2003) ODFNEW spectra (SVO), photon-counting synthetic photometry, A_V = 0, error floor {FLOOR:.2f} mag, d = {dtxt} = {d_pc:.2f} pc\n'
              f'# reference fit (no SkyMapper u, v): Teff {ref["Teff"]:.0f} K (1-sigma {ref["Teff_1sig_range"][0]:.0f}-{ref["Teff_1sig_range"][1]:.0f}), '
              f'log g {ref["logg"]}, [M/H] {ref["mh"]:+.1f}, R {ref["R"]:.3f} Rsun, L {ref["L"]:.4f} Lsun, chi2 {ref["chi2"]:.1f} for {ref["ndof"]} dof\n'
              f'# all bands: Teff {a["Teff"]:.0f} K, R {a["R"]:.3f} Rsun, L {a["L"]:.4f} Lsun, chi2 {a["chi2"]:.1f} for {a["ndof"]} dof; '
              f'Monte Carlo (no u, v): Teff {mcv["Teff"][0]:.0f} +- {mcv["Teff"][1]:.0f} K, R {mcv["R"][0]:.3f} +- {mcv["R"][1]:.3f}, L {mcv["L"][0]:.4f} +- {mcv["L"][1]:.4f} (statistical only)\n'
              '# A_V checks (no u, v): ' + '; '.join(f'A_V {k[-4:]}: Teff {v["Teff"]:.0f} K, R {v["R"]:.3f}, L {v["L"]:.4f}, chi2 {v["chi2"]:.1f}'
                                                   for k, v in out.items() if k.startswith('no_uv_Av')) + '\n'
-             '# The adopted parameters (README 3.1: Teff 4430 +- 100 K, L 0.190 +- 0.008 Lsun, R 0.74 +- 0.04 Rsun) combine this fit with other Teff estimates.\n'
+             f'# The adopted parameters ({CF["adopted"]}) combine this fit with other Teff estimates.\n'
              '# columns: band (SVO filter id), catalogue, mag, mag_err, system, fitted (reference fit), lambda_mean_A, model_mag (reference fit, scaled), '
              'residual (observed - model)\n')
     w = csv.writer(fo); w.writerow(['band', 'catalogue', 'mag', 'mag_err', 'system', 'fitted', 'lambda_mean_A', 'model_mag', 'residual'])

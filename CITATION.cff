@@ -1,6 +1,6 @@
 cff-version: 1.2.0
 message: "If you use this material, please cite it as below. Not peer reviewed. Produced by AI models under the direction of the repository owner (see AI_DISCLOSURE.md)."
-title: "TESS transit candidates 2026: TIC 402710280, TIC 324429952 and TIC 89247735"
+title: "TESS transit candidates 2026: TIC 402710280, TIC 324429952, TIC 89247735 and TIC 455017950"
 type: dataset
 # doi: to be added after the Zenodo deposit (10.5281/zenodo.XXXXXXX)
 authors:
@@ -9,11 +9,12 @@ authors:
 date-released: "2026-10-18"
 repository-code: "https://github.com/alejandrozarco/tess-candidates-2026"
 abstract: >-
-  Transit timing, light-curve tables, false-positive checks, TRICERATOPS runs and predicted transit times for three
+  Transit timing, light-curve tables, false-positive checks, TRICERATOPS runs and predicted transit times for four
   transit candidates found in TESS full-frame images: TIC 402710280 (P = 36.34005 d, depth about 1680 ppm,
-  transit-timing variations up to 29 min), TIC 324429952 (P = 42.37574 d, depth about 1500 ppm) and TIC 89247735
+  transit-timing variations up to 29 min), TIC 324429952 (P = 42.37574 d, depth about 1500 ppm), TIC 89247735
   (P = 18.32317 d, dilution-corrected depth 1.13-1.22 %, Rp about 8.7 Earth radii with the stellar radius from an SED
-  fit). Not peer reviewed; the candidates are not confirmed.
+  fit) and TIC 455017950 (HD 134147; P = 40.60565 d, depth about 1310 ppm, Rp about 3.2 Earth radii). Not peer
+  reviewed; the candidates are not confirmed.
 keywords:
   - TESS
   - transit candidates
@@ -22,4 +23,6 @@ keywords:
   - TIC 402710280
   - TIC 324429952
   - TIC 89247735
+  - TIC 455017950
+  - HD 134147
 license: CC-BY-4.0

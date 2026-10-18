@@ -1,0 +1,25 @@
+# TIC 455017950 = Gaia DR3 5825217968423162752: joint transit fit with free target flux fraction f_t (scripts/fit_free_dilution.py), 2026-10-18
+# data: TESScut r = 2.0 px raw aperture flux, epochs 38,65,99,100,102, quality 0, +-0.8 d, 2749 points; per-epoch noise fixed at the fit_transits.py residual rms
+# priors: f_t ~ N(0.966, 0.01); u1 ~ N(0.42, 0.1), u2 ~ N(0.2, 0.1); rho_circ ~ N(2.4, 0.3) g cm^-3 (stellar-density prior); circular orbit; P = 40.60566 d fixed
+# emcee: 44 walkers x 6000 steps, first 2000 discarded, thinned by 10; acceptance 0.39; best chi2 2763.6 for 2749 points
+# columns p2.5 ... p97.5 = percentiles of the posterior; k = Rp/R* corrected for dilution; depth_true_ppm = k^2; rho_circ in g cm^-3; T14_h, T23_h in hours
+# no photoeccentric rows: the density prior sets rho_circ (see the fit without the prior)
+quantity,p2.5,p16,p50,p84,p97.5,note
+k,0.0344882,0.0353283,0.0361889,0.0370313,0.03782,
+depth_true_ppm,1189.43,1248.09,1309.64,1371.32,1430.36,
+f_t,0.94644,0.955965,0.966083,0.976067,0.985737,
+b,0.293241,0.400817,0.485901,0.557104,0.617096,
+aR,54.84,57.4286,59.9761,62.429,64.693,
+rho_circ,1.89225,2.17305,2.47525,2.79154,3.10639,
+inc_deg,89.3578,89.4463,89.5359,89.6312,89.7389,
+T14_h,4.54791,4.65118,4.7393,4.82138,4.91055,
+T23_h,4.06941,4.19896,4.30939,4.408,4.51342,
+q1,0.189204,0.304736,0.445185,0.609334,0.786935,
+q2,0.219294,0.271884,0.325437,0.384997,0.452803,
+dtc_38,-0.00742527,-0.0037596,-0.000741899,0.00200366,0.00444131,BTJD offset from the fit_transits.py time (d)
+dtc_65,-0.00677962,-0.00311706,-0.000462935,0.00180612,0.00405608,BTJD offset from the fit_transits.py time (d)
+dtc_99,-0.00865449,-0.00494736,-0.00154245,0.00129849,0.00354221,BTJD offset from the fit_transits.py time (d)
+dtc_100,-0.00490405,-0.00214843,0.000197179,0.00244323,0.00495055,BTJD offset from the fit_transits.py time (d)
+dtc_102,-0.00910467,-0.00586271,-0.00200303,0.0014546,0.00442053,BTJD offset from the fit_transits.py time (d)
+Rp_Rearth,2.92651,3.03627,3.15655,3.27566,3.392,R* = 0.8 +- 0.024 Rsun
+Rp_RJ,0.261085,0.270878,0.281608,0.292235,0.302614,R* = 0.8 +- 0.024 Rsun

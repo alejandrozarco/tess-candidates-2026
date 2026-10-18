@@ -1,17 +1,17 @@
-# TESS transit candidates 2026: TIC 402710280, TIC 324429952 and TIC 89247735
+# TESS transit candidates 2026: TIC 402710280, TIC 324429952, TIC 89247735 and TIC 455017950
 
 Status: computational results from public data, not peer reviewed. Date of this record: 2026-10-18 (UTC). Author: A. Zarco.
 
 > [!IMPORTANT]
 > **Produced by AI models** under the direction of the repository owner; not peer reviewed, and not checked by a
-> professional astronomer. See [`AI_DISCLOSURE.md`](AI_DISCLOSURE.md). The three candidates are leads for independent
+> professional astronomer. See [`AI_DISCLOSURE.md`](AI_DISCLOSURE.md). The four candidates are leads for independent
 > follow-up, not discoveries; none is confirmed. Credit for confirming, refining or refuting them belongs to whoever
 > does that work. To refer to this record, please cite the archived repository (Zenodo DOI: to be added).
 > Questions, checks and corrections: [GitHub issues](https://github.com/alejandrozarco/tess-candidates-2026/issues).
 
-Three stars observed in TESS full-frame images show periodic transit-shaped dips that are not listed as TOI or CTOI, in
+Four stars observed in TESS full-frame images show periodic transit-shaped dips that are not listed as TOI or CTOI, in
 the NASA Exoplanet Archive, VSX, SIMBAD, the Gaia DR3 variability and non-single-star tables, VizieR or ADS (checks
-dated in sections 1.8, 2.7 and 3.8; for TIC 89247735 the live TOI and CTOI lists and the NASA Exoplanet Archive could
+dated in sections 1.8, 2.7, 3.8 and 4.8; for TIC 89247735 the live TOI and CTOI lists and the NASA Exoplanet Archive could
 not be queried on 2026-10-18, and the ExoFOP lists of 2026-10-15 do not contain it). TIC 402710280 (K dwarf, 67 pc,
 $`T = 9.24`$): $`P = 36.34005`$ d, depth about 1680 ppm, duration 5.3 h, flat-bottomed,
 $`R_\mathrm{p} \approx 3.7\,R_\oplus`$, four transits in sectors 39, 93, 100 and 102 whose mid-transit times deviate
@@ -25,9 +25,16 @@ flat-bottomed, $`R_\mathrm{p} = 8.7 \pm 0.6\,R_\oplus`$ ($`0.78\,R_\mathrm{J}`$)
 fit ($`9.1`$-$`9.4\,R_\oplus`$ with the TIC radius), four transits in sectors 66, 93 (two) and 104 on a linear ephemeris;
 TRICERATOPS false-positive probability $`\lesssim 3 \times 10^{-3}`$ (three seeds); the Gaia DR3 radial-velocity scatter limits a
 companion at this period to $`M_2 \sin i < 29\,M_\mathrm{J}`$.
+TIC 455017950 (HD 134147, G9/K0 dwarf, 65 pc, $`T = 9.14`$): $`P = 40.60566`$ d, dilution-corrected depth about
+1310 ppm (raw aperture depth 1180-1270 ppm), duration 4.7 h, $`R_\mathrm{p} = 3.16 \pm 0.12\,R_\oplus`$ with the stellar
+radius from an SED fit, five transits in sectors 38, 65, 99, 100 and 102 (the sector-99 transit at the end of an
+orbit); the mid-transit times deviate from a linear ephemeris by up to 12 min, which is not an established
+transit-timing variation; TRICERATOPS false-positive probability $`(6 \pm 4) \times 10^{-4}`$ with the published SOAR
+speckle contrast curve (five seeds); the Gaia DR3 radial-velocity scatter limits a companion at this period to
+$`M_2 \sin i < 17\,M_\mathrm{J}`$.
 No high-resolution imaging and no radial velocities were obtained for this work.
 The tables in `data/` are recomputed from public MAST, Gaia and ESO products by the scripts in `scripts/` (exceptions in
-section 5).
+section 6).
 
 ## Contents
 
@@ -42,20 +49,22 @@ section 5).
 | `data/predicted_transits_<tic>.csv` | predicted mid-transit times for the 12 months from 2026-10-18 |
 | `data/tess_sectors_<tic>.csv` | TESS sectors (observed and future) in which the target is on silicon |
 | `data/diffimage_<tic>.csv`, `data/diffimage_sources_<tic>.csv` | per-sector difference images and source pixel positions |
-| `data/diffimage_centroids_<tic>.csv` | difference-image centroid offsets per sector or epoch (TIC 324429952, TIC 89247735) |
+| `data/diffimage_centroids_<tic>.csv` | difference-image centroid offsets per sector or epoch (TIC 324429952, TIC 89247735, TIC 455017950) |
 | `data/harps_public_rvs.csv` | the two public HARPS epochs of TIC 402710280 |
 | `data/triceratops_input_<tic>.csv` | the binned light curve given to TRICERATOPS |
-| `data/sed_89247735.csv` | photometry, model magnitudes and residuals of the SED fit of TIC 89247735 |
-| `data/fit_free_dilution_89247735.csv` | posterior percentiles of the joint transit fit with free dilution, and the photoeccentric constraint (TIC 89247735) |
-| `data/triceratops/` | TRICERATOPS scenario tables (`probs_*.csv`, verbatim), run index (`runs.csv`), per-configuration summary (`summary.csv`), Gaia background samples, the assumed contrast curve of the reference runs |
+| `data/sed_<tic>.csv` | photometry, model magnitudes and residuals of the SED fits of TIC 89247735 and TIC 455017950 |
+| `data/fit_free_dilution_<tic>.csv` | posterior percentiles of the joint transit fit with free dilution, and the photoeccentric constraint (TIC 89247735, TIC 455017950) |
+| `data/fit_free_dilution_rho_455017950.csv` | the same fit with the stellar-density prior (adopted for TIC 455017950) |
+| `data/triceratops/` | TRICERATOPS scenario tables (`probs_*.csv`, verbatim), run index (`runs.csv`), per-configuration summary (`summary.csv`), Gaia background samples, the assumed contrast curve of the reference runs, the published SOAR contrast curve of TIC 455017950 |
 | `figures/` | `fold_`, `epochs_`, `oc_`, `diffimage_` figures, light and dark SVG, made by `figures/make_figures.py` from `data/` |
-| `scripts/` | download, photometry, fit, difference images, alias/secondary search, event checks, dilution correction, Gaia companion limits, prediction, TRICERATOPS and table scripts; SED fit and free-dilution fit (TIC 89247735) |
+| `scripts/` | download, photometry, fit, difference images, alias/secondary search, event checks, dilution correction, Gaia companion limits, prediction, TRICERATOPS and table scripts; SED fit and free-dilution fit (TIC 89247735, TIC 455017950) |
 | `requirements.txt`, `LICENSE`, `CITATION.cff`, `.zenodo.json`, `MANIFEST.sha256` | environment, licence, citation metadata, checksums |
 
 Lines starting with `#` in the CSV files are comments that identify the file and its columns.
 Times: BTJD = BJD$`_\mathrm{TDB}`$ $`-`$ 2457000. Predicted times in UTC are geocentric (barycentric light-travel time toward the target removed). All mid-transit times come from TESScut cutouts or SPOC light curves
-(section 4 on the QLP timing notice). For TIC 89247735 two transits fall in sector 93; its tables label each transit
-by its epoch (cycle number) as well as its sector.
+(section 5 on the QLP timing notice). For TIC 89247735 two transits fall in sector 93; its tables label each transit
+by its epoch (cycle number) as well as its sector. For TIC 455017950 the epoch is the cycle number relative to the
+sector-99 transit.
 
 ## 1. TIC 402710280
 
@@ -120,7 +129,7 @@ where $`\beta`$ is the time-averaging factor of the residuals over 20-90 min bin
 
 Linear ephemeris through the four used epochs: $`\chi^2 = 190`$ for 2 degrees of freedom. The pattern is the same for
 $`r`$ = 1.5, 2.0 and 3.0 px apertures, for linear, quadratic and cubic baselines, and in the QLP SAP light curves (the QLP
-time stamps themselves were not used; section 4). The sector-103 transit (BTJD 4165.27) falls in a data gap; sectors 12
+time stamps themselves were not used; section 5). The sector-103 transit (BTJD 4165.27) falls in a data gap; sectors 12
 and 101 contain no predicted transit.
 
 <picture><source srcset="figures/fold_402710280_dark.svg" media="(prefers-color-scheme: dark)"><img src="figures/fold_402710280_light.svg" alt="TIC 402710280 folded transit"></picture>
@@ -778,16 +787,489 @@ position at about 19:00, 19:16 and 20:28 UTC; the NASA Exoplanet Archive tables 
 Sky Patrol v2 light-curve service (out of service); SPHEREx epochs (IRSA TAP connection reset twice). Positive
 controls: WASP-17 (SuperWASP), Proxima Centauri (NEOWISE).
 
-## 4. Caveats
+## 4. TIC 455017950
 
-- No high-resolution imaging exists for any of the three stars. For TIC 402710280 the 2.3" neighbour is unresolved by TESS and
+### 4.1 Host star
+
+| quantity | value | source |
+|---|---|---|
+| identifiers | TIC 455017950, HD 134147, HIP 74344, CPD-64 3112, TYC 9029-1371-1, 2MASS J15113819-6456121, Gaia DR3 (= DR2) 5825217968423162752, 1RXS J151138.2-645610, 3eRASS J151137.5-645611 | SIMBAD, VizieR |
+| position (ICRS, epoch 2016.0) | RA 227.9087992, Dec $`-`$64.9369219 | Gaia DR3 |
+| proper motion (mas/yr) | $`-`$38.134, $`-`$46.527 | Gaia DR3 |
+| parallax (mas) | $`15.3588 \pm 0.0129`$ | Gaia DR3 |
+| distance (pc) | $`65.09 \pm 0.13`$ | TIC v8.2 |
+| $`G`$, $`BP-RP`$ | 9.659, 0.985 | Gaia DR3 |
+| $`T`$, $`V`$, $`B`$, $`J`$, $`H`$, $`K`$ | 9.142, 9.86, 10.611, 8.448, 8.065, 7.977 | TIC v8.2 (ExoFOP) |
+| spectral type | G8/K0V | Houk & Cowley (1975) |
+| $`T_\mathrm{eff}`$ (K) | $`5312 \pm 118`$ (TIC); 5314 (Gaia GSP-Phot); 5315 (Gaia GSP-Spec); $`5323 \pm 100`$ (infrared flux method, Casagrande et al. 2011); $`5309 \pm 48`$ (Masana et al. 2006) | TIC v8.2; Gaia DR3; VizieR J/A+A/530/A138; PASTEL |
+| $`R_\star`$, $`M_\star`$ (TIC) | $`0.794 \pm 0.042\,R_\odot`$, $`0.91 \pm 0.11\,M_\odot`$ ($`\log g = 4.597 \pm 0.079`$, $`\rho_\star = 2.56 \pm 0.58`$ g cm$`^{-3}`$) | TIC v8.2 |
+| RUWE; `ipd_frac_multi_peak`; `ipd_gof_harmonic_amplitude`; `non_single_star` | 0.899; 0; 0.0106; 0 | Gaia DR3 |
+| `astrometric_excess_noise` (mas; significance); `duplicated_source` | 0.069; 9.4; True (also set for 8.5 % of a random sample of stars with $`G`$ = 9.4-9.9) | Gaia DR3 |
+| radial velocity (km/s) | $`-8.23 \pm 0.15`$ (49 transits, 25 deblended); `rv_amplitude_robust` 2.18; `rv_chisq_pvalue` 0.028; `rv_renormalised_gof` 0.51 | Gaia DR3 |
+| other radial velocities (km/s) | CORAVEL $`-8.4 \pm 0.1`$ (2 epochs 400 d apart, $`P(\chi^2) = 0.92`$), $`v \sin i = 3`$ km/s; Pulkovo $`-8.0 \pm 0.4`$; Gaia DR2 $`-8.42 \pm 0.25`$ | VizieR V/117, III/252, I/345 |
+| variability | Gaia `phot_variable_flag` VARIABLE, classifier SOLAR_LIKE, `vari_rotation_modulation` period 3.387 d (also the only VSX entry, type ROT); TESS rotation period 8.3 d (text below) | Gaia DR3, VSX |
+| Hipparcos | field H61 (`Qual`) = S, "suspected non-single" (set for 7624 of 118,218 entries); no variability flag, $`Hp`$ scatter 0.039 mag; Hipparcos 2 (van Leeuwen 2007): single-star 5-parameter solution, F2 = 0.00 over 198 transits | VizieR I/239, I/311 |
+| Hipparcos-Gaia accelerations | HGCA $`\chi^2 = 0.58`$; Kervella et al. (2022) proper-motion-anomaly S/N 0.97, 0.87, 1.28 (no binary flag) | VizieR J/ApJS/254/42, J/A+A/657/A7 |
+| high-resolution imaging | SOAR HRCam speckle, $`I`$ band, epoch 2019.54: unresolved, $`5\sigma`$ contrast $`\Delta m = 2.74`$ at 0.15" and 4.00 at 1" | Tokovinin et al. (2020), VizieR J/AJ/160/7 (table 3) |
+| X-ray | 2RXS: $`F_X = 1.2 \times 10^{-13}`$ erg s$`^{-1}`$ cm$`^{-2}`$; 3eRASS (eROSITA DR2, 0.2-2.3 keV, 3.8" from the target): $`9.0 \times 10^{-14}`$; $`\log L_X/L_\mathrm{bol} = -4.46`$ and $`-4.58`$ | VizieR J/A+A/712/A171 |
+| TIC contamination ratio | 0.051 | TIC v8.2 |
+| Gaia DR3 sources within 60" | 232 (51 with $`G < 19`$); nearest: Gaia DR3 5825217968399119488, $`G = 17.77`$, 6.1"; nearest with $`G < 17`$: Gaia DR3 5825217964086439552 (TIC 455017931), $`G = 14.91`$, 10.0", parallax 0.53 mas (background) | Gaia DR3 |
+| SED fit ($`A_V = 0`$, without SkyMapper $`u`$, $`v`$) | $`T_\mathrm{eff} = 5260`$ K, $`R_\star = 0.805\,R_\odot`$, $`L_\star = 0.447\,L_\odot`$; $`\chi^2 = 15.0`$ for 11 degrees of freedom | this work (`scripts/sed_fit.py`, `data/sed_455017950.csv`); photometry: Gaia DR3 $`G`$, $`BP`$, $`RP`$; Tycho-2 $`B_T`$, $`V_T`$; SkyMapper DR4 $`g`$, $`r`$, $`i`$, $`z`$ (PSF); 2MASS $`J`$, $`H`$, $`K_s`$; AllWISE W1, W2 |
+| adopted $`T_\mathrm{eff}`$ (K), $`L_\star`$ ($`L_\odot`$), $`R_\star`$ ($`R_\odot`$) | $`5300 \pm 60`$, $`0.455 \pm 0.02`$, $`0.800 \pm 0.024`$ | this work (text below the table) |
+| adopted $`M_\star`$ ($`M_\odot`$), $`\log g`$, $`\rho_\star`$ (g cm$`^{-3}`$) | $`0.88 \pm 0.05`$, $`4.58 \pm 0.03`$, $`2.42 \pm 0.26`$ | this work: Torres et al. (2010) relation; $`\rho_\star`$ from $`M_\star`$ and $`R_\star`$ |
+| [Fe/H] | $`-0.13`$ (Casagrande et al. 2011), $`-0.16`$ (GCS), $`-0.07`$ (GSP-Phot), $`+0.08`$ (GSP-Spec); adopted $`-0.10 \pm 0.10`$ | VizieR J/A+A/530/A138, V/130; Gaia DR3 |
+| rotation; age | $`P_\mathrm{rot} = 8.3`$ d; gyrochronological age 0.3-0.5 Gyr | this work (text below) |
+| kinematics | $`(U, V, W)_\mathrm{LSR} = (-7.3, +5.5, +1.9)`$ km/s, $`\lvert v_\mathrm{LSR} \rvert = 9.3`$ km/s; thin disc (thick-disc to thin-disc probability ratio 0.006, Bensby et al. 2014) | this work, from the Gaia DR3 astrometry and radial velocity |
+
+SED fit (`scripts/sed_fit.py`): Castelli & Kurucz (2003) model spectra ($`T_\mathrm{eff}`$ 4750-6000 K, $`\log g`$ 4.5
+and 5.0, [M/H] $`-0.5`$, 0.0, $`+0.2`$), synthetic photometry with the SVO filter curves and zero points, a free scale,
+$`d = 1/(\varpi + 0.02\,\mathrm{mas}) = 65.02`$ pc, $`A_V = 0`$ and an error floor of 0.03 mag. With all bands:
+5290 K, $`0.797\,R_\odot`$, $`0.448\,L_\odot`$, $`\chi^2 = 21.3`$ for 13 degrees of freedom; [M/H] = $`-0.5`$ to
+$`+0.2`$: 5230-5270 K; $`A_V`$ = 0.05, 0.10, 0.20: 5310, 5370 and 5480 K, $`L_\star`$ = 0.461, 0.477 and
+0.508 $`L_\odot`$, $`\chi^2`$ = 14.0, 13.2 and 11.9, so the SED alone does not separate $`T_\mathrm{eff}`$ from the
+extinction. A Monte Carlo fit of the same photometry with $`A_V`$ free in 0-0.05 (Tycho-2 errors added in quadrature
+to 0.03 mag; no script in this repository) gave $`5286 \pm 31`$ K, $`0.804 \pm 0.009\,R_\odot`$,
+$`0.455 \pm 0.006\,L_\odot`$ and $`A_V = 0.03 \pm 0.02`$. The extinction is close to 0: the star lies at 65 pc,
+inside the Local Bubble; Casagrande et al. (2011) give $`E(B-V) = 0.00`$; the Schlegel et al. (1998) value of 0.58
+is the full column at Galactic latitude $`-6^\circ`$ and does not apply at this distance; and the spectroscopic and
+infrared-flux-method $`T_\mathrm{eff}`$ values (5309-5323 K) agree with the low-extinction fits. Luminosity: SED
+0.447-0.461 $`L_\odot`$ ($`A_V`$ = 0-0.05), 0.433 $`L_\odot`$ from the infrared-flux-method bolometric flux of
+Casagrande et al. (2011) ($`3.265 \times 10^{-9}`$ erg s$`^{-1}`$ cm$`^{-2}`$), and 0.475 $`L_\odot`$ (Gaia FLAME).
+Adopted: $`T_\mathrm{eff} = 5300 \pm 60`$ K (spread of the SED fits with $`A_V \le 0.05`$, the infrared flux method,
+Masana et al. 2006, GSP-Phot and GSP-Spec), $`L_\star = 0.455 \pm 0.02\,L_\odot`$ and
+$`R_\star = \sqrt{L_\star}\,(T_\mathrm{eff}/5772\,\mathrm{K})^{-2} = 0.800 \pm 0.024\,R_\odot`$ (solar units;
+error with a 3 % floor). Other radius values: 0.797-0.805 $`R_\odot`$ (SED fits), 0.813 $`R_\odot`$ (FLAME and
+GSP-Phot), $`0.794 \pm 0.042\,R_\odot`$ (TIC). Mass: $`0.87 \pm 0.055\,M_\odot`$ from the Torres et al. (2010)
+relation, 0.907 (FLAME), 0.85 (Casagrande et al. 2011) and 0.81 $`M_\odot`$ (GCS); adopted $`0.88 \pm 0.05\,M_\odot`$.
+The star lies on the main sequence for its $`T_\mathrm{eff}`$ ($`M_G = 5.59`$; GCS: 0.25 mag above the zero-age main
+sequence), and the SED radius agrees with the spectroscopic $`\log g`$ of 4.61 (Casagrande et al. 2011); an unresolved
+companion contributing more than about 20 % of the $`G`$-band flux is disfavoured.
+
+Rotation and activity: the TESScut light curves show a spot modulation of 1.5-2.7 % (5-95 % range) with periods of
+8.18-8.49 d (Lomb-Scargle; sector 38: 4.0 d, half the period) and 8.06-8.40 d (autocorrelation) in all eight sectors.
+The Gaia DR3 period of 3.387 d does not appear in the TESS data; other catalogue values are 8.67 d (VizieR
+J/ApJS/276/57), 6.82 d, 3.99 d and 1.13 d (KELT). With $`R_\star = 0.80\,R_\odot`$, $`P_\mathrm{rot} = 8.3`$ d gives an
+equatorial velocity of 4.9 km/s, consistent with the CORAVEL $`v \sin i = 3`$ km/s. Gyrochronology with
+$`B-V = 0.756 \pm 0.03`$: 445 (413-482) Myr (Mamajek & Hillenbrand 2008) and 321 (290-358) Myr (Barnes 2007); the
+X-ray level ($`\log L_X/L_\mathrm{bol} = -4.6`$ to $`-4.5`$; the Wright et al. 2011 relation predicts $`-4.3`$ to
+$`-4.6`$ at a Rossby number of about 0.5) and the Gaia FLAME age (0.2-2.6 Gyr) agree; adopted age 0.3-0.5 Gyr. The
+SPYGLASS young-star probability is 0.003 (VizieR). The Gaia DR3 ESP-CS Ca II infrared-triplet activity index is
+0.0396 nm. No flares are listed for the star in two TESS flare catalogues. No public high-resolution spectrum exists
+(section 4.8), so no Ca II H and K, lithium or spectroscopic $`v \sin i`$ measurement beyond CORAVEL is available.
+Membership in moving groups was not tested.
+
+Hipparcos "suspected non-single" flag: the Geneva-Copenhagen Survey flags the star as a binary (`fb = *` in Nordström et
+al. 2004, `fb = 1` in Holmberg et al. 2009, "confirmed or suspected binary of any type, from photometry, radial velocity
+or astrometry"). The flag does not come from the radial velocities ($`P(\chi^2) = 0.92`$ against the survey criterion
+$`P < 0.01`$), from a visual companion (no CCDM, TDSC, WDS or SB9 entry within 60") or from a photometric-distance
+discrepancy; it corresponds to the Hipparcos main-catalogue field H61 = S. The Hipparcos documentation does not say which
+diagnostic set it for this star. Later data do not show a companion: the Hipparcos 2 solution is single-star with
+F2 = 0.00, Gaia DR3 gives RUWE 0.899, `ipd_frac_multi_peak` 0 and no non-single-star solution, the HGCA and the
+Kervella et al. (2022) proper-motion anomalies are not significant, and SOAR speckle did not resolve the star. The
+companion limits are combined in section 4.6.
+
+### 4.2 Transits and ephemeris
+
+TESScut cutouts of sectors 12, 38, 39, 65, 99, 100, 101 and 102 are requested at the Gaia DR3 position, and the
+apertures are centred on the proper-motion-corrected position of each sector. Five transits are covered (sectors 38,
+65, 99, 100 and 102; cycles $`-42`$, $`-24`$, 0, 1 and 2); sector 12 contains no predicted transit (cycles $`-60`$ and
+$`-59`$ fall outside the data), sector 39 ends 0.94 d before cycle $`-41`$, and sector 101 contains none. Common-shape fit
+of the five transits in the $`r = 2.0`$ px circular-aperture photometry (`scripts/fit_transits.py`; batman model,
+quadratic limb darkening $`u = (0.42, 0.20)`$, one quadratic baseline per epoch solved jointly, quality-0 cadences within
+$`\pm 0.8`$ d of each transit):
+
+| quantity | $`r = 2.0`$ px, $`\pm 0.8`$ d, quadratic (nominal) | $`a/R_\star`$ fixed at the TIC density (60.6) | $`r = 1.5`$ px | $`r = 3.0`$ px | $`\pm 0.6`$ d, cubic | $`\pm 1.0`$ d, cubic |
+|---|---|---|---|---|---|---|
+| $`k = R_\mathrm{p}/R_\star`$, raw aperture flux | 0.0347 | 0.0357 | 0.0347 | 0.0343 | 0.0344 | 0.0347 |
+| depth $`k^2`$ (ppm) | 1205 | 1271 | 1201 | 1179 | 1184 | 1206 |
+| $`b`$ | 0.12 (not constrained) | 0.47 | 0.00 | 0.03 | 0.00 | 0.03 |
+| $`a/R_\star`$ | 67.6 | 60.6 | 69.1 | 67.6 | 68.3 | 68.1 |
+| $`T_{14}`$, $`T_{23}`$ (h) | 4.72, 4.39 | 4.73, 4.31 | 4.64, 4.33 | 4.75, 4.43 | 4.70, 4.38 | 4.71, 4.40 |
+| $`\chi^2`$ (points) | 2746.3 (2747) | 2746.6 | 2746.9 | 2746.6 | 2084.9 (2086) | 3409.3 (3410) |
+| linear-ephemeris $`\chi^2`$ (3 degrees of freedom) | 9.3 | 5.6 | 3.9 | 10.8 | 18.1 | 15.5 |
+
+Linear ephemeris of the nominal fit: $`P = 40.605660 \pm 0.000074`$ d, $`T_0 = 2461055.48930 \pm 0.00179`$
+BJD$`_\mathrm{TDB}`$ (BTJD 4055.48930). The depth is the same in all apertures, as expected for a source on the target;
+with limb darkening the central depth is about $`1.2\,k^2`$.
+
+$`\chi^2`$ profile over $`b`$ (per-epoch noise fixed at the values of the nominal fit, `--bfix`): $`\Delta\chi^2`$ = 0.2,
+0.4, 0.8, 1.3, 1.1, 0.9 and 3.4 for $`b`$ = 0.3, 0.5, 0.6, 0.7, 0.8, 0.85 and 0.9 (relative to $`b = 0`$), so $`b`$ is
+not constrained below about 0.9. Ingress and egress (about 10 min for a planet) are not resolved: a diluted eclipse of a
+larger body (radius ratio fixed at 0.2, 0.3, 0.4 or 0.5, eclipse depth scaled freely) fits equally well ($`\chi^2`$ =
+2746.3-2746.7 against 2746.2 for the planet model; no script in this repository). The transit shape therefore does not
+exclude a blended eclipsing binary by itself; the stellar density does: $`a/R_\star`$ = 55-69 for $`b \le 0.6`$ implies
+a circular-orbit density of 1.9-3.8 g cm$`^{-3}`$, i.e. a dwarf host, while the brightest neighbour, the $`G = 14.91`$
+star at 10" ($`M_G \approx 3.5`$ for its parallax, a turnoff star or subgiant), would need $`a/R_\star \approx 25`$ and
+$`T_{14} > 10`$ h at $`b = 0`$, a grazing geometry or a high eccentricity.
+
+Dilution (`scripts/dilution_correction.py`, Gaia DR3 $`G`$-band fluxes of the 231 sources with a $`G`$ magnitude within
+60", per-epoch Gaussian PSF of sigma 0.59-0.80 px and 1.5 times that):
+
+| aperture | raw depth $`k^2`$ (ppm) | target flux fraction | corrected depth (ppm) | $`k`$ | $`R_\mathrm{p}`$ ($`R_\oplus`$, TIC $`R_\star`$) |
+|---|---|---|---|---|---|
+| $`r = 1.5`$ px | 1201 | 0.977 | 1230 | 0.0351 | 3.0 |
+| $`r = 2.0`$ px | 1205 | 0.965 | 1248 | 0.0353 | 3.1 |
+| $`r = 3.0`$ px | 1179 | 0.940 | 1254 | 0.0354 | 3.1 |
+
+For comparison, the TIC contamination ratio of 0.051 corresponds to a fraction of 0.951, and TRICERATOPS gives 0.950 for
+the $`r = 2.0`$ px apertures.
+
+Joint fit with the stellar-density prior (`scripts/fit_free_dilution.py --rho-prior`,
+`data/fit_free_dilution_rho_455017950.csv`; adopted): raw $`r = 2.0`$ px flux of the five epochs (quality 0,
+$`\pm 0.8`$ d, 2749 points), $`F = f_t\,T(t) + (1 - f_t)`$ with $`f_t \sim N(0.966, 0.010)`$ (the per-epoch fractions
+of the table above, 0.962-0.969), Kipping $`q_1`$, $`q_2`$ with Gaussian priors $`u_1 = 0.42 \pm 0.1`$,
+$`u_2 = 0.20 \pm 0.1`$, a circular orbit, the circular-orbit density with the prior $`2.40 \pm 0.30`$ g cm$`^{-3}`$, five
+free mid-transit times, a quadratic baseline per epoch solved linearly, per-epoch noise fixed at the residual rms of the
+common-shape fit (357-779 ppm); exposure time = cadence (600 s in sector 38, 200 s otherwise). emcee, 44 walkers
+$`\times`$ 6000 steps, the first 2000 discarded. The same model without the density prior
+(`data/fit_free_dilution_455017950.csv`) gives the circular-orbit density from the light curve alone.
+
+| quantity | with the density prior (adopted); median and 68 % interval (95 % interval) | without the density prior |
+|---|---|---|
+| $`k = R_\mathrm{p}/R_\star`$ (undiluted) | $`0.0362^{+0.0008}_{-0.0009}`$ (0.0345-0.0378) | $`0.0364^{+0.0030}_{-0.0014}`$ (0.0341-0.0419) |
+| depth $`k^2`$ (ppm) | $`1310^{+62}_{-62}`$ | $`1327^{+226}_{-98}`$ |
+| $`f_t`$ | $`0.966 \pm 0.010`$ (equal to the prior) | $`0.965 \pm 0.010`$ |
+| $`b`$ | $`0.49^{+0.07}_{-0.09}`$ (0.29-0.62) | $`0.47^{+0.33}_{-0.33}`$ (0.02-0.88) |
+| $`a/R_\star`$; $`\rho_\mathrm{circ}`$ (g cm$`^{-3}`$) | $`60.0^{+2.5}_{-2.5}`$; $`2.48^{+0.32}_{-0.30}`$ | $`60.6^{+7.0}_{-18.3}`$; $`2.56^{+1.00}_{-1.69}`$ (0.43-3.91) |
+| $`T_{14}`$, $`T_{23}`$ (h) | $`4.74^{+0.08}_{-0.09}`$, $`4.31^{+0.10}_{-0.11}`$ | $`4.74^{+0.16}_{-0.11}`$, $`4.27^{+0.13}_{-0.39}`$ |
+| $`R_\mathrm{p}`$ ($`R_\star = 0.800 \pm 0.024\,R_\odot`$) | $`3.16^{+0.12}_{-0.12}\,R_\oplus`$ = $`0.282 \pm 0.011\,R_\mathrm{J}`$ (2.93-3.39 $`R_\oplus`$) | $`3.19^{+0.26}_{-0.16}\,R_\oplus`$ |
+| best $`\chi^2`$ (2749 points); autocorrelation times (steps) | 2763.6; 115-146 | 2763.5; 215-479 |
+
+An independent implementation of the same model (2746 points, windows centred on the linear ephemeris; no script in this
+repository) gave $`k = 0.0363^{+0.0008}_{-0.0009}`$, $`b = 0.49 \pm 0.08`$ and $`R_\mathrm{p} = 3.17 \pm 0.13\,R_\oplus`$
+with the prior, and $`b = 0.36^{+0.30}_{-0.24}`$ and $`\rho_\mathrm{circ} = 2.98^{+0.64}_{-1.38}`$ g cm$`^{-3}`$ without
+it; without the prior $`b`$ and $`\rho_\mathrm{circ}`$ are degenerate, and the chains converge slowly.
+
+Adopted: $`R_\mathrm{p} = 3.16 \pm 0.12\,R_\oplus`$ ($`R_\star = 0.800 \pm 0.024\,R_\odot`$), true depth about 1310 ppm.
+With $`M_\star = 0.88\,M_\odot`$: $`a = 0.2215`$ au ($`a/R_\star = 59.5`$ from the physical values), equilibrium
+temperature 486 K (zero albedo, full redistribution) and insolation 9.3 times that of the Earth. With the TIC radius and
+the common-shape fit the radius is 3.0-3.1 $`R_\oplus`$ (table above).
+
+Photoeccentric constraint (Dawson & Johnson 2012; the fit without the density prior): with
+$`\rho_\star = M_\star/R_\star^3`$ drawn from $`M_\star = 0.88 \pm 0.05\,M_\odot`$ and $`R_\star = 0.800 \pm 0.024\,R_\odot`$
+($`\rho_\star = 2.42^{+0.27}_{-0.24}`$ g cm$`^{-3}`$), $`\rho_\mathrm{circ}/\rho_\star = 1.04^{+0.44}_{-0.68}`$. Uniform
+priors on $`e`$ in [0, 0.95) and on $`\omega`$ give $`e = 0.24^{+0.33}_{-0.16}`$, $`e < 0.39`$ (68 %) and $`e < 0.78`$
+(95 %); the Savage-Dickey density ratio at $`e = 0`$ is 1.8 (independent implementation: $`e < 0.34`$ and $`< 0.76`$,
+ratio 2.0). The light curve is consistent with a circular orbit at $`b \approx 0.5`$; the eccentricity is not measured.
+The one-sided 95 % upper limit on $`\rho_\mathrm{circ}`$ is 3.8 g cm$`^{-3}`$.
+
+### 4.3 Transit epochs and O-C
+
+`data/transit_times_455017950.csv`; errors as in section 1.3. Depths are raw $`r = 2.0`$ px depths (not dilution
+corrected).
+
+| epoch | sector | $`t_c`$ (BTJD) | error (min) | O $`-`$ C (min) | depth (ppm) | note |
+|---|---|---|---|---|---|---|
+| $`-42`$ | 38 | 2350.050711 | 3.8 | $`-1.3`$ | $`1173 \pm 74`$ | 10-min cadence |
+| $`-24`$ | 65 | 3080.955942 | 4.4 | $`+3.6`$ | $`1130 \pm 90`$ | |
+| 0 | 99 | 4055.486562 | 3.7 | $`-3.9`$ | $`1270 \pm 79`$ | end of orbit 1; text below |
+| 1 | 100 | 4096.088637 | 6.0 | $`-9.1`$ | $`1198 \pm 83`$ | |
+| 2 | 102 | 4136.708782 | 5.2 | $`+11.8`$ | $`1254 \pm 92`$ | |
+
+Linear ephemeris: $`\chi^2 = 9.3`$ for 3 degrees of freedom ($`p = 0.025`$). Across the fit variants of section 4.2 the
+linear-ephemeris $`\chi^2`$ is 3.9-18.1; epoch 2 is late by +8.5 to +16.4 min and epoch 1 early by $`-5.8`$ to
+$`-9.1`$ min in every variant (the two are one cycle apart). Without epoch 0, $`P = 40.605747 \pm 0.000088`$ d
+($`\chi^2 = 7.6`$ for 2 degrees of freedom).
+
+Epoch 0 lies at the end of the first orbit of sector 99: the data end at BTJD 4055.735, 3.6 h after egress, on a falling
+slope of the spot modulation. Its depth in the joint fit is model-dependent: a 4.7-h box gives 2304 ppm after a 1.0-d
+biweight detrending and 597 ppm after a robust spline with 0.5-d knots. It agrees with the ephemeris but is not an
+independent confirmation; the period rests on epochs $`-42`$, $`-24`$, 1 and 2. The other four transits lie inside their
+orbits, without flagged cadences, background excursions or centroid steps.
+
+Transit-timing variations (no script in this repository): mid-transit times were also measured with the transit shape
+fixed and a free depth scale, with a quadratic baseline over $`\pm 0.8`$ d (error = the largest of formal $`\times \beta`$,
+prayer-bead and the scatter of the same model injected at about 60 off-transit times of the same sector, 2.4-4.8 min) and
+with a Gaussian-process baseline (Matérn-3/2 kernel, celerite, over $`\pm 1.2`$ d; fitted timescales 3-7 d), in the
+TESScut photometry and in the QLP SAP light curves (an independent aperture and background; the QLP time stamps of
+sectors 99-104 carry the timing error of section 5, so these sets are a consistency check only). O $`-`$ C (min) against
+each set's own linear ephemeris:
+
+| set | epoch $`-42`$ | $`-24`$ | 0 | 1 | 2 | $`\chi^2`$ (3 dof) | $`p`$ | $`p`$ without epoch 2 |
+|---|---|---|---|---|---|---|---|---|
+| TESScut, polynomial | $`-1.2 \pm 4.2`$ | $`+3.7 \pm 5.0`$ | $`-4.6 \pm 3.8`$ | $`-9.5 \pm 5.9`$ | $`+11.8 \pm 4.8`$ | 10.8 | 0.013 | 0.38 |
+| QLP SAP, polynomial | $`-1.4 \pm 4.1`$ | $`+1.9 \pm 3.4`$ | $`-2.9 \pm 3.5`$ | $`-9.4 \pm 6.6`$ | $`+8.7 \pm 4.9`$ | 6.3 | 0.099 | 0.41 |
+| TESS-SPOC (epoch $`-42`$), SPOC 2-min (epoch $`-24`$), QLP (others) | $`-1.1 \pm 3.9`$ | $`+2.3 \pm 4.0`$ | $`-2.8 \pm 3.5`$ | $`-9.3 \pm 6.6`$ | $`+8.7 \pm 4.9`$ | 6.3 | 0.100 | 0.43 |
+| TESScut, Gaussian process | $`-3.2 \pm 5.0`$ | $`+2.4 \pm 3.1`$ | $`-2.7 \pm 5.4`$ | $`-5.3 \pm 2.6`$ | $`+14.7 \pm 4.5`$ | 16.1 | 0.001 | 0.32 |
+| QLP SAP, Gaussian process | $`-2.8 \pm 5.1`$ | $`+1.5 \pm 2.7`$ | $`-2.0 \pm 3.3`$ | $`-6.2 \pm 4.0`$ | $`+9.2 \pm 4.4`$ | 7.8 | 0.051 | 0.39 |
+
+A transit-timing variation is not established. Epoch 2 is 2-3 $`\sigma`$ late in every set, and the significance of the
+departure from a linear ephemeris depends on the photometry ($`p`$ = 0.001-0.10); without epoch 2 every set is
+consistent with a linear ephemeris ($`p`$ = 0.32-0.43), and no other epoch deviates by more than about 2 $`\sigma`$. The
+same photons give +8.7 min (QLP aperture) and +11.8 min (TESScut aperture) for epoch 2. A systematic error of 5-10 min in
+sector 102, for example from the slope of the spot modulation across the transit, cannot be excluded. A quadratic
+ephemeris is not preferred ($`\Delta\chi^2`$ = 0.1-0.6, $`\Delta\mathrm{BIC}`$ = +1.0 to +1.5). A sinusoid scan
+(super-periods $`2.1P`$ to 5000 d) gives best super-periods of 271-543 d with $`\Delta\chi^2`$ = 6.3-16.1 and
+false-alarm probabilities of 0.00-0.01 (TESScut sets) and 0.06-0.10 (QLP and mixed sets) from 500 white-noise
+simulations; these fits have four parameters for five points. The 95 % upper limit on a sinusoidal amplitude is 55 min
+(median over super-periods 85-5000 d; 10-90 %: 20 to more than 90 min) for the TESScut polynomial set and 40-47 min for
+the QLP sets; near first-order resonances (Lithwick, Xie & Wu 2012, zero free eccentricity) only perturbers of tens of
+Earth masses are excluded (for example $`< 18`$-19 $`M_\oplus`$ for exterior 2:1 or 3:2 perturbers 1 % from resonance).
+The best-fit sinusoids of the five sets predict +44 to +150 min at cycle 10 (TESS sector 114, 2027-02-25), against
+$`\pm 3`$ min for the linear ephemeris, so one further transit timed to 4-5 min would test them.
+
+<picture><source srcset="figures/fold_455017950_dark.svg" media="(prefers-color-scheme: dark)"><img src="figures/fold_455017950_light.svg" alt="TIC 455017950 folded transit"></picture>
+
+<picture><source srcset="figures/epochs_455017950_dark.svg" media="(prefers-color-scheme: dark)"><img src="figures/epochs_455017950_light.svg" alt="TIC 455017950 individual transits"></picture>
+
+<picture><source srcset="figures/oc_455017950_dark.svg" media="(prefers-color-scheme: dark)"><img src="figures/oc_455017950_light.svg" alt="TIC 455017950 O-C"></picture>
+
+### 4.4 Checks against false positives
+
+- Public light curves (4.7-h box, quadratic baseline over $`\pm 1`$ d, quality 0; no script in this repository): QLP SAP
+  flux shows the transits at $`1337 \pm 86`$, $`1457 \pm 88`$, $`1208 \pm 59`$, $`1114 \pm 72`$ and $`1307 \pm 81`$ ppm
+  (epochs $`-42`$, $`-24`$, 0, 1, 2); TESS-SPOC SAP at $`1355 \pm 76`$ and $`1293 \pm 74`$ ppm (epochs $`-42`$, $`-24`$);
+  the SPOC 2-min SAP light curve of sector 65 (a guest-investigator target in that sector, section 4.8) at
+  $`1316 \pm 74`$ ppm, and its common-shape fit gives $`k^2 = 1132 \pm 70`$ ppm and a mid-time 1.8 min before the TESScut
+  value (CROWDSAP 0.945); TARS at $`1709 \pm 187`$ and $`1764 \pm 218`$ ppm (epochs $`-42`$, $`-24`$). The QLP detrended
+  fluxes (DET, KSPSAP), which are flattened against the spot modulation, show the transits at about half depth.
+- Odd and even transits agree in depth (table 4.3): $`1198 \pm 83`$ ppm (odd, epoch 1) and $`1207 \pm 41`$ ppm (even),
+  0.1 $`\sigma`$.
+- Period aliases (`scripts/alias_secondary_search.py`, 1.0-d biweight detrending, box of $`0.8\,T_{14}`$): for
+  $`P/2 = 20.3028`$ d the three covered half-period epochs show no transit ($`-19 \pm 69`$, $`-145 \pm 76`$ and
+  $`268 \pm 82`$ ppm at BTJD 2370.354, 4075.792 and 4116.398; the sector-12 half-period epoch is in the mid-sector gap);
+  $`P/3`$: 10 covered epochs without transit; $`P/4`$: 13; $`P/k`$, $`k`$ = 5-12: 19-47 each. $`2P`$ is excluded by the
+  consecutive cycles 0, 1 and 2 and by the equal depths of odd and even transits.
+- Secondary eclipse (same script): the three covered phase-0.5 epochs give a weighted mean of $`-2 \pm 44`$ ppm
+  (3 $`\sigma`$ limit 132 ppm, white noise); the robust scatter of box depths over all off-transit phases is 230 ppm
+  (3 $`\sigma`$ limit 691 ppm), and the deepest box at any off-transit phase is 1774 ppm (phase $`+0.43`$, three epochs,
+  from the data-edge events below). With a robust spline of 0.5-d knots instead of the biweight filter (no script in this
+  repository) the phase-0.5 mean is $`7 \pm 42`$ ppm and the 3 $`\sigma`$ limit from the scatter over phases is 343 ppm.
+- Red noise and phase-shift test (no script in this repository; 4.7-h box after the spline and the biweight
+  detrendings): of 1918 random single windows away from the transits, 14 and 23 reach the depth of the shallowest transit
+  in the same detrending, mostly at data edges, so a single dip of this depth would not be significant on this star. For
+  1880 trial shifts of $`T_0`$ at the same period, none reaches the mean box depth of the real ephemeris over the covered
+  epochs (spline: 981 ppm against a shifted maximum of 494 ppm and a scatter of 89 ppm, about 11 $`\sigma`$; biweight:
+  1373 against 900 and 286 ppm).
+- Spot modulation: the star varies by 1.5-2.7 % with $`P_\mathrm{rot} = 8.3`$ d (section 4.1); $`P`$ is not within
+  4 % of 13.7 d$`/n`$ or 27.4 d$`/n`$ ($`n`$ = 1-8).
+- Other dips: the box search finds events of 1100-2400 ppm off the ephemeris, all at orbit or sector edges, on
+  scattered-light ramps or at pointing steps. `scripts/event_checks.py` on six of them: BTJD 2346.001 (4045, 1847 and
+  1196 ppm in the $`r`$ = 1.5, 2.0 and 3.0 px apertures, orbit end), 3089.995 (11 flagged cadences in the box, a
+  background excursion of 0.8 %, orbit end), 4073.054 (21 flagged cadences, end of sector 99), 4119.794 (centroid shift),
+  4133.134 (2214, 2441 and 460 ppm, centroid shift, QLP SAP $`-512 \pm 80`$ ppm) and 4138.374 (background 22 % above its
+  baseline, a scattered-light ramp); none behaves like a dip on the target.
+- Localisation: the dimming is centred on the target in all five epochs, and every Gaia DR3 source other than the target
+  is disfavoured as the host (section 4.5).
+- Gaia DR3: RUWE 0.899, `ipd_frac_multi_peak` 0, no non-single-star solution; the radial-velocity scatter limits a
+  companion at this period to $`M_2 \sin i < 17\,M_\mathrm{J}`$ (section 4.6).
+
+### 4.5 Difference-image localisation
+
+`data/diffimage_455017950.csv`, `data/diffimage_sources_455017950.csv`, `data/diffimage_centroids_455017950.csv`,
+`scripts/difference_images.py` (settings `diff` in `scripts/targets.py`: quadratic out-of-transit model of every pixel
+over $`\pm 0.7`$ d, in-transit window $`\pm 0.07`$ d; with a linear model the transit of epoch 1, which lies on a maximum
+of the spot modulation, is not recovered in the difference image). Centroid offsets of the difference image from the
+out-of-transit image, with the scatter of the same measurement over 51-73 off-transit windows:
+
+| epoch | sector | offset (px) | scatter (px) | offset (") | PSF sigma (px) | $`\Delta\chi^2`$ of the 10.0" star | its implied eclipse depth |
+|---|---|---|---|---|---|---|---|
+| $`-42`$ | 38 | ($`-0.003`$, $`-0.080`$) | (0.442, 0.268) | ($`-0.4`$, $`-1.6`$) | 0.80 | +328 | 25 % |
+| $`-24`$ | 65 | ($`-0.078`$, $`+0.303`$) | (0.272, 0.405) | ($`+0.1`$, $`+6.6`$) | 0.67 | $`-21`$ | 18 % |
+| 0 | 99 | ($`-0.056`$, $`-0.028`$) | (0.281, 0.294) | ($`+0.7`$, $`-1.1`$) | 0.70 | +591 | 21 % |
+| 1 | 100 | ($`-0.096`$, $`-0.083`$) | (0.285, 0.407) | ($`-1.1`$, $`+2.3`$) | 0.65 | +781 | 14 % |
+| 2 | 102 | ($`+0.207`$, $`+0.225`$) | (0.276, 0.630) | ($`+0.7`$, $`+6.4`$) | 0.59 | $`-12`$ | 16 % |
+
+Offsets in pixels are cutout column and row; in arcsec East and North. Every offset is below 1 $`\sigma`$; the weighted
+mean is $`\Delta\mathrm{E} = +0.1 \pm 2.7`$", $`\Delta\mathrm{N} = +0.8 \pm 3.2`$" ($`\chi^2 = 1.1`$ for 10 degrees of
+freedom against zero). The Gaia PSF-position test fits each difference image with the out-of-transit PSF placed at every
+Gaia DR3 source with $`G < 19`$ within 60" (51 sources). Summed over the five epochs, the target is preferred over the
+10.0" star (Gaia DR3 5825217964086439552, TIC 455017931, $`G = 14.91`$, parallax 0.53 mas) by $`\Delta\chi^2 = 1666`$,
+over the 6.1" star ($`G = 17.77`$; it would need an eclipse deeper than 200 %) by 689, over the 8.5" star
+($`G = 18.05`$) by 980 and over every other source by more than 3500. The 10.0" star lies 0.5 px from the target and is
+mildly preferred in epochs $`-24`$ and 2, so the pixel data constrain it only in the sum over epochs; it would need a
+14-25 % eclipse. TRICERATOPS lists nine stars that could produce the signal with an eclipse of at most 100 %: the target,
+TIC 455017931 (the 10.0" star; 14.3 %), TIC 455017929 (26.0", 70 %), TIC 455017999 (28.0", 68 %), TIC 455018032 (46.0",
+35 %), TIC 455017864 (50.8", 33 %), TIC 455017994 (53.0", 32 %), TIC 455017954 (68.9", 87 %) and TIC 455017861 (70.9",
+28 %); the difference images disfavour every one of them within 60", and the two beyond 60" lie 3.3 px from the target,
+where the difference images show no signal.
+
+<picture><source srcset="figures/diffimage_455017950_dark.svg" media="(prefers-color-scheme: dark)"><img src="figures/diffimage_455017950_light.svg" alt="TIC 455017950 difference images"></picture>
+
+### 4.6 Companion limits
+
+- Gaia radial velocities (`scripts/gaia_companion_limits.py`): 49 transits, `rv_chisq_pvalue` 0.028 (not flagged as
+  variable), `rv_amplitude_robust` 2.18 km/s. Taken as an upper bound on $`2K`$: $`K < 1.09`$ km/s and, for
+  $`M_\star = 0.91\,M_\odot`$ (TIC) and $`P = 40.61`$ d ($`K = 63.0`$ m/s per $`M_\mathrm{J}`$),
+  $`M_2 \sin i < 17\,M_\mathrm{J}`$. Simulations with random orbital phases and the per-transit noise implied by
+  `radial_velocity_error` (0.48 km/s; Katz et al. 2023) and the $`\chi^2`$ p-value give a 95 % limit of
+  $`K < 0.67`$-0.77 km/s for periods of 1-1000 d, i.e. $`M_2 \sin i < 10\,M_\mathrm{J}`$ at the transit period (no script
+  in this repository). A stellar companion at the transit period, or any stellar companion with $`P \lesssim 10^3`$ d, is
+  excluded; a brown dwarf below about 10-17 $`M_\mathrm{J}`$ is not.
+- Long-term radial velocity: CORAVEL (1990s, $`-8.4 \pm 0.3`$ km/s with the zero-point allowance) and Gaia DR3
+  ($`-8.23 \pm 0.15`$ km/s) agree, $`\lvert\Delta v\rvert < 0.9`$ km/s (3 $`\sigma`$); Pulkovo and Gaia DR2 agree within
+  0.4 km/s.
+- Astrometry: RUWE 0.899, no non-single-star solution; simulated Gaia DR3 sampling (assumed along-scan error 0.10 mas
+  per CCD) excludes companions of 0.1-0.8 $`M_\odot`$ with periods of about $`10^2`$ to $`10^4`$ d (0.5-10 au), where
+  90 % of orientations would give RUWE > 1.25. HGCA $`\chi^2 = 0.58`$ and the Kervella et al. (2022) proper-motion
+  anomaly (S/N $`\le 1.28`$) give sensitivities of 2.8, 2.6, 2.6 and 12.5 $`M_\mathrm{J}`$ at 3, 5, 10 and 30 au, so
+  stellar companions at 3-30 au are excluded. At the transit period the photocentre semi-amplitude is 0.11 mas for
+  30 $`M_\mathrm{J}`$ (`scripts/gaia_companion_limits.py`), so the astrometry adds nothing for the transiting body.
+- SOAR HRCam speckle (Tokovinin et al. 2020; $`I`$ band, epoch 2019.54): no companion with $`\Delta m < 2.74`$ beyond
+  0.15" (9.8 au) or $`\Delta m < 4.0`$ beyond 1" (65 au); inner working angle 0.054" (3.5 au).
+- Luminosity: the SED radius and the spectroscopic $`\log g`$ agree, so a companion contributing more than about 20 % of
+  the $`G`$-band flux ($`M_2 \gtrsim 0.65\,M_\odot`$) is excluded at any separation.
+- Gaia resolution (approximate sensitivities, not an observation): no Gaia DR3 source within 6.0".
+- Transit density: the circular-orbit density from the light curve alone is below 3.8 g cm$`^{-3}`$ (95 %; section 4.2). A planet
+  transiting a bound companion of mass $`M_2`$ (the STP scenario of TRICERATOPS) needs, for a circular orbit,
+  $`\rho(M_2) \le \rho_\mathrm{circ}`$, i.e. $`M_2 \gtrsim 0.65\,M_\odot`$; for lower masses it needs an eccentric orbit
+  with the transit near apoastron, $`e \ge`$ 0.04, 0.19, 0.29, 0.44, 0.57, 0.63 and 0.73-0.77 for $`M_2`$ = 0.6, 0.5,
+  0.4, 0.3, 0.2, 0.15 and 0.1-0.08 $`M_\odot`$, and a planet of 5.7-13.7 $`R_\oplus`$.
+
+Combined on a grid of 11 companion masses and 10 separations (0.5-100 au; no script in this repository): every
+companion of 0.5-0.88 $`M_\odot`$ is excluded at every separation tested; companions of 0.08-0.4 $`M_\odot`$ remain only at
+65 au or more (1.0-1.5"); between the grid points, companions of about 0.3-0.45 $`M_\odot`$ ($`\Delta T`$ = 2.7-4.0) at
+about 30-65 au (0.5-1") are not excluded by any constraint used here. These limits use an assumed Gaia along-scan error,
+an approximate mass-luminosity relation and an approximate Gaia resolution curve.
+
+### 4.7 TRICERATOPS
+
+TRICERATOPS 1.1.0, set-up as in section 1.6: the five epochs (sectors 38, 65, 99, 100 and 102; per-sector $`r < 2.0`$ px
+apertures of 12-14 pixels), each divided by its jointly fitted quadratic baseline ($`\pm 0.8`$ d), 144 bins of 10 min,
+out-of-transit bin scatter 180 ppm, transit depth $`k^2 = 0.001207`$ (raw aperture flux, `dilution_corrected=False`;
+TRICERATOPS target flux ratio 0.950), Gaia DR3 background (24030 stars), $`N = 10^6`$, `nsamples=20`. Contrast curve: the
+SOAR $`I`$-band limits of Tokovinin et al. (2020) (0.054", 0; 0.15", 2.74; 1.0", 4.00; 1.5", 4.00;
+`data/triceratops/cc_HIP74344_SOAR2019_I.txt`), applied with `filt='TESS'`, i.e. assuming the $`I`$-band contrast in the
+TESS band.
+
+| configuration | seeds | FPP mean $`\pm`$ std | FPP median (range) | NFPP |
+|---|---|---|---|---|
+| SOAR contrast curve | 5 | $`(6.2 \pm 4.2) \times 10^{-4}`$ | $`5.5 \times 10^{-4}`$ ($`2.4 \times 10^{-4}`$ to $`1.3 \times 10^{-3}`$) | $`\le 9.1 \times 10^{-11}`$ |
+| no contrast curve | 2 | $`(4.9 \pm 1.8) \times 10^{-3}`$ | ($`3.6 \times 10^{-3}`$, $`6.2 \times 10^{-3}`$) | $`\le 8.4 \times 10^{-11}`$ |
+
+Mean scenario probabilities of the runs with the contrast curve: TP 0.843, PTP 0.114, DTP 0.043, STP $`6.1 \times 10^{-4}`$
+(98 % of the FPP), BEB $`2.7 \times 10^{-6}`$, SEB $`3.7 \times 10^{-7}`$; every scenario on a neighbouring star is below
+$`10^{-10}`$; best-fit planet radius of the TP scenario 3.09-3.17 $`R_\oplus`$. Every seed is below the thresholds
+FPP $`< 0.015`$ and NFPP $`< 0.001`$ of Giacalone et al. (2021). The detection-stage runs (3 seeds each, same contrast
+curve) gave 0.0008-0.0012 with and 0.006-0.013 without it. TRICERATOPS does not use the Gaia radial-velocity limit, the
+astrometric limits or the luminosity limit of section 4.6. In the five runs with the contrast curve the best-fit STP host
+has 0.62-0.91 $`M_\odot`$ (a 4.4-6.7 $`R_\oplus`$ planet, $`e`$ = 0.08-0.46), a region that section 4.6 excludes; the
+remaining STP configurations need a companion of $`\lesssim 0.4\,M_\odot`$ beyond about 30 au, an eccentric orbit and a
+7-14 $`R_\oplus`$ planet. The STP term is therefore an overestimate; TRICERATOPS was not re-run with these constraints, so
+the reduction is not quantified. The STP term also depends on the companion prior inside 0.15" and below
+$`\Delta m = 2.74`$, which no available data constrain.
+
+### 4.8 Catalogue and literature checks
+
+All queries were run with a positive control.
+
+| date (UTC) | source | control | result |
+|---|---|---|---|
+| 2026-10-18 23:25-23:28 | ExoFOP target page (JSON) and the TOI (8151 rows) and CTOI (5138 rows) lists, live | TOI-700 (TIC 150428135): four TOIs on its target page and four rows in the TOI list | no TOI, no CTOI; no imaging, spectroscopy, time-series or file uploads on the target page |
+| 2026-10-18 22:33-22:34 | ExoFOP target page; NASA Exoplanet Archive TOI table (8151 rows, last row created 2026-10-08) and `pscomppars` | TOI-700 | no TOI, no CTOI, no entry |
+| 2026-10-18 | SPOC threshold-crossing-event bulk files: the 13 files that include sector 12 or 65 (single-sector and multi-sector runs); MAST data-validation products | TOI-125 (TIC 261136679) in 8 of the files | not listed; no data-validation report (the 2-min data contain one transit, sector 65) |
+| 2026-10-18 | TESS guest-investigator target lists of Cycles 1-9 (848 lists) and the sector target lists | coordinate matches in other lists are other TIC entries | the 2-min data of sector 65 come from programme G05121 (Cycle 5, "Modeling Complex Flares With TESS 20-Second Data", a flare programme), the only programme that lists the star; the 2-min data of sector 12 come from the candidate target list (priority 0.160); no 2-min data in sectors 38, 39, 99-102; no Cycle 8-9 programme requests the star |
+| 2026-10-18 | SOAR speckle surveys of TESS objects of interest (Ziegler et al. 2020, 2021; VizieR J/AJ/159/19, J/AJ/162/192; full tables by TIC, HIP, HD) | TOI-125 in Ziegler et al. (2020) | not listed; the Tokovinin et al. (2020) observation belongs to their own programmes (orbits, hierarchical systems, Hipparcos binaries, neglected binaries) |
+| 2026-10-18 | ESO Science Archive: ObsCore 10" cone and raw frames of all instruments in a $`\pm 72`$" box; object-name queries (HD 134147, HIP 74344, TIC 455017950) | TIC 402710280 (13 ObsCore products, 41 raw frames) | no data (no HARPS, FEROS, UVES, ESPRESSO or CORALIE frames) |
+| 2026-10-18 | radial-velocity catalogues: HARPS RVBank (Trifonov et al. 2020), Keck/HIRES (Butler et al. 2017), California Legacy Survey (Rosenthal et al. 2021) | tau Cet | not listed |
+| 2026-10-18 | exoplanet.eu (8376 rows), Open Exoplanet Catalogue | pi Men, TOI-700 | nothing within 3 deg; no name match |
+| 2026-10-18 | CHEOPS archive (public and proprietary visit list); LCO science archive (public frames); MAST, all missions within 30" | TOI-178 (80 visits); TOI-700; HD 209458 | no CHEOPS visit within 0.3 deg; no public LCO frames; MAST holds TESS products and one GALEX AIS image |
+| 2026-10-18 | ADS full text, about 30 identifier strings (TIC, HD, HIP, HIC, CPD, TYC, GSC, PPM, 2MASS, Gaia DR1/DR2/DR3, 1RXS, uvby98, J1511-6456, "HD 134147 b"), abstract and title fields | "WD 0752-146" (1), "HD 22946" (12), "TOI-4600" (12) | no publication on the star beyond catalogues (the string "TIC-455017950" matches 21 unrelated 1995-96 catalogue records); the `object:` field search returned HTTP 400, also for the control |
+| 2026-10-18 | SIMBAD, all 27 references read by title | - | catalogues, radial-velocity compilations, the Tokovinin et al. (2020) speckle survey, proper-motion anomalies, Gaia rotation periods, target lists; none reports a transit, a planet or radial-velocity variability |
+| 2026-10-18 | VizieR, all tables within 5" (156 tables, every J/ table read) | AM Her (228 tables) | photometry, astrometry, stellar parameters, X-ray, rotation (8.67 d), flare searches (no flares), Green et al. (2023) ellipsoidal-variable search (score 0.0), a TESS-SPOC target sample; no transit, eclipse, planet or radial-velocity-variability table |
+| 2026-10-18 | VSX; Gaia DR3 `vari_*` and `nss_*` tables (4 non-single-star tables) | AM Her; a row of each table | VSX: the Gaia DR3 rotation entry (ROT, 3.38674 d) only; Gaia: `vari_classifier_result` SOLAR_LIKE and `vari_rotation_modulation` only, no eclipsing-binary, planetary-transit or non-single-star entry |
+| 2026-10-18 | source files of 14 arXiv papers on TESS duo- and single-transit candidates (TIC, HD, HIP, Gaia ids and coordinates) | - | not listed |
+
+Not checked or not reachable: RAVE DR6, the Zhang et al. (2023) Gaia XP parameters, GALEX GUVcat and two Ca II H and K
+tables (VizieR returned no rows for the target and for a control, so these are unverified); GALAH DR3, APOGEE DR17,
+GALEX AIS and Boro Saikia et al. (2018) were verified and have no entry. Observations scheduled but not yet executed, and
+proprietary data of facilities without a public archive, cannot be checked.
+
+### 4.9 Predicted transits (2026-10-18 to 2027-10-18)
+
+`data/predicted_transits_455017950.csv`. Errors are the propagated linear-ephemeris errors; because of the O-C of up to
++12 min (section 4.3) a timing window of at least $`\pm 15`$ min should be added. $`T_{14} = 4.74`$ h.
+
+| epoch | mid-transit (UTC) | BJD$`_\mathrm{TDB}`$ | ephemeris error (min) | TESS |
+|---|---|---|---|---|
+| 7 | 2026-10-26 05:33 | 2461339.7289 | 2.7 |  |
+| 8 | 2026-12-05 20:06 | 2461380.3346 | 2.7 |  |
+| 9 | 2027-01-15 10:36 | 2461420.9402 | 2.8 |  |
+| 10 | 2027-02-25 01:04 | 2461461.5459 | 2.8 | sector 114 |
+| 11 | 2027-04-06 15:33 | 2461502.1516 | 2.8 |  |
+| 12 | 2027-05-17 06:03 | 2461542.7572 | 2.9 |  |
+| 13 | 2027-06-26 20:36 | 2461583.3629 | 2.9 |  |
+| 14 | 2027-08-06 11:11 | 2461623.9685 | 3.0 |  |
+| 15 | 2027-09-16 01:47 | 2461664.5742 | 3.0 |  |
+
+TESS (tess-point 0.9.5.post1): the star was on silicon in sectors 12, 38, 39, 65, 99, 100, 101 and 102 and will be in
+sectors 113 (camera 4, CCD 4) and 114 (camera 3, CCD 4) (`data/tess_sectors_455017950.csv`). The nominal sector-113
+window (2027-01-16 to 2027-02-13) contains no transit; epoch 9 (2027-01-15 10:36 UTC) falls about 1.4 d before its
+nominal start, and the actual start is not yet published. The sector-114 window contains epoch 10 (2027-02-25 01:04 UTC),
+about 2.5 d before the nominal mid-sector; the published TESS orbit-time table ends at sector 111, so the position of
+this transit relative to the mid-sector gap is not known. No guest-investigator programme of Cycles 8-9 requests 2-min
+data for the star. From the ground (altitude above 30$`^\circ`$, Sun below $`-12^\circ`$; no script in this repository),
+complete transits with 1 h of baseline on each side are observable on 2027-04-06 from Siding Spring and on 2027-06-26
+from SAAO, a complete transit without full baselines on 2027-05-17 from the Chilean sites, 99 % of the transit of
+2027-08-06 from Siding Spring and 92 % of that of 2027-02-25 from SAAO.
+
+### 4.10 Search for additional transiting signals
+
+No script in this repository. Data: the TESScut $`r = 2.0`$ px light curves of all eight sectors (sector 12: 30-min
+cadence; 38, 39: 10 min; 65, 99-102: 200 s), quality 0; 1.0 d removed after gaps longer than 0.5 d, 0.5 d after and
+0.15 d before shorter gaps of more than 0.1 d, cadences with background above 1.5 times the sector median, and
+$`\pm 0.3`$ d around the six events of section 4.4 (49,414 of 60,043 cadences kept). Two detrendings with flares
+masked: 1.0-d biweight and a robust spline with 0.5-d knots (1-h rms 270-460 and 160-240 ppm per sector). The known
+transits are masked ($`\pm 0.20`$ d) in the searches. Every search was repeated on the inverted light curves.
+
+- Periodic, 0.5-80 d: box least squares (20-min bins, durations 1-8 h by period range), with the signal detection
+  efficiency (SDE) from a running median and MAD. Peaks above the inverted-flux maxima (SDE 9.1-9.5) are the lower edge of
+  the period grid (0.50 d, also present in the inverted runs), combinations of two to four events at segment edges
+  (77-79 d), and a 12.39-d peak in the spline detrending only (SDE 10.1, 361 ppm), whose epoch-by-epoch depth against
+  local baselines is $`44 \pm 28`$ ppm (spline) and $`-11 \pm 25`$ ppm (biweight). The search does not recover the known
+  transit blindly (SDE 2.1 and 6.9 at its period in the two detrendings): the spot residuals limit blind detection of
+  1-1.3 ppt, 4-5 h transits to about this level.
+- Single events (box filter, 1-24 h): every event with a single-event statistic of 5 or more lies at a segment edge,
+  depends on the aperture (for example BTJD 2382.34: 2710, 1626 and 1160 ppm in the $`r`$ = 1.5, 2.0 and 3.0 px
+  apertures), or shows no dip against a local quadratic baseline ($`-289`$ to +334 ppm, all within 2.2 $`\sigma`$).
+
+Sensitivity (injection and recovery, 150 transits; batman, circular, $`b`$ uniform in 0-0.9, $`R_\star = 0.80\,R_\odot`$,
+$`\rho_\star = 2.40`$ g cm$`^{-3}`$, diluted with $`f_t = 0.966`$, $`P`$ log-uniform in 0.5-80 d, $`R_\mathrm{p}`$
+uniform in 1-4.5 $`R_\oplus`$), injected into the raw flux and passed through the same cleaning, detrending and searches;
+recovered by the biweight search (periodic or single-event) or the spline periodic search:
+
+| $`P`$ (d) \ $`R_\mathrm{p}`$ ($`R_\oplus`$) | 1-2 | 2-3 | 3-4.5 |
+|---|---|---|---|
+| 0.5-3 | 8/8 | 21/21 | 24/24 |
+| 3-10 | 3/7 | 5/5 | 14/14 |
+| 10-30 | 2/10 | 7/9 | 12/12 |
+| 30-80 | 0/9 | 0/11 | 11/20 |
+
+No second transiting signal is found. The search is complete for planets of 3 $`R_\oplus`$ or more out to 30 d, for
+2-3 $`R_\oplus`$ below 10 d (7 of 9 at 10-30 d) and for all radii above 1 $`R_\oplus`$ below 3 d; it recovers about half
+of the 3-4.5 $`R_\oplus`$ planets at 30-80 d and none smaller than 3 $`R_\oplus`$ beyond 30 d.
+
+### 4.11 Archival photometry
+
+No script in this repository. The ephemeris propagates to 1-$`\sigma`$ mid-transit uncertainties of 15-36 min at the
+epochs of the archival data (1989-2026), including a $`\pm 15`$ min allowance for timing variations; the cycle count is
+unambiguous (at most 0.13 $`T_{14}`$).
+
+| data set | control | coverage | points in predicted transits | result |
+|---|---|---|---|---|
+| Hipparcos epoch photometry | HIP 71683 | 195 transits, 1989.95-1993.15, scatter 2.3-3.0 % | 3 points, one event (cycle $`-311`$) | 3 $`\sigma`$ excluded depth 20 ppt; no constraint |
+| ASAS-3 ($`V`$, grades A and B) | Proxima Centauri | 608 points, 2001-2009, scatter 1.9 % | 2 points (cycles $`-196`$, $`-168`$) | 60 ppt; no constraint |
+| ASAS-SN v1 photometry database | two control cones | 152 points, 2016-2018 | 0 (nearest 3.4 h from a mid-transit) | no constraint |
+| KELT-South field S37 (light curve lc_016659; identification probable, 8.1" off) | field S36 | 2013-2015, about 1000 points in each of two orientations | east 0; west 2 (cycle $`-104`$) | 16-27 ppt; no constraint |
+| Gaia DR3 epoch photometry ($`G`$) | a control source | 118 transits, 2014.8-2017.4 | 2 points, one event (cycle $`-91`$) | 4.5-8 ppt; the point 0.04 h from mid-transit is 0.9-2.2 $`\pm`$ 0.6-1.1 ppt low depending on the baseline; no constraint |
+| SuperWASP DR1 | WASP-17 | no DR1 object within 4 deg | - | not covered |
+| ASAS-SN Sky Patrol v2 | - | master-list entry found; light-curve service out of service | - | not retrieved (hole) |
+
+No archival data set detects or excludes a 1.3-ppt transit.
+
+## 5. Caveats
+
+- No high-resolution imaging was obtained for this work; the only existing observation is the published SOAR speckle
+  observation of TIC 455017950. For TIC 402710280 the 2.3" neighbour is unresolved by TESS and
   excluded as host only by the transit shape; a companion closer than that is unconstrained. For TIC 324429952 any
   companion within about 1" is unconstrained, and the TRICERATOPS FPP is dominated by bound-companion scenarios. For
   TIC 89247735 companions closer than the Gaia DR3 sources at 2-5" are unconstrained, and the TRICERATOPS FPP consists
-  of the bound-companion (STP) scenario.
+  of the bound-companion (STP) scenario. For TIC 455017950 companions inside 0.15" or fainter than $`\Delta m = 2.74`$
+  (0.15-1") are not excluded by the imaging.
 - No radial velocities were obtained for this work. For TIC 402710280 the two public HARPS epochs sample 16 % of the
   orbital velocity amplitude and exclude only stellar and brown-dwarf companions; thirteen further epochs are proprietary until 2027.
-  For TIC 324429952 and TIC 89247735 there are no archival spectra.
+  For TIC 324429952, TIC 89247735 and TIC 455017950 there are no archival spectra (for TIC 455017950 there are
+  catalogue radial velocities of km/s precision only, section 4.6).
 - QLP timing notice: MAST reports a barycentric timing error in the QLP light curves from the second half of sector 99
   to sector 104 (orbits 210-220), not yet corrected at the date of this record. No QLP time stamp enters the tables; all
   mid-transit times come from TESScut cutouts (SPOC-calibrated full-frame images) or SPOC light curves. For
@@ -796,8 +1278,8 @@ controls: WASP-17 (SuperWASP), Proxima Centauri (NEOWISE).
 - The 2.3" neighbour of TIC 402710280 (Gaia DR3 5828441289812582656; TIC 1208600633, without TIC stellar parameters) is
   6.4 mag fainter and lies in the background. TRICERATOPS treats it with solar parameters by default; the run with
   K-dwarf parameters gives the same FPP within the seed-to-seed scatter.
-- Stellar parameters are TIC v8.2 values and were not re-derived, except for TIC 89247735 (SED fit, section 3.1); the
-  planet radii scale with the adopted stellar radii.
+- Stellar parameters are TIC v8.2 values and were not re-derived, except for TIC 89247735 and TIC 455017950 (SED fits,
+  sections 3.1 and 4.1); the planet radii scale with the adopted stellar radii.
 - The per-epoch depths of TIC 324429952 scatter by about 20 % between detrending choices and sectors; the red-noise
   factors reach 2.4. TRICERATOPS uses one flux-error value per light curve and a Gaia DR3 rather than TRILEGAL background.
 - The transit-timing variations of TIC 402710280 rest on four epochs with errors of 3-5 min; two further epochs
@@ -818,21 +1300,48 @@ controls: WASP-17 (SuperWASP), Proxima Centauri (NEOWISE).
 - TIC 89247735: the search for further transiting planets (section 3.10) excludes only planets larger than about
   3-4 $`R_\oplus`$; no archival ground-based light curve constrains the transit, and the KELT-South light curves, which
   cover the star, could not be retrieved (section 3.11).
+- TIC 455017950: the transit of epoch 0 (sector 99) lies at the end of an orbit, 3.6 h before the data end, and its
+  depth depends on the detrending; it agrees with the ephemeris but is not an independent confirmation. The period rests
+  on the other four transits, two of them (epochs 1 and 2) one cycle apart.
+- TIC 455017950: the departure of the mid-transit times from a linear ephemeris rests on one epoch (epoch 2, +8.5 to
+  +16 min); its significance depends on the photometry and the baseline model ($`p`$ = 0.001-0.10), and without that
+  epoch all timing sets are linear. A transit-timing variation is not established; further transits (TESS sector 114 on
+  2027-02-25, or from the ground) would test it.
+- TIC 455017950: the star is chromospherically and coronally active ($`P_\mathrm{rot} = 8.3`$ d, spot modulation
+  1.5-2.7 %, $`\log L_X/L_\mathrm{bol} \approx -4.5`$, age 0.3-0.5 Gyr). The expected radial-velocity semi-amplitude
+  is about 2.1 m/s (10.3 $`M_\oplus`$ from the Chen & Kipping 2017 mass-radius relation), while the activity jitter is
+  expected at 3-20 m/s (FF' method, Aigrain et al. 2012, rotational term only) up to 40-65 m/s (photometric amplitude
+  times equatorial velocity); a 3 $`\sigma`$ (5 $`\sigma`$) mass of 10 $`M_\oplus`$ would need of order 18-40 (50-110)
+  high-precision epochs if the activity model leaves 2-3 m/s. These are estimates, not exposure-time calculations.
+- TIC 455017950: ingress and egress are not resolved, so the impact parameter and the shape are not constrained by the
+  light curve alone; the adopted radius uses the stellar-density prior (section 4.2), and the eccentricity is not
+  measured. A blended eclipsing binary is excluded statistically (difference images, stellar density, TRICERATOPS), not
+  by the transit shape.
+- TIC 455017950: bound companions of $`\lesssim 0.4\,M_\odot`$ beyond about 30 au (0.5-1") are not excluded
+  (section 4.6), and a brown dwarf below about 10-17 $`M_\mathrm{J}`$ transiting the target is constrained only by the
+  Gaia radial velocities. TRICERATOPS was run with the SOAR $`I`$-band contrast curve applied in the TESS band and was not
+  re-run with the limits of section 4.6. The origin of the Hipparcos "suspected non-single" flag is not documented.
+- TIC 455017950: the Gaia DR3 rotation period (3.39 d) does not appear in the TESS data; the search for further
+  transiting planets (section 4.10) is limited by the spot modulation and excludes only planets larger than about
+  2-3 $`R_\oplus`$ inside 30 d.
 - Nothing in this record has been checked by anyone outside the production of the record.
 
-## 5. Data and reproduction
+## 6. Data and reproduction
 
 Public products used (all retrieved 2026-10-15 to 2026-10-18):
 
 - TESScut 21 $`\times`$ 21-pixel cutouts of the SPOC-calibrated full-frame images (MAST), sectors listed in
-  `data/sectors_<tic>.csv`, at the TIC v8.2 coordinates (TIC 89247735: at the Gaia DR3 position).
+  `data/sectors_<tic>.csv`, at the TIC v8.2 coordinates (TIC 89247735 and TIC 455017950: at the Gaia DR3 position).
 - MAST light curves for the product-by-product checks: QLP (`hlsp_qlp_tess_ffi_s<sector>-<tic>_tess_v01_llc`), TESS-SPOC
   (`hlsp_tess-spoc_tess_phot_<tic>-s<sector>_tess_v1`), TARS (`hlsp_tars_tess_ffi_s<sector>-<tic>_tess`), GSFC-eleanor-lite
-  (sector 13 of TIC 324429952 and TIC 89247735), and the SPOC 2-min light curve of TIC 324429952 in sector 13 (`tess*-s0013-0000000324429952-*_lc.fits`).
+  (sector 13 of TIC 324429952 and TIC 89247735; sector 12 of TIC 455017950), the SPOC 2-min light curve of TIC 324429952 in sector 13 (`tess*-s0013-0000000324429952-*_lc.fits`)
+  and those of TIC 455017950 in sectors 12 and 65.
 - Gaia DR3 (`gaia_source`, `vari_*`, `nss_*`), TIC v8.2 (via ExoFOP and MAST), ExoFOP TOI/CTOI lists, NASA Exoplanet
   Archive, VSX, SIMBAD, VizieR, ADS.
 - SVO Theoretical Spectra service (Castelli & Kurucz 2003 ODFNEW spectra) and SVO Filter Profile Service (transmission
-  curves, zero points), for the SED fit of TIC 89247735.
+  curves, zero points), for the SED fits of TIC 89247735 and TIC 455017950.
+- Published SOAR speckle contrast limits of TIC 455017950 (Tokovinin et al. 2020, VizieR J/AJ/160/7, table 3), as
+  `data/triceratops/cc_HIP74344_SOAR2019_I.txt`.
 - ESO Science Archive: HARPS ADP products ADP.2025-08-26T01:00:42.037/.038 and ADP.2025-08-27T01:04:15.751/.752
   (checksums in `data/harps_public_rvs.csv`).
 
@@ -900,12 +1409,55 @@ and the archival photometry of section 3.11 have no script in this repository. `
 on the same cutouts of sectors 66, 93 and 104 as the tables, after `aperture_photometry.py` and `fit_transits.py
 --window 0.8`, in a Python 3.11 environment with emcee (versions in `requirements.txt`).
 
-## 6. How to cite
+For TIC 455017950:
 
-A. Zarco (2026). TESS transit candidates 2026: TIC 402710280, TIC 324429952 and TIC 89247735. Zenodo. DOI: 10.5281/zenodo.XXXXXXX
+```
+python scripts/tesscut_download.py 455017950
+python scripts/aperture_photometry.py 455017950
+python scripts/fit_transits.py 455017950 --window 0.8          # -> work/455017950/fit_r2.0_38_65_99_100_102_w0.8.json
+python scripts/fit_transits.py 455017950 --window 0.8 --aperture 1.5   # and --aperture 3.0
+python scripts/fit_transits.py 455017950 --window 0.8 --bfix 0.5 --sig-from fit_r2.0_38_65_99_100_102_w0.8.json   # b profile; --arfix 60.6
+python scripts/fit_transits.py 455017950 --window 0.6 --order 3  # and --window 1.0 --order 3; --epochs 38,65,100,102
+python scripts/difference_images.py 455017950 --fit fit_r2.0_38_65_99_100_102_w0.8.json   # also queries Gaia DR3 (60")
+python scripts/dilution_correction.py 455017950 --fits fit_r1.5_38_65_99_100_102_w0.8,fit_r2.0_38_65_99_100_102_w0.8,fit_r3.0_38_65_99_100_102_w0.8
+python scripts/gaia_companion_limits.py 455017950 --shape fit_r2.0_38_65_99_100_102_w0.8_shape.json
+python scripts/alias_secondary_search.py 455017950
+python scripts/event_checks.py 455017950 --events 38:2346.001,65:3089.995,99:4073.054,101:4119.794,102:4133.134,102:4138.374
+python scripts/make_tables.py 455017950 --fit fit_r2.0_38_65_99_100_102_w0.8.json --window 0.8
+python scripts/predict_transits.py 455017950 --start 2026-10-18
+python scripts/triceratops_prep.py 455017950 --fit fit_r2.0_38_65_99_100_102_w0.8.json --window 0.8 --tag _J0.8
+python scripts/triceratops_target.py 455017950 --sectors 38,65,99,100,102 --depth 0.001207     # TRICERATOPS environment
+for s in 1 2 3 4 5; do python scripts/triceratops_run.py 455017950 $s --tag _J0.8 --label SOARcc --cc data/triceratops/cc_HIP74344_SOAR2019_I.txt --cc-measured; done
+for s in 1 2; do python scripts/triceratops_run.py 455017950 $s --tag _J0.8 --label nocc; done
+python scripts/sed_fit.py --tic 455017950                       # SVO spectra and filters -> work/455017950/sed/
+python scripts/fit_free_dilution.py 455017950 --fit fit_r2.0_38_65_99_100_102_w0.8.json --walkers 44 --steps 6000   # emcee
+python scripts/fit_free_dilution.py 455017950 --fit fit_r2.0_38_65_99_100_102_w0.8.json --walkers 44 --steps 6000 --rho-prior
+```
+
+`event_checks.py` uses the QLP light curves of the star in `work/455017950/dl/` (MAST `Observations.download_products`)
+when present. Exceptions for TIC 455017950: the eight cutouts were re-downloaded from TESScut on 2026-10-18 with
+`tesscut_download.py`; their pixel data, times, quality flags and WCS are identical to those of the cutouts first used
+(only the request coordinates in the header differ in the 13th digit), and the tables regenerated from them are
+identical. `data/triceratops_input_455017950.csv` is the binned light curve that was given to TRICERATOPS; it was built
+from a common-shape fit of the same photometry ($`b = 0.16`$, $`a/R_\star = 67.3`$, $`k^2 = 1207`$ ppm), and
+`triceratops_prep.py` reproduces it to within 5 ppm per bin (bin scatter 180.5 instead of 180.2 ppm). The TRICERATOPS
+tables (`data/triceratops/probs_455017950_*.csv`, `gaia_background_455017950.csv`) are the outputs of those runs, copied
+verbatim; their period (40.605653 d) is that of the first fit, 0.1 $`\sigma`$ from the adopted one. Without script in
+this repository: the product-by-product box depths and the SPOC 2-min fit (section 4.4), the diluted-eclipse fits
+(section 4.2), the robust-spline detrending, the red-noise and phase-shift tests (section 4.4), the transit-timing
+analysis (section 4.3), the simulated Gaia radial-velocity and astrometric limits and the companion grid (section 4.6),
+the rotation periods, gyrochronology and kinematics and the Monte Carlo SED fit with free extinction (section 4.1), the
+catalogue checks (section 4.8), the ground-based observability (section 4.9), the search for additional transiting
+signals and its injection-recovery test (section 4.10) and the archival photometry (section 4.11). `scripts/sed_fit.py`
+holds the catalogue magnitudes it fits (copied from VizieR: Gaia DR3, Tycho-2, SkyMapper DR4, 2MASS, AllWISE).
+`scripts/fit_free_dilution.py` was run in the Python 3.11 environment with emcee (versions in `requirements.txt`).
+
+## 7. How to cite
+
+A. Zarco (2026). TESS transit candidates 2026: TIC 402710280, TIC 324429952, TIC 89247735 and TIC 455017950. Zenodo. DOI: 10.5281/zenodo.XXXXXXX
 (to be added after the deposit). Citation metadata: `CITATION.cff`.
 
-## 7. Licence
+## 8. Licence
 
 Data, figures and text: CC BY 4.0. Scripts: MIT. See `LICENSE`, which also lists the third-party material not covered.
 
@@ -930,3 +1482,17 @@ Data, figures and text: CC BY 4.0. Scripts: MIT. See `LICENSE`, which also lists
   Pojmanski, G. 2002, AcA 52, 397 (ASAS); Butters, O. W., et al. 2010, A&A 520, L10 (SuperWASP); Pepper, J., et al.
   2012, PASP 124, 230 (KELT-South); Onken, C. A., et al. 2024, PASA 41, e061 (SkyMapper DR4); Mainzer, A., et al.
   2014, ApJ 792, 30 (NEOWISE).
+- Tokovinin, A., et al. 2020, AJ 160, 7 (SOAR speckle); Ziegler, C., et al. 2020, AJ 159, 19; Ziegler, C., et al. 2021,
+  AJ 162, 192.
+- Houk, N., & Cowley, A. P. 1975, Michigan Catalogue of Two-dimensional Spectral Types for the HD Stars, Vol. 1;
+  Nordström, B., et al. 2004, A&A 418, 989; Holmberg, J., Nordström, B., & Andersen, J. 2009, A&A 501, 941;
+  Casagrande, L., et al. 2011, A&A 530, A138; Masana, E., Jordi, C., & Ribas, I. 2006, A&A 450, 735.
+- Perryman, M. A. C., et al. 1997, A&A 323, L49 (Hipparcos); van Leeuwen, F. 2007, A&A 474, 653; Brandt, T. D. 2021,
+  ApJS 254, 42 (HGCA); Kervella, P., Arenou, F., & Thévenin, F. 2022, A&A 657, A7; Katz, D., et al. 2023, A&A 674, A5.
+- Torres, G., Andersen, J., & Giménez, A. 2010, A&ARv 18, 67; Mamajek, E. E., & Hillenbrand, L. A. 2008, ApJ 687, 1264;
+  Barnes, S. A. 2007, ApJ 669, 1167; Wright, N. J., et al. 2011, ApJ 743, 48; Bensby, T., Feltzing, S., & Oey, M. S.
+  2014, A&A 562, A71.
+- Lithwick, Y., Xie, J., & Wu, Y. 2012, ApJ 761, 122; Chen, J., & Kipping, D. 2017, ApJ 834, 17; Aigrain, S., Pont, F.,
+  & Zucker, S. 2012, MNRAS 419, 3147.
+- Trifonov, T., et al. 2020, A&A 636, A74; Butler, R. P., et al. 2017, AJ 153, 208; Rosenthal, L. J., et al. 2021,
+  ApJS 255, 8.

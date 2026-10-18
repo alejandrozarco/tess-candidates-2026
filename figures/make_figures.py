@@ -1,11 +1,11 @@
 #!/usr/bin/env python3
 """Regenerate the figures in figures/ from the tables in data/ (light and dark SVG variants).
-usage: python3 figures/make_figures.py        (needs numpy and matplotlib only)
+usage: python3 figures/make_figures.py [tic ...]   (needs numpy and matplotlib only; default: all targets)
 Figures: fold_<tic>  (TTV-corrected fold of the detrended epochs with 20-min bins and the transit model),
          epochs_<tic> (one panel per transit epoch), oc_<tic> (observed minus calculated mid-transit times),
          diffimage_<tic> (per-sector difference images with the catalogue positions of nearby sources).
 """
-import csv, os
+import csv, os, sys
 import matplotlib
 matplotlib.use("Agg")
 import matplotlib.pyplot as plt
@@ -20,8 +20,8 @@ THEMES = {
                  pts="#5a5953", mark="#3987e5", mark2="#e8813a", mark3="#43b27e", cmap="RdBu_r"),
 }
 SAVE = dict(metadata={"Date": None})
-TICS = [402710280, 324429952, 89247735]
-NAMES = {402710280: "TIC 402710280", 324429952: "TIC 324429952", 89247735: "TIC 89247735"}
+TICS = [402710280, 324429952, 89247735, 455017950]
+NAMES = {402710280: "TIC 402710280", 324429952: "TIC 324429952", 89247735: "TIC 89247735", 455017950: "TIC 455017950 (HD 134147)"}
 YLIM_FOLD = {89247735: (0.983, 1.006)}       # default: (min(0.3rd percentile, 0.9965), 1.0025)
 YLIM_EPOCHS = {89247735: (0.981, 1.008)}     # default: (0.9955, 1.0035)
 
@@ -146,7 +146,7 @@ def fig_diff(t, name, tic):
 if __name__ == "__main__":
     for th, t in THEMES.items():
         plt.rcParams.update({"text.color": t["ink"], "axes.edgecolor": t["axis"], "axes.titlecolor": t["ink"]})
-        for tic in TICS:
+        for tic in [int(x) for x in sys.argv[1:]] or TICS:
             fig_fold(t, f"fold_{tic}_{th}.svg", tic)
             fig_epochs(t, f"epochs_{tic}_{th}.svg", tic)
             fig_oc(t, f"oc_{tic}_{th}.svg", tic)

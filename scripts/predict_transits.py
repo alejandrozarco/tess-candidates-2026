@@ -4,7 +4,8 @@ usage: python scripts/predict_transits.py <tic> [--start 2026-10-18] [--months 1
 output: data/predicted_transits_<tic>.csv and data/tess_sectors_<tic>.csv (formats in the file headers).
 Uses tess-point (tess_stars2px) for the sectors in which the target falls on silicon and for the nominal sector
 mid-times (window = mid-time +- 13.7 d). Errors are the propagated linear-ephemeris errors only; for TIC 402710280
-an additional transit-timing-variation envelope of +-30 min applies (observed O-C up to +-29 min).
+an additional transit-timing-variation envelope of +-30 min applies (observed O-C up to +-29 min), for TIC 455017950
+one of +-15 min (observed O-C up to +12 min); `ttv_min`, `ttv_note` in targets.py.
 """
 import argparse, csv, os
 import numpy as np
@@ -29,7 +30,7 @@ PS = f'{c["P"]:.10g}'; EPS = f'{c["eP"]:.{len(PS.split(".")[1])}f}'   # period a
 t_start = Time(args.start).jd; t_end = t_start + args.months * 30.5
 hdr = lambda lines: ''.join('# ' + l + '\n' for l in lines)
 with open(os.path.join(args.out, f'predicted_transits_{tic}.csv'), 'w') as fo:
-    env = f'; a TTV envelope of +-{c["ttv_min"]:.0f} min should be added (observed O-C up to +-29 min)' if c['ttv_min'] else ''
+    env = f'; a TTV envelope of +-{c["ttv_min"]:.0f} min should be added ({c["ttv_note"]})' if c['ttv_min'] else ''
     fo.write(hdr([f'TIC {tic} = Gaia DR3 {c["gaia_dr3"]}: predicted mid-transit times for the {args.months:g} months from {args.start}, linear ephemeris T0 = BTJD {c["T0"]:.5f} +- {c["eT0"]:.5f}, P = {PS} +- {EPS} d',
                   f'err_min = 1-sigma propagated ephemeris error sqrt(eT0^2 + (n eP)^2){env}; *_utc = geocentric UTC (barycentric light-travel time toward the target removed; a topocentric observer differs by < 0.1 s)',
                   f'T14 = {c["T14h"]:.2f} h; tess_sector = sector whose nominal 27.4-d window contains the transit and in which tess-point places the target on silicon (empty = not observed by TESS)']))
