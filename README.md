@@ -166,8 +166,8 @@ in `runs.csv`); they do not represent an observation.
 
 ### 1.7 Archival radial velocities
 
-The ESO Science Archive holds five HARPS science exposures of the star: two public (2025-08-25 and 2025-08-26, programme
-112.261U.004) and three proprietary (2026-02-23, 2026-02-28 and 2026-03-29, programme 116.29B6.001, not accessed). The
+The ESO Science Archive holds fifteen HARPS science exposures of the star: two public (2025-08-25 and 2025-08-26, programme
+112.261U.004) and thirteen proprietary (2026-02-20 to 2026-04-12, programme 116.29B6.001, release 2027-02 to 2027-04, not accessed). The
 two public epochs were retrieved anonymously (`data/harps_public_rvs.csv`, with the archive identifiers and checksums)
 and the DRS 3.8 pipeline values (K5 mask cross-correlation) are used as delivered:
 
@@ -201,7 +201,7 @@ All queries were run with a positive control (a known object returned by the sam
 | 2026-10-15 | source files of 14 arXiv papers on TESS duo- and single-transit candidates | not listed |
 | 2026-10-15 | VizieR, all tables within 5" (116 tables) | catalogue entries only; no planet or eclipse table |
 | 2026-10-15 | TESS-SPOC FFI target lists; MAST data validation products | in the TESS-SPOC target list for two sectors; no SPOC threshold-crossing event |
-| 2026-10-18 | ESO Science Archive (5" cone, programme pages) | five HARPS exposures (section 1.7); no other instrument |
+| 2026-10-18 | ESO Science Archive (position and object-name queries, programme pages) | fifteen HARPS exposures (section 1.7); no other instrument |
 | 2026-10-18 | ADS (identifier strings, repeat) | no publication |
 
 Not checked: KELT and ASAS-SN light curves; catalogue tables that exist only outside the arXiv source files searched.
@@ -385,7 +385,7 @@ TESS: on silicon in sectors 13, 27, 39, 66, 67, 93, 94, 100, 101, 102 and 103, a
   excluded as host only by the transit shape; a companion closer than that is unconstrained. For TIC 324429952 any
   companion within about 1" is unconstrained, and the TRICERATOPS FPP is dominated by bound-companion scenarios.
 - No radial velocities were obtained for this work. For TIC 402710280 the two public HARPS epochs sample 16 % of the
-  orbital velocity amplitude and exclude only stellar and brown-dwarf companions; three further epochs are proprietary.
+  orbital velocity amplitude and exclude only stellar and brown-dwarf companions; thirteen further epochs are proprietary until 2027.
   For TIC 324429952 there are no archival spectra.
 - QLP timing notice: MAST reports a barycentric timing error in the QLP light curves from the second half of sector 99
   to sector 104 (orbits 210-220), not yet corrected at the date of this record. No QLP time stamp enters the tables; all
