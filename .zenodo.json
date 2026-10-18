@@ -6,7 +6,7 @@
       "name": "Zarco, A."
     }
   ],
-  "description": "<p>Transit timing, light-curve tables, false-positive checks, TRICERATOPS runs and predicted transit times for three transit candidates found in TESS full-frame images: TIC 402710280 (Gaia DR3 5828441289812582400; P = 36.34005 d, depth about 1680 ppm, 5.3 h, transit-timing variations up to 29 min; two archival HARPS epochs), TIC 324429952 (Gaia DR3 6416596855786566528; P = 42.37574 d, depth about 1500 ppm) and TIC 89247735 (Gaia DR3 6708071581514074368, SCR J1820-4533; P = 18.32317 d, dilution-corrected depth 1.13-1.22 %, 4.5 h, Rp about 9.1-9.4 Earth radii). The tables are recomputed from public MAST, Gaia and ESO archive products by the scripts in the repository. AI-produced, not peer reviewed; the candidates are not confirmed.</p>",
+  "description": "<p>Transit timing, light-curve tables, false-positive checks, TRICERATOPS runs and predicted transit times for three transit candidates found in TESS full-frame images: TIC 402710280 (Gaia DR3 5828441289812582400; P = 36.34005 d, depth about 1680 ppm, 5.3 h, transit-timing variations up to 29 min; two archival HARPS epochs), TIC 324429952 (Gaia DR3 6416596855786566528; P = 42.37574 d, depth about 1500 ppm) and TIC 89247735 (Gaia DR3 6708071581514074368, SCR J1820-4533; P = 18.32317 d, dilution-corrected depth 1.13-1.22 %, 4.5 h, Rp about 8.7 Earth radii with the stellar radius from an SED fit). The tables are recomputed from public MAST, Gaia and ESO archive products by the scripts in the repository. AI-produced, not peer reviewed; the candidates are not confirmed.</p>",
   "keywords": [
     "TESS",
     "transit candidates",

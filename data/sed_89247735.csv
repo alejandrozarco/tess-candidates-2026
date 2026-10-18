@@ -1,0 +1,26 @@
+# TIC 89247735 = Gaia DR3 6708071581514074368: SED fit (scripts/sed_fit.py), 2026-10-18
+# model: Castelli & Kurucz (2003) ODFNEW spectra (SVO), photon-counting synthetic photometry, A_V = 0, error floor 0.02 mag, d = 1/parallax = 104.83 pc
+# reference fit (no SkyMapper u, v): Teff 4490 K (1-sigma 4470-4520), log g 5.0, [M/H] +0.5, R 0.717 Rsun, L 0.1884 Lsun, chi2 138.4 for 12 dof
+# all bands: Teff 4490 K, R 0.714 Rsun, L 0.1866 Lsun, chi2 344.8 for 14 dof; Monte Carlo (no u, v): Teff 4494 +- 8 K, R 0.715 +- 0.004, L 0.1879 +- 0.0014 (statistical only)
+# A_V checks (no u, v): A_V 0.05: Teff 4530 K, R 0.713, L 0.1926, chi2 137.8; A_V 0.10: Teff 4560 K, R 0.712, L 0.1974, chi2 137.6; A_V 0.20: Teff 4630 K, R 0.707, L 0.2070, chi2 137.3
+# The adopted parameters (README 3.1: Teff 4430 +- 100 K, L 0.190 +- 0.008 Lsun, R 0.74 +- 0.04 Rsun) combine this fit with other Teff estimates.
+# columns: band (SVO filter id), catalogue, mag, mag_err, system, fitted (reference fit), lambda_mean_A, model_mag (reference fit, scaled), residual (observed - model)
+band,catalogue,mag,mag_err,system,fitted,lambda_mean_A,model_mag,residual
+GAIA/GAIA3.G,Gaia DR3,11.8509,0.0028,Vega,yes,6390,11.8502,+0.0007
+GAIA/GAIA3.Gbp,Gaia DR3,12.5209,0.0030,Vega,yes,5183,12.4907,+0.0302
+GAIA/GAIA3.Grp,Gaia DR3,11.0690,0.0039,Vega,yes,7825,11.0771,-0.0081
+SkyMapper/SkyMapper.u,SkyMapper DR4 PSF,15.3792,0.0142,AB,no,3497,15.4927,-0.1135
+SkyMapper/SkyMapper.v,SkyMapper DR4 PSF,15.0495,0.0114,AB,no,3838,14.7825,+0.2670
+SkyMapper/SkyMapper.g,SkyMapper DR4 PSF,12.5626,0.0107,AB,yes,5099,12.5328,+0.0298
+SkyMapper/SkyMapper.r,SkyMapper DR4 PSF,11.8553,0.0111,AB,yes,6157,11.8620,-0.0067
+SkyMapper/SkyMapper.i,SkyMapper DR4 PSF,11.4054,0.0097,AB,yes,7778,11.4330,-0.0276
+SkyMapper/SkyMapper.z,SkyMapper DR4 PSF,11.2245,0.0120,AB,yes,9162,11.2679,-0.0434
+Generic/Johnson.B,APASS DR9,13.4510,0.0290,Vega,yes,4431,13.4368,+0.0142
+Generic/Johnson.V,APASS DR9,12.2250,0.0180,Vega,yes,5537,12.2751,-0.0501
+2MASS/2MASS.J,2MASS,10.1540,0.0240,Vega,yes,12411,10.1584,-0.0044
+2MASS/2MASS.H,2MASS,9.6060,0.0260,Vega,yes,16514,9.5149,+0.0911
+2MASS/2MASS.Ks,2MASS,9.4440,0.0190,Vega,yes,21656,9.4352,+0.0088
+WISE/WISE.W1,AllWISE,9.3520,0.0240,Vega,yes,34003,9.4107,-0.0587
+WISE/WISE.W2,AllWISE,9.4410,0.0200,Vega,yes,46520,9.4965,-0.0555
+WISE/WISE.W3,AllWISE,9.3350,0.0370,Vega,yes,128076,8.9758,+0.3592
+WISE/WISE.W4,AllWISE (upper limit),8.4800,,Vega,no,223753,9.0693,-0.5893

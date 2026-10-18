@@ -12,8 +12,8 @@ abstract: >-
   Transit timing, light-curve tables, false-positive checks, TRICERATOPS runs and predicted transit times for three
   transit candidates found in TESS full-frame images: TIC 402710280 (P = 36.34005 d, depth about 1680 ppm,
   transit-timing variations up to 29 min), TIC 324429952 (P = 42.37574 d, depth about 1500 ppm) and TIC 89247735
-  (P = 18.32317 d, dilution-corrected depth 1.13-1.22 %, Rp about 9.1-9.4 Earth radii). Not peer reviewed; the
-  candidates are not confirmed.
+  (P = 18.32317 d, dilution-corrected depth 1.13-1.22 %, Rp about 8.7 Earth radii with the stellar radius from an SED
+  fit). Not peer reviewed; the candidates are not confirmed.
 keywords:
   - TESS
   - transit candidates

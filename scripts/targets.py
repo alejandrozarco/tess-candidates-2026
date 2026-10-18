@@ -9,7 +9,8 @@ ephemerides of README.md; `tc_guess` are the starting values of the per-epoch fi
 are the cycle numbers relative to T0. Transit epochs are labelled by their sector number; when a sector contains two
 transits they are labelled '<sector>a', '<sector>b' (TIC 89247735, sector 93); `sector_of` returns the sector.
 `diff` holds per-target settings of difference_images.py (defaults there when absent); `star` the TIC v8.2 stellar
-parameters used by dilution_correction.py and gaia_companion_limits.py.
+parameters used by dilution_correction.py and gaia_companion_limits.py; `star_sed` (TIC 89247735) the adopted stellar
+parameters of README section 3.1 (SED fit, sed_fit.py), used by fit_free_dilution.py.
 Work directory layout (set with --work, default ./work): <work>/<tic>/cut/s<sector>.npz (cutouts),
 <work>/<tic>/cut/lc_s<sector>.npz (photometry), <work>/<tic>/dl/ (MAST products), <work>/<tic>/fit_*.json (fits).
 """
@@ -66,6 +67,7 @@ TARGETS = {
         k0=0.1, b0=0.3, aR0=30.0, fix=None,
         T14h=4.50, spoc_2min=None, ttv_min=None,
         star=dict(R=0.785, eR=0.066, M=0.69, eM=0.08, rho=1.43, erho=0.43, d_pc=105.66),   # TIC v8.2
+        star_sed=dict(Teff=4430, eTeff=100, L=0.190, eL=0.008, R=0.74, eR=0.04, M=0.69, eM=0.03, rho=2.40, erho=0.40),   # README 3.1
         diff=dict(hw=0.07, oot_min=0.13, oot_order=1, cen_radius=4.0, sigma0=0.8, sigma_min=0.3, seed=1, fake_excl=1.0, fake_min_frac=0.7,
                   gaia_radius=60.0, gaia_gmax=19.0),
         sources={'target': (275.2234460704073, -45.56163775820568, -39.073, -105.840),
