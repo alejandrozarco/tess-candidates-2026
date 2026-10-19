@@ -1,0 +1,11 @@
+# TIC 311179599, candidate second transit signal c: joint fit of the three events (scripts/fit_second_signal.py, r = 2.0 px), 2026-10-19
+# percentiles 2.5/16/50/84/97.5 of the Metropolis posterior; T14 and rho_circ (g cm^-3, circular orbit) at the reference period 73.87 d (rho_circ x 4 for P/2); acceptance 0.334; best fit k = 0.02907, a/R* = 107.16, b = 0.096
+quantity,p2.5,p16,p50,p84,p97.5
+depth_k2_ppm,679.2,772,877.1,1021,1346
+b,0.02166,0.1338,0.4251,0.7683,0.9415
+T14_h,4.282,4.984,5.38,5.772,6.636
+a_over_Rstar,37.2,70.5,98.59,110.9,128.1
+rho_circ_gcc,0.1785,1.215,3.322,4.728,7.287
+tc_A_btjd,4088.472364,4088.488075,4088.498930,4088.506761,4088.513901
+tc_B_btjd,4162.376345,4162.390615,4162.401977,4162.410049,4162.418746
+tc_C_btjd,1650.872542,1650.885350,1650.899454,1650.912723,1650.922466

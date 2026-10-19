@@ -1,4 +1,4 @@
-# TRICERATOPS FPP/NFPP per configuration over seeds, 2026-10-18 (TIC 311179599: 2026-10-19) (see runs.csv for the configurations)
+# TRICERATOPS FPP/NFPP per configuration over seeds, 2026-10-18 (TIC 311179599 and its candidate second signal c: 2026-10-19) (see runs.csv for the configurations)
 tic,label,cc_hypothetical,n_seeds,FPP_mean,FPP_std,FPP_median,FPP_min,FPP_max,NFPP_mean,NFPP_max
 455017950,SOARcc,False,5,6.155e-04,4.19e-04,5.477e-04,2.38e-04,1.30e-03,7.70e-11,9.10e-11
 455017950,nocc,False,2,4.857e-03,1.83e-03,4.857e-03,3.56e-03,6.15e-03,6.82e-11,8.37e-11
@@ -14,3 +14,5 @@ tic,label,cc_hypothetical,n_seeds,FPP_mean,FPP_std,FPP_median,FPP_min,FPP_max,NF
 402710280,nominal,True,10,3.404e-13,6.06e-13,1.432e-13,1.55e-15,2.02e-12,1.46e-25,3.50e-25
 402710280,sig1.5,False,5,4.891e-03,4.57e-03,3.356e-03,1.83e-03,1.28e-02,6.59e-12,9.08e-12
 311179599,nominal,False,5,2.773e-02,2.28e-03,2.740e-02,2.53e-02,3.14e-02,6.85e-07,7.68e-07
+311179599,c_P36.93,False,5,3.811e-02,6.64e-03,3.713e-02,3.09e-02,4.84e-02,8.02e-03,8.59e-03
+311179599,c_P73.87,False,5,4.678e-02,1.11e-02,4.662e-02,3.50e-02,6.34e-02,1.54e-03,1.64e-03

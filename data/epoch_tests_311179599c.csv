@@ -1,0 +1,15 @@
+# TIC 311179599, candidate second transit signal c: every predicted epoch of the three-event ephemerides that falls inside a TESS sector (values from the vetting record of 2026-10-19; no script in this repository)
+# n = 1: P = 73.86712 d, n = 2: P = 36.93356 d, T0 = BTJD 4088.51190; the predicted epochs of sectors 13, 66 and 102 fall outside the data
+# depth_* = one-sided box estimate at edge epochs (linear baseline on the side with data minus the mean flux within +-0.4 T14; ppm; expected for the template 874 ppm) with null_sd_r2.0_ppm = scatter of the same estimator elsewhere in the sector; for the events A, B, C: template depth with the mid-time free and its error
+# own_* = TESScut aperture (r = 1.5, 2.0, 3.0 px) and PSF photometry; spoc_* = TESS-SPOC SAP and PDCSAP light curves (sectors 12 and 39; the star has no TESS-SPOC light curve in sectors 93-103)
+n,sector,cycle,tc_pred_btjd,label,depth_r1.5_ppm,depth_r2.0_ppm,depth_r3.0_ppm,depth_psf_ppm,null_sd_r2.0_ppm,depth_spoc_sap_ppm,depth_spoc_pdcsap_ppm,status
+1,12,-33,1650.897,C,951,985,888,943,188,946,995,event C (detected)
+1,39,-23,2389.568,S39end,3357,1995,1321,3826,395,1231,765,untestable: last 0.15 d of the sector; aperture-dependent flux drop at the sector end
+1,100,0,4088.512,A,1014,1039,973,1160,159,,,event A (detected)
+1,103,1,4162.379,B,877,988,813,937,172,,,event B (detected)
+2,12,-66,1650.897,C,951,985,888,943,188,946,995,event C (detected)
+2,39,-46,2389.568,S39end,3357,1995,1321,3826,395,1231,765,untestable: last 0.15 d of the sector; aperture-dependent flux drop at the sector end
+2,93,-7,3829.977,S93start,-1181,-910,-493,-445,368,,,untestable: 0.02-0.12 d after the first cadence of the sector (start-of-sector ramp)
+2,100,0,4088.512,A,1014,1039,973,1160,159,,,event A (detected)
+2,101,1,4125.445,S101,-107,-106,-28,36,172,,,untestable: scattered-light excursion (background change -28 ppt of the stellar flux)
+2,103,2,4162.379,B,877,988,813,937,172,,,event B (detected)

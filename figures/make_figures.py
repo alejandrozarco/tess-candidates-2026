@@ -8,6 +8,8 @@ Figures: fold_<tic>  (TTV-corrected fold of the detrended epochs with 20-min bin
          model of eclipse_model_11613676.csv), eb_profiles_11613676 (per-sector eclipse profiles),
          toi540_sectors (per-sector folded transits of TOI-540 b, sector 98 with and without an injected transit),
          toi540_depths (depth per sector, and sector-98 depths of the control planets).
+'c311179599': epochs_311179599c (the three events of the candidate second transit signal with the joint model).
+'eb124751008': eb_depths_124751008 (eclipse depth of TIC 124751008 against time, with the inclination models).
 """
 import csv, os, sys
 import matplotlib
@@ -239,14 +241,49 @@ def fig_toi540_depths(t, name):
     fig.tight_layout(); save(fig, t, name)
 
 
+def fig_epochs_c(t, name):
+    F = read("folded_311179599c.csv"); T = read("transit_times_311179599c.csv")
+    evs = list(T["event"]); fig, axs = plt.subplots(1, 3, figsize=(12, 3.6), sharey=True); fig.patch.set_facecolor(t["surface"])
+    for ax, ev in zip(axs, evs):
+        m = F["event"] == ev; x = F["dt_days"][m] * 24; y = F["flux"][m]; o = np.argsort(x); j = list(T["event"]).index(ev)
+        ax.plot(x, y, ".", color=t["pts"], ms=2); xb, yb, eb = binned(x, y, 30 / 60); ax.errorbar(xb, yb, eb, fmt="o", color=t["ink"], ms=3, lw=0.7)
+        ax.plot(x[o], F["model"][m][o], "-", color=t["mark2"], lw=1.4); ax.set_xlim(-14, 14); ax.set_xlabel("hours from fitted mid-transit")
+        style(ax, t); title(ax, t, f"event {ev}: S{int(T['sector'][j])}, {T['cadence_min'][j]:.1f}-min cadence\n$t_c$ = BTJD {T['tc_btjd'][j]:.4f}, depth {T['depth_ppm'][j]:.0f} $\\pm$ {T['depth_err_ppm'][j]:.0f} ppm")
+    axs[0].set_ylabel("relative flux"); axs[0].set_ylim(0.9965, 1.0025)
+    fig.suptitle("TIC 311179599: the three events of the candidate second transit signal (TESScut r = 2.0 px; 30-min bins; line: joint model)", color=t["ink"], fontsize=10, x=0.01, ha="left")
+    fig.tight_layout(); save(fig, t, name)
+
+
+def fig_eb_depths_124(t, name):
+    E = read("eclipse_times_124751008.csv"); D = read("depths_124751008.csv"); M = read("model_history_124751008.csv")
+    fig, ax = plt.subplots(figsize=(9, 4.4)); fig.patch.set_facecolor(t["surface"])
+    ok = E["depth_err_pct"] < 0.2; ax.errorbar(E["year"][ok], E["depth_pct"][ok], E["depth_err_pct"][ok], fmt="o", color=t["mark"], ms=4.5, capsize=2, label="primary eclipses")
+    if (~ok).any(): ax.plot(E["year"][~ok], E["depth_pct"][~ok], "o", mfc="none", color=t["mark"], ms=4.5, label="primary (error > 0.2 % or not determined)")
+    s = (D["kind"] == "sec") & np.isnan(D["limit3_pct"]); l = (D["kind"] == "sec") & ~np.isnan(D["limit3_pct"])
+    ax.errorbar(D["year"][s], D["depth_pct"][s], D["depth_err_pct"][s], fmt="s", color=t["mark2"], ms=5, capsize=2, label="secondary eclipse")
+    ax.errorbar(D["year"][l], D["limit3_pct"][l], yerr=0.08, uplims=True, fmt="s", mfc="none", color=t["mark2"], ms=5, label="secondary, 3-sigma limit")
+    for (l3, mo), ls, lab in ((("0.00", "sinusoid_free"), "-", "sinusoid, third light 0"), (("0.70", "sinusoid_free"), "--", "sinusoid, third light 0.70"), (("0.00", "quadratic"), ":", "quadratic, third light 0"), (("0.00", "linear"), "-.", "linear (rejected), third light 0")):
+        mm = (M["third_light"] == float(l3)) & (M["model"] == mo)
+        ax.plot(M["year"][mm], M["pri_depth_pct"][mm], ls, color=t["mark"], lw=1.0, alpha=0.75, label=f"model primary: {lab}")
+        if mo != "linear": ax.plot(M["year"][mm], M["sec_depth_pct"][mm], ls, color=t["mark2"], lw=1.0, alpha=0.75)
+    ax.set_xlim(2018.5, 2030); ax.set_ylim(-0.05, 3.4); ax.set_xlabel("year"); ax.set_ylabel("eclipse depth (%)"); style(ax, t)
+    title(ax, t, "TIC 124751008: eclipse depth against time (TESS sectors 6-109; lines: inclination models,\nextrapolated after 2026.8; blue: primary, orange: secondary)")
+    ax.legend(loc="upper center", fontsize=7.5, frameon=False, labelcolor=t["ink2"], ncol=2)
+    fig.tight_layout(); save(fig, t, name)
+
+
 if __name__ == "__main__":
     for th, t in THEMES.items():
         plt.rcParams.update({"text.color": t["ink"], "axes.edgecolor": t["axis"], "axes.titlecolor": t["ink"]})
-        sel = sys.argv[1:] or [str(x) for x in TICS] + ["other"]
+        sel = sys.argv[1:] or [str(x) for x in TICS] + ["other", "c311179599", "eb124751008"]
         if "other" in sel:
             fig_eb_history(t, f"eb_history_11613676_{th}.svg"); fig_eb_profiles(t, f"eb_profiles_11613676_{th}.svg")
             fig_toi540_sectors(t, f"toi540_sectors_{th}.svg"); fig_toi540_depths(t, f"toi540_depths_{th}.svg")
-        for tic in [int(x) for x in sel if x != "other"]:
+        if "c311179599" in sel:
+            fig_epochs_c(t, f"epochs_311179599c_{th}.svg")
+        if "eb124751008" in sel:
+            fig_eb_depths_124(t, f"eb_depths_124751008_{th}.svg")
+        for tic in [int(x) for x in sel if x not in ("other", "c311179599", "eb124751008")]:
             fig_fold(t, f"fold_{tic}_{th}.svg", tic)
             fig_epochs(t, f"epochs_{tic}_{th}.svg", tic)
             fig_oc(t, f"oc_{tic}_{th}.svg", tic)

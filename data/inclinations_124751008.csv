@@ -1,0 +1,39 @@
+# TIC 124751008: orbital inclination per primary eclipse with the geometry of model ME fixed, for third light 0 and 0.70, and the i(t) fits (values from the vetting record of 2026-10-19; no script in this repository)
+# third light 0.70: recomputed on 2026-10-19 with the per-eclipse inclination grid extended from 86.6-88.2 deg to 86.6-89.0 deg (the 2019 inclinations had been truncated at 88.2 deg)
+# i_lo, i_hi = Delta chi2 = 1 interval of the single-parameter fit (errors ignore the correlation through the shared geometry); i_vanish_pri, i_vanish_sec = inclination below which the primary or secondary eclipse disappears
+# i(t) fits (t in years; linear and quadratic in (t - 2025); sinusoid i = i0 + A cos(2 pi (t - t_min)/P_node) with params i0, A, t_min, P_node), jitter added in quadrature until chi2/dof = 1:
+# third_light 0.00 linear: params [87.2521, -0.0294], errors [0.0158, 0.0043], chi2 (statistical errors only) 2436.7 for 12 degrees of freedom, jitter 0.052 deg
+# third_light 0.00 quadratic: params [87.1949, 0.0145, 0.0099], errors [0.0058, 0.0034, 0.0007], chi2 (statistical errors only) 126.0 for 11 degrees of freedom, jitter 0.012 deg
+# third_light 0.00 sinusoid_free: params [87.4326, -0.2546, 2024.2471, 19.5368], errors [0.0859, 0.0805, 0.0873, 4.3142], chi2 (statistical errors only) 89.1 for 10 degrees of freedom, jitter 0.010 deg
+# third_light 0.70 linear: params [87.9631, -0.0516], errors [0.0177, 0.0048], chi2 (statistical errors only) 3008.8 for 12 degrees of freedom, jitter 0.060 deg
+# third_light 0.70 quadratic: params [87.8625, 0.0258, 0.0175], errors [0.0097, 0.0057, 0.0012], chi2 (statistical errors only) 138.8 for 11 degrees of freedom, jitter 0.020 deg
+# third_light 0.70 sinusoid_free: params [88.3037, -0.4697, 2024.2426, 20.1883], errors [0.1626, 0.1536, 0.0814, 4.5027], chi2 (statistical errors only) 103.6 for 10 degrees of freedom, jitter 0.016 deg
+third_light,sector,cycle,year,i_deg,i_lo,i_hi,i_vanish_pri,i_vanish_sec
+0.00,6,-200,2018.973,87.4621,87.4601,87.4641,87.08,87.27
+0.00,6,-199,2019.008,87.4596,87.4566,87.4626,87.08,87.27
+0.00,7,-198,2019.042,87.4666,87.4646,87.4686,87.08,87.27
+0.00,7,-197,2019.077,87.4527,87.4517,87.4537,87.08,87.27
+0.00,33,-142,2020.976,87.3221,87.3201,87.3251,87.08,87.27
+0.00,33,-141,2021.010,87.2882,87.2852,87.2912,87.08,87.27
+0.00,87,-26,2024.981,87.1819,87.1749,87.1869,87.08,87.27
+0.00,87,-25,2025.016,87.1824,87.1754,87.1884,87.08,87.27
+0.00,98,0,2025.879,87.2114,87.2084,87.2154,87.08,87.27
+0.00,98,2,2025.948,87.2211,87.2171,87.2251,87.08,87.27
+0.00,98,3,2025.983,87.2239,87.2209,87.2279,87.08,87.27
+0.00,108,24,2026.708,87.2445,87.2395,87.2505,87.08,87.27
+0.00,108,25,2026.742,87.2465,87.2425,87.2505,87.08,87.27
+0.00,109,26,2026.777,87.2673,87.2643,87.2703,87.08,87.27
+0.70,6,-200,2018.973,88.3323,88.3283,88.3353,87.66,88.04
+0.70,6,-199,2019.008,88.3271,88.3211,88.3331,87.66,88.04
+0.70,7,-198,2019.042,88.3398,88.3368,88.3428,87.66,88.04
+0.70,7,-197,2019.077,88.3152,88.3122,88.3182,87.66,88.04
+0.70,33,-142,2020.976,88.0838,88.0788,88.0888,87.66,88.04
+0.70,33,-141,2021.010,88.0246,88.0186,88.0296,87.66,88.04
+0.70,87,-26,2024.981,87.8401,87.8291,87.8501,87.66,88.04
+0.70,87,-25,2025.016,87.8415,87.8305,87.8535,87.66,88.04
+0.70,98,0,2025.879,87.8929,87.8859,87.8999,87.66,88.04
+0.70,98,2,2025.948,87.9090,87.9020,87.9160,87.66,88.04
+0.70,98,3,2025.983,87.9135,87.9075,87.9195,87.66,88.04
+0.70,108,24,2026.708,87.9490,87.9390,87.9590,87.66,88.04
+0.70,108,25,2026.742,87.9536,87.9456,87.9606,87.66,88.04
+0.70,109,26,2026.777,87.9884,87.9824,87.9934,87.66,88.04

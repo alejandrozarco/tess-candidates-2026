@@ -1,7 +1,9 @@
 """Predicted mid-transit times from the linear ephemeris and the TESS sectors that contain them.
 
-usage: python scripts/predict_transits.py <tic> [--start 2026-10-18] [--months 12] [--out data]
-output: data/predicted_transits_<tic>.csv and data/tess_sectors_<tic>.csv (formats in the file headers).
+usage: python scripts/predict_transits.py <tic> [--start 2026-10-18] [--months 12] [--out data] [--signal c]
+output: data/predicted_transits_<tic>.csv and data/tess_sectors_<tic>.csv (formats in the file headers);
+with --signal c (TIC 311179599, candidate second signal, `second` in targets.py): data/predicted_transits_<tic>c.csv
+with the transits of both allowed periods (column `n`: P = (t_B - t_A)/n), and no sector file.
 Uses tess-point (tess_stars2px) for the sectors in which the target falls on silicon and for the nominal sector
 mid-times (window = mid-time +- 13.7 d). Errors are the propagated linear-ephemeris errors only; for TIC 402710280
 an additional transit-timing-variation envelope of +-30 min applies (observed O-C up to +-29 min), for TIC 455017950
@@ -17,6 +19,7 @@ from targets import TARGETS
 
 p = argparse.ArgumentParser(description=__doc__); p.add_argument('tic', type=int, choices=sorted(TARGETS))
 p.add_argument('--start', default=Time.now().iso[:10]); p.add_argument('--months', type=float, default=12); p.add_argument('--out', default='data')
+p.add_argument('--signal', default=None, help="candidate second signal of targets.py (key 'second'), e.g. c")
 args = p.parse_args(); c = TARGETS[args.tic]; tic = args.tic; os.makedirs(args.out, exist_ok=True)
 COORD = SkyCoord(c['ra'] * u.deg, c['dec'] * u.deg); GEO = EarthLocation.from_geocentric(0, 0, 0, unit=u.m)
 def utc(bjd_tdb):
@@ -29,6 +32,21 @@ obs = sorted(set(int(x) for x in TP.tess_stars2px_function_entry(tic, c['ra'], c
 PS = f'{c["P"]:.10g}'; EPS = f'{c["eP"]:.{len(PS.split(".")[1])}f}'   # period and error with the decimals given in targets.py
 t_start = Time(args.start).jd; t_end = t_start + args.months * 30.5
 hdr = lambda lines: ''.join('# ' + l + '\n' for l in lines)
+if args.signal:
+    S = c['second']; assert S['name'] == args.signal
+    with open(os.path.join(args.out, f'predicted_transits_{tic}{S["name"]}.csv'), 'w') as fo:
+        fo.write(hdr([f'TIC {tic} = Gaia DR3 {c["gaia_dr3"]}, candidate second transit signal {S["name"]}: predicted mid-transit times for the {args.months:g} months from {args.start}',
+                      'three-event linear ephemerides T0 = BTJD ' + f'{S["T0"]:.5f} +- {S["eT0"]:.5f}' + ', ' + '; '.join(f'n = {n}: P = {P:.6f} +- {eP:.6f} d' for n, P, eP in S['aliases']) + ' (both periods allowed by the TESS data; every transit of n = 1 is also one of n = 2)',
+                      f'err_min = 1-sigma propagated ephemeris error sqrt(eT0^2 + (epoch eP)^2), not including timing variations ({S["ttv_note"]}); *_utc = geocentric UTC (barycentric light-travel time toward the target removed)',
+                      f'T14 = {S["T14h"]:.2f} h; tess_sector = sector whose nominal 27.4-d window contains the transit and in which tess-point places the target on silicon (empty = not observed by TESS); also_n1 = 1 if the n = 2 transit is also a transit of n = 1']))
+        w = csv.writer(fo); w.writerow(['n', 'period_d', 'epoch', 'tc_btjd', 'tc_bjd_tdb', 'tc_utc', 'err_min', 'ingress_utc', 'egress_utc', 'tess_sector', 'also_n1'])
+        for nn, P, eP in S['aliases']:
+            n = int(np.ceil((t_start - 2457000 - S['T0']) / P))
+            while S['T0'] + n * P + 2457000 <= t_end:
+                tp = S['T0'] + n * P; err = np.hypot(S['eT0'], n * eP) * 1440; sec = [s for s, m in mid.items() if abs(tp - (m - 2457000)) < 13.7 and s in obs]
+                w.writerow([nn, f'{P:.6f}', n, f'{tp:.4f}', f'{tp + 2457000:.4f}', utc(tp + 2457000), f'{err:.1f}', utc(tp + 2457000 - S['T14h'] / 48), utc(tp + 2457000 + S['T14h'] / 48), ';'.join(map(str, sec)), int(nn == 1 or n % nn == 0)])
+                print(f'n={nn} epoch {n:3d} BTJD {tp:.4f} {utc(tp + 2457000)} UTC +-{err:.1f} min TESS {sec}'); n += 1
+    raise SystemExit
 with open(os.path.join(args.out, f'predicted_transits_{tic}.csv'), 'w') as fo:
     env = f'; a TTV envelope of +-{c["ttv_min"]:.0f} min should be added ({c["ttv_note"]})' if c['ttv_min'] else ''
     fo.write(hdr([f'TIC {tic} = Gaia DR3 {c["gaia_dr3"]}: predicted mid-transit times for the {args.months:g} months from {args.start}, linear ephemeris T0 = BTJD {c["T0"]:.5f} +- {c["eT0"]:.5f}, P = {PS} +- {EPS} d',

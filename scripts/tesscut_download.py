@@ -1,6 +1,6 @@
 """Download 21x21 pixel TESScut cutouts (SPOC-calibrated full-frame images) for one target, one file per sector.
 
-usage: python scripts/tesscut_download.py <tic> [--work ./work]
+usage: python scripts/tesscut_download.py <tic> [--work ./work] [--sectors 12,100,103]
 output: <work>/<tic>/cut/s<sector>.npz with time (BTJD), flux and error cubes (e/s), SPOC background cube,
         quality flags, position-correction columns, the target pixel position and the cutout WCS header.
 The cutout is requested at the TIC v8.2 coordinates and the target pixel is that position, except for targets with
@@ -15,11 +15,12 @@ from astropy.coordinates import SkyCoord
 from astropy.wcs import WCS
 from targets import TARGETS, workdir, add_common_args
 
-args = add_common_args(argparse.ArgumentParser(description=__doc__)).parse_args()
+ap = add_common_args(argparse.ArgumentParser(description=__doc__)); ap.add_argument('--sectors', default=None, help='comma-separated subset of the sectors in targets.py')
+args = ap.parse_args()
 c = TARGETS[args.tic]; wd = workdir(args, args.tic); N = 21
 GAIA = c.get('cut_center') == 'gaia'
 coord = SkyCoord(c['ra'], c['dec'], unit='deg') if GAIA else SkyCoord(c['tic_ra'], c['tic_dec'], unit='deg')
-for sec in c['sectors']:
+for sec in ([int(x) for x in args.sectors.split(',')] if args.sectors else c['sectors']):
     fn = os.path.join(wd, 'cut', f's{sec}.npz')
     if os.path.exists(fn):
         continue

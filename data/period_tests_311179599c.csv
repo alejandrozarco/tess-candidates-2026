@@ -1,0 +1,18 @@
+# TIC 311179599, candidate second transit signal c: test of the periods P = (t_B - t_A)/n, n = 1-12, against every covered TESS epoch (values from the vetting record of 2026-10-19; no script in this repository)
+# t_A, t_B = sector-100 and sector-103 mid-times (r = 2.0 px: BTJD 4088.4995, 4162.3984); for each n a grid of n_trial periods over +-4 sigma_P (sigma_P from the mid-time errors); every predicted epoch inside a sector is classified from the depth of the A+B template (5.25 h) within +-0.05 d of the predicted time
+# absent = deepest depth within +-0.05 d below D0 - 3 err (D0 = mean depth of A and B in the same photometry); frac_surviving = fraction of trial periods without an absent epoch; dip/absent/ambiguous/gap counts at the nominal period P0
+# excluding_epochs_r2.0 = sector:cycle:number of trial periods excluded by that epoch (r = 2.0 px; first eight); photometries: TESScut r = 2.0 and 1.5 px apertures and PSF photometry
+# n = 1 and n = 2 survive only in narrow period intervals; the sector-12 event C lies in one of them (README section 5.10)
+n,P0_d,sigma_P_d,n_trial,frac_surviving_r2.0,frac_surviving_r1.5,frac_surviving_psf,dip,absent,ambiguous,gap,excluding_epochs_r2.0,result
+1,73.8989,0.0192,1601,0.044,0.316,0.240,0,1,1,0,12:-33:1267;39:-23:579,allowed
+2,36.9495,0.0096,1601,0.044,0.276,0.144,0,1,2,1,12:-66:1267;39:-46:579;93:-7:179,allowed
+3,24.6330,0.0064,1600,0.000,0.000,0.000,0,4,4,1,102:2:1600;39:-70:1520;13:-98:1434;66:-40:1343;12:-99:1266;39:-69:579;101:1:480;12:-100:244,excluded
+4,18.4747,0.0048,1601,0.000,0.000,0.000,0,6,3,2,93:-13:1601;101:1:1601;102:3:1601;39:-93:1391;12:-132:1267;13:-131:819;12:-133:740;39:-92:579,excluded
+5,14.7798,0.0038,1537,0.000,0.000,0.000,0,11,4,0,93:-16:1537;101:1:1537;101:2:1537;102:3:1537;102:4:1537;66:-66:1487;13:-163:1259;12:-165:1214,excluded
+6,12.3165,0.0032,1281,0.000,0.000,0.000,0,10,7,3,100:-1:1281;102:4:1281;102:5:1281;39:-140:1217;13:-196:1149;66:-80:1075;66:-79:1022;12:-198:1012,excluded
+7,10.5570,0.0027,1098,0.000,0.000,0.000,0,13,5,3,93:-23:1098;100:-1:1098;101:2:1098;102:4:1098;102:5:1098;39:-162:1045;13:-230:870;13:-229:868,excluded
+8,9.2374,0.0024,961,0.000,0.000,0.000,1,15,5,3,66:-107:961;93:-27:961;93:-26:961;100:-1:961;100:1:961;101:2:961;101:3:961;102:5:961,excluded
+9,8.2110,0.0021,854,0.000,0.000,0.000,0,18,8,1,100:-1:854;100:1:854;101:2:854;101:4:854;102:5:854;102:6:854;103:8:854;39:-210:812,excluded
+10,7.3899,0.0019,769,0.000,0.000,0.000,0,21,10,1,93:-32:769;100:-1:769;100:1:769;101:2:769;101:3:769;101:4:769;102:6:769;102:7:769,excluded
+11,6.7181,0.0017,699,0.000,0.000,0.000,0,29,5,1,93:-38:699;93:-37:699;93:-36:699;93:-35:699;100:-2:699;100:-1:699;100:1:699;101:2:699,excluded
+12,6.1582,0.0016,641,0.000,0.000,0.000,0,25,9,5,93:-39:641;100:-2:641;100:1:641;101:3:641;101:5:641;102:7:641;102:8:641;102:9:641,excluded

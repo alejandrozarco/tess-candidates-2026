@@ -1,0 +1,19 @@
+# TIC 124751008: eclipse depth and duration per sector (scripts/eb_124751008.py; masked r = 2.0 px aperture), 2026-10-19
+# kind = pri: weighted mean of the primaries of the sector (noisy windows and diverged errors excluded); T14_err_h = scatter of T14 between the eclipses; kind = sec: weighted mean of the free trapezoid fits (sectors 6 and 7; T14_err_h = scatter) or, elsewhere, the fixed-trapezoid depth (T14 = 1.9 h, T12 = 0.75 h) at the secondary phase of the sector, weighted over n_events
+# depth_fixed_pct, depth_fixed_err_pct = the fixed-trapezoid depth at the secondary phase in every sector (in sectors 6 and 7 lower than the free fits because the fixed shape differs)
+# limit3_pct = 3-sigma upper limit where the secondary is not detected (depth < 3 err); phase = secondary phase relative to the sector primaries (nominal 0.4986)
+sector,year,kind,n_events,depth_pct,depth_err_pct,limit3_pct,T14_h,T14_err_h,phase,depth_fixed_pct,depth_fixed_err_pct
+6,2018.990,pri,2,2.186,0.040,,2.13,0.03,,,
+6,2018.990,sec,1,0.865,0.126,,1.96,0.00,0.4993,0.783,0.022
+7,2019.060,pri,2,2.052,0.050,,2.15,0.10,,,
+7,2019.060,sec,2,0.864,0.064,,1.83,0.03,0.4980,0.794,0.018
+33,2020.993,pri,2,0.969,0.025,,1.68,0.09,,,
+33,2020.993,sec,2,0.003,0.015,0.046,1.90 (fixed),,0.4986,0.003,0.015
+87,2024.999,pri,2,0.278,0.028,,1.27,0.23,,,
+87,2024.999,sec,3,-0.011,0.016,0.048,1.90 (fixed),,0.4986,-0.011,0.016
+98,2025.937,pri,3,0.426,0.022,,1.55,0.05,,,
+98,2025.937,sec,5,-0.011,0.011,0.032,1.90 (fixed),,0.4986,-0.011,0.011
+108,2026.708,pri,1,0.661,0.065,,1.56,0.00,,,
+108,2026.708,sec,2,-0.007,0.021,0.063,1.90 (fixed),,0.4986,-0.007,0.021
+109,2026.777,pri,1,0.770,0.059,,1.76,0.00,,,
+109,2026.777,sec,1,-0.005,0.019,0.058,1.90 (fixed),,0.4986,-0.005,0.019

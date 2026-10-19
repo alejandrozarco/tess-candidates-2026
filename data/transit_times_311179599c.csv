@@ -1,0 +1,9 @@
+# TIC 311179599 = Gaia DR3 5801882036668103680, candidate second transit signal c: mid-transit times of the three events (scripts/fit_second_signal.py, TESScut r = 2.0 px aperture photometry), 2026-10-19
+# tc_btjd = median of the joint-fit posterior (BJD_TDB - 2457000); tc_lo_d, tc_hi_d = 16th and 84th percentiles; tc_err_min = half the 16-84 % interval
+# epoch_n1, epoch_n2 = cycle numbers for P = (t_B - t_A)/n; O-C against the three-event linear ephemerides n = 1: T0 = BTJD 4088.51641 +- 0.00664, P = 73.86721 +- 0.00046 d (chi2 = 7.07, 1 degree of freedom); n = 2: P = 36.93361 +- 0.00023 d (same O-C)
+# depth_ppm = per-event depth: the best common shape (k^2 of the joint fit) scaled by a linear fit with the event baseline; raw aperture flux, not dilution corrected
+# noise_ppm = per-event white rms x beta (time-averaging factor at 30 and 60 min) used in the fit
+event,sector,camera_ccd,cadence_min,epoch_n1,epoch_n2,tc_btjd,tc_bjd_tdb,tc_lo_d,tc_hi_d,tc_err_min,oc_min,depth_ppm,depth_err_ppm,noise_ppm,beta
+C,12,2/2,30.0,-33,-66,1650.899454,2458650.899454,1650.885350,1650.912723,19.7,+1.6,822,158,421,1.00
+A,100,4/3,3.3,0,0,4088.498930,2461088.498930,4088.488075,4088.506761,13.5,-25.2,841,134,1090,1.00
+B,103,2/1,3.3,1,2,4162.401977,2461162.401977,4162.390615,4162.410049,14.0,+26.4,871,144,1174,1.00

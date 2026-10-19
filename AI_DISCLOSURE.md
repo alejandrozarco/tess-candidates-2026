@@ -1,8 +1,9 @@
 # AI disclosure
 
 AI models produced the content of this repository: the analysis scripts, the tables, the figures and the text. The
-content covers the five transit candidates and, in README section 6, the eclipsing binary TIC 11613676, the
-sector-98 observation of TOI-540 b and nine new eclipsing binaries (section 6.3, values from the vetting record). The repository owner chose the targets to pursue, directed the work and decided on
+content covers the five transit candidates, a candidate second transit signal on TIC 311179599 (README section 5.10)
+and, in README section 6, the eclipsing binaries TIC 11613676 and TIC 124751008 (section 6.4), the sector-98
+observation of TOI-540 b and nine new eclipsing binaries (section 6.3, values from the vetting record). The repository owner chose the targets to pursue, directed the work and decided on
 scope and release. The owner did not check the code or the numbers line by line, and no professional astronomer has
 reviewed them.
 
@@ -38,7 +39,12 @@ section 6.3) the detection-stage description of the eclipse as flat-bottomed was
 statement that no occultation was seen at the other conjunction "consistent with the geometry" was superseded (at
 that conjunction an occultation of the companion is geometrically required; the orbit conditioned on the sector-99
 non-detection places it in the sector-99 data gap), and the detection-stage depth (15.4 %, box) by the model central
-depth (16.9 %).
+depth (16.9 %); its predicted conjunction (observed − predicted +2.0 ± 3.8 d) was recomputed with the parameter order
+of the Gaia DR3 documentation for the correlation vector (predicted BTJD 4089.06 ± 3.46, z = +0.57). For TIC 124751008
+the detection-stage description of the eclipses as fading was superseded by "decreased and then increased", and the
+third-light inclination fits were recomputed after the per-eclipse inclination grid was found to truncate the 2019
+values (nodal period 20.2 ± 4.5 yr instead of 12.0 ± 1.8 yr); the candidate-c fit of TIC 311179599 was repeated with a
+longer sampler chain on the TESScut time stamps (P = 73.86721 instead of 73.86712 d).
 
 **What the software checks and what is trusted.** The scripts recompute the tables from public products (TESScut, SPOC,
 QLP, TESS-SPOC, TARS, Gaia DR3, TIC, ESO archive); exceptions are listed in README.md (Data and reproduction). Stellar
@@ -46,7 +52,8 @@ parameters are TIC v8.2 values and are not re-derived, except for TIC 89247735 a
 sections 3.1 and 4.1) and TIC 311179599 (Mann et al. relations; README section 5.1). The TRICERATOPS false-positive probabilities depend on that
 code's priors and on a single flux-error value per light curve; no high-resolution imaging constraint was available,
 except the published SOAR speckle limits for TIC 455017950. The values of the nine eclipsing binaries of README
-section 6.3 come from the vetting record and are not recomputed by a script in this repository.
+section 6.3, and the checks, period tests and models of sections 5.10 and 6.4 listed in README section 8, come from the
+vetting record and are not recomputed by a script in this repository.
 
 **What this means for use.** The candidates are leads to be checked independently; nothing here is confirmed. Credit
 for confirming, refining or refuting any of them belongs to whoever does that work. Questions, checks and corrections:

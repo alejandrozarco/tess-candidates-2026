@@ -126,6 +126,17 @@ TARGETS = {
                  'Gaia DR3 5801883514136854528 (G 17.43, 26.5")': (257.65336001, -75.66470274, -2.160, 1.523),
                  'Gaia DR3 5801882002308365184 (G 15.99, 27.9")': (257.63075376, -75.67855605, 1.488, -10.157),
                  'Gaia DR3 5801883509837351936 (G 16.90, 32.1")': (257.67276323, -75.66573075, -1.049, -7.239)},
+        # candidate second transit signal (README section 5.10): three-event linear ephemerides for the two allowed
+        # periods (n = 1: P = (t_B - t_A); n = 2: half of it) and the joint-fit duration (fit_second_signal.py, r = 2.0 px,
+        # data/transit_times_311179599c.csv); used by predict_transits.py --signal c
+        # `events` = (sector, starting mid-time) of the three events; `mask_b` = mid-times of the 24.8-d transits (and the
+        # sector-101 prediction) masked in the fit; fit_second_signal.py
+        second=dict(name='c', T14h=5.38, T0=4088.51641, eT0=0.00664, P_ref=73.87,
+                    events={'A': (100, 4088.5007), 'B': (103, 4162.4007), 'C': (12, 1650.8937)},
+                    camera_ccd={'A': '4/3', 'B': '2/1', 'C': '2/2'},
+                    mask_b=[1649.32236, 1674.13540, 2369.18732, 3114.05281, 3834.08235, 4082.33775, 4107.16, 4131.98535, 4156.81437],
+                    aliases=[(1, 73.867214, 0.000455), (2, 36.933607, 0.000228)],
+                    ttv_note='O-C -25 and +26 min of the sector-100 and sector-103 events'),
     ),
 }
 
@@ -137,6 +148,10 @@ TARGETS = {
 # 200322593: TOI-540 (Ment et al. 2021). `star` = mass and radius of Ment et al. (2021); `toi` = ExoFOP TOI-table
 #   ephemeris (2026-10-18; starting values only); `controls` = ExoFOP TOI-table values (2026-10-18) of the control
 #   planets observed in sector 98 at 2-min cadence: (TOI, TIC, P, eP, T0 BJD_TDB, eT0, T14 h, depth ppm).
+# 124751008: eclipsing binary 2MASS J06162084-3509125 (README section 6.4). Cutouts requested at the Gaia DR3
+#   position; `eph0` = starting ephemeris of the per-eclipse fits (detection stage), `ph2` = phase of the secondary
+#   eclipse (2019); `bleed` = image level (e-/s) above which pixels belong to the saturation bleed column of the G = 4.1
+#   star kappa Col (158"); `neighbours` = Gaia DR3 sources within 60" (ra, dec, G, BP-RP) for the contamination estimate.
 OTHER = {
     11613676: dict(
         gaia_dr3='5029330944688623360', name='CD-30 448',
@@ -146,6 +161,17 @@ OTHER = {
         neighbours=[(20.642006860, -29.435474122, 21.077, 2.393), (20.622196859, -29.437330474, 17.128, 1.069),
                     (20.652595477, -29.442875136, 20.288, 0.721), (20.618010897, -29.454294068, 20.570, 2.161),
                     (20.646714805, -29.455664264, 15.626, 0.733), (20.632790522, -29.464228349, 18.994, 0.921)],
+    ),
+    124751008: dict(
+        gaia_dr3='2885572716963709952', name='2MASS J06162084-3509125',
+        ra=94.08686139415221, dec=-35.15313837719891, pmra=-3.1427, pmdec=83.5702, cut_center='gaia',
+        sectors=[6, 7, 33, 87, 98, 108, 109], spoc_2min=[],
+        eph0=(3997.3156, 12.61176), ph2=0.4986, bleed=20000.0, G=11.191, bprp=2.111,
+        neighbours=[(94.08236243, -35.15061433, 17.964, 0.805), (94.09118199, -35.15706361, 16.210, 1.335),
+                    (94.08211750, -35.14919168, 19.720, 2.328), (94.09254373, -35.14365280, 21.080, 0.613),
+                    (94.08443369, -35.16439934, 20.750, 1.558), (94.09932185, -35.15799980, 15.300, 0.864),
+                    (94.07333094, -35.15482260, 19.150, 1.367), (94.07517045, -35.16153183, 20.060, 1.876),
+                    (94.09030819, -35.13828098, 16.700, 2.346)],
     ),
     200322593: dict(
         gaia_dr3='4785886941312921344', name='TOI-540',

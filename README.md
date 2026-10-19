@@ -1,7 +1,8 @@
-# TESS transit candidates, two further results and notable eclipsing binaries, 2026
+# TESS transit candidates, three further results and notable eclipsing binaries, 2026
 
-Transit candidates TIC 402710280, TIC 324429952, TIC 89247735, TIC 455017950 and TIC 311179599 (sections 1-5); the
-eclipsing binary TIC 11613676 and the planet TOI-540 b (sections 6.1, 6.2); nine new eclipsing binaries (section 6.3).
+Transit candidates TIC 402710280, TIC 324429952, TIC 89247735, TIC 455017950 and TIC 311179599 (sections 1-5), with a
+candidate second transit signal on TIC 311179599 (section 5.10); the eclipsing binaries TIC 11613676 and TIC 124751008
+and the planet TOI-540 b (sections 6.1, 6.4, 6.2); nine new eclipsing binaries (section 6.3).
 
 Status: computational results from public data, not peer reviewed. Date of this record: 2026-10-19 (UTC). Author: A. Zarco.
 
@@ -41,12 +42,16 @@ insolation 4.0 times that of the Earth, eight transits in sectors 12 to 103; the
 than the linear ephemeris of the other seven, whose mid-transit times deviate from it by up to 50 min; a
 transit-timing variation is not established; TRICERATOPS false-positive probability 0.025-0.031 (five seeds, no imaging
 constraint); the Gaia DR3 radial-velocity scatter limits a companion at this period to $`M_2 \sin i < 20\,M_\mathrm{J}`$;
-the star is in the Habitable Worlds Observatory preliminary target lists (HPIC, TSS25).
+the star is in the Habitable Worlds Observatory preliminary target lists (HPIC, TSS25). Three further events on the same
+star (sectors 12, 100 and 103; about 880 ppm, 5.4 h, $`R_\mathrm{p} \approx 2.0\,R_\oplus`$) form a candidate second
+transit signal with $`P = 73.8672`$ d or $`P = 36.9336`$ d (every shorter $`P = 73.87/n`$ d is excluded); TRICERATOPS
+false-positive probability 0.047 (73.87 d) and 0.038 (36.93 d); the transit predicted for 2026-11-02 13:16 UTC occurs only
+for the shorter period (section 5.10).
 No high-resolution imaging and no radial velocities were obtained for this work.
 The tables in `data/` are recomputed from public MAST, Gaia and ESO products by the scripts in `scripts/` (exceptions in
 section 8).
 
-Two further results (section 6). TIC 11613676 (CD-30 448, K dwarf, $`T = 10.50`$) is an eclipsing binary with
+Three further results (section 6). TIC 11613676 (CD-30 448, K dwarf, $`T = 10.50`$) is an eclipsing binary with
 $`P = 12.1158`$ d whose eclipses were absent in TESS sector 3 (2018; depth $`< 0.04`$ %), present in sector 30 (2020;
 0.69 % and 0.53 %), 5.4 % and 2.2 % deep in sector 97 (2025) and shallower in sectors 104 and 106 (2026; 4.0 % and
 1.7 % in sector 106); the eclipse times deviate from a linear ephemeris by up to 30 min, Gaia DR3 gives RUWE 48 and a
@@ -56,7 +61,12 @@ star has no variable-star or eclipsing-binary entry in the catalogues checked. T
 planet, transits in TESS sectors 4-32 (2018-2020) at about 1.7 ppt; in TESS sector 98 (2025-11 to 2026-01) the transits
 are not detected in any product examined ($`83 \pm 268`$ ppm). The checks find no instrumental cause; ground-based
 photometry of one transit (windows in section 6.2.9) would decide between a data problem and a change of the transit
-geometry.
+geometry. TIC 124751008 (2MASS J06162084-3509125, an M-dwarf multiple at 57 pc) is a 12.61-d eclipsing binary whose
+primary eclipses, measured in the same aperture, were 2.25 % deep in 2018, 0.28 % in TESS sector 87 (2024-2025) and
+0.77 % in sector 109 (2026); the 0.86 % secondary eclipse of 2019 has not been detected since 2021, and the eclipse times
+change by up to 43 min between consecutive cycles. The geometric models require a change of the orbital inclination
+with a minimum near 2024.3 (a sinusoid gives a period of about 20 yr), as nodal precession by a third body would
+produce; the star has no variable-star or eclipsing-binary entry in the catalogues checked (section 6.4).
 
 Nine eclipsing binaries without a previous eclipse report in the catalogues checked (section 6.3): TIC 13957664, a
 single 2.0 % eclipse at the conjunction predicted by its Gaia DR3 astrometric+spectroscopic orbit ($`P = 245.66`$ d,
@@ -78,7 +88,7 @@ by its M-dwarf companion falls at the conjunction predicted by the orbit.
 | `data/folded_<tic>.csv` | detrended light curve of every transit epoch (TTV-corrected) with the model |
 | `data/model_<tic>.csv` | transit model curve used in the figures |
 | `data/sectors_<tic>.csv` | TESS sectors used, cadence, spans, predicted transits and their coverage |
-| `data/predicted_transits_<tic>.csv` | predicted mid-transit times for the 12 months from 2026-10-18 (TIC 311179599: from 2026-10-19) |
+| `data/predicted_transits_<tic>.csv` | predicted mid-transit times for the 12 months from 2026-10-18 (TIC 311179599 and its candidate c: from 2026-10-19) |
 | `data/tess_sectors_<tic>.csv` | TESS sectors (observed and future) in which the target is on silicon |
 | `data/diffimage_<tic>.csv`, `data/diffimage_sources_<tic>.csv` | per-sector difference images and source pixel positions |
 | `data/diffimage_centroids_<tic>.csv` | difference-image centroid offsets per sector or epoch (TIC 324429952, TIC 89247735, TIC 455017950, TIC 311179599) |
@@ -95,15 +105,20 @@ by its M-dwarf companion falls at the conjunction predicted by the orbit.
 | `data/s98_tests_200322593.csv`, `data/injection_200322593.csv`, `data/timing_audit_200322593.csv`, `data/control_planets_s98.csv` | TOI-540 b: sector-98 tests, injected transits, time-stamp audit, control planets |
 | `data/bt_fits_200322593.csv`, `data/perturber_200322593.csv`, `data/folded_200322593.csv`, `data/ground_windows_200322593.csv` | TOI-540 b: impact parameter per epoch group; order-of-magnitude companion masses; folded light curves; ground-based transit windows |
 | `data/notable_ebs_2026.csv` | the nine eclipsing binaries of section 6.3: identifiers, periods, eclipse epochs, depths, Gaia DR3 orbits |
-| `figures/` | `fold_`, `epochs_`, `oc_`, `diffimage_` figures (sections 1-5) and `eb_history_11613676`, `eb_profiles_11613676`, `toi540_sectors`, `toi540_depths` (section 6), light and dark SVG, made by `figures/make_figures.py` from `data/` |
-| `scripts/` | download, photometry, fit, difference images, alias/secondary search, event checks, dilution correction, Gaia companion limits, prediction, TRICERATOPS and table scripts; SED fit and free-dilution fit (TIC 89247735, TIC 455017950); `other_download.py`, `eb_eclipses.py`, `eb_model.py`, `toi540_analysis.py`, `toi540_controls.py`, `toi540_timing.py` (section 6) |
+| `data/transit_times_311179599c.csv`, `data/fit_311179599c.csv`, `data/folded_311179599c.csv`, `data/model_311179599c.csv` | TIC 311179599, candidate second signal c: mid-times, O-C and depths of the three events; joint-fit posterior; per-event light curves and model (section 5.10) |
+| `data/period_tests_311179599c.csv`, `data/epoch_tests_311179599c.csv`, `data/completeness_311179599c.csv`, `data/predicted_transits_311179599c.csv`, `data/triceratops_input_311179599c.csv` | TIC 311179599, candidate c: tests of the periods $`P = (t_B - t_A)/n`$; every predicted epoch inside a sector; injection-recovery test of the search for further signals; predicted transits for both allowed periods; TRICERATOPS input |
+| `data/sectors_124751008.csv`, `data/eclipse_times_124751008.csv`, `data/depths_124751008.csv`, `data/predicted_eclipses_124751008.csv` | TIC 124751008: sectors, bleed-column masking and contamination; per-eclipse fits and O-C; depth per sector and secondary limits; predicted eclipses (section 6.4) |
+| `data/inclinations_124751008.csv`, `data/model_history_124751008.csv` | TIC 124751008: per-eclipse inclinations and $`i(t)`$ fits; model eclipse depths 2018.5-2030 |
+| `figures/` | `fold_`, `epochs_`, `oc_`, `diffimage_` figures (sections 1-5) and `epochs_311179599c` (sections 1-5), `eb_history_11613676`, `eb_profiles_11613676`, `toi540_sectors`, `toi540_depths`, `eb_depths_124751008` (section 6), light and dark SVG, made by `figures/make_figures.py` from `data/` |
+| `scripts/` | download, photometry, fit, difference images, alias/secondary search, event checks, dilution correction, Gaia companion limits, prediction, TRICERATOPS and table scripts; SED fit and free-dilution fit (TIC 89247735, TIC 455017950); `fit_second_signal.py` (section 5.10); `other_download.py`, `eb_eclipses.py`, `eb_model.py`, `eb_124751008.py`, `toi540_analysis.py`, `toi540_controls.py`, `toi540_timing.py` (section 6) |
 | `requirements.txt`, `LICENSE`, `CITATION.cff`, `.zenodo.json`, `MANIFEST.sha256` | environment, licence, citation metadata, checksums |
 
 Lines starting with `#` in the CSV files are comments that identify the file and its columns.
-Times: BTJD = BJD$`_\mathrm{TDB}`$ $`-`$ 2457000. Predicted times in UTC are geocentric (barycentric light-travel time toward the target removed). All mid-transit times come from TESScut cutouts or SPOC light curves
+Times: BTJD = BJD$`_\mathrm{TDB}`$ $`-`$ 2457000. TESScut time stamps are used as delivered; their barycentric correction refers to the FFI rather than to each target, which shifts individual mid-times by up to about a minute (15-44 s for TIC 311179599), well below the quoted timing errors. Predicted times in UTC are geocentric (barycentric light-travel time toward the target removed). All mid-transit times come from TESScut cutouts or SPOC light curves
 (section 7 on the QLP timing notice). For TIC 89247735 two transits fall in sector 93; its tables label each transit
 by its epoch (cycle number) as well as its sector. For TIC 455017950 the epoch is the cycle number relative to the
-sector-99 transit, for TIC 311179599 relative to the sector-100 transit.
+sector-99 transit, for TIC 311179599 relative to the sector-100 transit, and for its candidate c relative to the
+sector-100 event (for both allowed periods).
 
 ## 1. TIC 402710280
 
@@ -1298,6 +1313,9 @@ No archival data set detects or excludes a 1.3-ppt transit.
 
 ## 5. TIC 311179599
 
+Sections 5.1-5.9 describe the 24.8-d transit signal; section 5.10 describes a candidate second transit signal on the same
+star.
+
 ### 5.1 Host star
 
 | quantity | value | source |
@@ -1522,8 +1540,8 @@ predicts them 18-44 min earlier.
   Two events behave like dips on the target: BTJD 4088.457 (sector 100; 1072, 1098 and 1104 ppm in the $`r`$ = 1.5,
   2.0 and 3.0 px apertures, QLP SAP $`1020 \pm 131`$ ppm) and BTJD 4162.411 (sector 103; 1027, 1110 and 1128 ppm,
   QLP SAP $`796 \pm 142`$ ppm), each without a background or centroid excursion and about 0.8 times the transit depth in a 2.5-h box. They are not at the
-  24.8-d ephemeris (phases 0.247 and 0.225) and were not analysed further; no search for a second periodic signal with
-  an injection-recovery test was made.
+  24.8-d ephemeris (phases 0.247 and 0.225); with a third event in sector 12 they form the candidate second transit
+  signal of section 5.10, which also reports a search for further signals with an injection-recovery test.
 - Localisation: the dimming is centred on the target in all eight epochs, and every Gaia DR3 source other than the
   target is disfavoured as the host (section 5.5).
 - Gaia DR3: RUWE 0.968, `ipd_frac_multi_peak` 0, no non-single-star solution; the radial-velocity scatter limits a
@@ -1657,12 +1675,214 @@ window (2027-01-16 to 2027-02-13) contains epoch 14 (2027-01-24 09:52 UTC) and t
 the published TESS orbit-time table ends at sector 111, so the positions of these transits relative to the orbit gaps
 are not known. Mid-transit times of these two transits would test the timing variations of section 5.3.
 
+### 5.10 A second transit signal (candidate c)
+
+Three transit-shaped events of about 880 ppm and 5.4 h fall in sectors 12, 100 and 103 (BTJD 1650.899, 4088.499 and
+4162.402). They are not at the 24.8-d ephemeris of sections 5.2-5.9 (called b in this section), and they are
+consistent with one candidate second transit signal on the same star with $`P = 73.8672`$ d or half of it,
+$`P = 36.9336`$ d (cycles $`-33`$, 0, 1 or $`-66`$, 0, 2); every other period $`P = (t_B - t_A)/n`$ with $`n \ge 3`$ is
+excluded by covered epochs without a dip. With $`R_\star = 0.599\,R_\odot`$ and the dilution of section 5.2 the radius is
+$`R_\mathrm{p} \approx 2.0\,R_\oplus`$. The signal rests on three events; it is a candidate, not a detected planet.
+
+#### 5.10.1 Events and joint fit
+
+`data/transit_times_311179599c.csv`, `data/fit_311179599c.csv`, `data/folded_311179599c.csv`, `data/model_311179599c.csv`,
+`scripts/fit_second_signal.py`: joint fit of the three events in the TESScut $`r = 2.0`$ px photometry (batman, circular
+orbit at the reference period 73.87 d, $`u = (0.33, 0.27)`$, common $`k`$, $`a/R_\star`$ and $`b`$, one mid-time and one
+quadratic baseline per event over $`\pm 0.6`$ d, quality-0 cadences, the 24.8-d transits masked, exposure-time
+supersampling; Metropolis sampler, 600000 steps). The events were first found as single dips (A, sector 100; B,
+sector 103; section 5.4); C (sector 12) was found in the window predicted by A and B for $`n = 1`$ and $`n = 2`$.
+
+| event | sector | camera/CCD | cadence (min) | $`t_c`$ (BTJD) | error (min) | O $`-`$ C (min) | depth (ppm) |
+|---|---|---|---|---|---|---|---|
+| C | 12 | 2/2 | 30 | 1650.89945 | 19.7 | $`+1.6`$ | $`822 \pm 158`$ |
+| A | 100 | 4/3 | 3.3 | 4088.49893 | 13.5 | $`-25.2`$ | $`841 \pm 134`$ |
+| B | 103 | 2/1 | 3.3 | 4162.40198 | 14.0 | $`+26.4`$ | $`871 \pm 144`$ |
+
+Errors: half the 16-84 % interval of the posterior; depths: the best common shape scaled per event (raw aperture flux).
+Linear ephemerides through the three mid-times ($`\chi^2 = 7.1`$ for 1 degree of freedom, the same for both periods):
+
+- $`n = 1`$: $`P = 73.86721 \pm 0.00046`$ d, $`T_0`$ = BTJD $`4088.5164 \pm 0.0066`$ (cycles $`-33`$, 0, 1);
+- $`n = 2`$: $`P = 36.93361 \pm 0.00023`$ d, same $`T_0`$ (cycles $`-66`$, 0, 2).
+
+The $`r = 1.5`$ px photometry gives $`P = 73.86719 \pm 0.00045`$ d and O $`-`$ C of $`+1.4`$, $`-15.1`$ and $`+26.6`$ min
+(C, A, B).
+
+| quantity (median, 68 % interval) | $`r = 2.0`$ px (adopted) | $`r = 1.5`$ px | PSF photometry (vetting record) |
+|---|---|---|---|
+| depth $`k^2`$ (ppm), raw aperture flux | $`877^{+144}_{-105}`$ | $`827^{+133}_{-105}`$ | $`893^{+120}_{-101}`$ |
+| $`b`$ | $`0.43^{+0.34}_{-0.29}`$ (not constrained) | $`0.42^{+0.33}_{-0.29}`$ | $`0.34^{+0.33}_{-0.24}`$ |
+| $`T_{14}`$ (h) | $`5.38^{+0.39}_{-0.40}`$ | $`5.32^{+0.38}_{-0.36}`$ | $`5.38^{+0.29}_{-0.30}`$ |
+| circular-orbit density at 73.87 d (g cm$`^{-3}`$) | $`3.3^{+1.4}_{-2.1}`$ | $`3.4^{+1.4}_{-2.1}`$ | $`3.6^{+1.0}_{-1.8}`$ |
+
+The light-curve density at $`P = 73.87`$ d agrees with the stellar density ($`3.85 \pm 0.35`$ g cm$`^{-3}`$, section 5.1).
+At $`P = 36.93`$ d the same shape gives a density four times higher, $`13^{+6}_{-8}`$ g cm$`^{-3}`$; the stellar density
+lies below the 16th percentile of that distribution, which a higher impact parameter or an eccentric orbit would
+accommodate. Dilution-corrected depth (target flux fraction 0.955, section 5.2) about 920 ppm, $`k \approx 0.030`$ and
+$`R_\mathrm{p} = 2.0 \pm 0.15\,R_\oplus`$ (TRICERATOPS best-fit planet radius 1.88-1.97 $`R_\oplus`$). With
+$`M_\star = 0.587\,M_\odot`$ and $`L_\star = 0.0775\,L_\odot`$: $`a = 0.289`$ au, insolation 0.93 times that of the
+Earth and equilibrium temperature 274 K for $`P = 73.87`$ d; $`a = 0.182`$ au, 2.35 times and 345 K for $`P = 36.93`$ d
+(zero albedo, full redistribution). The O $`-`$ C of A and B ($`-25`$ and $`+26`$ min, 1.9 $`\sigma`$ each) are not
+established as timing variations.
+
+<picture><source srcset="figures/epochs_311179599c_dark.svg" media="(prefers-color-scheme: dark)"><img src="figures/epochs_311179599c_light.svg" alt="TIC 311179599: the three events of the candidate second transit signal"></picture>
+
+#### 5.10.2 Period
+
+`data/period_tests_311179599c.csv`, `data/epoch_tests_311179599c.csv` (vetting record; no script in this repository).
+For $`P = (t_B - t_A)/n`$, $`n`$ = 1-12, a grid of trial periods over $`\pm 4\,\sigma_P`$ was compared with the depth of
+the A+B template at every predicted epoch inside a TESS sector (timing allowance $`\pm 0.05`$ d); a trial period is
+excluded when an epoch shows no dip (depth below the A+B depth minus 3 $`\sigma`$). In the $`r = 2.0`$ px, $`r = 1.5`$ px
+and PSF photometry, every trial period with $`n \ge 3`$ ($`P \le 24.63`$ d) is excluded, mostly by epochs in sectors 93
+and 100-103. For $`n = 1`$ and $`n = 2`$, 4-32 % of the trial periods survive, in narrow intervals; the sector-12 epoch
+excludes most of the others, and event C lies in one of the surviving intervals, 1.06 d (1.6 $`\sigma`$) after the time
+predicted from A and B alone.
+
+Every predicted epoch of the three-event ephemerides that falls inside a sector (depths in ppm; expected 870-880 ppm):
+
+| period | sector | cycle | predicted BTJD | $`r = 1.5`$ / 2.0 / 3.0 px, PSF | status |
+|---|---|---|---|---|---|
+| both | 12 | $`-33`$ / $`-66`$ | 1650.90 | 951 / 985 / 888, 943 | event C |
+| both | 39 | $`-23`$ / $`-46`$ | 2389.57 | 3357 / 1995 / 1321, 3826 (TESS-SPOC SAP 1231, PDCSAP 765) | not testable: last 0.15 d of the sector, flux drop that depends on the aperture |
+| 36.93 d | 93 | $`-7`$ | 3829.98 | $`-1181`$ / $`-910`$ / $`-493`$, $`-445`$ | not testable: 0.02-0.12 d after the first cadence of the sector |
+| both | 100 | 0 | 4088.51 | 1014 / 1039 / 973, 1160 | event A |
+| 36.93 d | 101 | 1 | 4125.45 | $`-107`$ / $`-106`$ / $`-28`$, $`+36`$ ($`\pm 172`$) | not counted: scattered-light excursion |
+| both | 103 | 1 / 2 | 4162.38 | 877 / 988 / 813, 937 | event B |
+
+The predicted epochs of sectors 13, 66 and 102 fall outside the data. At the sector-101 epoch the one-sided estimate is
+$`-106 \pm 172`$ ppm, 5.7 $`\sigma`$ below the expected depth; if it were reliable it would exclude $`P = 36.93`$ d. The
+annulus background changes by $`-28`$ ppt of the stellar flux within the window (185 times the scatter of the same
+measurement elsewhere in the sector), so the epoch is not counted, and $`P = 36.93`$ d is not excluded. The transit
+predicted for 2026-11-02 (section 5.10.7) occurs only for $`P = 36.93`$ d.
+
+#### 5.10.3 Checks
+
+Values from the vetting record of 2026-10-19 (no script in this repository).
+
+- Light curves: the three events are present in every photometry examined, with the template depth (mid-time free):
+  A 966-1080 ppm in TESScut $`r`$ = 1.0-3.0 px apertures, 1160 ppm in PSF photometry (1218 ppm with the 16.8" star
+  free), QLP SAP $`1039 \pm 127`$ ppm; B 813-988 ppm, PSF 937 ppm, QLP SAP $`902 \pm 147`$ ppm; C 882-985 ppm, PSF 943 ppm,
+  eleanor-lite 975-1063 ppm, TESS-SPOC SAP $`946 \pm 136`$ and PDCSAP $`995 \pm 145`$ ppm, QLP SAP $`741 \pm 135`$ ppm. The
+  QLP detrended fluxes, whose detrending suppresses 5-h events, give 711-972 ppm (A) and 173-1040 ppm (B).
+- Background and systematics: a background error would scale with the aperture area (a factor of 9 between $`r`$ = 1.0
+  and 3.0 px), while the depths agree to about 10 %; no flagged cadence lies within $`\pm 0.3`$ d of any event; the nearest
+  data edges are 1.0 d (A), 2.8 d (B) and 2.0 d (C) away; the flux-weighted and PSF centroids and the flux of the 16.8"
+  star show no shift beyond 1.4 times the scatter of the same measurement at other times.
+- Pixels: in the difference images of A and B the free-fit position lies ($`-3.4`$", $`+3.2`$") and ($`-4.7`$",
+  $`-1.6`$") from the target, with a scatter of 7-13" for the same measurement at other times; summed over A and B, a PSF
+  at the target fits better than at every Gaia DR3 source with $`G < 19`$ within 60" ($`\Delta\chi^2 = 393`$ for the
+  16.8" star, 428 for the 27.9" star, 519 for the 26.5" star, $`\ge 530`$ for the others). Sector 12 has 30-min cadence;
+  no difference image of C was made.
+- Solar-system objects: SkyBoT cones of 5 deg at the times of A and B, with positions from JPL Horizons for TESS as
+  observer (positive control: Ceres), list no known body within 2.9 deg (A) and 3.3 deg (B) of the target. C was not
+  checked.
+- Comparison stars: in the QLP SAP light curves of 543 (A) and 132 (B) stars on the same camera and CCD, the median
+  depth significance at the event time is 0.06 and 0.08 $`\sigma`$, at ranks 0.35 and 0.34 of the same statistic at
+  other times of the sector, and 0.7 % and 0.8 % of the stars show a dip above 3 $`\sigma`$ (95th percentile at other
+  times 17 % and 11 %); the target shows A at 5.3 $`\sigma`$ in the same QLP data.
+- Event statistics: on the template-depth grids of all nine sectors (223 d of data), the events that pass the same
+  criteria as A, B and C (S/N $`> 4`$ in $`r = 2.0`$ px; same sign and S/N $`> 3`$ in $`r`$ = 1.5, 3.0 px and PSF; depth
+  ratio $`r = 3.0`$ to 1.5 px of 0.6-1.6; more than 0.5 d from a data edge; no flagged cadence; small background change)
+  are A and C (B has S/N 3.1 on this grid) and no other dip; the same test on the inverted flux finds one brightening
+  (BTJD 4092.37). With about one such event per 220 d, the probability that an unrelated event falls within 1.06 d of
+  the predicted time is about 1 % (2.1 d / 223 d); this is an order of magnitude, as it rests on zero or one event.
+
+#### 5.10.4 TRICERATOPS and the multiplicity of candidates
+
+TRICERATOPS 1.1.0 with the target object of section 5.7 and `calc_depths` redone for the depth of this signal
+($`k^2`$ = 957 ppm, the best fit of the vetting record; raw aperture flux). Input (`data/triceratops_input_311179599c.csv`):
+A and B at 200-s cadence (C left out: the model takes a single exposure time), each divided by its quadratic baseline and
+folded on its own mid-time, 144 bins of 10 min within $`\pm 0.5`$ d, out-of-transit bin scatter 469 ppm; $`N = 10^6`$,
+5 seeds per period; tables `data/triceratops/probs_311179599c_n*_seed*.csv`, rows `c_P73.87` and `c_P36.93` of
+`data/triceratops/runs.csv` and `summary.csv`. No contrast curve.
+
+| period | FPP mean $`\pm`$ std (range) | NFPP (range) | mean scenario probabilities |
+|---|---|---|---|
+| 73.867 d | $`0.047 \pm 0.011`$ (0.035-0.063) | 0.0014-0.0016 | TP 0.81, PTP 0.13, STP 0.045, DTP 0.010 |
+| 36.934 d | $`0.038 \pm 0.007`$ (0.031-0.048) | 0.0070-0.0086 | TP 0.80, PTP 0.15, STP 0.030, DTP 0.011, NEB on TIC 311179608 (28.5") 0.005 |
+
+The FPP is below the "likely planet" limit of Giacalone et al. (2021) (0.5) and above their validation threshold (0.015);
+the NFPP exceeds their limit of 0.001 for both periods.
+
+Guerrero et al. (2021) estimate a multiplicity boost (the factor by which the prior probability of being a planet is
+higher for a candidate in a system with more than one candidate) of about 20, and about 54 for candidates smaller than
+6 $`R_\oplus`$, from SPOC 2-min-cadence TOIs of the TESS prime mission. They note that the boost was derived for
+SPOC-detected 2-min targets, does not apply to candidates detected only in full-frame images, for which it is likely
+much weaker, and is lower in crowded fields. Both signals of TIC 311179599 come from full-frame images. Dividing the FPP
+values by 20 (54) gives about 0.002 (0.0007-0.0009) for candidate c at either period and 0.0014 (0.0005) for
+candidate b;
+these numbers are indicative only and are not used for any classification here.
+
+#### 5.10.5 Transit timing of candidate b and the second signal
+
+Vetting record (no script in this repository): mid-times of candidate b within 1 min of table 5.3, with errors that
+include the injection-based timing scatter of section 5.3, and periods of c that differ from those above by
+0.2 $`\sigma`$. For $`P = 73.867`$ d the period ratio to b is 2.9753,
+0.8 % inside the 3:1 resonance (second order), with a super-period of 2989 d. A sinusoid at that super-period fits the
+eight mid-times of b ($`\chi^2 = 2.9`$ instead of 268 for a linear ephemeris) only with an amplitude of 116 min (PSF
+photometry: 122 min); fitted to the seven epochs other than sector 39 it predicts the sector-39 O $`-`$ C at
+$`-26`$ min, against the observed $`-2.2`$ h. For $`P = 36.934`$ d the ratio is 1.4876, 0.8 % inside the 3:2 resonance
+(first order), super-period 1494 d: a sinusoid at that super-period does not fit the eight epochs ($`\chi^2 = 212`$;
+PSF: 203), the zero-free-eccentricity model of Lithwick, Xie & Wu (2012), whose phase is fixed by the two ephemerides,
+gives $`\chi^2 = 253`$ (implied mass of c 3.1 $`M_\oplus`$), and the amplitude expected for 3-10 $`M_\oplus`$ is
+16-55 min; fitted without sector 39 the sinusoid predicts the sector-39 O $`-`$ C at $`-3.7`$ h. Neither period accounts
+for the sector-39 offset of candidate b with a timing signal of the expected size; with eight epochs and non-Gaussian
+timing errors this comparison is indicative only.
+
+#### 5.10.6 Search for further signals and completeness
+
+`data/completeness_311179599c.csv` (vetting record; no script in this repository). Box-least-squares searches
+(astropy; durations 1-8 h, 20-min bins; TESScut $`r = 2.0`$ px photometry, quality 0, the 24.8-d transits removed,
+systematics near data edges and scattered-light cadences masked, wotan biweight 1.0 d): over sectors 100-103
+(104 d, $`P`$ = 0.5-52 d) the highest peak with A, B and C masked has SDE 4.4 (26.15 d), below the highest peak of the
+same search on the inverted flux (4.5). Over all nine sectors ($`P`$ = 0.5-100 d) the highest peak with A, B and C masked
+(52.26 d, SDE 4.5, an 8-h box) exceeds the inverted-flux maximum (4.0); it rests on one dip in sector 13 (BTJD 1669.02,
+about 1000 ppm in an 8-h box at 30-min cadence) while its epochs in sectors 101 and 103 show about 180 ppm or fall in
+scattered light at the end of the sector (no script in this repository), so it is not a periodic signal. Transits
+injected into the sectors 100-103 light curve ($`b`$ = 0-0.8, circular orbits at the stellar density) and recovered when a
+top-3 peak lies within 1 % of $`P`$, $`P/2`$ or $`2P`$ with SDE above the inverted-flux maximum:
+
+| $`R_\mathrm{p}`$ ($`R_\oplus`$) | $`P`$ = 0.5-5 d | 5-20 d | 20-52 d |
+|---|---|---|---|
+| 1.0-1.5 | 6/18 | 0/13 | 0/6 |
+| 1.5-2.0 | 18/19 | 2/9 | 0/7 |
+| 2.0-2.5 | 20/20 | 6/9 | 1/4 |
+| 2.5-3.0 | 20/20 | 16/16 | 5/9 |
+
+Beyond 5 d, planets of 1.5-2.5 $`R_\oplus`$ were recovered in 9 of 29 injections; the search does not exclude further
+planets of the size of b or c at periods of weeks.
+
+#### 5.10.7 Predicted transits (2026-10-19 to 2027-10-19)
+
+`data/predicted_transits_311179599c.csv` (geocentric UTC; `scripts/predict_transits.py --signal c`). Errors are the
+propagated linear-ephemeris errors; because A and B deviate from the ephemeris by $`\pm 25`$ min, a timing window of at
+least $`\pm 40`$ min should be used. $`T_{14} = 5.38`$ h.
+
+| mid-transit (UTC) | BJD$`_\mathrm{TDB}`$ | ephemeris error (min) | transit for | TESS |
+|---|---|---|---|---|
+| 2026-11-02 13:16 | 2461347.0517 | 9.8 | 36.93 d only | |
+| 2026-12-09 11:42 | 2461383.9853 | 9.9 | both periods | |
+| 2027-01-15 10:06 | 2461420.9189 | 10.0 | 36.93 d only | (0.6 d before the nominal sector-113 window) |
+| 2027-02-21 08:28 | 2461457.8525 | 10.1 | both periods | sector 114 |
+| 2027-03-30 06:49 | 2461494.7861 | 10.2 | 36.93 d only | |
+| 2027-05-06 05:11 | 2461531.7197 | 10.3 | both periods | |
+| 2027-06-12 03:34 | 2461568.6533 | 10.5 | 36.93 d only | |
+| 2027-07-19 01:59 | 2461605.5869 | 10.6 | both periods | |
+| 2027-08-25 00:26 | 2461642.5205 | 10.8 | 36.93 d only | |
+| 2027-09-30 22:53 | 2461679.4541 | 10.9 | both periods | |
+
+The transit of 2026-11-02 13:16 UTC (ingress 10:35, egress 15:58) tests $`P = 36.93`$ d: a transit then confirms that
+period, its absence leaves $`P = 73.87`$ d. The transit of 2027-02-21 08:28 UTC falls in the nominal window of TESS
+sector 114 (camera 4, CCD 2), which also contains the transit of candidate b of 2027-02-18; the published TESS orbit
+table ends at sector 111, so its position relative to the orbit gaps is not known.
+
 ## 6. Other TESS results
 
 Results that are not transit candidates: an eclipsing binary whose eclipses were absent in 2018 and present from
 2020 (section 6.1), a known planet whose transits are not detected in one TESS sector (section 6.2), both computed from
-public TESS products by the scripts listed in section 8, and nine new eclipsing binaries (section 6.3), whose values
-come from the vetting record (section 8).
+public TESS products by the scripts listed in section 8, nine new eclipsing binaries (section 6.3), whose values
+come from the vetting record (section 8), and an eclipsing binary whose eclipses became shallower from 2018 to 2025 and
+deeper again in 2026 (section 6.4; tables of eclipse depths and times from a script, models from the vetting record).
 
 ### 6.1 TIC 11613676 (CD-30 448): eclipses that appeared between 2018 and 2020
 
@@ -2192,7 +2412,8 @@ $`f(M) = 0.0089 \pm 0.0011\,M_\odot`$ from a Monte Carlo over the Thiele-Innes e
 lists it as a spectroscopic binary (SB*), and the HPIC flags it as a binary from Gaia (`fBinarG` = 1). The eclipse is
 the new information: one eclipse at BTJD 4091.0505 (sector 100; formal error 0.00005 d), 4.57 h long and 16.9 % deep
 (central depth of the model below; 15.4 % in a box on the $`r = 2.0`$ px photometry, 13.8 % in QLP SAP), at the
-conjunction with the companion in front that the orbit predicts (observed $`-`$ predicted $`= +2.0 \pm 3.8`$ d). The
+conjunction with the companion in front that the orbit predicts (predicted BTJD $`4089.06 \pm 3.46`$ with the correlation
+matrix of the Gaia solution; observed $`-`$ predicted $`= +2.0`$ d, $`z = +0.57`$). The
 other sectors (11, 12, 38, 39, 65, 99, 101) contain no such conjunction. With $`M_1 = 0.68`$-0.76 $`M_\odot`$ the mass
 function gives $`M_2 = 0.19`$-0.20 $`M_\odot`$, an M dwarf. Eclipse model (two spheres, quadratic limb darkening, the
 transverse velocity of the orbit at the conjunction, $`70.4 \pm 2.9`$ km/s, and a TESS-band light fraction of the
@@ -2260,6 +2481,291 @@ assumed primary radius and light fraction, and the occultation was not observed.
 determined. The depths of TIC 433642561 (its own QLP light curve, 47.9" from a star 1 mag brighter) and of
 TIC 245068282 (scaled from the aperture of TIC 245068274 by its flux fraction of about 16 %) are approximate. For TIC 245068282 the physical association with TIC 245068274 rests on the Gaia DR3
 parallaxes and proper motions.
+
+### 6.4 TIC 124751008: eclipses whose depth decreased and then increased
+
+TIC 124751008 (2MASS J06162084-3509125) is an M-dwarf multiple at 57 pc that contains a 12.61-d eclipsing binary. In the
+same aperture its primary eclipses were 2.25 % deep in 2018, 0.28 % deep in sector 87 (2024-2025) and 0.77 % deep in
+sector 109 (2026); the secondary eclipse, 0.86 % deep in 2019, has not been detected since 2021. The eclipse times
+deviate from a linear ephemeris by up to 68 min and change by up to 43 min between consecutive cycles. Sections 6.1 and
+6.4 describe the same kind of behaviour: the eclipse depths of a short-period binary change over a few years together
+with eclipse-timing variations, which the geometric models describe as a change of the orbital inclination.
+
+#### 6.4.1 Target
+
+| quantity | value | source |
+|---|---|---|
+| identifiers | TIC 124751008, Gaia DR3 (= DR2) 2885572716963709952, 2MASS J06162084-3509125, UCAC4 275-009543, WISEA J061620.84-350911.6, APASS 17635247 | SIMBAD, TIC v8.2 |
+| position (ICRS, epoch 2016.0) | RA 94.0868614, Dec $`-`$35.1531384 | Gaia DR3 |
+| proper motion (mas/yr) | $`-3.143`$, 83.570 (DR2: $`-3.86`$, 83.25) | Gaia DR3, DR2 |
+| parallax (mas) | $`17.571 \pm 0.057`$ (56.9 pc) | Gaia DR3 |
+| $`G`$, $`BP-RP`$ | 11.191, 2.111 | Gaia DR3 |
+| $`T`$, $`V`$, $`J`$, $`H`$, $`K_s`$ | 10.232, 12.01, 8.827, 8.169, 7.970 | TIC v8.2, APASS, 2MASS |
+| $`T_\mathrm{eff}`$ (K) | 3773 (TIC); 3733 and 3580 (Gaia XP, J/ApJ/984/58 and J/MNRAS/524/1855; [Fe/H] $`-0.08`$ and $`-0.25`$); no GSP-Phot value | TIC v8.2; VizieR |
+| RUWE; `astrometric_excess_noise` (mas; significance); `ipd_frac_multi_peak`; `non_single_star` | 4.219; 0.634 (710); 4; 0 (no row in the four `nss_*` tables) | Gaia DR3 |
+| radial velocity | none (`has_rvs` false) | Gaia DR3 |
+| variability | `phot_variable_flag` NOT_AVAILABLE; no `vari_*` entry | Gaia DR3 |
+| astrometric acceleration | listed in J/AJ/165/193 (Gaia DR2-DR3 accelerations, $`\chi^2 = 178.9`$) | VizieR |
+| TIC contamination ratio | 0.016 | TIC v8.2 |
+| Gaia DR3 sources within 60" | $`G = 17.96`$ at 16.9", 16.21 at 18.0", 19.72 at 20.9", 15.30 at 40.0", 16.70 at 55.7", and four fainter than $`G = 19`$ | Gaia DR3 |
+| bright neighbour | $`\kappa`$ Col (HD 43785, HIP 29807, NSV 2897; G9 IIIb, $`G = 4.1`$, 2.8 $`M_\odot`$) at 157.9" (8830 au projected), parallax $`17.38 \pm 0.08`$ mas, radial velocity 23.2 km/s; a common-proper-motion candidate companion of TIC 124751008 in Kervella et al. (2022, table A2: tangential-velocity difference 1.58 km/s, escape velocity 0.74 km/s, bound flag 0) | Gaia DR3, VizieR J/A+A/657/A7 |
+| X-ray | 3eRASS J061621.5-350913 at 8.2" (1eRASS J061621.4-350919, coronal-source probability 0.79 in J/A+A/684/A121); $`L_X = 1.8 \times 10^{28}`$ erg/s, $`L_X/L_\mathrm{bol} = 3 \times 10^{-5}`$ | eROSITA |
+| young-star probability | 0.17 (SPYGLASS, Kerr et al. 2021) | VizieR |
+
+The colours ($`V-K_s = 4.05`$, $`J-H = 0.66`$, $`H-K_s = 0.20`$; WISE $`W1-W4 = 0.34`$, no infrared excess) are those of an
+M1-M1.5 dwarf, but $`M_G = 7.42`$ and $`M_{K_s} = 4.19`$ are 1.49 and 1.51 mag brighter than the main sequence at this colour
+($`M_G = 8.90`$, $`M_{K_s} = 5.70`$; Pecaut & Mamajek 2013, version 2022.04): the system emits about four times the light
+of one such dwarf. With the 2019 ratio of secondary to primary eclipse depth (0.4), the eclipsing pair supplies roughly
+30 % of the light, so third light of about 0.7 is plausible; the models below were run with third light 0 and 0.70.
+The photocentre orbit of the 12.6-d pair is at most 0.46 mas; a dark third body with an orbital period of 100-200 d
+would move the photocentre by 1.5-6.7 mas, far above the excess noise of 0.63 mas, so a third body would have to be
+luminous ($`\lvert m_C/M - L_C/L \rvert \lesssim 0.1`$). A 2.8-$`M_\odot`$ giant implies an age of order 0.5 Gyr if
+$`\kappa`$ Col and TIC 124751008 are coeval.
+
+#### 6.4.2 Data
+
+TESScut 21 $`\times`$ 21-pixel cutouts of the SPOC-calibrated full-frame images at the Gaia DR3 position
+(`data/sectors_124751008.csv`); the star has no 2-min data. tess-point 0.9.5.post1 places it on silicon in these seven
+sectors only, up to sector 134 (2028-08-30). The saturated $`\kappa`$ Col bleeds along detector columns 1.5-5.7 px from
+the target.
+
+| sector | dates (UTC) | camera/CCD | cadence | quality-0 cadences | nearest bleed column (px) | masked pixels in $`r = 2.0`$ px | aperture flux (e-/s) | contamination |
+|---|---|---|---|---|---|---|---|---|
+| 6 | 2018-12-15 to 2019-01-06 | 3/1 | 30 min | 981 | 5.6 | 0 | 12180 | 1.8 % |
+| 7 | 2019-01-08 to 2019-02-01 | 3/2 | 30 min | 1086 | 5.1 | 0 | 11502 | 1.2 % |
+| 33 | 2020-12-18 to 2021-01-13 | 3/2 | 10 min | 3485 | 5.4 | 0 | 11695 | 1.7 % |
+| 87 | 2024-12-18 to 2025-01-14 | 3/2 | 200 s | 11168 | 5.7 | 0 | 11712 | 1.8 % |
+| 98 | 2025-11-08 to 2026-01-05 | 3/1 | 200 s | 24069 | 5.4 | 0 | 12665 | 1.5 % |
+| 108 | 2026-09-07 to 2026-10-04 | 4/2 | 200 s | 10933 | 1.6 | 4 | 10525 | 2.0 % |
+| 109 | 2026-10-05 to 2026-10-11 (6.9 d) | 3/2 | 200 s | 2974 | 3.7 | 0 | 12543 | 1.8 % |
+
+Contamination: Gaia DR3 sources within 60" in the masked $`r = 2.0`$ px aperture (Gaussian PSF); $`\kappa`$ Col is not
+included. The flux expected for $`T = 10.23`$ is about 12100 e-/s.
+
+#### 6.4.3 Method
+
+`scripts/eb_124751008.py`. Pixels of the median image above 20000 e-/s (the bleed column) and their horizontal
+neighbours are removed from the aperture and from the background; background = a plane fitted per cadence to the faint
+unmasked pixels more than 5 px from the proper-motion-corrected Gaia position; circular apertures of $`r`$ = 2.0 px
+(adopted) and 2.5 px without the masked pixels, and an unmasked $`r = 2.0`$ px aperture as a check; quality-0 cadences;
+in the 200-s sectors, cadences more than 5 robust $`\sigma`$ from a 7-cadence running median are removed. Each primary
+eclipse with ingress and egress coverage is fitted with a trapezoid (mid-time, depth, $`T_{14}`$, $`T_{12}`$) times a
+linear baseline over $`\pm 0.35`$ d, with exposure-time supersampling; errors are the larger of the residual-scaled
+covariance and a cyclic-shift bootstrap (60 draws). Secondary eclipses: the same fit in sectors 6 and 7, and a fixed
+trapezoid ($`T_{14} = 1.9`$ h) at the 2019 secondary phase (0.4986) relative to each sector's primaries elsewhere.
+Difference images, geometric models and the inclination fits come from the vetting record (no script in this
+repository; section 8).
+
+#### 6.4.4 Eclipse depths and durations
+
+`data/depths_124751008.csv` (per sector), `data/eclipse_times_124751008.csv` (per eclipse); depths in % of the masked
+$`r = 2.0`$ px aperture flux.
+
+| sector | year | primary depth (%) | primary $`T_{14}`$ (h) | secondary depth (%) |
+|---|---|---|---|---|
+| 6 | 2018.99 | 2.247 and 2.145 (mean $`2.186 \pm 0.040`$) | 2.13 | $`0.865 \pm 0.126`$ (one eclipse; the second fit has no determined error); fixed shape $`0.783 \pm 0.022`$ |
+| 7 | 2019.06 | 2.185 and 2.051 (mean $`2.052 \pm 0.050`$) | 2.15 | $`0.864 \pm 0.064`$; fixed shape $`0.794 \pm 0.018`$ |
+| 33 | 2020.99 | 1.102 and 0.832 | 1.68 | $`< 0.046`$ (3 $`\sigma`$) |
+| 87 | 2025.00 | 0.276 and 0.281 | 1.27 | $`< 0.048`$ |
+| 98 | 2025.94 | 0.373, 0.493, 0.493 | 1.55 | $`< 0.032`$ |
+| 108 | 2026.71 | 0.661 and 0.797 (error not determined) | 1.56, 1.69 | $`< 0.063`$ |
+| 109 | 2026.78 | $`0.770 \pm 0.059`$ | 1.76 | $`< 0.058`$ |
+
+The primary eclipse became shallower by a factor of 8 from 2019 to 2025 and deeper again from 2025 to 2026, by a factor
+of 2.8 in 1.8 yr; the duration followed the depth (2.1-2.2 h in 2019, 1.0-1.5 h in 2024-2025, 1.6-1.8 h in 2026). The
+eclipses are V-shaped ($`T_{12}`$ = 0.2-0.45 $`T_{14}`$) and grazing at every epoch. The secondary eclipse was present in
+2019 at phase 0.4977-0.4993 relative to each sector's primaries ($`e\cos\omega \approx -0.002`$) and is absent in every
+later sector at that phase; no dip deeper than about 0.07 % is seen at any phase between 0.05 and 0.95 after 2019
+(vetting record). The masked $`r = 2.5`$ px aperture gives the same depths to within 15 %; the unmasked aperture agrees in
+every sector except sector 108, where the bleed column passes 1.6 px from the target and corrupts it. In the vetting
+record the same eclipses measured in eight light-curve sources (apertures of 1.5-3.0 px, masked apertures, template
+photometry, TESS-SPOC SAP and PDCSAP, QLP) agree to within 20 % (sector 108: 0.63-1.16 %).
+
+<picture><source srcset="figures/eb_depths_124751008_dark.svg" media="(prefers-color-scheme: dark)"><img src="figures/eb_depths_124751008_light.svg" alt="TIC 124751008 eclipse depth against time with the inclination models"></picture>
+
+#### 6.4.5 Eclipse times
+
+`data/eclipse_times_124751008.csv`. Linear ephemeris of the twelve primaries with determined errors (sector 7 cycle
+$`-198`$, on an orbit-start ramp, and sector 108 cycle 25 left out):
+
+$$T_\mathrm{pri} = \mathrm{BTJD}\ 3997.30899 + 12.6117599\,E,$$
+
+with formal errors 0.00040 d and 0.0000024 d and $`\chi^2 = 3930`$ for 10 degrees of freedom.
+
+| sector | cycle | mid-time (BTJD) | error (min) | O $`-`$ C (min) | depth (%) | $`T_{14}`$ (h) |
+|---|---|---|---|---|---|---|
+| 6 | $`-200`$ | 1474.95568 | 0.6 | $`-1.9`$ | $`2.247 \pm 0.063`$ | 2.16 |
+| 6 | $`-199`$ | 1487.57258 | 0.8 | $`+5.5`$ | $`2.145 \pm 0.051`$ | 2.10 |
+| 7 | $`-198`$ | 1500.18349 | 3.6 | $`+4.3`$ | $`2.185 \pm 0.566`$ | 2.25 |
+| 7 | $`-197`$ | 1512.79249 | 0.4 | $`+0.3`$ | $`2.051 \pm 0.050`$ | 2.06 |
+| 33 | $`-142`$ | 2206.42521 | 0.7 | $`-20.0`$ | $`1.102 \pm 0.035`$ | 1.77 |
+| 33 | $`-141`$ | 2219.06699 | 0.9 | $`+23.2`$ | $`0.832 \pm 0.036`$ | 1.59 |
+| 87 | $`-26`$ | 3669.45063 | 2.0 | $`+68.3`$ | $`0.276 \pm 0.037`$ | 1.04 |
+| 87 | $`-25`$ | 3682.05634 | 2.8 | $`+59.5`$ | $`0.281 \pm 0.041`$ | 1.50 |
+| 98 | 0 | 3997.31589 | 1.5 | $`+9.9`$ | $`0.373 \pm 0.030`$ | 1.50 |
+| 98 | 2 | 4022.52181 | 1.7 | $`-15.4`$ | $`0.493 \pm 0.067`$ | 1.62 |
+| 98 | 3 | 4035.13028 | 1.4 | $`-20.1`$ | $`0.493 \pm 0.039`$ | 1.53 |
+| 108 | 24 | 4299.97581 | 1.4 | $`-22.2`$ | $`0.661 \pm 0.065`$ | 1.56 |
+| 108 | 25 | 4312.59215 | 1.4 | $`-15.6`$ | 0.797 | 1.69 |
+| 109 | 26 | 4325.22386 | 1.6 | $`+13.1`$ | $`0.770 \pm 0.059`$ | 1.76 |
+
+The O $`-`$ C changes by $`+43.2`$ min between the two primaries of sector 33 (one cycle), by $`-25.3`$ min over two cycles
+in sector 98 and by $`+28.7`$ min between the last primary of sector 108 and that of sector 109; the overlays of the
+sector-33 and sector-98 eclipses show whole profiles shifted, not a changed shape (vetting record). In the vetting
+record no quadratic plus a single sinusoid describes the O $`-`$ C (best outer period 266 d, semi-amplitude 64 min,
+$`\chi^2 = 379`$ for 8 degrees of freedom, with timing errors of at least 1 min). The light-travel time across an outer
+orbit of 100-200 d is 0.7-3 min, much less than these changes.
+
+#### 6.4.6 Checks and geometric models
+
+- Source of the eclipses (vetting record): matched-filter difference images at the measured mid-times, fitted with a
+  Gaussian PSF at the target, at every Gaia DR3 source within 60" brighter than $`G = 20.5`$ and at a free position.
+
+| sector, eclipse | eclipses | $`\chi^2`$ no signal / target / free position | free position from the target | best neighbour: $`\Delta\chi^2`$ against the target |
+|---|---|---|---|---|
+| 6 primary | 2 | 8143 / 1920 / 1694 | 3.2" | $`+3957`$ ($`G = 16.21`$ at 18") |
+| 6 secondary | 2 | 775 / 247 / 239 | 2.2" | $`+311`$ |
+| 7 primary | 2 | 11187 / 1362 / 1324 | 1.2" | $`+5825`$ |
+| 7 secondary | 2 | 1536 / 272 / 252 | 2.5" | $`+646`$ |
+| 33 primary | 2 | 2222 / 353 / 294 | 3.0" | $`+1235`$ |
+| 87 primary | 2 | 237 / 170 / 87 | 17.2" | $`+28`$ ($`G = 16.70`$ at 56"); no Gaia source at the free position |
+| 98 primary | 3 | 475 / 163 / 141 | 4.4" | $`+215`$ |
+| 108 primary | 1 | 334 / 63 / 56 | 2.9" | $`+135`$ |
+| 109 primary | 1 | 1027 / 707 / 700 | 3.0" | $`+124`$ |
+
+  The eclipses are on the target in sectors 6, 7, 33, 98, 108 and 109. In sector 87, the shallowest, the target fits
+  better than every Gaia neighbour but the free position lies 0.8 px away, where no catalogued star is; the two
+  neighbours that could add flux to the aperture ($`G = 16.21`$ at 18", $`G = 15.30`$ at 40") would need eclipses of
+  8.5 % and 1.1 % and fit worse by $`\Delta\chi^2`$ = 51 and 60. Two 0.3-0.4 % dips in sector 108 at phase 0.4715
+  (BTJD 4293.310 and 4305.922) are not on the target (the amplitude map peaks 2.8 px away, toward the bleed column).
+- Dilution: the masked $`r = 2.5`$ px aperture flux is 12750-14460 e-/s in the six sectors without masked aperture
+  pixels (`data/sectors_124751008.csv`; 11700 e-/s in sector 108), and the Gaia neighbours contribute 1.2-2.0 %; turning the 2019 depth into the 2025 depth by dilution would need seven times the target flux to enter the
+  aperture.
+- Period: $`P/2 = 6.306`$ d is excluded (nothing at phase 0.5 after 2019 at limits 10-20 times below the primary depth;
+  in 2019 the phase-0.5 eclipse is 0.4 times the primary and has a different shape); $`2P`$ is excluded because depth
+  and O $`-`$ C differences are not tied to the parity of the cycle; 12.61 d is not a multiple or fraction of the TESS
+  orbit (13.7 or 27.4 d).
+- Spots: the duration changes with the depth, the secondary disappeared and the change is smooth over eight years;
+  out-of-eclipse variability is 0.2-0.7 % per sector (semi-amplitude) and dominated by scattered light of
+  $`\kappa`$ Col. Spots may add to single-eclipse scatter (sector 33), not to the trend.
+
+Geometric models (vetting record; no script in this repository): two spheres with linear limb darkening (0.45), a
+Keplerian orbit and the per-eclipse O $`-`$ C removed by shifting each window, fitted to 31 windows (14 primary, 17
+secondary; 7070 points). Reference $`\chi^2`$: no eclipse 58131; a free trapezoid in every window 8524 (1720 of it from
+the sector-7 orbit-start ramp, present in every model).
+
+| model | free parameters | $`\chi^2`$ | note |
+|---|---|---|---|
+| M0 static | 7 | 29524 | |
+| MA apsidal motion only ($`\dot\omega`$ free, $`i`$ fixed) | 8 | 13357 | needs a surface-brightness ratio at its bound (0.02), which removes the secondary eclipse; misses the 2019 secondaries by $`\Delta\chi^2 \approx 5000`$ |
+| N1 eccentricity vector linear in time, $`i`$ fixed | 9 | 13308 | same failure |
+| MG eccentricity vector free in every sector, one $`i`$ | 19 | 13258 | most general model without a change of $`i`$ |
+| ME one inclination per sector, common eccentricity vector | 13 | 9380 | adopted geometry: $`k = R_2/R_1 = 0.57`$, $`J = 0.94`$, $`r_1 = R_1/a = 0.031`$, $`e\cos\omega = -0.0025`$, $`e\sin\omega = 0.034 \pm 0.002`$ |
+| ME2 inclination and $`e\sin\omega`$ per sector | 19 | 9352 | changes of $`e\sin\omega`$ not required ($`\Delta\chi^2 = 28`$ for 6 parameters) |
+| ME with third light 0.70 | 13 | 9332 | $`r_1 = 0.024`$, $`e\sin\omega = 0.089`$ |
+
+Global models with a smooth $`i(t)`$ (linear, quadratic, sinusoidal) did not converge from their starting points and
+are not used. A change of $`e`$ or $`\omega`$ alone moves the impact parameters of the two eclipses in opposite
+directions ($`b_\mathrm{pri} \propto 1/(1 + e\sin\omega)`$, $`b_\mathrm{sec} \propto 1/(1 - e\sin\omega)`$) and cannot
+change the inclination; here both eclipses became shallower from 2019 to 2021-2025, the secondary disappeared and the
+primary then deepened again. The models without a change of $`i`$ are worse than ME by $`\Delta\chi^2`$ = 3877-3977
+despite up to six more parameters, so a common change of the impact parameter, i.e. of the inclination of the 12.61-d
+orbit to the line of sight, is required by these models.
+
+Per-eclipse inclination with the ME geometry fixed (`data/inclinations_124751008.csv`): for third light 0, 87.45-87.47 deg
+(2019.0), 87.29-87.32 (2021.0), 87.18 (2025.0), 87.21-87.22 (2025.9) and 87.24-87.27 deg (2026.7-2026.8); the primary
+eclipse disappears below 87.08 deg and the secondary below 87.27 deg. For third light 0.70: 88.32-88.34, 88.02-88.08,
+87.84, 87.89-87.91 and 87.95-87.99 deg (limits 87.66 and 88.04 deg). Fits of $`i(t)`$ to these values, with a jitter term
+added until $`\chi^2/\mathrm{dof} = 1`$:
+
+| $`i(t)`$ | third light 0: $`\chi^2`$ (statistical errors only) / jitter | third light 0.70 |
+|---|---|---|
+| linear | 2437 (12 degrees of freedom) / 0.052 deg | 3009 / 0.060 deg |
+| quadratic | 126 (11) / 0.012 deg; minimum 2024.27 | 139 / 0.020 deg; minimum 2024.26 |
+| sinusoid, free period | 89 (10) / 0.010 deg; $`P_\mathrm{node} = 19.5 \pm 4.3`$ yr, amplitude $`0.25 \pm 0.08`$ deg, minimum $`2024.25 \pm 0.09`$ | 104 / 0.016 deg; $`P_\mathrm{node} = 20.2 \pm 4.5`$ yr, amplitude $`0.47 \pm 0.15`$ deg, minimum $`2024.24 \pm 0.08`$ |
+
+On a grid of fixed periods the sinusoid excludes $`P_\mathrm{node} \le 12`$ yr ($`\Delta\chi^2 \ge 184`$ and $`\ge 240`$);
+longer periods are only weakly constrained ($`\Delta\chi^2 \approx 22`$ at 40 yr). The inclination passed a minimum
+near 2024.25, 0.10 deg (third light 0) or 0.18 deg (0.70) above the value at which the primary eclipse would have
+disappeared, and is now increasing. The jitter (0.010-0.020 deg per eclipse) includes a change of 0.034 deg between the
+two sector-33 eclipses, one cycle apart, about 14 times the mean rate.
+
+Interpretation (with the caveats of section 7): the depth history, the vanished secondary, the timing changes of tens of
+minutes from cycle to cycle, the over-luminosity and the Gaia DR3 RUWE of 4.2 are consistent with a 12.61-d eclipsing
+pair in a compact hierarchical triple whose third body precesses the inner orbit; none of them is a measurement of the
+third body. For a nodal period of about 20 yr the quadrupole relations (Söderhjelm 1975; Borkovits et al. 2015) give an
+outer period of 110-185 d for $`m_C/M_\mathrm{tot}`$ = 0.2-0.5 and mutual inclinations of 10-30 deg (circular outer orbit,
+inner masses 0.50 and 0.25 $`M_\odot`$ assumed); the dynamical timing amplitude
+$`(3/8\pi)(m_C/M_\mathrm{tot})(P_\mathrm{in}^2/P_\mathrm{out})`$ is then 55-140 min for $`P_\mathrm{out} = 100`$ d and 27-68 min
+for 200 d, the size of the observed changes. Dynamical stability needs $`P_\mathrm{out} \gtrsim 55`$ d, and timing changes
+of 45 min then need $`m_C/M_\mathrm{tot} \gtrsim 0.09`$: the third body would be a star. These are orders of magnitude, not
+fits; the outer orbit was not fitted.
+
+Alternatives considered and rejected in the vetting record: a blend or a change of dilution (difference images on the
+target in six of seven sectors, aperture flux constant to 13 %, a factor of 8 needed); spot occultations (above); apsidal
+motion or another change of the eccentricity vector alone (models MA, N1, MG); $`P/2`$ and $`2P`$ (above); a TESS
+systematic (the eclipses are present in all seven sectors on one ephemeris).
+
+#### 6.4.7 Catalogue and literature checks
+
+All queries were run with a positive control where one is given.
+
+| date (UTC) | source | control | result |
+|---|---|---|---|
+| 2026-10-19 | VSX (API and VizieR B/vsx, 120") | AM Her | no entry; $`\kappa`$ Col (NSV 2897) at 158" and SSS_J061608.1-350920 at 2.8' |
+| 2026-10-19 | SIMBAD | AM Her | high-proper-motion star, 4 references (Frith et al. 2013, Gaia Catalogue of Nearby Stars, SPYGLASS, Bioverse), none on variability |
+| 2026-10-19 | Gaia DR3 `vari_summary`, `vari_classifier_result`, `vari_eclipsing_binary` and the four `nss_*` tables | first row of each table | no entry |
+| 2026-10-19 | VizieR, all tables within 10" (79 tables) | AM Her (234 tables, VSX among them) | no variability or eclipsing-binary table |
+| 2026-10-19 | Kostov et al. 2025 (J/ApJS/279/50) | first rows | in table 2 (TIC, position, $`T`$) only; not in tables 3-4 |
+| 2026-10-19 | Prsa et al. 2022; Valizadegan et al. 2025 (tables 5, 13, 14, 16); IJspeert et al. 2024; J/ApJS/281/52 (tables 1-2); Mueller-Horn et al. 2026 (30"); ASAS-SN variables (II/366) | first rows | not listed |
+| 2026-10-19 | Rowan et al. 2021 (ellipsoidal-variable candidates) | - | nothing within 10' |
+| 2026-10-19 | radio, X-ray, UV and variability catalogues with coverage checks | - | eRASS1 and eRASS:3 sources only |
+| 2026-10-19 | MAST holdings | - | full-frame-image products only (no 2-min data, so no SPOC threshold-crossing event) |
+| 2026-10-19 | ADS full text: TIC 124751008 (also without space and the bare number), Gaia DR3/DR2 2885572716963709952 (and the bare number), 2MASS J06162084-3509125 and three short forms, UCAC4 275-009543 (and bare), the WISEA, CWISE, SMSS and 1SWASP designations (and bare), UCAC2 110-014426, J0616-3509, J061620-350912, J061620.8-350912, APASS 17635247 | "WD 0752-146" (1 record) | no record; "J0616-35" returns Rowan et al. (2021), which has no object within 10' |
+| 2026-10-19 | the 71 SIMBAD references of $`\kappa`$ Col (titles read) | - | none on an eclipsing companion |
+| 2026-10-19 | source files of 53 arXiv papers (2023-2026) on triple systems, eclipse-depth variations and compact triples (identifier and coordinate strings, $`\kappa`$ Col designations) | 2024ApJ...974...25K contains its own target (107 matches) | not listed |
+| 2026-10-19 | ESO Science Archive, 10" cone | HD 209458 (185 rows) | no data |
+| 2026-10-19 | ExoFOP TOI and CTOI lists (live) and target page | pi Men, first rows | no TOI, no CTOI; empty target page |
+
+Not checked or not usable: ASAS-SN Sky Patrol, ATLAS, KELT and ASAS-3 light curves (not queried); SuperWASP DR1
+(1SWASP J061620.89-350912.5, 729 points 2006-2007) is dominated by the light of $`\kappa`$ Col (median 10.84 mag against
+$`V = 12.0`$, robust rms 3.6 %) and gives no eclipse depth; the ADS object query for $`\kappa`$ Col did not respond, so its
+literature was checked through the SIMBAD references only. No eclipse depth before 2018 is known.
+
+#### 6.4.8 Predictions and decisive tests
+
+Predicted eclipses for the 12 months from 2026-10-19: `data/predicted_eclipses_124751008.csv` (geocentric UTC; because of
+the O $`-`$ C of $`-22`$ to $`+68`$ min a window of at least $`\pm 70`$ min should be used). The next primaries:
+2026-10-24 07:47, 2026-11-05 22:27, 2026-11-18 13:07, 2026-12-01 03:48, 2026-12-13 18:28, 2026-12-26 09:09 and
+2027-01-07 23:50 UTC; secondaries at phase 0.4986 (2026-10-30 14:41, 2026-11-12 05:22 UTC, ...). No TESS sector from
+110 to 134 (2028-08-30) covers the star.
+
+Model eclipse depths (`data/model_history_124751008.csv`; quadratic and sinusoidal $`i(t)`$, third light 0 and 0.70; an
+extrapolation without error estimate):
+
+| date | primary depth (%) | primary $`T_{14}`$ (h) | secondary depth (%) |
+|---|---|---|---|
+| 2027.0 | 0.73-0.78 | 1.6-1.7 | $`< 0.01`$ |
+| 2027.5 | 0.92-1.00 | 1.8 | 0.00-0.07 |
+| 2028.0 | 1.15-1.26 | 1.9-2.0 | 0.07-0.20 |
+| 2028.5 | 1.43-1.56 | 2.0-2.1 | 0.23-0.37 |
+| 2029.0 | 1.79-1.89 | 2.2 | 0.47-0.58 |
+
+The secondary eclipse returns above 0.05 % between about 2027.5 and 2028.0 at phase 0.4986. In the sinusoidal models the
+depths are greatest near 2034 and the next inclination minimum falls near 2044; the rejected linear model would predict
+continued fading. Tests:
+
+- Eclipse depth: photometry of primary eclipses in 2026-2027 at a precision of about 0.1 % tests whether the depth
+  continues to increase (0.7-1.0 % in 2027); a constant or decreasing depth would contradict the models above.
+- Secondary eclipse: its reappearance in 2027.5-2028.0 at phase about 0.4986, together with primary depths near 1 %, is
+  predicted by the inclination models and not by the models without a change of $`i`$.
+- Eclipse timing: mid-times of every primary over one season (a 1.5-2-h, 0.7-1 % eclipse of a $`G = 11.2`$ star; 1-2 min
+  with a 0.3-0.5-m telescope) would map the timing variations and give the outer period and eccentricity directly.
+- Spectroscopy: multi-epoch high-resolution spectra would measure the inner orbit (expected $`K_1`$ of about 28 km/s), an
+  outer orbit (10-30 km/s for $`P_\mathrm{out}`$ = 100-200 d), a third set of lines and the systemic velocity for the
+  comparison with $`\kappa`$ Col (23.2 km/s).
+- Gaia DR4 (scheduled for December 2026) epoch astrometry, and speckle or adaptive-optics imaging for companions beyond
+  about 0.1".
 
 ## 7. Caveats
 
@@ -2341,9 +2847,16 @@ parallaxes and proper motions.
   sectors 113 and 114 (2027-01-24, 2027-02-18) would test it.
 - TIC 311179599: the TRICERATOPS runs use six of the eight epochs (the 30-min sectors 12 and 13 are left out) and no
   contrast curve; a brown dwarf below about 20 $`M_\mathrm{J}`$ on the transit period is constrained only by the Gaia
-  radial velocities. Two single dips of about 0.8 times the transit depth (BTJD 4088.457 and 4162.411, section 5.4)
-  behave like dips on the target and were not analysed further; no search for a second periodic signal with an
-  injection-recovery test was made. The TARS light curves were not examined.
+  radial velocities. The TARS light curves were not examined.
+- TIC 311179599, candidate second signal c: three events, one of them at 30-min cadence; $`P = 36.93`$ d rests on the
+  sector-101 epoch not being counted (scattered light) and is tested by the transit of 2026-11-02. The impact parameter
+  is not constrained, the joint-fit posterior has a grazing tail ($`b`$ up to 0.94 at 97.5 %), and the event depths are
+  5-6 $`\sigma`$ each. The chance-alignment estimate (about 1 %) rests on zero or one comparable event in 223 d of data and
+  is an order of magnitude. The TRICERATOPS NFPP (0.0014-0.0086) exceeds the limit of Giacalone et al. (2021) for a
+  likely planet, and the multiplicity boost of Guerrero et al. (2021) was derived for SPOC 2-min TOIs, not for
+  candidates found in full-frame images; the boosted values of section 5.10.4 are indicative only. The comparison with
+  the timing of candidate b uses eight epochs with non-Gaussian errors. No difference image or solar-system-object check
+  was made for the sector-12 event. The checks of section 5.10.3 and the period tests come from the vetting record.
 - TIC 311179599: no rotation period below 15 d is found, so the radial-velocity jitter of the star is not constrained;
   the expected semi-amplitude is about 2.1 m/s (6.7 $`M_\oplus`$ from the Chen & Kipping 2017 mass-radius relation; an
   estimate). The eccentricity is not measured ($`e < 0.78`$ at 95 %), and the adopted radius uses the stellar-density
@@ -2356,6 +2869,16 @@ parallaxes and proper motions.
   with one but are not measurements of it. The shift of the secondary eclipse within sector 97 is not explained. The Gaia
   DR3 parallax is not reliable (RUWE 48); the distance of about 100 pc is photometric. The eclipse times do not follow a
   linear ephemeris ($`\chi^2 = 6247`$ for 7 degrees of freedom), so predicted times need windows of at least $`\pm 30`$ min.
+- TIC 124751008: the depth history rests on seven TESS sectors with no data between 2021.0 and 2025.0. The source
+  position of the shallowest eclipses (sector 87) is only weakly located by the difference images; in sector 108 the
+  bleed column of $`\kappa`$ Col passes 1.6 px from the target, four aperture pixels are masked and the depths of the
+  second sector-108 eclipse differ by 0.6-1.2 % between photometry methods; the sector-7 eclipse of cycle $`-198`$ lies
+  on an orbit-start ramp; sector 109 covers 6.9 d. The geometry is degenerate at this grazing configuration ($`k`$ = 0.57
+  and 0.78 fit equally; $`r_1`$, $`J`$ and $`e\sin\omega`$ are correlated), the global smooth $`i(t)`$ models did not
+  converge, the per-eclipse inclination errors ignore the shared geometry, and the nodal period (about 20 yr), the
+  outer-period estimates (110-185 d) and the depth predictions are orders of magnitude for stated assumptions; the
+  outer orbit was not fitted. A third body is inferred, not detected. The third light (0 or 0.70) is assumed. No radial
+  velocity of the star exists, and no eclipse depth before 2018 is known.
 - TOI-540 b: the non-detection rests on one TESS sector, and a data or processing problem specific to this star and
   sector cannot be excluded by the checks of section 6.2.5; one ground-based transit would test it (section 6.2.9).
   The change of the impact parameter between 2018 and 2020 is 1.2-2.9 $`\sigma`$ depending on the photometry, and the
@@ -2550,17 +3073,45 @@ ratios of the faint Gaia neighbours (section 5.5), the derived insolation and eq
 the catalogue checks (section 5.8). `scripts/fit_free_dilution.py` was run in the Python 3.11 environment with emcee
 (versions in `requirements.txt`).
 
+For the candidate second signal of TIC 311179599 (section 5.10):
+
+```
+python scripts/tesscut_download.py 311179599 --sectors 12,100,103   # the three sectors with events
+python scripts/aperture_photometry.py 311179599
+python scripts/fit_second_signal.py                    # joint fit, r = 2.0 px (about 8 min) -> data/*_311179599c.csv
+python scripts/fit_second_signal.py --aperture 1.5     # -> work/311179599/fit_c_r1.5.json
+python scripts/predict_transits.py 311179599 --start 2026-10-19 --signal c
+python3 figures/make_figures.py c311179599
+```
+
+Tables written: `fit_second_signal.py` writes `data/transit_times_311179599c.csv`, `fit_311179599c.csv`,
+`folded_311179599c.csv` and `model_311179599c.csv`; `predict_transits.py --signal c` writes
+`data/predicted_transits_311179599c.csv` (ephemerides in `second` of `scripts/targets.py`). The cutouts were downloaded on
+2026-10-19. The TESScut time stamps are used as delivered, as for the other tables; the vetting record applied a
+target-specific barycentric correction (-31 s, +44 s and +15 s in sectors 12, 100 and 103) and a 60000-step chain, and
+gave $`P = 73.86712 \pm 0.00045`$ d, O $`-`$ C of $`-18`$ and $`+23`$ min for A and B, depth 874 ppm and $`T_{14} = 5.25`$ h
+($`r = 2.0`$ px), within the errors of the values here. Exported from the vetting record of 2026-10-19 (no script in
+this repository): `data/period_tests_311179599c.csv`, `epoch_tests_311179599c.csv`, `completeness_311179599c.csv` and
+`triceratops_input_311179599c.csv`, the TRICERATOPS tables `data/triceratops/probs_311179599c_n*_seed*.csv` (copied
+verbatim; runs with `calc_depths` redone on the target object of section 5.7) and their rows in `runs.csv` and
+`summary.csv`, the PSF-photometry fit, the light-curve, background, centroid, difference-image, solar-system-object,
+comparison-star and event-statistics checks (section 5.10.3), the timing comparison (section 5.10.5) and the searches
+for further signals (section 5.10.6); the check of the 52.26-d peak has no script.
+
 For the other TESS results (section 6), with the MAST products listed below and the work files in `./work/`:
 
 ```
 python scripts/other_download.py 11613676                # TESScut cutouts of sectors 3-106, SPOC 2-min light curves of sectors 3 and 30
 python scripts/eb_eclipses.py                           # photometry, eclipse fits, ephemeris, difference images, predictions
 python scripts/eb_model.py                              # geometric models M0, MA, N4 (about 20 min)
+python scripts/other_download.py 124751008             # TESScut cutouts of sectors 6-109 (about 170 MB)
+python scripts/eb_124751008.py --start 2026-10-19       # bleed-masked photometry, eclipse fits, ephemeris, secondary limits, predictions
 python scripts/other_download.py 200322593 --controls   # SPOC 2-min TPFs and light curves, 20-s light curves; control stars
 python scripts/toi540_analysis.py                       # photometry, ephemeris, sector-98 tests, injections, b(t), windows
 python scripts/toi540_controls.py                       # control planets in sector 98
 python scripts/toi540_timing.py                         # sector-98 time stamps; also queries JPL Horizons
-python3 figures/make_figures.py other                   # the section-5 figures only
+python3 figures/make_figures.py other                   # the figures of sections 6.1 and 6.2
+python3 figures/make_figures.py eb124751008             # the figure of section 6.4
 ```
 
 Tables written: `eb_eclipses.py` writes `data/eclipse_times_11613676.csv`, `depths_11613676.csv`, `sectors_11613676.csv`,
@@ -2569,7 +3120,9 @@ Tables written: `eb_eclipses.py` writes `data/eclipse_times_11613676.csv`, `dept
 `data/ephemeris_200322593.csv`, `transit_depths_200322593.csv`, `s98_tests_200322593.csv`, `injection_200322593.csv`,
 `bt_fits_200322593.csv`, `perturber_200322593.csv`, `folded_200322593.csv` and `ground_windows_200322593.csv` (run with
 `--start 2026-10-20`); `toi540_controls.py` writes `data/control_planets_s98.csv`; `toi540_timing.py` writes
-`data/timing_audit_200322593.csv`. The formats are described in the comment headers of the files.
+`data/timing_audit_200322593.csv`; `eb_124751008.py` writes `data/sectors_124751008.csv`, `eclipse_times_124751008.csv`,
+`depths_124751008.csv` and `predicted_eclipses_124751008.csv`. The formats are described in the comment headers of the
+files.
 
 MAST products: TESScut 21 $`\times`$ 21-pixel cutouts of TIC 11613676 (Gaia DR3 position) and its SPOC 2-min light
 curves `tess2018263035959-s0003-0000000011613676-0123-s_lc.fits` and `tess2020266004630-s0030-0000000011613676-0195-s_lc.fits`;
@@ -2588,6 +3141,16 @@ sector-98 light curve, the MEarth light curve and the rotation periodogram (sect
 section 6.2.8. The detection-stage values of TIC 11613676 (section 6.1.4) come from 3 $`\times`$ 3-pixel box photometry
 that is not part of this repository.
 
+For TIC 124751008 (section 6.4), without script in this repository (vetting record of 2026-10-19): the Gaia DR3,
+catalogue and X-ray values and the luminosity and photocentre estimates of section 6.4.1, the difference images, the
+depths in other light-curve sources, the phase scans for the secondary eclipse, the out-of-eclipse variability, the
+O $`-`$ C periodogram, the geometric models, the per-eclipse inclinations and the $`i(t)`$ fits
+(`data/inclinations_124751008.csv`, `model_history_124751008.csv`; the third-light-0.70 values were recomputed on
+2026-10-19 with the per-eclipse inclination grid extended from 88.2 to 89.0 deg, because the 2019 values had been
+truncated at 88.2 deg), the third-body estimates and the catalogue checks of section 6.4.7. The tables of
+`eb_124751008.py` reproduce the per-eclipse depths and times of the vetting record to within the errors (the same
+cutouts; the linear ephemeris agrees to 0.0001 d in $`T_0`$).
+
 Section 6.3 and `data/notable_ebs_2026.csv` have no script in this repository: the values are exported from the vetting
 record of 2026-10-18 (TIC 342194997: 2026-10-19). Method summary: QLP SAP light curves of all available sectors (MAST, `hlsp_qlp_tess_ffi_*`) and
 TESScut 21 $`\times`$ 21-pixel cutouts with circular-aperture photometry; eclipse mid-times measured in each eclipse
@@ -2596,13 +3159,14 @@ at every Gaia DR3 source within 60" and at a free position; Gaia DR3 NSS element
 conjunction times of TIC 13957664, TIC 304936165 and TIC 265436769 propagated by Monte Carlo over the NSS errors;
 SkyBoT for TIC 13957664; for TIC 342194997 a Monte Carlo over the Gaia DR3 Thiele-Innes elements, eccentricity,
 period and periastron time with their correlation matrix (inclination, conjunction times, transverse velocities,
-projected separations), a two-sphere eclipse model with quadratic limb darkening fitted to the TESScut photometry of
+projected separations; the predicted conjunction recomputed on 2026-10-19 with the parameter order of the Gaia DR3
+documentation for the correlation vector), a two-sphere eclipse model with quadratic limb darkening fitted to the TESScut photometry of
 sector 100, and an occultation-template search of sector 99; and the catalogue queries listed in section 6.3
 (2026-10-18 and 2026-10-19).
 
 ## 9. How to cite
 
-A. Zarco (2026). TESS transit candidates, two further results and notable eclipsing binaries, 2026. Zenodo. DOI: 10.5281/zenodo.23453967 (all versions; v1.1: 10.5281/zenodo.23463030)
+A. Zarco (2026). TESS transit candidates, three further results and notable eclipsing binaries, 2026. Zenodo. DOI: 10.5281/zenodo.23453967 (all versions; v1.1: 10.5281/zenodo.23463030)
 (to be added after the deposit). Citation metadata: `CITATION.cff`.
 
 ## 10. Licence
@@ -2651,6 +3215,9 @@ Data, figures and text: CC BY 4.0. Scripts: MIT. See `LICENSE`, which also lists
   ASP Conf. Ser. 351, 367 (SkyBoT); Li et al. 2025, AJ 170, 288 (VizieR J/AJ/170/288); Kliapets et al. 2025,
   A&A 703, A240; Hunt et al. 2025, A&A 700, L13.
 - Söderhjelm, S. 1975, A&A 42, 229; Borkovits, T., et al. 2015, MNRAS 448, 946 (orbital precession in triple systems).
+- Guerrero, N. M., et al. 2021, ApJS 254, 39 (TESS Objects of Interest catalogue, multiplicity boost); Kerr, R. M. P.,
+  et al. 2021, ApJ 917, 23 (SPYGLASS); Pecaut, M. J., & Mamajek, E. E. 2013, ApJS 208, 9; Rowan, D. M., et al. 2021,
+  MNRAS 507, 104; Frith, J., et al. 2013, MNRAS 435, 2161.
 - Tuchow, N. W., et al. 2024, AJ 167, 139 (HPIC); Tuchow, N. W., et al. 2025, PASP 137 (HWO TSS25 list; VizieR
   J/PASP/137/J4402).
 - Olmschenk, G., et al. 2021, AJ 161, 273; Montalto, M., et al. 2020, MNRAS 498, 1726 (DIAmante); Feliz, D. L., et al.

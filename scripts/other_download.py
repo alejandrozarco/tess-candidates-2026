@@ -1,10 +1,14 @@
 """Download the public MAST products used for the other TESS results (README section 6).
 
 usage: python scripts/other_download.py 11613676 [--work ./work]
+       python scripts/other_download.py 124751008 [--work ./work]
        python scripts/other_download.py 200322593 [--controls] [--work ./work]
 11613676 (CD-30 448): 21x21 TESScut cutouts of sectors 3, 30, 97, 104 and 106, requested at the Gaia DR3 position
     (<work>/11613676/cut/s<sector>.npz, same format as tesscut_download.py; target pixel = proper-motion-corrected Gaia
     position at the median time of the sector), and the SPOC 2-min light curves of sectors 3 and 30.
+124751008 (2MASS J06162084-3509125): 21x21 TESScut cutouts of sectors 6, 7, 33, 87, 98, 108 and 109 in the same
+    format (about 170 MB compressed); where TESScut returns more than one cutout for a sector, the one with the most
+    complete cadences is kept. The star has no SPOC 2-min data.
 200322593 (TOI-540): SPOC 2-min light curves (*-s_lc.fits) and target pixel files (*-s_tp.fits) of sectors 4, 5, 6,
     31, 32 and 98 (about 330 MB) and the 20-s light curves (*-a_fast-lc.fits) of sectors 31, 32 and 98 (about 50 MB). --controls: SPOC 2-min light curves of the control planets of targets.py for their
     first sector, the last two sectors before 98, and sectors 98 and later (about 150 MB).
@@ -49,13 +53,14 @@ def spoc_2min(tic, sectors, kinds, outdir, fast=False):
         print(f'   S{s}: {len(want)} files ({len(want) - len(todo)} present)', flush=True)
 
 
-if args.tic == 11613676:
+if args.tic in (11613676, 124751008):
     coord = SkyCoord(c['ra'], c['dec'], unit='deg'); N = 21
     for sec in c['sectors']:
         fn = os.path.join(wd, 'cut', f's{sec}.npz')
         if os.path.exists(fn):
             continue
-        hd = retry(Tesscut.get_cutouts, coordinates=coord, size=N, sector=sec)[0]
+        cuts = retry(Tesscut.get_cutouts, coordinates=coord, size=N, sector=sec)
+        hd = cuts[0] if args.tic == 11613676 else max(cuts, key=lambda h: int(np.isfinite(h[1].data['FLUX']).all(axis=(1, 2)).sum()))
         d = hd[1].data; w = WCS(hd[2].header)
         yr = 2016.0 + (np.nanmedian(d['TIME']) + 2457000 - 2457388.5) / 365.25
         pos = SkyCoord(c['ra'] + c['pmra'] / 3.6e6 * (yr - 2016) / np.cos(np.radians(c['dec'])), c['dec'] + c['pmdec'] / 3.6e6 * (yr - 2016), unit='deg')
@@ -64,7 +69,8 @@ if args.tic == 11613676:
                             bkg=d['FLUX_BKG'].astype(np.float32), q=d['QUALITY'], tx=tx, ty=ty, cam=hd[0].header.get('CAMERA'),
                             ccd=hd[0].header.get('CCD'), wcs=hd[2].header.tostring(), ra=pos.ra.deg, dec=pos.dec.deg, epoch=yr)
         print(sec, 'ok', len(d), 'cam', hd[0].header.get('CAMERA'), hd[0].header.get('CCD'), 'target px', round(tx, 2), round(ty, 2), flush=True)
-    spoc_2min(args.tic, c['spoc_2min'], ['lc'], os.path.join(wd, 'dl'))
+    if c['spoc_2min']:
+        spoc_2min(args.tic, c['spoc_2min'], ['lc'], os.path.join(wd, 'dl'))
 else:
     spoc_2min(args.tic, c['sectors'], ['lc', 'tp'], os.path.join(wd, 'dl'))
     spoc_2min(args.tic, [31, 32, 98], ['lc'], os.path.join(wd, 'dl'), fast=True)
