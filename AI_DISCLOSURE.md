@@ -1,8 +1,8 @@
 # AI disclosure
 
 AI models produced the content of this repository: the analysis scripts, the tables, the figures and the text. The
-content covers the four transit candidates and, in README section 5, the eclipsing binary TIC 11613676, the
-sector-98 observation of TOI-540 b and eight new eclipsing binaries (section 5.3, values from the vetting record). The repository owner chose the targets to pursue, directed the work and decided on
+content covers the five transit candidates and, in README section 6, the eclipsing binary TIC 11613676, the
+sector-98 observation of TOI-540 b and nine new eclipsing binaries (section 6.3, values from the vetting record). The repository owner chose the targets to pursue, directed the work and decided on
 scope and release. The owner did not check the code or the numbers line by line, and no professional astronomer has
 reviewed them.
 
@@ -27,14 +27,26 @@ in all eight TESS sectors; the detection-stage description of the transit as fla
 (0.006-0.013 without and 0.0008-0.0012 with the SOAR contrast curve, 3 seeds each) and depth (about 1460 ppm, the
 limb-darkened central depth of the raw aperture flux) were superseded by the TRICERATOPS runs of README section 4.7 and
 the dilution-corrected density-prior fit of section 4.2, and the detection-stage period (40.605645 ± 0.000052 d) by the
-common-shape fit of the five transits (40.605660 ± 0.000074 d).
+common-shape fit of the five transits (40.605660 ± 0.000074 d). For TIC 311179599 the detection-stage period
+(24.826807 ± 0.00016 d, 3 × 3-pixel box photometry, seven epochs) was superseded by the common-shape fit
+(24.826839 ± 0.000047 d, the same seven epochs), the detection-stage radius (about 2.3 R⊕, TIC radius, no dilution
+correction) by 2.47 ± 0.10 R⊕ (density-prior fit with free dilution, README section 5.2), the detection-stage
+odd-even depth difference (1.8 σ, 3 × 3-pixel box) by 0.8 σ, and the detection-stage TRICERATOPS FPP (0.036-0.049, NFPP
+about 6 × 10⁻⁶; r < 1.5 px apertures of three sectors) by 0.025-0.031 (NFPP about 7 × 10⁻⁷; r < 2.0 px apertures of
+six sectors, README section 5.7; 0.020-0.028 with the photometry of the vetting re-check). For TIC 342194997 (README
+section 6.3) the detection-stage description of the eclipse as flat-bottomed was superseded (a model without limb darkening fits worse; the eclipse is limb-darkened), the detection-stage
+statement that no occultation was seen at the other conjunction "consistent with the geometry" was superseded (at
+that conjunction an occultation of the companion is geometrically required; the orbit conditioned on the sector-99
+non-detection places it in the sector-99 data gap), and the detection-stage depth (15.4 %, box) by the model central
+depth (16.9 %).
 
 **What the software checks and what is trusted.** The scripts recompute the tables from public products (TESScut, SPOC,
 QLP, TESS-SPOC, TARS, Gaia DR3, TIC, ESO archive); exceptions are listed in README.md (Data and reproduction). Stellar
 parameters are TIC v8.2 values and are not re-derived, except for TIC 89247735 and TIC 455017950 (SED fits; README
-sections 3.1 and 4.1). The TRICERATOPS false-positive probabilities depend on that
+sections 3.1 and 4.1) and TIC 311179599 (Mann et al. relations; README section 5.1). The TRICERATOPS false-positive probabilities depend on that
 code's priors and on a single flux-error value per light curve; no high-resolution imaging constraint was available,
-except the published SOAR speckle limits for TIC 455017950.
+except the published SOAR speckle limits for TIC 455017950. The values of the nine eclipsing binaries of README
+section 6.3 come from the vetting record and are not recomputed by a script in this repository.
 
 **What this means for use.** The candidates are leads to be checked independently; nothing here is confirmed. Credit
 for confirming, refining or refuting any of them belongs to whoever does that work. Questions, checks and corrections:

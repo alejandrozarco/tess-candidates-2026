@@ -1,4 +1,4 @@
-"""Download the public MAST products used for the other TESS results (README Part II).
+"""Download the public MAST products used for the other TESS results (README section 6).
 
 usage: python scripts/other_download.py 11613676 [--work ./work]
        python scripts/other_download.py 200322593 [--controls] [--work ./work]

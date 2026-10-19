@@ -1,0 +1,28 @@
+# TIC 311179599 = Gaia DR3 5801882036668103680: joint transit fit with free target flux fraction f_t (scripts/fit_free_dilution.py), 2026-10-19
+# data: TESScut r = 2.0 px raw aperture flux, epochs 12,13,39,66,93,100,102,103, quality 0, +-0.6 d, 2878 points; per-epoch noise fixed at the fit_transits.py residual rms
+# priors: f_t ~ N(0.955, 0.01); u1 ~ N(0.33, 0.1), u2 ~ N(0.27, 0.1); rho_circ ~ N(3.85, 0.35) g cm^-3 (stellar-density prior); circular orbit; P = 24.826839 d fixed
+# emcee: 44 walkers x 6000 steps, first 2000 discarded, thinned by 10; acceptance 0.35; best chi2 2879.8 for 2878 points
+# columns p2.5 ... p97.5 = percentiles of the posterior; k = Rp/R* corrected for dilution; depth_true_ppm = k^2; rho_circ in g cm^-3; T14_h, T23_h in hours
+# no photoeccentric rows: the density prior sets rho_circ (see the fit without the prior)
+quantity,p2.5,p16,p50,p84,p97.5,note
+k,0.0356537,0.0367707,0.0378827,0.0390025,0.0400516,
+depth_true_ppm,1271.19,1352.08,1435.1,1521.19,1604.13,
+f_t,0.934477,0.944681,0.954538,0.964409,0.9742,
+b,0.532984,0.577725,0.621221,0.659439,0.695608,
+aR,47.1789,48.7667,50.2909,51.7088,53.0865,
+rho_circ,3.22299,3.55947,3.90376,4.24335,4.59164,
+inc_deg,89.166,89.2296,89.2922,89.356,89.4175,
+T14_h,2.97944,3.06549,3.13901,3.21573,3.29337,
+T23_h,2.5815,2.68538,2.77284,2.86257,2.95489,
+q1,0.135719,0.249799,0.396169,0.581975,0.795454,
+q2,0.165593,0.223094,0.280428,0.340739,0.408059,
+dtc_12,-0.0207927,-0.0132519,-0.00278502,0.00708131,0.0213706,BTJD offset from the fit_transits.py time (d)
+dtc_13,-0.0176476,-0.00892653,-0.000875513,0.00539651,0.0110709,BTJD offset from the fit_transits.py time (d)
+dtc_39,-0.015186,-0.00813867,-0.0016191,0.0024957,0.00641565,BTJD offset from the fit_transits.py time (d)
+dtc_66,-0.00660781,-0.0023891,0.000452058,0.00359448,0.00789312,BTJD offset from the fit_transits.py time (d)
+dtc_93,-0.00947729,-0.00431874,0.000922034,0.00523594,0.00871661,BTJD offset from the fit_transits.py time (d)
+dtc_100,-0.00435948,-0.00149078,0.00176201,0.00531807,0.00918318,BTJD offset from the fit_transits.py time (d)
+dtc_102,-0.00575648,-0.0026159,-0.000246302,0.00186992,0.00435077,BTJD offset from the fit_transits.py time (d)
+dtc_103,-0.00914524,-0.00417241,3.40639e-05,0.00449479,0.00944303,BTJD offset from the fit_transits.py time (d)
+Rp_Rearth,2.27243,2.37002,2.47327,2.57872,2.68072,R* = 0.599 +- 0.018 Rsun
+Rp_RJ,0.202733,0.211439,0.22065,0.230058,0.239158,R* = 0.599 +- 0.018 Rsun

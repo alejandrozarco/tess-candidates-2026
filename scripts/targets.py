@@ -103,9 +103,33 @@ TARGETS = {
                  'Gaia DR3 5825218002782625024 (G 14.49, 51.4")': (227.90523379, -64.92272793, -6.597, -8.488),
                  'Gaia DR3 5825217796624167808 (G 13.91, 53.1")': (227.94087808, -64.94269542, -10.296, -10.438)},
     ),
+    311179599: dict(
+        gaia_dr3='5801882036668103680',
+        ra=257.6466511014627, dec=-75.67187134421917, pmra=30.842, pmdec=-69.334,
+        tic_ra=257.646094706738, tic_dec=-75.6715631372543, cut_center='gaia',
+        sectors=[12, 13, 39, 66, 93, 100, 101, 102, 103],
+        P=24.826839, eP=0.000047, T0=4082.33390, eT0=0.00167,
+        ncyc={12: -98, 13: -97, 39: -69, 66: -39, 93: -10, 100: 0, 102: 2, 103: 3},
+        tc_guess={12: 1649.3224, 13: 1674.1354, 39: 2369.1873, 66: 3114.0528, 93: 3834.0824, 100: 4082.3378, 102: 4131.9854, 103: 4156.8144},
+        epochs_fit=[12, 13, 39, 66, 93, 100, 102, 103],
+        ephem_exclude={39: 'sector 39 (-2.2 h); not used in the adopted ephemeris'},   # README 5.3; the all-epoch ephemeris is also written
+        u=[0.33, 0.27],                     # Teff ~3950 K, log g 4.65
+        k0=0.036, b0=0.3, aR0=60.0, fix=None,
+        T14h=3.14, spoc_2min=None, ttv_min=60.0, ttv_note='O-C -50 to +28 min in the epochs of the ephemeris, -2.2 h in sector 39',
+        star=dict(R=0.599, eR=0.018, M=0.587, eM=0.020, rho=3.86, erho=0.21, d_pc=47.49),   # TIC v8.2
+        star_sed=dict(R=0.599, eR=0.018, M=0.587, eM=0.012, rho=3.85, erho=0.35),   # README 5.1: Mann et al. (2015, 2019) M_Ks relations
+        free_dilution=dict(ft=(0.955, 0.010), p0=(0.038, 0.6, 3.9, 0.36, 0.30), rho_prior=(3.85, 0.35)),   # README 5.2
+        diff=dict(hw=0.05, oot_min=0.10, oot_order=2, cen_radius=4.0, sigma0=0.8, sigma_min=0.3, seed=1, fake_excl=1.0, fake_min_frac=0.7,
+                  gaia_radius=60.0, gaia_gmax=19.0),
+        sources={'target': (257.6466511014627, -75.67187134421917, 30.842, -69.334),
+                 'Gaia DR3 5801882032368601856 (G 17.77, 16.8")': (257.66259555, -75.66938311, -10.084, -3.626),
+                 'Gaia DR3 5801883514136854528 (G 17.43, 26.5")': (257.65336001, -75.66470274, -2.160, 1.523),
+                 'Gaia DR3 5801882002308365184 (G 15.99, 27.9")': (257.63075376, -75.67855605, 1.488, -10.157),
+                 'Gaia DR3 5801883509837351936 (G 16.90, 32.1")': (257.67276323, -75.66573075, -1.049, -7.239)},
+    ),
 }
 
-# Other TESS results (README Part II); used by eb_*.py and toi540_*.py only.
+# Other TESS results (README section 6); used by eb_*.py and toi540_*.py only.
 # 11613676: eclipsing binary CD-30 448. Cutouts requested at the Gaia DR3 position; target pixel = proper-motion-
 #   corrected Gaia position at the sector median time. `eph0` = starting ephemeris of the per-eclipse fits (detection
 #   stage), `ph2` = starting phase of the secondary eclipse; `neighbours` = the six Gaia DR3 sources nearest to the

@@ -4,7 +4,7 @@ usage: python3 figures/make_figures.py [tic ...] [other]   (needs numpy and matp
 Figures: fold_<tic>  (TTV-corrected fold of the detrended epochs with 20-min bins and the transit model),
          epochs_<tic> (one panel per transit epoch), oc_<tic> (observed minus calculated mid-transit times),
          diffimage_<tic> (per-sector difference images with the catalogue positions of nearby sources).
-'other' (README Part II): eb_history_11613676 (eclipse depth, duration and primary O-C against time, with the
+'other' (README section 6): eb_history_11613676 (eclipse depth, duration and primary O-C against time, with the
          model of eclipse_model_11613676.csv), eb_profiles_11613676 (per-sector eclipse profiles),
          toi540_sectors (per-sector folded transits of TOI-540 b, sector 98 with and without an injected transit),
          toi540_depths (depth per sector, and sector-98 depths of the control planets).
@@ -24,8 +24,9 @@ THEMES = {
                  pts="#5a5953", mark="#3987e5", mark2="#e8813a", mark3="#43b27e", cmap="RdBu_r"),
 }
 SAVE = dict(metadata={"Date": None})
-TICS = [402710280, 324429952, 89247735, 455017950]
-NAMES = {402710280: "TIC 402710280", 324429952: "TIC 324429952", 89247735: "TIC 89247735", 455017950: "TIC 455017950 (HD 134147)"}
+TICS = [402710280, 324429952, 89247735, 455017950, 311179599]
+NAMES = {402710280: "TIC 402710280", 324429952: "TIC 324429952", 89247735: "TIC 89247735", 455017950: "TIC 455017950 (HD 134147)", 311179599: "TIC 311179599"}
+FOLD_ALL = {311179599}                       # fold every fitted epoch (the sector-39 transit is in the shape fit, not in the ephemeris)
 YLIM_FOLD = {89247735: (0.983, 1.006)}       # default: (min(0.3rd percentile, 0.9965), 1.0025)
 YLIM_EPOCHS = {89247735: (0.981, 1.008)}     # default: (0.9955, 1.0035)
 
@@ -69,7 +70,7 @@ def binned(x, y, w):
 
 
 def fig_fold(t, name, tic):
-    F = read(f"folded_{tic}.csv"); M = read(f"model_{tic}.csv"); m = F["in_ephemeris"] == 1
+    F = read(f"folded_{tic}.csv"); M = read(f"model_{tic}.csv"); m = (F["in_ephemeris"] == 1) | (tic in FOLD_ALL)
     x = F["dt_days"][m] * 24; y = F["flux"][m]
     fig, ax = plt.subplots(figsize=(8, 4.2)); fig.patch.set_facecolor(t["surface"])
     ax.plot(x, y, ".", color=t["pts"], ms=2, rasterized=False, label="detrended cadences")
@@ -93,7 +94,7 @@ def fig_epochs(t, name, tic):
         ax = axs[k // nc, k % nc]; m = F["epoch"] == ep; x = F["dt_days"][m] * 24; y = F["flux"][m]
         ax.plot(x, y, ".", color=t["pts"], ms=2); xb, yb, eb = binned(x, y, 30 / 60); ax.plot(xb, yb, "o", color=t["ink"], ms=3)
         ax.plot(M["dt_days"] * 24, M["flux"], "-", color=t["mark2"], lw=1.3); ax.set_xlim(-12, 12)
-        j = np.where(T["epoch"] == ep)[0][0]; note = "" if T["note"][j].startswith("used") else " (scattered light)"
+        j = np.where(T["epoch"] == ep)[0][0]; note = "" if T["note"][j].startswith("used") else (" (scattered light)" if "scattered" in T["note"][j] else " (not in the ephemeris)")
         style(ax, t); title(ax, t, f"S{int(T['sector'][j])}, epoch {ep}{note}\n$t_c$ = BTJD {T['tc_btjd'][j]:.4f}, depth {T['depth_ppm'][j]:.0f} ppm")
         if k // nc == nr - 1: ax.set_xlabel("hours from mid-transit")
         if k % nc == 0: ax.set_ylabel("relative flux")
@@ -111,7 +112,8 @@ def fig_oc(t, name, tic):
     ax.axhline(0, color=t["axis"], lw=0.8)
     ax.errorbar(T["epoch"][used], T["oc_min"][used], T["tc_err_min"][used], fmt="o", color=t["mark"], ms=5, lw=1, capsize=2, label="used in the ephemeris")
     if (~used).any():
-        ax.errorbar(T["epoch"][~used], T["oc_min"][~used], T["tc_err_min"][~used], fmt="s", color=t["muted"], ms=5, lw=1, capsize=2, label="scattered light, not used")
+        lab = "scattered light, not used" if any("scattered" in n for n in T["note"][~used]) else "not used in the ephemeris"
+        ax.errorbar(T["epoch"][~used], T["oc_min"][~used], T["tc_err_min"][~used], fmt="s", color=t["muted"], ms=5, lw=1, capsize=2, label=lab)
     for e, o, s in zip(T["epoch"], T["oc_min"], T["sector"]):
         ax.annotate(f"S{int(s)}", (e, o), textcoords="offset points", xytext=(6, 4), fontsize=8, color=t["ink2"])
     ax.set_xlabel("epoch (cycles from $T_0$)"); ax.set_ylabel("O $-$ C (min)")

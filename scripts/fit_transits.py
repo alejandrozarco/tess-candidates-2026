@@ -15,6 +15,8 @@ supersampling. Quality-0 cadences within +-window d of each mid-transit time. Fo
 (--fix, default from targets.py) at the solution constrained to the TIC stellar density; for TIC 402710280 and
 TIC 89247735 it is free. --bfix / --arfix fix b or a/R* alone (chi2 profiles); --sig-from takes the per-epoch noise
 from an earlier fit instead of re-estimating it, so that chi2 values of a profile are comparable.
+Epochs listed in `ephem_exclude` (targets.py; TIC 311179599: sector 39) are fitted with the common shape but left out of
+the linear ephemeris; the ephemeris through all epochs is then also computed and written to the shape file (ephem_all).
 """
 import argparse, glob, json, os
 import numpy as np
@@ -108,14 +110,27 @@ for i, s in enumerate(USE):
     f2 = least_squares(lambda x: resid_epoch(s, tc, x[0], b, aR) / sig[s], [k], bounds=([0.0], [0.2])); ek = np.sqrt(np.linalg.inv(f2.jac.T @ f2.jac))[0, 0]
     out[s] = dict(tc=tc, ef=ef, beta=beta, eb=ef * beta, epb=epb, etot=max(ef * beta, epb), dep=f2.x[0] ** 2 * 1e6, edep=2 * f2.x[0] * ek * 1e6, rms=sig[s] * 1e6)
     print(f'  S{s}: tc={tc:.5f} formal {ef * 1440:.1f} min, beta={beta:.2f} -> {ef * beta * 1440:.1f} min, prayer-bead {epb * 1440:.1f} min; depth {out[s]["dep"]:.0f}+-{out[s]["edep"]:.0f} ppm; rms {sig[s] * 1e6:.0f} ppm')
-n = np.array([ncyc[s] for s in USE]); T = np.array([out[s]['tc'] for s in USE]); E = np.array([out[s]['etot'] for s in USE])
-A = np.c_[np.ones(len(n)), n]; W = 1 / E ** 2; C = np.linalg.inv(A.T @ (A * W[:, None])); bb = C @ (A.T @ (W * T)); oc = T - A @ bb; chi = np.sum(oc ** 2 * W); dof = len(n) - 2
-print(f'  linear ephemeris: T0={bb[0]:.5f}+-{np.sqrt(C[0, 0]):.5f} P={bb[1]:.5f}+-{np.sqrt(C[1, 1]):.5f}; O-C (min) {np.round(oc * 1440, 1)} +- {np.round(E * 1440, 1)}; chi2={chi:.1f}/{dof} p={C2.sf(chi, dof):.3g}')
+def linear_ephemeris(sel, label):
+    n = np.array([ncyc[s] for s in sel]); T = np.array([out[s]['tc'] for s in sel]); E = np.array([out[s]['etot'] for s in sel])
+    A = np.c_[np.ones(len(n)), n]; W = 1 / E ** 2; C = np.linalg.inv(A.T @ (A * W[:, None])); bb = C @ (A.T @ (W * T)); chi = np.sum((T - A @ bb) ** 2 * W); dof = len(n) - 2
+    oc = np.array([out[s]['tc'] - bb[0] - ncyc[s] * bb[1] for s in USE])
+    print(f'  {label}: T0={bb[0]:.5f}+-{np.sqrt(C[0, 0]):.5f} P={bb[1]:.6f}+-{np.sqrt(C[1, 1]):.6f}; epochs {USE}: O-C (min) {np.round(oc * 1440, 1)}; chi2={chi:.1f}/{dof} p={C2.sf(chi, dof):.3g}')
+    return bb, C, oc, chi, dof
+
+
+# ephemeris epochs: all fitted epochs except those in `ephem_exclude` (targets.py; TIC 311179599: sector 39), for which the
+# ephemeris through all epochs is computed as well
+EXCL = [s for s in USE if s in c.get('ephem_exclude', {})]
+bb, C, oc, chi, dof = linear_ephemeris([s for s in USE if s not in EXCL], 'linear ephemeris' + (f' without {EXCL}' if EXCL else ''))
+ALL = linear_ephemeris(USE, 'linear ephemeris, all epochs') if EXCL else None
 tag = (f'fit_r{args.aperture}_{"_".join(map(str, USE))}{"_fix" if FIX else ""}{"_allq" if args.allq else ""}'
        f'{f"_w{args.window:g}" if args.window != 1.0 else ""}{f"_o{args.order}" if args.order != 2 else ""}'
        f'{f"_b{args.bfix:g}" if args.bfix is not None else ""}{f"_aR{args.arfix:g}" if args.arfix is not None else ""}.json')
 json.dump({str(s): v for s, v in out.items()}, open(os.path.join(wd, tag), 'w'), indent=1)
 json.dump(dict(k=k, ek=e[0], b=b, eb=e[1], aR=aR, eaR=e[2], rho_circ=rho, T14_h=T14, T23_h=T23, chi2=chi2, npts=len(fit.fun), aperture=args.aperture,
                window=args.window, order=args.order, u=u, T0=bb[0], eT0=float(np.sqrt(C[0, 0])), P=bb[1], eP=float(np.sqrt(C[1, 1])), chi2_ephem=chi, dof_ephem=dof,
-               oc_min={str(s): float(o * 1440) for s, o in zip(USE, oc)}), open(os.path.join(wd, tag[:-5] + '_shape.json'), 'w'), indent=1)
+               oc_min={str(s): float(o * 1440) for s, o in zip(USE, oc)}, ephem_excluded=[str(s) for s in EXCL],
+               ephem_all=(dict(T0=ALL[0][0], eT0=float(np.sqrt(ALL[1][0, 0])), P=ALL[0][1], eP=float(np.sqrt(ALL[1][1, 1])), chi2=ALL[3], dof=ALL[4],
+                               oc_min={str(s): float(o * 1440) for s, o in zip(USE, ALL[2])}) if ALL else None)),
+          open(os.path.join(wd, tag[:-5] + '_shape.json'), 'w'), indent=1)
 print('written', tag)

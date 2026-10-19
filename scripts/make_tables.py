@@ -6,7 +6,8 @@ input:  <work>/<tic>/<fit json> (fit_transits.py), <work>/<tic>/cut/lc_s<sector>
 output: data/transit_times_<tic>.csv, folded_<tic>.csv, model_<tic>.csv, sectors_<tic>.csv, diffimage_<tic>.csv,
         diffimage_sources_<tic>.csv, diffimage_centroids_<tic>.csv (formats described in the comment headers of the files).
 Epochs are labelled by sector, or '<sector>a/b' when a sector holds two transits; the tables carry the sector and the
-cycle number (epoch). --window = half-width (d) of the light-curve windows (the fit window of fit_transits.py).
+cycle number (epoch). Epochs in `ephem_exclude` (targets.py) are marked in the note and in_ephemeris columns, and the O-C
+against the ephemeris through all epochs (from the fit's _shape.json) is added as oc_all_epochs_min. --window = half-width (d) of the light-curve windows (the fit window of fit_transits.py).
 The folded light curve divides each epoch by the quadratic baseline solved jointly with the common transit model
 (same model as fit_transits.py; for TIC 402710280 the shape is refitted with the mid-transit times fixed).
 """
@@ -57,11 +58,13 @@ def resid_epoch(E, s, k, b, aR):
 
 J = json.load(open(os.path.join(wd, args.fit))); tcs = {lab(k): v for k, v in J.items()}
 ORDER = lambda d: sorted(d.items(), key=lambda kv: c['ncyc'][kv[0]])
+EXCL = c.get('ephem_exclude', {})   # epochs fitted with the common shape but not used in the adopted ephemeris (TIC 311179599)
+EALL = json.load(open(os.path.join(wd, args.fit[:-5] + '_shape.json'))).get('ephem_all') if EXCL else None
 # ---- transit times
 rows = []
 for s, v in ORDER(tcs):
     n = c['ncyc'][s]; prod = 'SPOC 2-min SAP' if sector_of(s) == c.get('spoc_2min') else 'TESScut r=2.0 px'
-    rows.append((n, sector_of(s), prod, v, (v['tc'] - c['T0'] - n * c['P']) * 1440, 'used in ephemeris'))
+    rows.append((n, sector_of(s), prod, v, (v['tc'] - c['T0'] - n * c['P']) * 1440, EXCL.get(s, 'used in ephemeris')))
 if args.extra_fit:
     v = json.load(open(os.path.join(wd, args.extra_fit)))[str(args.extra_sector)]; n = c['ncyc'][args.extra_sector]
     rows.append((n, args.extra_sector, 'TESScut r=2.0 px', v, (v['tc'] - c['T0'] - n * c['P']) * 1440, 'scattered light; not used in ephemeris'))
@@ -72,14 +75,19 @@ with open(os.path.join(args.out, f'transit_times_{tic}.csv'), 'w') as fo:
                   'tc_btjd = BJD_TDB - 2457000. tc_err = max(formal error x beta, prayer-bead error), in days; tc_err_min in minutes',
                   'depth_ppm = per-epoch depth with the common shape (k free, b and a/R* fixed); rms_ppm = per-epoch residual rms',
                   'product: TESScut 21x21 cutout, circular aperture r = 2.0 px, annulus background; or SPOC 2-min SAP_FLUX (S13 of TIC 324429952)',
-                  'Not used: QLP light curves (QLP timing error in S99-S104; see README).']))
-    w = csv.writer(fo); w.writerow(['epoch', 'sector', 'product', 'tc_btjd', 'tc_bjd_tdb', 'tc_err_d', 'tc_err_min', 'oc_min', 'depth_ppm', 'depth_err_ppm', 'rms_ppm', 'beta', 'prayer_bead_err_min', 'note'])
+                  'Not used: QLP light curves (QLP timing error in S99-S104; see README).']
+                 + ([f'oc_all_epochs_min = O-C against the linear ephemeris through all epochs: T0 = BTJD {EALL["T0"]:.5f} +- {EALL["eT0"]:.5f}, P = {EALL["P"]:.6f} +- {EALL["eP"]:.6f} d '
+                     f'(chi2 = {EALL["chi2"]:.1f} for {EALL["dof"]} degrees of freedom)'] if EALL else [])))
+    w = csv.writer(fo); w.writerow(['epoch', 'sector', 'product', 'tc_btjd', 'tc_bjd_tdb', 'tc_err_d', 'tc_err_min', 'oc_min'] + (['oc_all_epochs_min'] if EALL else [])
+                                   + ['depth_ppm', 'depth_err_ppm', 'rms_ppm', 'beta', 'prayer_bead_err_min', 'note'])
     for n, s, prod, v, oc, note in rows:
-        w.writerow([n, s, prod, f'{v["tc"]:.6f}', f'{v["tc"] + 2457000:.6f}', f'{v["etot"]:.6f}', f'{v["etot"] * 1440:.1f}', f'{oc:+.2f}', f'{v["dep"]:.0f}', f'{v["edep"]:.0f}', f'{v["rms"]:.0f}', f'{v["beta"]:.2f}', f'{v["epb"] * 1440:.1f}', note])
+        oca = [f'{(v["tc"] - EALL["T0"] - n * EALL["P"]) * 1440:+.2f}'] if EALL else []
+        w.writerow([n, s, prod, f'{v["tc"]:.6f}', f'{v["tc"] + 2457000:.6f}', f'{v["etot"]:.6f}', f'{v["etot"] * 1440:.1f}', f'{oc:+.2f}'] + oca
+                   + [f'{v["dep"]:.0f}', f'{v["edep"]:.0f}', f'{v["rms"]:.0f}', f'{v["beta"]:.2f}', f'{v["epb"] * 1440:.1f}', note])
 # ---- folded light curves and model
 E = {}
 for s, v in ORDER(tcs):
-    t, f, prod = load_epoch(s, v['tc']); E[s] = dict(t=t, f=f, cad=np.median(np.diff(t)), tc=v['tc'], prod=prod, used=1)
+    t, f, prod = load_epoch(s, v['tc']); E[s] = dict(t=t, f=f, cad=np.median(np.diff(t)), tc=v['tc'], prod=prod, used=0 if s in EXCL else 1)
 FITSEC = list(E)
 if args.extra_fit:
     v = json.load(open(os.path.join(wd, args.extra_fit)))[str(args.extra_sector)]; t, f, prod = load_epoch(args.extra_sector, v['tc'])
@@ -99,7 +107,8 @@ with open(os.path.join(args.out, f'folded_{tic}.csv'), 'w') as fo:
                   'flux = aperture flux divided by the per-epoch quadratic baseline that was solved jointly with the common transit model (scripts/fit_transits.py); not dilution corrected',
                   f'dt_days = time - tc(epoch) (TTV-corrected); phase = ((time - T0)/P + 0.5) mod 1 - 0.5 with T0 = BTJD {c["T0"]:.5f}, P = {PS} d',
                   f'common shape used for the model: k = Rp/R* = {k:.4f}, b = {b:.2f}, a/R* = {aR:.1f}, quadratic limb darkening u = {c["u"]} (TESS band)',
-                  'flux_err = per-epoch residual rms; quality flag 0 cadences only; in_ephemeris = 0 marks the sector-66 event of TIC 402710280 (scattered light), which is not used in the ephemeris or the fold']))
+                  'flux_err = per-epoch residual rms; quality flag 0 cadences only; in_ephemeris = 0 marks the sector-66 event of TIC 402710280 (scattered light), which is not used in the ephemeris or the fold, '
+                  'and the sector-39 transit of TIC 311179599, which is used in the shape fit and the fold but not in the adopted ephemeris']))
     w = csv.writer(fo); w.writerow(['sector', 'product', 'epoch', 'in_ephemeris', 'time_btjd', 'dt_days', 'phase', 'flux', 'flux_err', 'model'])
     for s in sorted(E, key=lambda x: c['ncyc'][x]):
         r, base, mm = resid_epoch(E, s, k, b, aR); fd = E[s]['f'] / base; rms = np.std(r); ph = ((E[s]['t'] - c['T0']) / c['P'] + 0.5) % 1 - 0.5
