@@ -1,6 +1,7 @@
 cff-version: 1.2.0
 message: "If you use this material, please cite it as below. Not peer reviewed. Produced by AI models under the direction of the repository owner (see AI_DISCLOSURE.md)."
-title: "TESS transit candidates and two further results, 2026"
+title: "TESS transit candidates, two further results and notable eclipsing binaries, 2026"
+version: "v1.1"
 type: dataset
 # doi: to be added after the Zenodo deposit (10.5281/zenodo.XXXXXXX)
 authors:
@@ -16,7 +17,12 @@ abstract: >-
   fit) and TIC 455017950 (HD 134147; P = 40.60565 d, depth about 1310 ppm, Rp about 3.2 Earth radii). Two further
   results: the eclipsing binary TIC 11613676 (CD-30 448; P = 12.1158 d), whose eclipses were absent in TESS sector 3
   (2018), present in sector 30 (2020), 5.4 % deep in sector 97 (2025) and shallower in 2026; and TOI-540 b, whose
-  transits are not detected in TESS sector 98 (2025-2026). Not peer reviewed; the candidates are not confirmed.
+  transits are not detected in TESS sector 98 (2025-2026). Eight eclipsing binaries without a previous eclipse report:
+  TIC 13957664, a single eclipse at the conjunction predicted by its Gaia DR3 astrometric+spectroscopic orbit
+  (P = 245.66 d, i = 91.1 +- 0.8 deg); TIC 304936165, an eccentric 61.7-d Gaia SB1 with one eclipse per orbit; the
+  eclipsing Gaia SB1s TIC 120522352, TIC 382523691, TIC 261702897 and TIC 265436769; CPD-62 2890 (TIC 433642561) in
+  the open cluster NGC 4609; and the 1.7075-d eclipsing binary TIC 245068282 in a hierarchical triple. Not peer
+  reviewed; the candidates are not confirmed.
 keywords:
   - TESS
   - transit candidates
@@ -31,4 +37,17 @@ keywords:
   - TIC 11613676
   - CD-30 448
   - TOI-540
+  - Gaia DR3
+  - spectroscopic binaries
+  - TIC 13957664
+  - TIC 304936165
+  - TIC 120522352
+  - TIC 382523691
+  - TIC 261702897
+  - TIC 265436769
+  - TIC 433642561
+  - CPD-62 2890
+  - NGC 4609
+  - TIC 245068282
+  - hierarchical triple
 license: CC-BY-4.0

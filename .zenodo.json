@@ -1,12 +1,12 @@
 {
-  "title": "TESS transit candidates and two further results, 2026",
+  "title": "TESS transit candidates, two further results and notable eclipsing binaries, 2026",
   "upload_type": "dataset",
   "creators": [
     {
       "name": "Zarco, A."
     }
   ],
-  "description": "<p>Transit timing, light-curve tables, false-positive checks, TRICERATOPS runs and predicted transit times for four transit candidates found in TESS full-frame images: TIC 402710280 (Gaia DR3 5828441289812582400; P = 36.34005 d, depth about 1680 ppm, 5.3 h, transit-timing variations up to 29 min; two archival HARPS epochs), TIC 324429952 (Gaia DR3 6416596855786566528; P = 42.37574 d, depth about 1500 ppm), TIC 89247735 (Gaia DR3 6708071581514074368, SCR J1820-4533; P = 18.32317 d, dilution-corrected depth 1.13-1.22 %, 4.5 h, Rp about 8.7 Earth radii with the stellar radius from an SED fit) and TIC 455017950 (HD 134147, HIP 74344, Gaia DR3 5825217968423162752; P = 40.60565 d, dilution-corrected depth about 1310 ppm, 4.7 h, Rp about 3.2 Earth radii; SOAR speckle limits from the literature). Two further results: the eclipsing binary TIC 11613676 (CD-30 448, Gaia DR3 5029330944688623360; P = 12.1158 d), whose eclipses were absent in TESS sector 3 (2018), present in sector 30 (2020), 5.4 % and 2.2 % deep in sector 97 (2025) and shallower in sectors 104 and 106 (2026), with eclipse-timing variations; and TOI-540 b (TIC 200322593), whose transits, present in TESS sectors 4-32, are not detected in TESS sector 98 (2025-2026), with the checks made and the ground-based transit windows that would test the observation. The tables are recomputed from public MAST, Gaia and ESO archive products by the scripts in the repository. AI-produced, not peer reviewed; the candidates are not confirmed.</p>",
+  "description": "<p>Transit timing, light-curve tables, false-positive checks, TRICERATOPS runs and predicted transit times for four transit candidates found in TESS full-frame images: TIC 402710280 (Gaia DR3 5828441289812582400; P = 36.34005 d, depth about 1680 ppm, 5.3 h, transit-timing variations up to 29 min; two archival HARPS epochs), TIC 324429952 (Gaia DR3 6416596855786566528; P = 42.37574 d, depth about 1500 ppm), TIC 89247735 (Gaia DR3 6708071581514074368, SCR J1820-4533; P = 18.32317 d, dilution-corrected depth 1.13-1.22 %, 4.5 h, Rp about 8.7 Earth radii with the stellar radius from an SED fit) and TIC 455017950 (HD 134147, HIP 74344, Gaia DR3 5825217968423162752; P = 40.60565 d, dilution-corrected depth about 1310 ppm, 4.7 h, Rp about 3.2 Earth radii; SOAR speckle limits from the literature). Two further results: the eclipsing binary TIC 11613676 (CD-30 448, Gaia DR3 5029330944688623360; P = 12.1158 d), whose eclipses were absent in TESS sector 3 (2018), present in sector 30 (2020), 5.4 % and 2.2 % deep in sector 97 (2025) and shallower in sectors 104 and 106 (2026), with eclipse-timing variations; and TOI-540 b (TIC 200322593), whose transits, present in TESS sectors 4-32, are not detected in TESS sector 98 (2025-2026), with the checks made and the ground-based transit windows that would test the observation. Eight eclipsing binaries without a previous eclipse report in the catalogues checked: TIC 13957664 (TYC 7587-159-1, Gaia DR3 4823456527782443392), a single 2.0 % eclipse at the conjunction predicted by its Gaia DR3 astrometric+spectroscopic orbit (P = 245.66 d, i = 91.1 +- 0.8 deg); TIC 304936165 (TYC 8385-1304-1), an eccentric 61.7-d Gaia SB1 with one eclipse per orbit near periastron; the eclipsing Gaia SB1s TIC 120522352 (8.517 d), TIC 382523691 (4.915 d), TIC 261702897 (6.934 d) and TIC 265436769 (15.475 d), whose eclipse periods match the spectroscopic periods; CPD-62 2890 (TIC 433642561) in the open cluster NGC 4609, with 17-27 % eclipses and P = 356.18/n d; and the 1.7075-d eclipsing binary TIC 245068282, which shares the parallax and proper motion of a G dwarf 13.2 arcsec away (hierarchical triple). The values of these eight come from the vetting record, exported to data/notable_ebs_2026.csv; no spectroscopy was obtained. The tables of the other results are recomputed from public MAST, Gaia and ESO archive products by the scripts in the repository. AI-produced, not peer reviewed; the candidates are not confirmed.</p>",
   "keywords": [
     "TESS",
     "transit candidates",
@@ -21,8 +21,21 @@
     "eclipsing binaries",
     "TIC 11613676",
     "CD-30 448",
-    "TOI-540"
+    "TOI-540",
+    "Gaia DR3",
+    "spectroscopic binaries",
+    "TIC 13957664",
+    "TIC 304936165",
+    "TIC 120522352",
+    "TIC 382523691",
+    "TIC 261702897",
+    "TIC 265436769",
+    "TIC 433642561",
+    "CPD-62 2890",
+    "NGC 4609",
+    "TIC 245068282",
+    "hierarchical triple"
   ],
   "notes": "Not peer reviewed. Produced by AI models under the direction of the repository owner; see AI_DISCLOSURE.md. Data, figures and text: CC BY 4.0; scripts: MIT.",
-  "license": "CC-BY-4.0"
+  "license": "cc-by-4.0"
 }

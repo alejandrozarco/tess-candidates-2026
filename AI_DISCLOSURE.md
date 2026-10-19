@@ -1,8 +1,8 @@
 # AI disclosure
 
 AI models produced the content of this repository: the analysis scripts, the tables, the figures and the text. The
-content covers the four transit candidates and, in README section 5, the eclipsing binary TIC 11613676 and the
-sector-98 observation of TOI-540 b. The repository owner chose the targets to pursue, directed the work and decided on
+content covers the four transit candidates and, in README section 5, the eclipsing binary TIC 11613676, the
+sector-98 observation of TOI-540 b and eight new eclipsing binaries (section 5.3, values from the vetting record). The repository owner chose the targets to pursue, directed the work and decided on
 scope and release. The owner did not check the code or the numbers line by line, and no professional astronomer has
 reviewed them.
 
