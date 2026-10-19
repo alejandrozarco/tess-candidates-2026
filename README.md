@@ -49,7 +49,7 @@ false-positive probability 0.047 (73.87 d) and 0.038 (36.93 d); the transit pred
 for the shorter period (section 5.10).
 No high-resolution imaging and no radial velocities were obtained for this work.
 The tables in `data/` are recomputed from public MAST, Gaia and ESO products by the scripts in `scripts/` (exceptions in
-section 8). Two of the five signals were reported publicly by others before this record: TIC 402710280 by R. Vora (Zenodo, 2026-10-15) and TIC 89247735 by F. Molina (Zenodo, 2026-10-17); see sections 1.8 and 3.8.
+section 8). Two of the five signals were reported publicly by others before this record: TIC 402710280 by R. Vora (Zenodo, 2026-10-15) and TIC 89247735 by F. Molina (Zenodo, 2026-10-17); see sections 1.8 and 3.8. TIC 402710280 is also listed in a public duotransit table (2025-10-23), and a single sector-13 transit of TIC 324429952 was marked by a Planet Hunters TESS volunteer in 2019 (section 2.7).
 
 Three further results (section 6). TIC 11613676 (CD-30 448, K dwarf, $`T = 10.50`$) is an eclipsing binary with
 $`P = 12.1158`$ d whose eclipses were absent in TESS sector 3 (2018; depth $`< 0.04`$ %), present in sector 30 (2020;
@@ -291,6 +291,10 @@ is therefore not the first report of the signal. The catalogue checks above did 
 repositories. A different, shallower signal (P = 3.78 d, about 300 ppm) on the same star is listed in a public all-sky
 candidate list in a GitHub repository (eumemic/exoplanets, 2026-10-09); it is not the signal analysed here.
 
+An earlier public listing also exists: the duotransit table `examples/duotransits/duos.csv` of the GitHub
+repository samgill844/bruce (first commit containing the star 2025-10-23 14:25 UTC) lists TIC 402710280 with the
+transits of sectors 39 and 93 (BJD 2459384.61 and 2460838.19), without a period.
+
 ### 1.9 Predicted transits (2026-10-18 to 2027-10-18)
 
 `data/predicted_transits_402710280.csv`. Errors are the propagated linear-ephemeris errors; the observed O-C of up to
@@ -445,6 +449,12 @@ contrast curve (FPP $`0.0089 \pm 0.004`$) are in `data/triceratops/`, flagged as
 | 2026-10-15 | VizieR, all tables within 5" (151 tables); Prsa et al. 2022 TESS eclipsing binaries (J/ApJS/258/16); Kostov et al. 2025 (J/ApJS/279/50) | rotation-period entries only; no eclipse or planet entry |
 | 2026-10-15 | source files of 20 arXiv transit-candidate papers; RAVEN and T16 candidate tables; MAST data-validation products | not listed; no SPOC threshold-crossing event |
 | 2026-10-18 | ESO Science Archive (5" cone) | no data |
+| 2026-10-19 | Planet Hunters TESS Talk, Zenodo, GitHub, ExoFOP uploaded files, general web search | one Talk comment (below) |
+
+**Earlier public record (found 2026-10-19).** On Planet Hunters TESS, user Vidar87 marked a possible transit at
+day 20.8 of the sector-13 light curve (Talk comment 1811212, subject 36029551, 2019-08-30 23:32 UTC), i.e. at
+BTJD 1674.72, the sector-13 transit of section 2.3; a reply on 2020-05-02 suggested a momentum-dump glitch. No period,
+candidate or follow-up was reported.
 
 ### 2.8 Predicted transits (2026-10-18 to 2027-10-18)
 
