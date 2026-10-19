@@ -9,7 +9,7 @@ Status: computational results from public data, not peer reviewed. Date of this 
 > **Produced by AI models** under the direction of the repository owner; not peer reviewed, and not checked by a
 > professional astronomer. See [`AI_DISCLOSURE.md`](AI_DISCLOSURE.md). The four candidates are leads for independent
 > follow-up, not discoveries; none is confirmed. Credit for confirming, refining or refuting them belongs to whoever
-> does that work. To refer to this record, please cite the archived repository (Zenodo DOI: to be added).
+> does that work. To refer to this record, please cite the archived repository: Zenodo, [doi:10.5281/zenodo.23453967](https://doi.org/10.5281/zenodo.23453967) (all versions; v1.1: [10.5281/zenodo.23463030](https://doi.org/10.5281/zenodo.23463030)).
 > Questions, checks and corrections: [GitHub issues](https://github.com/alejandrozarco/tess-candidates-2026/issues).
 
 Four stars observed in TESS full-frame images show periodic transit-shaped dips that are not listed as TOI or CTOI, in
@@ -2111,7 +2111,7 @@ SkyBoT for TIC 13957664; and the catalogue queries listed in section 5.3 (2026-1
 
 ## 8. How to cite
 
-A. Zarco (2026). TESS transit candidates, two further results and notable eclipsing binaries, 2026. Zenodo. DOI: 10.5281/zenodo.XXXXXXX
+A. Zarco (2026). TESS transit candidates, two further results and notable eclipsing binaries, 2026. Zenodo. DOI: 10.5281/zenodo.23453967 (all versions; v1.1: 10.5281/zenodo.23463030)
 (to be added after the deposit). Citation metadata: `CITATION.cff`.
 
 ## 9. Licence
