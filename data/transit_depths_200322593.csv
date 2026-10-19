@@ -1,0 +1,11 @@
+# TOI-540 b = TIC 200322593: transit depth and mid-transit time per TESS sector (scripts/toi540_analysis.py), 2026-10-19
+# depth_own/pdc/sap/fast_ppm = peak depth of the common shape at the predicted times (own TPF photometry r = 2.0 px; SPOC 2-min PDCSAP; SAP; SPOC 20-s PDCSAP), quality 0, 0.3-d biweight; errors scaled by beta
+# tc_btjd, tc_err_min = per-sector mid-transit time of the stacked transits (own photometry, shape fixed) and its error; oc_min = O - C against T0 = BTJD 1821.984418 (cycle -285), P = 1.23914923 d (sectors 4-32 only)
+# n_transits = predicted transits with data; year = mean epoch; sector 98: no mid-transit time (no transit detected)
+sector,year,cycle,n_transits,depth_own_ppm,depth_own_err_ppm,depth_pdc_ppm,depth_pdc_err_ppm,depth_sap_ppm,depth_sap_err_ppm,depth_fast_ppm,depth_fast_err_ppm,beta_own,tc_btjd,tc_err_min,oc_min
+4,2018.84,-604,16,1836,276,1950,276,1863,268,,,1.46,1426.695633,1.75,-0.26
+5,2018.92,-584,18,1544,291,1724,293,1669,288,,,1.52,1451.479305,1.25,+0.73
+6,2018.99,-561,17,1889,251,2282,271,2167,259,,,1.32,1479.979035,0.88,-0.28
+31,2020.84,-16,18,1498,236,1448,235,1498,229,1663,247,1.32,2155.315168,1.00,-0.56
+32,2020.91,10,20,1586,208,1533,199,1474,191,1542,211,1.20,2187.533733,0.88,+0.42
+98,2025.93,1487,28,83,268,-14,276,-30,268,-26,282,1.69,,,

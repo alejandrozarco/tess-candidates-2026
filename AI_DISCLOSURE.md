@@ -1,8 +1,10 @@
 # AI disclosure
 
 AI models produced the content of this repository: the analysis scripts, the tables, the figures and the text. The
-repository owner chose the targets to pursue, directed the work and decided on scope and release. The owner did not check
-the code or the numbers line by line, and no professional astronomer has reviewed them.
+content covers the four transit candidates and, in README section 5, the eclipsing binary TIC 11613676 and the
+sector-98 observation of TOI-540 b. The repository owner chose the targets to pursue, directed the work and decided on
+scope and release. The owner did not check the code or the numbers line by line, and no professional astronomer has
+reviewed them.
 
 **Models.** Claude models (Anthropic), run through Claude Code, for the detection, the vetting, the TRICERATOPS runs,
 the archival-spectrum analysis and this package. Internal cross-checks of the numbers were also made by AI models; such

@@ -1,0 +1,9 @@
+# TOI-540 b = TIC 200322593: joint fits of sectors 4-6 (2018.92) and 31-32 (2020.88) with a common or a per-group impact parameter (scripts/toi540_analysis.py), 2026-10-19
+# a/R* shared with the stellar-density prior; k shared (bfree) or per group (kbfree); chi2 with per-sector white-noise errors; delta chi2 divided by beta^2 (median red-noise factor) for p_b (1 dof) and p_bk (2 dof)
+# db_dt = (b2 - b1)/1.96 yr; b98_linear = linear extrapolation to 2025.93; p_no_transit = probability that b98 > 1 + k for a Gaussian error; b_needed = smallest b whose peak depth is below the sector-98 3-sigma limit (own photometry)
+source,beta,chi2_const,chi2_bfree,chi2_kbfree,b_const,b_2018.9,b_2018.9_err,b_2020.9,b_2020.9_err,k,aR,p_b,sigma_b,p_bk,db_dt_per_yr,db_dt_err,b98_linear,b98_err,p_no_transit,b_needed
+own r2.0,1.32,19638.51,19635.88,19635.60,0.783,0.759,0.048,0.807,0.040,0.0409,13.84,0.219,1.2,0.434,+0.0240,0.0193,0.928,0.115,0.16,0.986
+own r1.5,1.35,20066.95,20060.89,20060.44,0.787,0.756,0.049,0.820,0.038,0.0418,13.87,0.067,1.8,0.166,+0.0327,0.0191,0.985,0.110,0.30,0.987
+own spoc,1.36,19853.09,19846.51,19845.84,0.793,0.768,0.046,0.836,0.035,0.0426,13.81,0.059,1.9,0.139,+0.0345,0.0178,1.010,0.100,0.37,0.989
+pdc,1.38,19844.68,19828.91,19828.67,0.800,0.763,0.047,0.862,0.030,0.0436,13.88,0.004,2.9,0.015,+0.0504,0.0184,1.117,0.097,0.77,0.990
+sap,1.37,19847.64,19834.53,19834.48,0.803,0.763,0.047,0.858,0.030,0.0428,13.86,0.008,2.6,0.030,+0.0485,0.0182,1.103,0.097,0.73,0.989

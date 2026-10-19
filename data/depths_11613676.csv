@@ -1,0 +1,15 @@
+# TIC 11613676 = CD-30 448: eclipse depth and duration per sector and eclipse (scripts/eb_eclipses.py), 2026-10-19
+# depth_pct = weighted mean trapezoid depth (% of the aperture flux) of the complete eclipses; for sector 3 the depth with the sector-30 shape at the predicted time (no eclipse detected) and limit3_pct = 3-sigma upper limit
+# T14_h, T12_h = weighted mean total and ingress durations; T23_h = T14 - 2 T12 (mean); phase_mean = mean phase (secondary) relative to the primary ephemeris of eclipse_times_11613676.csv
+# source = timing set (SPOC 2-min SAP in sectors 3, 30; TESScut r = 2.5 px otherwise); depth_r1.5_pct, depth_pdcsap_pct = the same with the TESScut r = 1.5 px aperture / SPOC PDCSAP flux (checks)
+sector,year,kind,n,source,depth_pct,depth_err_pct,limit3_pct,T14_h,T14_err_h,T12_h,T23_h,phase_mean,depth_r1.5_pct,depth_pdcsap_pct
+3,2018.76,pri,2,SPOC 2-min SAP (sector-30 shape fixed),0.001,0.014,0.043,2.84,,1.14,,,-0.003,0.006
+3,2018.76,sec,2,SPOC 2-min SAP (sector-30 shape fixed),0.015,0.014,0.043,2.81,,1.01,,,-0.000,0.017
+30,2020.77,pri,2,SPOC 2-min SAP,0.687,0.026,,2.84,0.07,1.20,0.44,,0.709,0.649
+30,2020.76,sec,2,SPOC 2-min SAP,0.531,0.028,,2.81,0.11,1.12,0.59,0.5499,0.509,0.526
+97,2025.78,pri,3,TESScut r=2.5 px,5.434,0.021,,4.11,0.01,1.78,0.55,,5.470,
+97,2025.78,sec,4,TESScut r=2.5 px,2.239,0.017,,3.94,0.02,1.67,0.59,0.5599,2.260,
+104,2026.41,pri,2,TESScut r=2.5 px,4.106,0.031,,3.98,0.02,1.68,0.64,,4.165,
+104,2026.41,sec,2,TESScut r=2.5 px,1.785,0.026,,3.77,0.04,1.55,0.65,0.5615,1.899,
+106,2026.58,pri,2,TESScut r=2.5 px,4.031,0.025,,4.01,0.02,1.71,0.59,,4.040,
+106,2026.55,sec,1,TESScut r=2.5 px,1.672,0.027,,3.79,0.06,1.47,0.86,0.5617,1.722,

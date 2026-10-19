@@ -1,0 +1,9 @@
+# TOI-540 b = TIC 200322593: sector-98 time stamps (scripts/toi540_analysis.py), 2026-10-19
+# cadence_s = median cadence spacing; step_min/max_s = spacing per cadence-number step; max_dt_vs_tpf_s = largest |(TIME - TIMECORR)| difference against the 2-min TPF on common cadence numbers (Horizons row: largest |TIMECORR - Roemer delay|)
+# median_time_diff_vs_tpf_s = median TIME difference on common cadences (non-zero for another star: different barycentric correction)
+product,camera,ccd,procver,data_rel,timesys,timepixr,cadence_s,step_min_s,step_max_s,max_dt_vs_tpf_s,median_time_diff_vs_tpf_s
+TPF 2-min,3,3,spoc-5.0.126-20251212,134,TDB,0.5,119.9989,119.9966,120.0010,,
+LC 2-min,3,3,spoc-5.0.126-20251212,134,TDB,0.5,119.9989,119.9966,120.0010,0.000,0.0
+LC 20-s,3,3,spoc-5.0.126-20251212-1-g78c1818bf7,134,TDB,0.5,19.9998,19.9988,20.0010,,
+TOI-270 LC 2-min,3,3,spoc-5.0.126-20251212,134,TDB,0.5,119.9979,119.9961,119.9997,0.000,34.1
+"TIMECORR minus Roemer delay from JPL Horizons TESS (-95) vectors, 12 cadences",,,,,,,,,,0.002,

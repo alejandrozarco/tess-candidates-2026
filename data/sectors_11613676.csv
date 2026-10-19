@@ -1,0 +1,9 @@
+# TIC 11613676 = CD-30 448: TESS sectors (21x21 TESScut cutouts) and aperture properties (scripts/eb_eclipses.py), 2026-10-19
+# span = first/last cadence (BTJD); psf_sigma = Gaussian sigma (px) fitted to the median image; npix, target_frac = pixels in and fraction of the target PSF inside the r = 1.5 / 2.5 px apertures
+# contamination = flux of the six nearest Gaia DR3 sources (30-97") in the aperture relative to the target flux in the aperture (Gaussian PSF, T from G and BP-RP)
+sector,camera,ccd,cadence_min,span_start_btjd,span_end_btjd,n_q0,psf_sigma,psf_offset_px,npix_r1.5,target_frac_r1.5,contamination_r1.5,npix_r2.5,target_frac_r2.5,contamination_r2.5
+3,2,4,30.000,1382.057,1409.370,1077,0.621,0.037,8,0.968,0.0018,21,1.001,0.0037
+30,2,4,10.000,2115.890,2143.223,3596,0.659,0.003,7,0.923,0.0013,21,1.000,0.0038
+97,2,4,3.333,3933.659,3988.288,20183,0.742,0.071,8,0.910,0.0020,21,0.998,0.0039
+104,4,4,3.334,4178.579,4205.199,10029,0.740,0.052,7,0.863,0.0013,20,0.997,0.0039
+106,2,2,3.334,4233.429,4261.877,9686,0.892,0.136,7,0.741,0.0013,20,0.982,0.0034

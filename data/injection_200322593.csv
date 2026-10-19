@@ -1,0 +1,24 @@
+# TOI-540 b = TIC 200322593: transits of the reference depth (1666 ppm peak) injected into the raw sector-98 own photometry, then detrended and measured as the data (scripts/toi540_analysis.py), 2026-10-19
+# offset_min = injected phase offset from the prediction (first row: at the prediction; others: 20 random phases, seed 7); depth at the injected phase; blind_* = highest-S/N phase of a full-phase scan
+offset_min,depth_ppm,depth_err_ppm,blind_offset_min,blind_snr,recovered_within_6min
++0.0,1647,269,-0,6.1,1
++223.2,1673,258,+224,6.4,1
++708.8,1433,260,+710,5.5,1
++491.9,1666,265,+492,6.3,1
+-490.3,1399,253,-490,5.5,1
+-356.6,1296,257,-356,5.1,1
++666.6,1356,266,+666,5.1,1
+-882.8,1308,251,-882,5.1,1
++573.2,1582,270,+574,5.9,1
++530.1,1660,271,+530,6.1,1
+-57.2,1456,264,-56,5.5,1
+-351.5,1375,257,-352,5.3,1
+-395.4,1285,255,-396,5.0,1
+-437.4,1539,261,-438,5.9,1
+-98.0,1182,264,-98,4.5,1
++8.1,1781,269,+10,6.6,1
++95.5,1629,259,+96,6.3,1
++884.2,1558,251,+884,6.2,1
++522.2,1646,270,+522,6.1,1
++218.0,1569,257,+220,6.2,1
++872.5,1807,251,+872,7.2,1

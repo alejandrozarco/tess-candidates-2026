@@ -1,0 +1,37 @@
+# TIC 11613676 = CD-30 448: geometric eclipse models fitted to 22 eclipse windows (scripts/eb_model.py), 2026-10-19
+# Parameters: P (d), Tc (BTJD of primary mid-eclipse), ecosw0/esinw0 = e cos(omega), e sin(omega) at BTJD 3979.6 (2025.78) and their rates (per yr), omdot (rad/yr),
+# i_deg = inclination (constant, or the mean i_L of the sinusoid), A_deg, Pnode_yr, tmax_yr = amplitude, period and time of maximum (yr from BTJD 3979.6) of the inclination sinusoid,
+# r1 = R1/a, k = R2/R1, J = surface-brightness ratio; fixed: third light 0, linear limb darkening 0.6 (star 1) and 0.7 (star 2); error 0 = parameter not free; chi2 for n_points with n_free parameters
+model,description,chi2,n_points,n_free,parameter,value,error
+M0,static geometry,181215.0,7027,8,P,12.1159,4.57e-06
+M0,static geometry,181215.0,7027,8,Tc,3979.6,0.000561
+M0,static geometry,181215.0,7027,8,ecosw0,0.0948133,0.000211
+M0,static geometry,181215.0,7027,8,esinw0,-0.0524223,0.0219
+M0,static geometry,181215.0,7027,8,omdot_rad_yr,0,0
+M0,static geometry,181215.0,7027,8,i_deg,86.5957,0.188
+M0,static geometry,181215.0,7027,8,r1,0.0540579,0.0015
+M0,static geometry,181215.0,7027,8,k,0.39555,0.0586
+M0,static geometry,181215.0,7027,8,J,0.178092,0.0387
+MA,apsidal motion only (inclination constant),49887.1,7027,9,P,12.1158,4.52e-06
+MA,apsidal motion only (inclination constant),49887.1,7027,9,Tc,3979.6,0.000216
+MA,apsidal motion only (inclination constant),49887.1,7027,9,ecosw0,0.0948709,8.06e-05
+MA,apsidal motion only (inclination constant),49887.1,7027,9,esinw0,-0.00979707,0.000877
+MA,apsidal motion only (inclination constant),49887.1,7027,9,omdot_rad_yr,0.209958,0.00261
+MA,apsidal motion only (inclination constant),49887.1,7027,9,i_deg,85.7515,0.0235
+MA,apsidal motion only (inclination constant),49887.1,7027,9,r1,0.0435626,0.000322
+MA,apsidal motion only (inclination constant),49887.1,7027,9,k,0.999862,0.0136
+MA,apsidal motion only (inclination constant),49887.1,7027,9,J,0.411713,0.00877
+N4,"e-vector linear in time, sinusoidal inclination",20232.5,7027,13,P,12.1155,1.19e-05
+N4,"e-vector linear in time, sinusoidal inclination",20232.5,7027,13,Tc,3979.61,0.000158
+N4,"e-vector linear in time, sinusoidal inclination",20232.5,7027,13,ecosw0,0.0935642,5.71e-05
+N4,"e-vector linear in time, sinusoidal inclination",20232.5,7027,13,decosw_dt,0.00602077,0.000137
+N4,"e-vector linear in time, sinusoidal inclination",20232.5,7027,13,esinw0,0.0286214,0.00743
+N4,"e-vector linear in time, sinusoidal inclination",20232.5,7027,13,desinw_dt,-0.0197789,0.00255
+N4,"e-vector linear in time, sinusoidal inclination",20232.5,7027,13,omdot_rad_yr,0,0
+N4,"e-vector linear in time, sinusoidal inclination",20232.5,7027,13,i_deg,84.4449,0.0528
+N4,"e-vector linear in time, sinusoidal inclination",20232.5,7027,13,A_deg,2.50461,0.0685
+N4,"e-vector linear in time, sinusoidal inclination",20232.5,7027,13,Pnode_yr,22.6119,0.95
+N4,"e-vector linear in time, sinusoidal inclination",20232.5,7027,13,tmax_yr,-0.669213,0.0844
+N4,"e-vector linear in time, sinusoidal inclination",20232.5,7027,13,r1,0.0517662,0.000416
+N4,"e-vector linear in time, sinusoidal inclination",20232.5,7027,13,k,0.373692,0.0178
+N4,"e-vector linear in time, sinusoidal inclination",20232.5,7027,13,J,0.446296,0.0346

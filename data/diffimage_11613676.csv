@@ -1,0 +1,13 @@
+# TIC 11613676 = CD-30 448: stacked difference images (out-of-eclipse quadratic model per pixel minus in-eclipse mean, +-0.09 d) per sector and eclipse (scripts/eb_eclipses.py), 2026-10-19
+# peak_snr = largest pixel S/N; free_offset_px = position of a free single-PSF fit minus the target position; chi2_null / chi2_target / chi2_best_neighbour = chi2 of no signal / a PSF at the target / a PSF at the best Gaia neighbour on the cutout (its T magnitude)
+sector,kind,n_eclipses,peak_snr,free_offset_px,chi2_null,chi2_target,chi2_best_neighbour,best_neighbour_tmag
+3,pri,2,3.9,0.25,784.1,783.6,781.1,19.91
+3,sec,2,5.3,1.07,966.4,964.9,938.6,20.03
+30,pri,2,14.6,0.06,1309.2,841.2,1249.7,16.58
+30,sec,2,12.9,0.08,1147.0,814.0,1092.2,16.58
+97,pri,4,110.8,0.04,26725.2,4304.8,23954.8,16.58
+97,sec,4,71.6,0.22,17367.6,2864.6,14158.4,16.58
+104,pri,2,68.8,0.09,25910.2,5005.8,23233.7,20.03
+104,sec,2,42.2,0.06,8343.7,2454.3,7836.3,20.03
+106,pri,2,117.7,0.19,61091.6,9947.3,50097.6,16.58
+106,sec,1,33.5,0.19,6034.9,1566.2,4793.9,16.58

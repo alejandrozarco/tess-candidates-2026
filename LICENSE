@@ -1,5 +1,5 @@
 Data (data/), figures (figures/*.svg) and text (README.md and the other Markdown files): Creative Commons Attribution 4.0 International (CC BY 4.0), https://creativecommons.org/licenses/by/4.0/
-Attribution: A. Zarco, "TESS transit candidates 2026: TIC 402710280, TIC 324429952, TIC 89247735 and TIC 455017950", 2026.
+Attribution: A. Zarco, "TESS transit candidates and two further results, 2026", 2026.
 
 Code (scripts/ and figures/make_figures.py): MIT License
 
@@ -18,6 +18,7 @@ LIABLE FOR ANY CLAIM, DAMAGES OR OTHER LIABILITY, WHETHER IN AN ACTION OF CONTRA
 CONNECTION WITH THE SOFTWARE OR THE USE OR OTHER DEALINGS IN THE SOFTWARE.
 
 Third-party material not covered: the TESS data products (NASA/MAST), the Gaia DR3 and TIC catalogue values, and the ESO/HARPS
-archive products quoted in the tables remain subject to the terms of their providers. data/triceratops/gaia_background_*.csv are
+archive products quoted in the tables remain subject to the terms of their providers; so do the ExoFOP TOI-table values of the
+control planets in scripts/targets.py. data/triceratops/gaia_background_*.csv are
 Gaia DR3 star samples drawn by TRICERATOPS;
 data/triceratops/cc_HIP74344_SOAR2019_I.txt reproduces published SOAR speckle contrast limits (Tokovinin et al. 2020).

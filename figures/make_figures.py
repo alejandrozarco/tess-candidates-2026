@@ -1,9 +1,13 @@
 #!/usr/bin/env python3
 """Regenerate the figures in figures/ from the tables in data/ (light and dark SVG variants).
-usage: python3 figures/make_figures.py [tic ...]   (needs numpy and matplotlib only; default: all targets)
+usage: python3 figures/make_figures.py [tic ...] [other]   (needs numpy and matplotlib only; default: all)
 Figures: fold_<tic>  (TTV-corrected fold of the detrended epochs with 20-min bins and the transit model),
          epochs_<tic> (one panel per transit epoch), oc_<tic> (observed minus calculated mid-transit times),
          diffimage_<tic> (per-sector difference images with the catalogue positions of nearby sources).
+'other' (README Part II): eb_history_11613676 (eclipse depth, duration and primary O-C against time, with the
+         model of eclipse_model_11613676.csv), eb_profiles_11613676 (per-sector eclipse profiles),
+         toi540_sectors (per-sector folded transits of TOI-540 b, sector 98 with and without an injected transit),
+         toi540_depths (depth per sector, and sector-98 depths of the control planets).
 """
 import csv, os, sys
 import matplotlib
@@ -143,10 +147,104 @@ def fig_diff(t, name, tic):
     fig.tight_layout(); save(fig, t, name)
 
 
+SECCOL = {3: "muted", 30: "mark3", 97: "mark", 104: "mark2", 106: "ink"}
+
+
+def fig_eb_history(t, name):
+    D = read("depths_11613676.csv"); E = read("eclipse_times_11613676.csv"); M = read("model_history_11613676.csv")
+    fig, axs = plt.subplots(1, 3, figsize=(13, 3.9)); fig.patch.set_facecolor(t["surface"])
+    mods = [m for m in ("N4", "MA") if m in set(M["model"])]
+    for kind, col, mk, lab in (("pri", t["mark"], "o", "primary"), ("sec", t["mark2"], "s", "secondary")):
+        m = (D["kind"] == kind) & np.isnan(D["limit3_pct"]); l = (D["kind"] == kind) & ~np.isnan(D["limit3_pct"])
+        axs[0].errorbar(D["year"][m], D["depth_pct"][m], D["depth_err_pct"][m], fmt=mk, color=col, ms=5, label=lab)
+        axs[0].errorbar(D["year"][l], D["limit3_pct"][l], yerr=0.25, uplims=True, fmt=mk, mfc="none", color=col, ms=5)
+        axs[1].errorbar(D["year"][m], D["T14_h"][m], D["T14_err_h"][m], fmt=mk, color=col, ms=5, label=lab)
+        for mo, ls in zip(mods, ("-", ":")):
+            mm = M["model"] == mo
+            axs[0].plot(M["year"][mm], M[f"depth_{kind}_pct"][mm], ls, color=col, lw=1.1, alpha=0.8)
+            axs[1].plot(M["year"][mm], np.where(M[f"T14_{kind}_h"][mm] > 0, M[f"T14_{kind}_h"][mm], np.nan), ls, color=col, lw=1.1, alpha=0.8)
+    u = (E["timing_set"] == 1) & (E["kind"] == "pri"); yr = 2000 + (E["t0_btjd"][u] + 2457000 - 2451544.5) / 365.25
+    axs[2].axhline(0, color=t["axis"], lw=0.8); axs[2].errorbar(yr, E["oc_min"][u], E["t0_err_min"][u], fmt="o", color=t["mark"], ms=5, capsize=2)
+    for ax, yl, ti in ((axs[0], "eclipse depth (%)", "depth (open: 3-sigma limits, sector 3)"), (axs[1], "duration $T_{14}$ (h)", "total duration"), (axs[2], "O $-$ C (min)", "primary mid-eclipse times minus linear ephemeris")):
+        ax.set_xlabel("year"); ax.set_ylabel(yl); style(ax, t); title(ax, t, ti); ax.set_xlim(2018, 2029 if ax is not axs[2] else 2027)
+    axs[0].legend(loc="upper left", fontsize=8, frameon=False, labelcolor=t["ink2"])
+    if mods:
+        axs[1].text(0.02, 0.03, "lines: " + ", ".join(f"{m} ({'solid' if i == 0 else 'dotted'})" for i, m in enumerate(mods)) + " models,\nextrapolated outside 2018.7-2026.6", transform=axs[1].transAxes, fontsize=7.5, color=t["ink2"])
+    fig.suptitle("TIC 11613676 (CD-30 448): eclipse history, TESS sectors 3, 30, 97, 104, 106", color=t["ink"], fontsize=10, x=0.01, ha="left")
+    fig.tight_layout(); save(fig, t, name)
+
+
+def fig_eb_profiles(t, name):
+    F = read("profiles_11613676.csv"); D = read("depths_11613676.csv")
+    fig, axs = plt.subplots(1, 2, figsize=(11, 4.2), sharey=True); fig.patch.set_facecolor(t["surface"])
+    for ax, kind, lab in ((axs[0], "pri", "primary eclipse"), (axs[1], "sec", "secondary eclipse")):
+        for s in sorted(set(int(x) for x in F["sector"])):
+            m = (F["sector"] == s) & (F["kind"] == kind)
+            if not m.any(): continue
+            yr = D["year"][(D["sector"] == s) & (D["kind"] == kind)][0]
+            ax.errorbar(F["dt_h"][m], F["flux"][m], F["err"][m], fmt="o-", ms=2.5, lw=0.8, color=t[SECCOL.get(s, "ink")], label=f"S{s} ({yr:.1f})")
+        ax.set_xlim(-4, 4); ax.set_xlabel("hours from mid-eclipse"); style(ax, t); title(ax, t, lab)
+    axs[0].set_ylabel("relative flux"); axs[1].legend(loc="lower right", fontsize=8, frameon=False, labelcolor=t["ink2"])
+    fig.suptitle("TIC 11613676 (CD-30 448): eclipse profiles per sector (10-min bins; SPOC 2-min SAP in S3, S30; TESScut r = 2.5 px otherwise; S3 at the predicted times)", color=t["ink"], fontsize=9.5, x=0.01, ha="left")
+    fig.tight_layout(); save(fig, t, name)
+
+
+def fig_toi540_sectors(t, name):
+    F = read("folded_200322593.csv"); T = read("transit_depths_200322593.csv")
+    sets = [x for x in ("4", "5", "6", "31", "32", "98", "98_injected") if (F["set"] == x).any()]
+    fig, axs = plt.subplots(2, 4, figsize=(13, 5.6), sharex=True, sharey=True, squeeze=False); fig.patch.set_facecolor(t["surface"])
+    for k, sname in enumerate(sets):
+        ax = axs[k // 4, k % 4]; m = F["set"] == sname
+        ax.errorbar(F["dt_min"][m], F["flux"][m], F["err"][m], fmt="o", ms=2.5, lw=0.6, color=t["ink"] if not sname.startswith("98") else t["mark2"])
+        ax.plot(F["dt_min"][m], F["model"][m], "-", color=t["mark"], lw=1.2)
+        s = int(sname.split("_")[0]); j = np.where(T["sector"] == s)[0][0]
+        lab = f"S{s} ({T['year'][j]:.1f}), {int(T['n_transits'][j])} transits\ndepth {T['depth_own_ppm'][j]:.0f} $\\pm$ {T['depth_own_err_ppm'][j]:.0f} ppm"
+        if sname == "98_injected": lab = "S98 with the reference transit injected\nat the predicted times"
+        style(ax, t); title(ax, t, lab); ax.set_xlim(-90, 90); ax.set_ylim(0.9965, 1.0015)
+        if k // 4 == 1 or k >= 4: ax.set_xlabel("minutes from predicted mid-transit")
+        if k % 4 == 0: ax.set_ylabel("relative flux")
+    for k in range(len(sets), 8): axs[k // 4, k % 4].axis("off")
+    fig.suptitle("TOI-540 b (TIC 200322593): transits folded on the sectors 4-32 ephemeris (own TPF photometry, r = 2.0 px, 2-min bins; line: reference transit)", color=t["ink"], fontsize=10, x=0.01, ha="left")
+    fig.tight_layout(); save(fig, t, name)
+
+
+def fig_toi540_depths(t, name):
+    T = read("transit_depths_200322593.csv"); Cc = read("control_planets_s98.csv")
+    fig, axs = plt.subplots(1, 2, figsize=(12, 4.2), gridspec_kw=dict(width_ratios=[1, 1.25])); fig.patch.set_facecolor(t["surface"]); ax = axs[0]
+    for col, key, dx, lab in ((t["mark"], "own", -0.06, "own TPF photometry"), (t["mark2"], "pdc", 0.06, "SPOC PDCSAP")):
+        ax.errorbar(T["year"] + dx, T[f"depth_{key}_ppm"], T[f"depth_{key}_err_ppm"], fmt="o", color=col, ms=5, capsize=2, label=lab)
+    ax.axhline(0, color=t["axis"], lw=0.8); ax.set_xlabel("year"); ax.set_ylabel("transit depth at the predicted times (ppm)")
+    style(ax, t); title(ax, t, "TOI-540 b: depth per TESS sector"); ax.legend(loc="lower left", fontsize=8, frameon=False, labelcolor=t["ink2"])
+    for x, y, s in zip(T["year"], T["depth_own_ppm"], T["sector"]): ax.annotate(f"S{int(s)}", (x, y), textcoords="offset points", xytext=(6, 6), fontsize=8, color=t["ink2"])
+    ax = axs[1]; tois = []; skipped = []
+    for toi in [x for x in dict.fromkeys(Cc["toi"]) if abs(x - 540.01) > 1e-6]:
+        m = (Cc["toi"] == toi) & ~np.isnan(Cc["snr"]) & (Cc["centroid_frac"] > 0)      # defective SPOC light curves (no centroids) are not shown
+        if not m.any(): continue
+        pre = m & (Cc["sector"] < 98); s98 = m & (Cc["sector"] == 98)
+        if not s98.any():
+            skipped.append(toi); continue
+        w = 1 / Cc["depth_err_ppm"][pre]**2; i = len(tois); tois.append(toi)
+        ref = np.sum(w * Cc["best_depth_ppm"][pre]) / w.sum() if pre.any() else Cc["toi_depth_ppm"][s98][0]   # no earlier 2-min sector: TOI-table depth
+        ax.errorbar(i, Cc["depth_ppm"][s98][0] / ref, Cc["depth_err_ppm"][s98][0] / ref, fmt="o", mfc="none", color=t["muted"], ms=5)
+        ax.errorbar(i, Cc["best_depth_ppm"][s98][0] / ref, Cc["depth_err_ppm"][s98][0] / ref, fmt="o", color=t["mark3"], ms=5)
+    o = np.where(T["sector"] == 98)[0][0]; pre = T["sector"] < 98; w = 1 / T["depth_own_err_ppm"][pre]**2; ref = np.sum(w * T["depth_own_ppm"][pre]) / w.sum()
+    ax.errorbar(len(tois), T["depth_own_ppm"][o] / ref, T["depth_own_err_ppm"][o] / ref, fmt="D", color=t["mark2"], ms=6); tois.append("540.01")
+    ax.axhline(1, color=t["axis"], lw=0.8); ax.axhline(0, color=t["axis"], lw=0.8, ls=":")
+    ax.set_xticks(range(len(tois))); ax.set_xticklabels([f"TOI-{x:.2f}" if not isinstance(x, str) else f"TOI-{x}" for x in tois], rotation=45, ha="right", fontsize=8)
+    if skipped: ax.text(0.01, 0.03, "not shown (sector-98 SPOC light curve without centroids): " + ", ".join(f"TOI-{x:.2f}" for x in skipped) + "; TOI-4981.01: relative to the TOI-table depth", transform=ax.transAxes, fontsize=7.5, color=t["ink2"])
+    ax.set_ylabel("sector-98 depth / earlier depth"); style(ax, t)
+    title(ax, t, "sector-98 depth relative to earlier sectors: control planets (filled: best\nwithin the ephemeris window; open: at the TOI-table ephemeris) and TOI-540 b")
+    fig.tight_layout(); save(fig, t, name)
+
+
 if __name__ == "__main__":
     for th, t in THEMES.items():
         plt.rcParams.update({"text.color": t["ink"], "axes.edgecolor": t["axis"], "axes.titlecolor": t["ink"]})
-        for tic in [int(x) for x in sys.argv[1:]] or TICS:
+        sel = sys.argv[1:] or [str(x) for x in TICS] + ["other"]
+        if "other" in sel:
+            fig_eb_history(t, f"eb_history_11613676_{th}.svg"); fig_eb_profiles(t, f"eb_profiles_11613676_{th}.svg")
+            fig_toi540_sectors(t, f"toi540_sectors_{th}.svg"); fig_toi540_depths(t, f"toi540_depths_{th}.svg")
+        for tic in [int(x) for x in sel if x != "other"]:
             fig_fold(t, f"fold_{tic}_{th}.svg", tic)
             fig_epochs(t, f"epochs_{tic}_{th}.svg", tic)
             fig_oc(t, f"oc_{tic}_{th}.svg", tic)

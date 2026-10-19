@@ -1,0 +1,19 @@
+# TIC 11613676 = CD-30 448: period and eclipse checks from the timing set (scripts/eb_eclipses.py), 2026-10-19
+sector,check,value,significance_or_error,note
+30,odd/even pri,0.647 / 0.813,-2.7 sigma,1 + 1 eclipses
+97,odd/even pri,5.436 / 5.433,+0.1 sigma,1 + 2 eclipses
+104,odd/even pri,4.088 / 4.130,-0.7 sigma,1 + 1 eclipses
+106,odd/even pri,4.043 / 4.022,+0.4 sigma,1 + 1 eclipses
+30,odd/even sec,0.520 / 0.583,-0.9 sigma,1 + 1 eclipses
+97,odd/even sec,2.239 / 2.239,+0.0 sigma,2 + 2 eclipses
+3,depth at phase 0.5 (3-h box),-0.001 +- 0.009 %,,2 windows
+30,depth at phase 0.5 (3-h box),+0.023 +- 0.011 %,,2 windows
+97,depth at phase 0.5 (3-h box),-0.004 +- 0.007 %,,4 windows
+104,depth at phase 0.5 (3-h box),+0.012 +- 0.012 %,,2 windows
+106,depth at phase 0.5 (3-h box),-0.003 +- 0.013 %,,2 windows
+30,secondary phase,0.5499,scatter 0.0002,2 eclipses
+97,secondary phase,0.5599,scatter 0.0015,4 eclipses
+104,secondary phase,0.5615,scatter 0.0001,2 eclipses
+106,secondary phase,0.5617,scatter 0.0000,1 eclipses
+all,secondary period minus primary period (d),+0.000852,+- 0.000008,9 secondaries
+all,d(secondary phase)/dt (per yr),+0.00212,+- 0.00002,
