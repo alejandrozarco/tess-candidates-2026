@@ -58,3 +58,5 @@ vetting record and are not recomputed by a script in this repository.
 **What this means for use.** The candidates are leads to be checked independently; nothing here is confirmed. Credit
 for confirming, refining or refuting any of them belongs to whoever does that work. Questions, checks and corrections:
 [GitHub issues](https://github.com/alejandrozarco/tess-candidates-2026/issues).
+
+**Prior-record check added later.** The catalogue and literature checks did not originally include Zenodo or code repositories. A search on 2026-10-19 found earlier independent public records of two of the candidates (TIC 402710280: R. Vora, Zenodo, 2026-10-15; TIC 89247735: F. Molina, Zenodo, 2026-10-17); they are credited in README.md sections 1.8 and 3.8.

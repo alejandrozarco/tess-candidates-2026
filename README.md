@@ -49,7 +49,7 @@ false-positive probability 0.047 (73.87 d) and 0.038 (36.93 d); the transit pred
 for the shorter period (section 5.10).
 No high-resolution imaging and no radial velocities were obtained for this work.
 The tables in `data/` are recomputed from public MAST, Gaia and ESO products by the scripts in `scripts/` (exceptions in
-section 8).
+section 8). Two of the five signals were reported publicly by others before this record: TIC 402710280 by R. Vora (Zenodo, 2026-10-15) and TIC 89247735 by F. Molina (Zenodo, 2026-10-17); see sections 1.8 and 3.8.
 
 Three further results (section 6). TIC 11613676 (CD-30 448, K dwarf, $`T = 10.50`$) is an eclipsing binary with
 $`P = 12.1158`$ d whose eclipses were absent in TESS sector 3 (2018; depth $`< 0.04`$ %), present in sector 30 (2020;
@@ -280,6 +280,16 @@ All queries were run with a positive control (a known object returned by the sam
 | 2026-10-18 | ADS (identifier strings, repeat) | no publication |
 
 Not checked: KELT and ASAS-SN light curves; catalogue tables that exist only outside the arXiv source files searched.
+
+**Independent earlier public records (found 2026-10-19).** The same 36.34-d transit signal of TIC 402710280 was
+reported independently before this record by R. Vora: a preprint, data and code, and a pre-registered transit test on
+Zenodo, first versions created 2026-10-15 between 10:15 and 11:10 UTC (doi:10.5281/zenodo.23390316,
+doi:10.5281/zenodo.23390273, doi:10.5281/zenodo.23390324), and a write-up dated 2026-10-18. That analysis reports four
+transits in sectors 39, 93, 100 and 102, a depth of about 0.21 %, $`R_\mathrm{p} \approx 3.75\,R_\oplus`$,
+transit-timing variations and a TRICERATOPS FPP of about 0.003. This record (first public version 2026-10-18 14:22 UTC)
+is therefore not the first report of the signal. The catalogue checks above did not include Zenodo or code
+repositories. A different, shallower signal (P = 3.78 d, about 300 ppm) on the same star is listed in a public all-sky
+candidate list in a GitHub repository (eumemic/exoplanets, 2026-10-09); it is not the signal analysed here.
 
 ### 1.9 Predicted transits (2026-10-18 to 2027-10-18)
 
@@ -740,6 +750,15 @@ All queries were run with a positive control.
 The live TOI and CTOI lists and the NASA Exoplanet Archive could not be queried on 2026-10-18; the ExoFOP lists of
 2026-10-15 do not contain the star, and a TOI issued after that date cannot be excluded. Archival ground-based light
 curves: section 3.11.
+
+**Independent earlier public record (found 2026-10-19).** The transit signal of TIC 89247735 was reported
+independently before this record by F. Molina: Zenodo record "Multi-year TESS transit search: two planet candidates
+with pre-registered transit predictions (TIC 89247735, TIC 317134140)", first archived version created
+2026-10-17 23:05 UTC (concept doi:10.5281/zenodo.23443244), with supporting data and pre-registered transit
+predictions (doi:10.5281/zenodo.23462437, doi:10.5281/zenodo.23462441) and the GitHub repository
+fergmolina/tess-transit-candidates (created 2026-10-17 23:01 UTC). This record (first public version for this object
+2026-10-18 19:22 UTC) is therefore not the first report of the signal. The catalogue checks above did not include
+Zenodo or code repositories.
 
 ### 3.9 Predicted transits (2026-10-18 to 2027-10-18)
 

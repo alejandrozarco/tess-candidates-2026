@@ -1,7 +1,7 @@
 cff-version: 1.2.0
 message: "If you use this material, please cite it as below. Not peer reviewed. Produced by AI models under the direction of the repository owner (see AI_DISCLOSURE.md)."
 title: "TESS transit candidates, three further results and notable eclipsing binaries, 2026"
-version: "v1.3"
+version: "v1.3.1"
 type: dataset
 doi: 10.5281/zenodo.23453967
 authors:
