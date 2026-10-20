@@ -49,7 +49,7 @@ false-positive probability 0.047 (73.87 d) and 0.038 (36.93 d); the transit pred
 for the shorter period (section 5.10).
 No high-resolution imaging and no radial velocities were obtained for this work.
 The tables in `data/` are recomputed from public MAST, Gaia and ESO products by the scripts in `scripts/` (exceptions in
-section 8). Two of the five signals were reported publicly by others before this record: TIC 402710280 by R. Vora (Zenodo, 2026-10-15) and TIC 89247735 by F. Molina (Zenodo, 2026-10-17); see sections 1.8 and 3.8. TIC 402710280 is also listed in a public duotransit table (2025-10-23), and a single sector-13 transit of TIC 324429952 was marked by a Planet Hunters TESS volunteer in 2019 (section 2.7). Earlier records of the eclipses of TIC 11613676 and of four of the binaries of section 6.3 are listed in sections 6.1.7 and 6.3.
+section 8). Two of the five signals were reported publicly by others before this record: TIC 402710280 by R. Vora (Zenodo, 2026-10-15) and TIC 89247735 by F. Molina (Zenodo, 2026-10-17); see sections 1.8 and 3.8. TIC 402710280 is also listed in a public duotransit table (2025-10-23), and a single sector-13 transit of TIC 324429952 was marked by a Planet Hunters TESS volunteer in 2019 (section 2.7). Earlier records of the eclipses of TIC 11613676 and of four of the binaries of section 6.3 are listed in sections 6.1.7 and 6.3. HIP 23309, a young M0 dwarf at 26.9 pc with two published dimming events, shows three further events of 1.9-5.7 % in TESS sectors 36, 95 and 97 (section 6.5).
 
 Three further results (section 6). TIC 11613676 (CD-30 448, K dwarf, $`T = 10.50`$) is an eclipsing binary with
 $`P = 12.1158`$ d whose eclipses were absent in TESS sector 3 (2018; depth $`< 0.04`$ %), present in sector 30 (2020;
@@ -104,6 +104,7 @@ by its M-dwarf companion falls at the conjunction predicted by the orbit.
 | `data/ephemeris_200322593.csv`, `data/transit_depths_200322593.csv` | TOI-540 b: transit shape and ephemeris from sectors 4-32; depth and mid-transit time per sector (section 6.2) |
 | `data/s98_tests_200322593.csv`, `data/injection_200322593.csv`, `data/timing_audit_200322593.csv`, `data/control_planets_s98.csv` | TOI-540 b: sector-98 tests, injected transits, time-stamp audit, control planets |
 | `data/bt_fits_200322593.csv`, `data/perturber_200322593.csv`, `data/folded_200322593.csv`, `data/ground_windows_200322593.csv` | TOI-540 b: impact parameter per epoch group; order-of-magnitude companion masses; folded light curves; ground-based transit windows |
+| `data/dips_220473309.csv` | HIP 23309: time, depth, width and rotation phase of the five dimming events (section 6.5) |
 | `data/notable_ebs_2026.csv` | the nine eclipsing binaries of section 6.3: identifiers, periods, eclipse epochs, depths, Gaia DR3 orbits |
 | `data/transit_times_311179599c.csv`, `data/fit_311179599c.csv`, `data/folded_311179599c.csv`, `data/model_311179599c.csv` | TIC 311179599, candidate second signal c: mid-times, O-C and depths of the three events; joint-fit posterior; per-event light curves and model (section 5.10) |
 | `data/period_tests_311179599c.csv`, `data/epoch_tests_311179599c.csv`, `data/completeness_311179599c.csv`, `data/predicted_transits_311179599c.csv`, `data/triceratops_input_311179599c.csv` | TIC 311179599, candidate c: tests of the periods $`P = (t_B - t_A)/n`$; every predicted epoch inside a sector; injection-recovery test of the search for further signals; predicted transits for both allowed periods; TRICERATOPS input |
@@ -2814,6 +2815,74 @@ continued fading. Tests:
   comparison with $`\kappa`$ Col (23.2 km/s).
 - Gaia DR4 (scheduled for December 2026) epoch astrometry, and speckle or adaptive-optics imaging for companions beyond
   about 0.1".
+
+### 6.5 HIP 23309: three further dimming events
+
+#### 6.5.1 Target
+
+HIP 23309 (TIC 220473309, Gaia DR3 4764027962957023104, CD-57 1054) is a young M0 dwarf at 26.9 pc
+($`G = 9.38`$, $`BP-RP = 1.92`$, parallax $`37.212 \pm 0.013`$ mas, RUWE 1.00) with a rotation period of 8.70 d
+(VSX: type TTS/ROT, 8.729 d). Gollotti et al. (2024, RNAAS 8, 293) reported two dimming events in TESS sectors 35 and
+62, about 2 % and 8 % deep and 1.4-1.8 d long, and stated that a search of the other available data found no third
+event. The star lies in the TESS southern continuous viewing zone; 2-min data exist for 41 sectors (932 d of good data).
+
+#### 6.5.2 Events
+
+Five events, the two published ones (C1, C2) and three not previously reported (N1, N2, N3), measured in SPOC SAP
+light curves against a quasi-periodic Gaussian-process baseline fitted with the event masked (`data/dips_220473309.csv`;
+the range in brackets covers three baseline models):
+
+| id | sector | minimum (BTJD) | date (UTC) | depth (%) | FWHM (d) | ingress / egress (d) |
+|---|---|---|---|---|---|---|
+| C1 | 35 | 2277.906 | 2021-03-04 | 2.14 (1.65-2.72) | 0.73 | 0.48 / 0.31 |
+| N1 | 36 | 2291.822 | 2021-03-18 | 5.72 (5.7-7.1) | 0.77 | 0.33 / 0.60 |
+| C2 | 62 | 3007.510 | 2023-03-04 | $`\geq 6.47`$ | 0.85 | - |
+| N3 | 95 | 3897.198 | 2025-08-09 | 2.28 (2.3-2.8) | 0.65 | 0.42 / 0.21 |
+| N2 | 97 | 3971.573 | 2025-10-23 | 1.88 (1.9-2.7) | 1.02 | 0.40 / 0.38 |
+
+The minimum of C2 falls in a 5.3-h interval of flagged cadences that contains a momentum dump; its depth is a lower
+limit. The depths agree between SAP, PDCSAP, 20-s SAP (N1: 6.04 and 6.03 %; N3: 1.79 and 1.79 %) and aperture
+photometry of TESScut cutouts in four apertures. N1 is 13.9 d after C1.
+
+#### 6.5.3 Checks
+
+All five events were tested in the same way; C1 and C2 serve as positive controls.
+
+| test | result |
+|---|---|
+| quality flags and momentum dumps | none within the N1, N2 and C1 events (nearest dumps 1.9-3.7 d away); the flagged scattered-light interval before N3 ends 0.5 d before its ingress |
+| background | varies by 0.07-0.10 % of the stellar flux within $`\pm 1.5`$ d; a fit of the stellar PSF plus a constant to the cutout pixels assigns 0.2-0.3 % of the event signal to the constant |
+| neighbours | PSF fits of every Gaia DR3 source within 120"; the target is preferred by $`\Delta\chi^2`$ = 24 000-52 000; the only source within 60" ($`G = 16.6`$, 32") would have to lose more than its total flux |
+| common mode | 20 stars on the same camera and CCD in each sector: deficit $`\leq 0.29`$ % (median $`\leq 0.04`$ %) at the event times |
+| solar-system objects | JPL SB-Ident and Horizons (observer TESS): nearest objects $`V \approx 25`$-26 at $`\geq 0.97`$ deg |
+| starspot evolution | curvature of the light curve in the events 7.9-78 % d$`^{-2}`$, against a 99th percentile of 5.2 % d$`^{-2}`$ outside them (all 41 sectors) |
+| periodicity | no single period above 4.68 d fits all five events without predicting $`\geq 177`$ unobserved events in covered data; spacings of 13.92 d and 74.37 d are excluded by 60 of 67 and 10 of 10 covered predicted epochs; spacings of 1605-1694 d are not constrained; no residual ($`\leq 0.35`$ %) at 1-3 rotation periods from any event |
+| independent searches | a template search recovers all five events; a Gaussian-process search recovers N1, C2, N3, N2 and finds no further event above about 1 % |
+
+#### 6.5.4 Catalogue and literature checks
+
+| date (UTC) | source | result |
+|---|---|---|
+| 2026-10-20 | Gollotti et al. 2024 (article and AAS 245 abstract); Crossref and ADS for errata | events C1 and C2 only; no erratum |
+| 2026-10-20 | ADS full text (about 55 identifier strings), arXiv sources, SIMBAD references (147) | later papers cite C1 and C2 only |
+| 2026-10-20 | ExoFOP (TOI and CTOI lists, target page) | no TOI, CTOI, files or notes |
+| 2026-10-20 | Planet Hunters TESS Talk | one comment on C2 (2023-04-29); none on N1, N2, N3 |
+| 2026-10-20 | Zenodo, GitHub, TNS, general web search | no record of N1, N2 or N3 |
+| 2026-10-20 | MAST data-validation products | SPOC sector-36 threshold-crossing event at BTJD 2291.798 (automated, not reviewed); none in sectors 95 and 97 at the event times |
+
+Not checked: ASAS-SN light curves (service unavailable on 2026-10-20), ATLAS (the star is saturated), Gaia epoch
+photometry (none in DR3).
+
+#### 6.5.5 Interpretation and decisive tests
+
+The events do not repeat with any single period, are not tied to the rotation phase, differ in depth (about 2-7 %) and
+shape (N1 has a slower egress than ingress), and last about 1 d. The star shows no infrared excess in WISE
+($`K_s - W3 = 0.19`$, $`K_s - W4 = 0.33`$ mag). Transient occultations by circumstellar dust clouds are compatible with
+these properties; a single companion on a periodic orbit, rotationally modulated structures and starspot evolution are
+disfavoured by the periodicity and curvature tests above. No interpretation is established. Photometry in several
+bands during a future event (wavelength-dependent depth for small dust grains) and spectroscopy during an event
+(transient absorption lines) would test the dust interpretation; Gaia DR4 epoch photometry and ASAS-SN light curves
+would extend the event record.
 
 ## 7. Caveats
 

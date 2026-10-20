@@ -1,0 +1,13 @@
+# HIP 23309 (TIC 220473309, Gaia DR3 4764027962957023104): dimming events in TESS SPOC 2-min SAP light curves (README section 6.5)
+# id = event label (C = published by Gollotti et al. 2024, RNAAS 8, 293; N = not previously reported); sector = TESS sector
+# t_min_btjd = time of minimum (BTJD = BJD_TDB - 2457000); utc_date = calendar date of the minimum
+# depth_pct = depth below a quasi-periodic Gaussian-process baseline fitted with the event masked; depth_min_pct, depth_max_pct = range over three baselines (GP, rotation template, local cubic)
+# fwhm_d = full width at half depth (d); ingress_d, egress_d = durations of the descending and ascending branches (d); empty = not measured
+# rot_phase = rotation phase of the minimum after the preceding spot minimum (P_rot = 8.70 d)
+# note = remarks; values from the vetting record of 2026-10-20 (no script in this repository)
+id,sector,t_min_btjd,utc_date,depth_pct,depth_min_pct,depth_max_pct,fwhm_d,ingress_d,egress_d,rot_phase,note
+C1,35,2277.906,2021-03-04,2.14,1.65,2.72,0.73,0.48,0.31,0.08,published
+N1,36,2291.822,2021-03-18,5.72,5.7,7.1,0.77,0.33,0.60,0.70,slow egress; a SPOC sector-36 threshold-crossing event (epoch 2291.798) exists
+C2,62,3007.510,2023-03-04,6.47,6.5,7.2,0.85,,,0.29,published; minimum in a 5.3-h flagged gap with a momentum dump at 3007.744; depth is a lower limit; profile has a shoulder
+N3,95,3897.198,2025-08-09,2.28,2.3,2.8,0.65,0.42,0.21,0.98,flagged scattered-light interval ends 0.5 d before ingress
+N2,97,3971.573,2025-10-23,1.88,1.9,2.7,1.02,0.40,0.38,0.50,round-bottomed
