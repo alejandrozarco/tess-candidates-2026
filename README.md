@@ -49,7 +49,7 @@ false-positive probability 0.047 (73.87 d) and 0.038 (36.93 d); the transit pred
 for the shorter period (section 5.10).
 No high-resolution imaging and no radial velocities were obtained for this work.
 The tables in `data/` are recomputed from public MAST, Gaia and ESO products by the scripts in `scripts/` (exceptions in
-section 8). Two of the five signals were reported publicly by others before this record: TIC 402710280 by R. Vora (Zenodo, 2026-10-15) and TIC 89247735 by F. Molina (Zenodo, 2026-10-17); see sections 1.8 and 3.8. TIC 402710280 is also listed in a public duotransit table (2025-10-23), and a single sector-13 transit of TIC 324429952 was marked by a Planet Hunters TESS volunteer in 2019 (section 2.7).
+section 8). Two of the five signals were reported publicly by others before this record: TIC 402710280 by R. Vora (Zenodo, 2026-10-15) and TIC 89247735 by F. Molina (Zenodo, 2026-10-17); see sections 1.8 and 3.8. TIC 402710280 is also listed in a public duotransit table (2025-10-23), and a single sector-13 transit of TIC 324429952 was marked by a Planet Hunters TESS volunteer in 2019 (section 2.7). Earlier records of the eclipses of TIC 11613676 and of four of the binaries of section 6.3 are listed in sections 6.1.7 and 6.3.
 
 Three further results (section 6). TIC 11613676 (CD-30 448, K dwarf, $`T = 10.50`$) is an eclipsing binary with
 $`P = 12.1158`$ d whose eclipses were absent in TESS sector 3 (2018; depth $`< 0.04`$ %), present in sector 30 (2020;
@@ -2119,6 +2119,11 @@ consistent with a fit that averages two eclipsed and two non-eclipsed epochs. TC
 (sector-30 epochs BTJD 2125.86 and 2137.99). Neither event became a TOI. No publication or catalogue gives a period or
 an eclipsing-binary classification for the star.
 
+**Earlier public record (found 2026-10-19).** The sector-30 eclipses were tagged as those of an eclipsing binary by
+six Planet Hunters TESS volunteers (subject 52591980, 2020-11-27 to 2020-12-04; "V-shaped", eccentric), and the star is
+in the Planet Hunters TESS eclipsing-binary candidate list (GitHub orionlee/pht_eb_stats2). No period, no record of the
+absence of eclipses in sector 3 and no depth or timing analysis was found.
+
 Not checked: RAVE spectra beyond the catalogue values; the Gaia RVS and XP spectra; archival ground-based light curves
 (ASAS-SN, ATLAS, WASP, KELT).
 
@@ -2384,6 +2389,20 @@ $`T_{14}`$ (FWHM where stated); `depth_note` in the CSV file gives the photometr
 value. The periods of the five systems with more than three eclipses come from the mid-times of 13-75 primary eclipses
 (QLP SAP light curves, O $`-`$ C rms 2.0-7.3 min). Where both exist, the NSS period agrees with the eclipse period
 within 0.5-2.1 $`\sigma`$.
+
+**Earlier public records (found 2026-10-19/20).** Four of the nine stars have earlier public records of their
+eclipses, which the checks of 2026-10-18 did not include:
+
+| TIC | record | date (UTC) | content |
+|---|---|---|---|
+| 120522352 | Planet Hunters TESS, subject 51632908 (sector 29); Planet Hunters TESS eclipsing-binary candidate list (GitHub orionlee/pht_eb_stats2) | 2020-11-09 to 2020-11-20 | six volunteers tag it an eclipsing binary; one gives the primary and secondary eclipse times and an 8.5-d period |
+| 382523691 | Planet Hunters TESS, subject 51617210 (sector 29); same candidate list | 2020-11-10 to 2020-11-15 | three volunteers tag it an eclipsing binary; no period |
+| 245068282 | Planet Hunters TESS, subjects 119912589, 121060940, 121060958 (sectors 38 and 101) | 2026-04-27 to 2026-06-03 | tagged an eclipsing binary with $`P = 1.708`$ d; the eclipses located on TIC 245068282 rather than TIC 245068274 by a centroid offset |
+| 342194997 | Zenodo record of T. Chopard-Vilhem, "Eclipsing binaries at the conjunctions predicted by near-edge-on Gaia DR3 astrometric orbits" (doi:10.5281/zenodo.23342416) | 2026-10-13 17:56 | the sector-100 QLP dip at BTJD 4091.14 (4.6 %) at the predicted conjunction, flagged on target and not catalogued, in the data files |
+
+For these four stars this record adds the analyses above, not the first report of the eclipses. No earlier record was
+found for TIC 13957664, 304936165, 261702897, 265436769 and 433642561 (Planet Hunters TESS Talk text search, the
+candidate list above, the Chopard-Vilhem data files, Zenodo and GitHub searches, 2026-10-19/20).
 
 **TIC 13957664** ($`G = 11.60`$, 245 pc, RUWE 2.92). One U-shaped eclipse, 2.0 % deep and 7.8 h long (FWHM), at
 BTJD 4310.16 (sector 108); the other five sectors (5, 31, 32, 98, 107) show no eclipse. Propagated by Monte Carlo over
