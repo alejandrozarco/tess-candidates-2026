@@ -242,6 +242,12 @@ in `runs.csv`); they do not represent an observation.
 
 ### 1.7 Archival radial velocities
 
+The ESO Science Archive also holds 30 FEROS science exposures with the object name "TIC-402710280" (2023-08-13 to
+2026-09-25; programmes 0111.A-9018, 0111.A-9019, 112.2666, 112.2667, 113.26XR, 113.26XS, 113.26Y2, 114.27SH and
+117.2ARX; PIs J. Vines, M. L. Moyano D'Angelo and D. Anderson), 28 of them public. Their header coordinates lie 67-94" from
+the star, outside the search box used on 2026-10-18 (found 2026-10-20). The star has therefore been monitored
+spectroscopically since August 2023. These spectra are not analysed here.
+
 The ESO Science Archive holds fifteen HARPS science exposures of the star: two public (2025-08-25 and 2025-08-26, programme
 112.261U.004) and thirteen proprietary (2026-02-20 to 2026-04-12, programme 116.29B6.001, release 2027-02 to 2027-04, not accessed). The
 two public epochs were retrieved anonymously (`data/harps_public_rvs.csv`, with the archive identifiers and checksums)
