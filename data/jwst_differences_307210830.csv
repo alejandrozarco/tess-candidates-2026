@@ -1,0 +1,10 @@
+# differences between visits in the joint JWST fits of data/jwst_fits_307210830.csv (posterior median and 84th - 50th, 50th - 16th percentiles), 2026-10-21
+# dT14_min = T14(second visit) - T14(first visit); db = b(second) - b(first); names: d_1224 = GTO 1224 (2023-06-25), d_4098b = GO 4098 observation 2 (2024-03-12), c_2512a/b = GO 2512 observations 15/16, b_3942a/b/c = GO 3942 observations 1/2/3
+fit,planet,pair,aR_mode,variant,dT14_min,dT14_plus,dT14_minus,db,db_plus,db_minus
+jfit_d_nrs2_joint,d,d_4098b minus d_1224,free,nominal,-0.69,0.24,0.24,0.0041,0.0015,0.0014
+jfit_d_nrs2_joint_t10,d,d_4098bt10 minus d_1224t10,free,first 10 min removed,-0.65,0.25,0.23,0.0038,0.0014,0.0015
+jfit_d_nrs2_joint_mim,d,d_4098bmim minus d_1224,free,GO 4098 cut to the pre-ingress coverage of GTO 1224,-0.84,0.25,0.27,0.0050,0.0017,0.0015
+jfit_d_nrs2_joint_aR33.6,d,d_4098b minus d_1224,33.6,nominal,-0.60,0.29,0.26,0.0028,0.0012,0.0014
+jfit_c_2512_joint,c,c_2512b minus c_2512a,free,nominal,0.63,0.37,0.35,-0.0265,0.0143,0.0265
+jfit_b_3942_joint,b,b_3942b minus b_3942a,free,nominal,-1.58,0.71,0.59,0.0801,0.0650,0.0336
+jfit_b_3942_joint,b,b_3942c minus b_3942a,free,nominal,-0.42,0.45,0.47,0.0259,0.0436,0.0279

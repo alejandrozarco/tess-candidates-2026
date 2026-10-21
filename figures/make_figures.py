@@ -10,6 +10,8 @@ Figures: fold_<tic>  (TTV-corrected fold of the detrended epochs with 20-min bin
          toi540_depths (depth per sector, and sector-98 depths of the control planets).
 'c311179599': epochs_311179599c (the three events of the candidate second transit signal with the joint model).
 'eb124751008': eb_depths_124751008 (eclipse depth of TIC 124751008 against time, with the inclination models).
+'tdv': tdv_307210830 (per-sector transit duration of L 98-59 d with the JWST fits and the linear fit; controls b and c),
+       tdv_296739893 (per-sector transit duration and width of TOI-620 b in three photometries).
 """
 import csv, os, sys
 import matplotlib
@@ -272,10 +274,57 @@ def fig_eb_depths_124(t, name):
     fig.tight_layout(); save(fig, t, name)
 
 
+def _lin(x, y, e, x0=2022.0):
+    A = np.vstack([np.ones_like(x), x - x0]).T; W = 1 / e**2
+    cov = np.linalg.inv(A.T @ (A * W[:, None])); c = cov @ (A.T @ (W * y)); return c
+
+
+def fig_tdv_l9859(t, name):
+    D = read("durations_307210830.csv"); S = read("duration_slopes_307210830.csv"); J = read("jwst_fits_307210830.csv")
+    fig, axs = plt.subplots(1, 2, figsize=(13, 4.6), gridspec_kw=dict(width_ratios=[1.35, 1])); fig.patch.set_facecolor(t["surface"]); ax = axs[0]
+    m = (D["planet"] == "d") & (D["variant"] == "2m_pdc_ttv") & (D["in_regression"] == 1)
+    x, y, e = D["year"][m], D["T14_min"][m], D["T14_err_min"][m]
+    ax.errorbar(x, y, e, fmt="o", color=t["mark"], ms=4.5, capsize=2, label="TESS, one point per sector (2-min PDCSAP; template a/R* = 34.8)")
+    c = _lin(x, y, e); xx = np.array([2018.4, 2026.8]); j = np.where((S["planet"] == "d") & (S["variant"] == "2m_pdc_ttv") & (S["quantity"] == "T14"))[0][0]
+    ax.plot(xx, c[0] + c[1] * (xx - 2022), "-", color=t["mark"], lw=1.2, label=f"linear fit, {S['slope_per_yr'][j]:+.2f} $\\pm$ {S['slope_err_per_yr'][j]:.2f} min/yr")
+    for arm, fmt, col, lab in (("free", "D", t["mark2"], "JWST, a/R* free"), ("33.6", "s", t["mark3"], "JWST, a/R* = 33.6")):
+        k = (J["planet"] == "d") & (J["mode"] == "single") & (J["aR_mode"] == arm)
+        ax.errorbar(J["year"][k], J["T14_min"][k], [J["T14_minus"][k], J["T14_plus"][k]], fmt=fmt, color=col, ms=6, capsize=2, label=lab + " (GTO 1201, GTO 1224, GO 4098)")
+    ax.set_xlim(2018.4, 2026.8); ax.set_xlabel("year"); ax.set_ylabel("transit duration T14 (min)"); style(ax, t)
+    title(ax, t, "L 98-59 d: transit duration (first to fourth contact) per TESS sector and per JWST visit\n(absolute values depend on the a/R* of each fit; the slopes are the compared quantity)")
+    ax.legend(loc="upper right", fontsize=7.5, frameon=False, labelcolor=t["ink2"])
+    ax = axs[1]
+    for p, col, off in (("d", t["mark"], 0.0), ("c", t["mark3"], 0.05), ("b", t["mark2"], -0.05)):
+        v = "2m_pdc_ttv" if p != "b" else "2m_pdc_lin"
+        m = (D["planet"] == p) & (D["variant"] == v) & (D["in_regression"] == 1); x, y, e = D["year"][m], D["T14_min"][m], D["T14_err_min"][m]
+        mu = np.sum(y / e**2) / np.sum(1 / e**2); j = np.where((S["planet"] == p) & (S["variant"] == v) & (S["quantity"] == "T14"))[0][0]
+        ax.errorbar(x + off, y - mu, e, fmt="o", color=col, ms=3.5, capsize=1.5, alpha=0.9, label=f"{p}: {S['slope_per_yr'][j]:+.2f} $\\pm$ {S['slope_err_per_yr'][j]:.2f} min/yr")
+        c = _lin(x, y - mu, e); ax.plot(xx, c[0] + c[1] * (xx - 2022), "-", color=col, lw=1.0)
+    ax.axhline(0, color=t["axis"], lw=0.8); ax.set_xlim(2018.4, 2026.8); ax.set_xlabel("year"); ax.set_ylabel("T14 minus weighted mean (min)"); style(ax, t)
+    title(ax, t, "same data and code: planets b, c and d\n(per-sector T14 relative to the mean; lines: linear fits)")
+    ax.legend(loc="lower left", fontsize=7.5, frameon=False, labelcolor=t["ink2"])
+    fig.tight_layout(); save(fig, t, name)
+
+
+def fig_tdv_toi620(t, name):
+    D = read("durations_296739893.csv")
+    fig, axs = plt.subplots(1, 2, figsize=(12, 4.2)); fig.patch.set_facecolor(t["surface"])
+    for ax, q, lab in ((axs[0], "T14", "transit duration T14 (min), b-only fit"), (axs[1], "w", "width w relative to the template")):
+        for v, col, fmt, off, nm in (("2m_pdc_sec", t["mark"], "o", 0.0, "SPOC PDCSAP"), ("2m_sap_pt", t["mark2"], "s", 0.06, "SPOC SAP"),
+                                     ("own_r1.5_sec", t["mark3"], "D", -0.06, "own TPF, r = 1.5 px"), ("own_r3.0_sec", t["muted"], "^", 0.12, "own TPF, r = 3.0 px")):
+            if q == "T14" and v == "own_r3.0_sec": continue
+            m = D["variant"] == v; y = D[q if q == "w" else "T14_min"][m]
+            lo = D["w_lo" if q == "w" else "T14_lo_min"][m]; hi = D["w_hi" if q == "w" else "T14_hi_min"][m]
+            ax.errorbar(D["year"][m] + off, y, [y - lo, hi - y], fmt=fmt, color=col, ms=5, capsize=2, label=nm)
+        ax.set_xlabel("year"); ax.set_ylabel(lab); style(ax, t); ax.legend(loc="lower left", fontsize=8, frameon=False, labelcolor=t["ink2"])
+    title(axs[0], t, "TOI-620 b: transit duration per TESS sector (8, 35, 62, 89, 99)"); title(axs[1], t, "TOI-620 b: time-stretch factor w of the transit template (free depth)")
+    fig.tight_layout(); save(fig, t, name)
+
+
 if __name__ == "__main__":
     for th, t in THEMES.items():
         plt.rcParams.update({"text.color": t["ink"], "axes.edgecolor": t["axis"], "axes.titlecolor": t["ink"]})
-        sel = sys.argv[1:] or [str(x) for x in TICS] + ["other", "c311179599", "eb124751008"]
+        sel = sys.argv[1:] or [str(x) for x in TICS] + ["other", "c311179599", "eb124751008", "tdv"]
         if "other" in sel:
             fig_eb_history(t, f"eb_history_11613676_{th}.svg"); fig_eb_profiles(t, f"eb_profiles_11613676_{th}.svg")
             fig_toi540_sectors(t, f"toi540_sectors_{th}.svg"); fig_toi540_depths(t, f"toi540_depths_{th}.svg")
@@ -283,7 +332,9 @@ if __name__ == "__main__":
             fig_epochs_c(t, f"epochs_311179599c_{th}.svg")
         if "eb124751008" in sel:
             fig_eb_depths_124(t, f"eb_depths_124751008_{th}.svg")
-        for tic in [int(x) for x in sel if x not in ("other", "c311179599", "eb124751008")]:
+        if "tdv" in sel:
+            fig_tdv_l9859(t, f"tdv_307210830_{th}.svg"); fig_tdv_toi620(t, f"tdv_296739893_{th}.svg")
+        for tic in [int(x) for x in sel if x not in ("other", "c311179599", "eb124751008", "tdv")]:
             fig_fold(t, f"fold_{tic}_{th}.svg", tic)
             fig_epochs(t, f"epochs_{tic}_{th}.svg", tic)
             fig_oc(t, f"oc_{tic}_{th}.svg", tic)

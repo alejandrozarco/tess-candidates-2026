@@ -1,0 +1,14 @@
+# L 98-59 d: joint fits of the 2-min PDCSAP transits in four epoch groups (scripts/transit_duration/v5_groups.py), 2026-10-21
+# transits stacked on the sinusoidal TTV model (period 404 d, semi-amplitude 1.70 min; chi2 of the per-transit times 150.5 linear, 107.9 with the sinusoid, 77 transits);
+# quadratic limb darkening with a Gaussian prior (0.17, 0.44) +- 0.1; per-transit quadratic baseline profiled; aR_mode = free (common a/R* fitted) or 33.6 (a/R* fixed by a prior 33.6 +- 0.02)
+# model A: common k and a/R*, b per group (k_A, aR_A, b_A, T14_A); model F: k, a/R* and b per group (k_F, aR_F, b_F, T14_F, T23_F); for aR_mode 33.6 only k and b are free in F
+# dchi2_A_vs_C = chi2(one geometry) - chi2(A), 3 extra parameters; dchi2_L_vs_C: b linear in time (1 extra parameter, slope db_dt_L per yr); dchi2_F_vs_A: k and a/R* per group
+aR_mode,year,sectors,n_transits,k_A,aR_A,b_A,T14_A_min,k_F,aR_F,b_F,T14_F_min,T23_F_min,dchi2_A_vs_C,dchi2_L_vs_C,dchi2_F_vs_A,db_dt_L
+free,2019.144,2 8 9 10 11 12,18,0.04414,38.92,0.8715,50.48,0.04406,37.44,0.8788,51.43,34.32,86.9,82.0,4.5,0.00773
+free,2021.083,28 29 32 35 36 37 38 39,22,0.04414,38.92,0.8995,46.54,0.04636,33.61,0.9268,49.38,22.85,86.9,82.0,4.5,0.00773
+free,2023.281,61 62 63 64 65 69,17,0.04414,38.92,0.9098,44.97,0.04414,42.10,0.8945,43.70,27.34,86.9,82.0,4.5,0.00773
+free,2025.452,87 88 89 90 96 98,20,0.04414,38.92,0.9253,42.47,0.04333,42.55,0.9086,41.17,24.04,86.9,82.0,4.5,0.00773
+33.6,2019.144,2 8 9 10 11 12,18,0.04424,33.60,0.9100,52.08,0.04390,33.60,0.9080,52.36,30.44,81.9,76.9,1.5,0.00565
+33.6,2021.083,28 29 32 35 36 37 38 39,22,0.04424,33.60,0.9308,48.14,0.04458,33.60,0.9306,48.26,22.01,81.9,76.9,1.5,0.00565
+33.6,2023.281,61 62 63 64 65 69,17,0.04424,33.60,0.9385,46.57,0.04546,33.60,0.9403,46.46,16.69,81.9,76.9,1.5,0.00565
+33.6,2025.452,87 88 89 90 96 98,20,0.04424,33.60,0.9493,44.24,0.04447,33.60,0.9488,44.40,11.50,81.9,76.9,1.5,0.00565

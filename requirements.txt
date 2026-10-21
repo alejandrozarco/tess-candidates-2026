@@ -11,3 +11,5 @@ requests==2.34.2          # scripts/toi540_timing.py (JPL Horizons)
 # TRICERATOPS runs were made in a separate environment: triceratops==1.1.0, numpy==1.26.4, astropy==7.2.3,
 # lightkurve==2.5.1, pandas==3.0.6, scipy==1.13.1, pytransit==2.2.0, batman-package==2.5.3
 # scripts/fit_free_dilution.py was run with Python 3.11.15: emcee==3.1.6, batman-package==2.5.1, numpy==1.26.4, scipy==1.13.1
+# scripts/transit_duration/ (sections 6.6, 6.7) were run with Python 3.11.15: numpy==1.26.4, scipy==1.13.1, astropy==7.2.3,
+# astroquery==0.4.11, batman-package==2.5.3, emcee==3.1.6

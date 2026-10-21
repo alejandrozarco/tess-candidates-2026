@@ -1,0 +1,9 @@
+# TOI-620 b: two-source decomposition of the mean out-of-transit minus in-transit difference image of each sector (scripts/transit_duration/p1_tpf.py, p2_psf.py; SPOC 2-min target pixel files), 2026-10-21
+# two Gaussian PSFs (common width) fitted to the median image: the target and the neighbour TIC 296739875; the difference image fitted with the two PSFs plus a constant (amplitudes in e-/s per pixel at the peak)
+# share_neighbour = fraction of the fitted transit signal (amplitude times PSF sum) on the neighbour; free_offset_px = distance of a free-position single-PSF fit of the difference image from the target
+sector,n_transits,separation_px,flux_ratio_neighbour_target,amp_target,amp_target_err,amp_neighbour,amp_neighbour_err,share_neighbour,free_offset_px
+8,4,2.65,1.125,11.69,0.26,0.66,0.26,0.053,0.15
+35,4,2.64,1.120,9.43,0.26,-1.00,0.26,-0.118,0.07
+62,4,2.65,1.140,8.66,0.21,0.56,0.21,0.061,0.13
+89,5,2.62,1.170,5.80,0.38,0.17,0.38,0.029,0.40
+99,2,2.55,1.120,8.20,0.57,1.66,0.59,0.168,0.16

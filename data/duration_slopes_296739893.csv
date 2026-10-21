@@ -1,0 +1,20 @@
+# TOI-620 = TIC 296739893: slopes of the per-sector T14, b and w of data/durations_296739893.csv, 2026-10-21
+# weighted linear fit against year (reference 2022.0) of the per-sector values with in_regression = 1; errors T14_err_min, (b_hi - b_lo)/2, (w_hi - w_lo)/2 (floors 0.05 min, 1e-4, 1e-3);
+# slope_err = formal error times sqrt(max(1, chi2_linear/dof)); z = slope/slope_err; chi2_constant = chi2 about the weighted mean; ols_slope, bootstrap_err = unweighted fit and its
+# scatter over 2000 bootstrap resamples of the sectors (resamples spanning less than 1 yr skipped); units: T14 in min/yr, b and w per yr
+target,planet,variant,quantity,n_sectors,slope_per_yr,slope_err_per_yr,z,chi2_linear,chi2_constant,dof,ols_slope_per_yr,bootstrap_err_per_yr,bootstrap_z
+TOI-620,b,2m_pdc_sec,T14,5,-2.858,0.407,-7.03,6.53,113.96,3,-2.822,0.463,-6.09
+TOI-620,b,2m_pdc_sec,b,5,0.01132,0.00133,8.48,4.68,116.79,3,0.01080,0.00153,7.07
+TOI-620,b,2m_pdc_sec,w,5,-0.0789,0.0154,-5.13,8.51,83.13,3,-0.0562,0.0236,-2.38
+TOI-620,b,2m_pdc_pt,T14,5,-2.677,0.385,-6.95,6.48,110.95,3,-2.739,0.438,-6.25
+TOI-620,b,2m_pdc_pt,b,5,0.01068,0.00126,8.49,4.60,114.96,3,0.01048,0.00149,7.04
+TOI-620,b,2m_pdc_pt,w,5,-0.0654,0.0152,-4.31,9.20,66.15,3,-0.0460,0.0273,-1.69
+TOI-620,b,2m_sap_pt,T14,5,-2.991,0.279,-10.72,2.92,117.83,3,-2.947,0.361,-8.15
+TOI-620,b,2m_sap_pt,b,5,0.01145,0.00107,10.69,1.52,115.78,3,0.01103,0.00102,10.79
+TOI-620,b,2m_sap_pt,w,5,-0.0805,0.0134,-6.02,4.40,57.63,3,-0.0659,0.0174,-3.78
+TOI-620,b,own_r1.5_sec,T14,5,-2.823,0.336,-8.41,1.61,72.37,3,-2.868,0.279,-10.27
+TOI-620,b,own_r1.5_sec,b,5,0.01115,0.00133,8.38,1.21,71.36,3,0.01107,0.00096,11.59
+TOI-620,b,own_r1.5_sec,w,5,-0.0916,0.0112,-8.15,1.25,67.69,3,-0.0828,0.0085,-9.70
+TOI-620,b,own_r3.0_sec,T14,5,-1.579,0.474,-3.33,1.95,13.07,3,-1.588,0.495,-3.21
+TOI-620,b,own_r3.0_sec,b,5,0.00534,0.00157,3.40,1.68,13.27,3,0.00508,0.00149,3.40
+TOI-620,b,own_r3.0_sec,w,5,-0.1073,0.0191,-5.61,1.79,33.27,3,-0.0715,0.0229,-3.12

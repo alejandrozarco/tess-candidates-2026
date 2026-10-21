@@ -2,9 +2,10 @@
 
 Transit candidates TIC 402710280, TIC 324429952, TIC 89247735, TIC 455017950 and TIC 311179599 (sections 1-5), with a
 candidate second transit signal on TIC 311179599 (section 5.10); the eclipsing binaries TIC 11613676 and TIC 124751008
-and the planet TOI-540 b (sections 6.1, 6.4, 6.2); nine new eclipsing binaries (section 6.3).
+and the planet TOI-540 b (sections 6.1, 6.4, 6.2); nine new eclipsing binaries (section 6.3); candidate decreases of the
+transit durations of the known planets L 98-59 d and TOI-620 b (sections 6.6, 6.7).
 
-Status: computational results from public data, not peer reviewed. Date of this record: 2026-10-19 (UTC). Author: A. Zarco.
+Status: computational results from public data, not peer reviewed. Date of this record: 2026-10-21 (UTC); first version 2026-10-18. Author: A. Zarco.
 
 > [!IMPORTANT]
 > **Produced by AI models** under the direction of the repository owner; not peer reviewed, and not checked by a
@@ -68,6 +69,16 @@ change by up to 43 min between consecutive cycles. The geometric models require 
 with a minimum near 2024.3 (a sinusoid gives a period of about 20 yr), as nodal precession by a third body would
 produce; the star has no variable-star or eclipsing-binary entry in the catalogues checked (section 6.4).
 
+Two known planets are candidates for a decreasing transit duration. L 98-59 d (TOI-175.02, $`b \approx 0.92`$) shows
+$`\mathrm{d}T_{14}/\mathrm{d}t = -1.17 \pm 0.12`$ min/yr in per-sector fits of the TESS 2-min data from 2018.7 to 2025.96
+(about 52 to 44 min; the error is conditional on a fixed transit shape, and most of the leverage comes from four
+observing campaigns), while planets b and c show no change in the same data, and three public JWST transits
+(2022.99-2024.20), refitted here, decline at a consistent rate at modest significance; an earlier search by Bessho et al.
+(2025) found a change of the same sign that was not significant (section 6.6). TOI-620 b is a weaker candidate: its
+transit duration falls from about 80 min (2019) to about 62 min (2025-2026) in five TESS sectors
+($`-2.9 \pm 0.4`$ min/yr, $`p \approx 0.006`$ with three degrees of freedom; the slope depends on the aperture), and its
+transit times vary by up to about $`\pm 7`$ min between sectors, consistent in amplitude with the earlier TTV report by Naponiello (2026; section 6.7).
+
 Nine eclipsing binaries without a previous eclipse report in the catalogues checked (section 6.3): TIC 13957664, a
 single 2.0 % eclipse at the conjunction predicted by its Gaia DR3 astrometric+spectroscopic orbit ($`P = 245.66`$ d,
 $`i = 91.1 \pm 0.8`$ deg); TIC 304936165, an eccentric 61.7-d Gaia SB1 with one eclipse per orbit near periastron;
@@ -105,13 +116,16 @@ by its M-dwarf companion falls at the conjunction predicted by the orbit.
 | `data/s98_tests_200322593.csv`, `data/injection_200322593.csv`, `data/timing_audit_200322593.csv`, `data/control_planets_s98.csv` | TOI-540 b: sector-98 tests, injected transits, time-stamp audit, control planets |
 | `data/bt_fits_200322593.csv`, `data/perturber_200322593.csv`, `data/folded_200322593.csv`, `data/ground_windows_200322593.csv` | TOI-540 b: impact parameter per epoch group; order-of-magnitude companion masses; folded light curves; ground-based transit windows |
 | `data/dips_220473309.csv` | HIP 23309: time, depth, width and rotation phase of the five dimming events (section 6.5) |
+| `data/durations_307210830.csv`, `data/duration_slopes_307210830.csv`, `data/groupfit_307210830.csv`, `data/transit_times_307210830.csv` | L 98-59 d: per-sector transit duration, impact parameter and width of d, of the controls b and c and of injected copies of d, with all variants; their slopes; joint fits in four epoch groups; per-transit mid-times (section 6.6) |
+| `data/jwst_fits_307210830.csv`, `data/jwst_differences_307210830.csv` | L 98-59: fits of the public JWST white-light curves of b, c and d (refitted here); differences between visits in the joint fits (section 6.6) |
+| `data/durations_296739893.csv`, `data/duration_slopes_296739893.csv`, `data/transit_times_296739893.csv`, `data/diffimage_296739893.csv` | TOI-620 b: per-sector transit duration, impact parameter and width in four photometries; their slopes; per-transit mid-times and widths; two-source decomposition of the difference images (section 6.7) |
 | `data/notable_ebs_2026.csv` | the nine eclipsing binaries of section 6.3: identifiers, periods, eclipse epochs, depths, Gaia DR3 orbits |
 | `data/transit_times_311179599c.csv`, `data/fit_311179599c.csv`, `data/folded_311179599c.csv`, `data/model_311179599c.csv` | TIC 311179599, candidate second signal c: mid-times, O-C and depths of the three events; joint-fit posterior; per-event light curves and model (section 5.10) |
 | `data/period_tests_311179599c.csv`, `data/epoch_tests_311179599c.csv`, `data/completeness_311179599c.csv`, `data/predicted_transits_311179599c.csv`, `data/triceratops_input_311179599c.csv` | TIC 311179599, candidate c: tests of the periods $`P = (t_B - t_A)/n`$; every predicted epoch inside a sector; injection-recovery test of the search for further signals; predicted transits for both allowed periods; TRICERATOPS input |
 | `data/sectors_124751008.csv`, `data/eclipse_times_124751008.csv`, `data/depths_124751008.csv`, `data/predicted_eclipses_124751008.csv` | TIC 124751008: sectors, bleed-column masking and contamination; per-eclipse fits and O-C; depth per sector and secondary limits; predicted eclipses (section 6.4) |
 | `data/inclinations_124751008.csv`, `data/model_history_124751008.csv` | TIC 124751008: per-eclipse inclinations and $`i(t)`$ fits; model eclipse depths 2018.5-2030 |
-| `figures/` | `fold_`, `epochs_`, `oc_`, `diffimage_` figures (sections 1-5) and `epochs_311179599c` (sections 1-5), `eb_history_11613676`, `eb_profiles_11613676`, `toi540_sectors`, `toi540_depths`, `eb_depths_124751008` (section 6), light and dark SVG, made by `figures/make_figures.py` from `data/` |
-| `scripts/` | download, photometry, fit, difference images, alias/secondary search, event checks, dilution correction, Gaia companion limits, prediction, TRICERATOPS and table scripts; SED fit and free-dilution fit (TIC 89247735, TIC 455017950); `fit_second_signal.py` (section 5.10); `other_download.py`, `eb_eclipses.py`, `eb_model.py`, `eb_124751008.py`, `toi540_analysis.py`, `toi540_controls.py`, `toi540_timing.py` (section 6) |
+| `figures/` | `fold_`, `epochs_`, `oc_`, `diffimage_` figures (sections 1-5) and `epochs_311179599c` (sections 1-5), `eb_history_11613676`, `eb_profiles_11613676`, `toi540_sectors`, `toi540_depths`, `eb_depths_124751008`, `tdv_307210830`, `tdv_296739893` (section 6), light and dark SVG, made by `figures/make_figures.py` from `data/` |
+| `scripts/` | download, photometry, fit, difference images, alias/secondary search, event checks, dilution correction, Gaia companion limits, prediction, TRICERATOPS and table scripts; SED fit and free-dilution fit (TIC 89247735, TIC 455017950); `fit_second_signal.py` (section 5.10); `other_download.py`, `eb_eclipses.py`, `eb_model.py`, `eb_124751008.py`, `toi540_analysis.py`, `toi540_controls.py`, `toi540_timing.py` (section 6); `transit_duration/` (sections 6.6 and 6.7: downloads, light-curve windows, timing, per-sector and group fits, injections, JWST white-light fits, TOI-620 pixel photometry and difference images; drivers `run_l9859.sh`, `run_toi620.sh`; tables `make_tables_td.py`) |
 | `requirements.txt`, `LICENSE`, `CITATION.cff`, `.zenodo.json`, `MANIFEST.sha256` | environment, licence, citation metadata, checksums |
 
 Lines starting with `#` in the CSV files are comments that identify the file and its columns.
@@ -2889,6 +2903,379 @@ disfavoured by the periodicity and curvature tests above. No interpretation is e
 bands during a future event (wavelength-dependent depth for small dust grains) and spectroscopy during an event
 (transient absorption lines) would test the dust interpretation; Gaia DR4 epoch photometry and ASAS-SN light curves
 would extend the event record.
+
+### 6.6 L 98-59 d: decreasing transit duration, 2019-2025
+
+L 98-59 d (Kostov et al. 2019) is a 1.6 $`R_\oplus`$ planet on a 7.45-d orbit around an M3 dwarf at 10.6 pc, with a
+high impact parameter ($`b \approx 0.92`$). In per-sector fits of the TESS 2-min light curves, its transit duration
+decreases from about 52 min in 2018-2019 to about 44 min in 2025 ($`-1.17 \pm 0.12`$ min/yr), while the durations of
+planets b and c, measured in the same data with the same code, are constant. Three public JWST transits (2022.99-2024.20),
+refitted here, give durations that decrease at a rate consistent with the TESS trend, at modest significance. This
+section reports a candidate decrease of the transit duration that survived the checks listed below; a change of the
+orbit is not established. Bessho et al. (2025, arXiv:2512.08530) searched earlier for transit-duration variations of
+this planet (section 6.6.6).
+
+The planet was selected in a search of 802 known TESS planets for changes of transit depth or duration between
+epoch groups (2018-2026). Of 96 pipeline flags, six remained after artefact classification and a bootstrap over
+transits: three published cases (TOI-1355 b, TOI-1518 b and TOI-216 b), the unexplained TOI-540 b sector-98
+non-detection (section 6.2), and the duration-change candidates L 98-59 d and TOI-620 b (section 6.7). The significances below are not
+corrected for that search. The values of this section come from the scripts in `scripts/transit_duration/` (section
+6.6.3), not from the search pipeline.
+
+#### 6.6.1 Target
+
+| quantity | value | source |
+|---|---|---|
+| identifiers | L 98-59, TOI-175, TIC 307210830, Gaia DR3 5271055243163629056, 2MASS J08180763-6818468, TYC 9193-2365-1, UCAC4 109-016513 | ExoFOP, TIC v8.2 |
+| position (ICRS, epoch 2016.0) | RA 124.5328961, Dec $`-`$68.3145130 | Gaia DR3 |
+| proper motion (mas/yr); parallax (mas) | 94.794, $`-340.084`$; $`94.266 \pm 0.016`$ (10.61 pc) | Gaia DR3 |
+| $`G`$, $`BP-RP`$, $`T`$; RUWE | 10.606, 2.504, 9.412; 1.272 | Gaia DR3; TIC v8.2 |
+| star | M3 dwarf; $`M_\star = 0.2923 \pm 0.0067\,M_\odot`$, $`R_\star = 0.3155 \pm 0.0062\,R_\odot`$ | Kostov et al. (2019); Cadieux et al. (2025) |
+| TIC contamination ratio | 0.003 | TIC v8.2 |
+| planets | b, c, d transiting ($`P`$ = 2.2531140, 3.6906764, 7.450729 d); e and f non-transiting (12.83 and 23.06 d) | Cadieux et al. (2025) |
+| planet d (one geometry for TESS sectors 2-90) | $`R_\mathrm{p} = 1.627 \pm 0.041\,R_\oplus`$, $`b = 0.921 \pm 0.007`$, $`i = 88.44 \pm 0.05`$ deg, $`t_{14} = 0.84 \pm 0.04`$ h, transit-timing variations $`< 3`$ min with $`P_\mathrm{TTV} = 396`$ d | Cadieux et al. (2025) |
+| nearby eclipsing binaries | TIC 307210817 (80", $`\Delta T = 4.2`$, 10.43 d; Kostov et al. 2019); TIC 307210845 (54", $`\Delta T = 6.6`$, 1.0492 d; about 200 ppm eclipses in the SPOC light curves of L 98-59, removed by Cadieux et al. 2025) | Kostov et al. (2019); Cadieux et al. (2025) |
+
+#### 6.6.2 Data
+
+TESS: SPOC 2-min light curves of 27 sectors (sectors 2-98; MAST) and SPOC 20-s light curves of 20 sectors (28-98),
+quality flag 0, PDCSAP and SAP fluxes. Sector 5 contains no transit of d with the coverage required below. tess-point
+0.9.5.post1 places the star on silicon in these 27 sectors only, up to sector 134 (2028-08-30).
+
+| epoch group | sectors (camera/CCD) | SPOC versions | transits of d used, 2 min | 20 s |
+|---|---|---|---|---|
+| 2018.7-2019.4 | 2 (4/3), 5 (4/4), 8 (4/1), 9 (4/1), 10 (3/4), 11 (3/3), 12 (4/2) | spoc-5.0.11 to 5.0.23 | 18 | - |
+| 2020.6-2021.4 | 28, 29 (4/3), 32 (4/4), 35 (4/1), 36 (3/4), 37 (3/3), 38, 39 (4/2) | spoc-5.0.9 to 5.0.35 | 22 | 23 |
+| 2023.1-2023.7 | 61, 62 (4/1), 63 (3/4), 64, 65 (3/3), 69 (4/3) | spoc-5.0.86 to 5.0.100 | 17 | 16 |
+| 2025.0-2025.96 | 87 (4/4), 88, 89 (4/1), 90 (3/4), 96 (4/3), 98 (4/4) | spoc-5.0.115 to 5.0.126 | 20 | 23 |
+
+JWST: the MAST stage-3 white-light products (`*_whtlt.ecsv`, public) of the three visits that cover a transit of d and
+are public, refitted here; and, as controls, those of six visits of b and c.
+
+| planet | programme (PI as in MAST) | observation, date (UTC) | instrument | product column used |
+|---|---|---|---|---|
+| d | GTO 1201 (D. Lafreniere) | 311, 2022-12-28 | NIRISS SOSS | `whitelight_flux_order_1` |
+| d | GTO 1224 (S. Birkmann) | 1, 2023-06-25 | NIRSpec G395H | `whitelight_flux_NRS2` |
+| d | GO 4098 (B. Benneke) | 2, 2024-03-12 | NIRSpec G395H | `whitelight_flux_NRS2` |
+| d | GO 4098 (B. Benneke) | 1, 2023-12-28 | NIRISS SOSS | not used (point-to-point scatter of the white light about 8500 ppm) |
+| d | GO 10498 (M. M. Murphy) | 4, 2026-08-01 | NIRSpec G395H | exclusive access (MAST release date 2027-08-01) |
+| c | GTO 1201 (D. Lafreniere) | 302, 2025-03-02 | NIRISS SOSS | `whitelight_flux_order_1` |
+| c | GO 2512 (N. Batalha) | 16, 2023-07-09; 15, 2023-07-13 | NIRSpec G395H | `whitelight_flux_NRS2` |
+| b | GO 3942 (M. Damiano) | 1, 2, 3; 2024-01-30 to 2024-02-06 | NIRSpec G395H | `whitelight_flux_NRS2` |
+
+The `whitelight_flux_NRS1` columns of the NIRSpec products used are about half negative and were not used; the
+published analyses of these visits (Gressier et al. 2024; Bessho et al. 2025) used their own reductions, including
+NRS1.
+
+#### 6.6.3 Method
+
+`scripts/transit_duration/` (usage in `run_l9859.sh`).
+
+- Windows: $`\pm 0.16`$ d around each predicted transit (ephemerides of Cadieux et al. 2025); points within
+  $`\pm(T_{14}/2 + 36\ \mathrm{min})`$ of transits of the other two planets are removed; a transit is used if at least 80 % of
+  its predicted in-transit cadences remain and at least 0.04 d (58 min) of data remain on each side.
+- Model: batman, circular orbit, quadratic limb darkening, 2-min exposure integration; a quadratic polynomial in time
+  per transit is profiled analytically; points more than 4 $`\sigma`$ above (flares) or 6 $`\sigma`$ below the model are
+  removed with one cadence on each side; per-transit errors from the residual scatter.
+- Timing: mid-time of each transit from a $`\chi^2`$ scan of the template over $`\pm 20`$ min
+  (`data/transit_times_307210830.csv`); O $`-`$ C rms 2.5 min. A sinusoid of period 404 d and semi-amplitude
+  1.7 min (Cadieux et al. 2025: 396 d) lowers $`\chi^2`$ from 150 to 108 for 77 transits; transits are stacked on this
+  model unless stated.
+- Common shape (template): one fit of $`k`$, $`a/R_\star`$, $`b`$ and the limb darkening (Gaussian prior
+  $`(0.17, 0.44) \pm 0.1`$, Claret 2017, TESS band, 3500 K, $`\log g = 5`$) to all 77 transits: $`k = 0.0453`$,
+  $`a/R_\star = 34.80`$, $`b = 0.9257`$, $`u = (0.190, 0.460)`$.
+- Per sector: (i) $`b`$ alone fitted with $`k`$, $`a/R_\star`$ and the limb darkening fixed at the template, giving
+  $`T_{14}`$ (first to fourth contact); error interval where $`\chi^2 - \chi^2_\mathrm{min} \le s^2`$,
+  $`s^2 = \max(1, \chi^2_\mathrm{min}/\mathrm{dof})`$. (ii) A time-stretch factor $`w`$ of the template with free amplitude
+  (a width measure that does not use the $`b`$-$`T_{14}`$ relation, but uses the template shape).
+- Slopes: weighted linear fits of the per-sector values against time, errors scaled by $`\sqrt{\chi^2/\mathrm{dof}}`$
+  when that exceeds 1, and an unweighted fit with a bootstrap over sectors (`data/duration_slopes_307210830.csv`).
+- Group fits: the transits of the four epoch groups fitted jointly with common $`k`$, $`a/R_\star`$ and limb darkening and
+  one $`b`$ per group, with $`a/R_\star`$ free or fixed at 33.6 (the value implied by the stellar density of Cadieux et al.
+  2025), and with $`k`$ and $`b`$ free per group (`data/groupfit_307210830.csv`).
+- JWST: the white-light curve normalised, the first 3 min removed, 5 $`\sigma`$ outliers about a 31-point running
+  median removed; model batman times a quadratic polynomial in time and an exponential ramp, limb darkening free;
+  errors = residual scatter times the red-noise factor $`\beta`$ (1.4-1.65 for the d visits); emcee, 40 walkers, 3000
+  steps. Single-visit fits with $`a/R_\star`$ free or fixed at 33.6, and a joint fit of the two NIRSpec visits with
+  common $`k`$, $`a/R_\star`$ and limb darkening.
+
+#### 6.6.4 Results
+
+TESS, per epoch group (`data/durations_307210830.csv`, `data/groupfit_307210830.csv`; the per-sector values are in the
+figure):
+
+| epoch group | sectors | transits | $`T_{14}`$, per-sector mean (min) | $`w`$, per-sector mean | group fit, common $`a/R_\star = 38.9`$: $`b`$; $`T_{14}`$ (min) | group fit, $`a/R_\star = 33.6`$: $`b`$; $`k`$; $`T_{14}`$ (min) |
+|---|---|---|---|---|---|---|
+| 2019.14 | 2, 8-12 | 18 | $`52.2 \pm 0.6`$ | $`1.139 \pm 0.022`$ | 0.872; 50.5 | 0.908; 0.0439; 52.4 |
+| 2021.08 | 28-39 | 22 | $`48.4 \pm 0.6`$ | $`1.021 \pm 0.021`$ | 0.900; 46.5 | 0.931; 0.0446; 48.3 |
+| 2023.28 | 61-69 | 17 | $`46.7 \pm 0.6`$ | $`0.951 \pm 0.022`$ | 0.910; 45.0 | 0.940; 0.0455; 46.5 |
+| 2025.45 | 87-98 | 20 | $`44.4 \pm 0.5`$ | $`0.881 \pm 0.020`$ | 0.925; 42.5 | 0.949; 0.0445; 44.4 |
+
+Per-sector mean: weighted mean of the per-sector fits with the template ($`a/R_\star = 34.8`$). Absolute $`T_{14}`$
+values depend on the adopted $`a/R_\star`$ by 1-2 min; the changes do not. In the group fits a $`b`$ per group improves
+$`\chi^2`$ by 87 (3 parameters) over one geometry, and $`b`$ linear in time by 82 (1 parameter); with $`a/R_\star = 33.6`$,
+82 and 77. With $`k`$ also free per group, $`k`$ = 0.0439-0.0455 shows no trend while $`b`$ increases.
+
+Trend of the 26 per-sector values (2-min PDCSAP, baseline):
+
+$$\mathrm{d}T_{14}/\mathrm{d}t = -1.17 \pm 0.12\ \mathrm{min\,yr^{-1}},\quad \mathrm{d}b/\mathrm{d}t = +0.0061 \pm 0.0006\ \mathrm{yr^{-1}},\quad \mathrm{d}w/\mathrm{d}t = -0.038 \pm 0.004\ \mathrm{yr^{-1}},$$
+
+with $`\chi^2 = 18.4`$ for 24 degrees of freedom about the line and 115 about a constant; the unweighted fit with a
+bootstrap over sectors gives $`-1.17 \pm 0.11`$ min/yr. These errors are conditional on the fixed $`k`$, $`a/R_\star`$ and
+limb darkening of the template; propagating the uncertainty of the common geometry gives about 0.13 min/yr (independent
+check of the fit outputs, no script in this repository). The quotient of slope and error is not a false-alarm
+significance: most of the leverage comes from the four observing campaigns, and with a free offset per campaign the
+variation within campaigns alone gives about 2 $`\sigma`$ (same check).
+
+JWST, per visit (`data/jwst_fits_307210830.csv`, `data/jwst_differences_307210830.csv`):
+
+| visit | year | $`T_{14}`$, $`a/R_\star`$ free (min) | $`b`$, $`a/R_\star`$ free | $`a/R_\star`$ | $`T_{14}`$, $`a/R_\star = 33.6`$ (min) | $`b`$, $`a/R_\star = 33.6`$ | $`k`$, $`a/R_\star = 33.6`$ |
+|---|---|---|---|---|---|---|---|
+| GTO 1201 obs. 311, NIRISS SOSS | 2022.992 | $`45.30^{+0.44}_{-0.42}`$ | $`0.925^{+0.005}_{-0.008}`$ | $`36.6^{+1.5}_{-1.0}`$ | $`46.42^{+0.29}_{-0.24}`$ | $`0.9379 \pm 0.0010`$ | 0.0431 |
+| GTO 1224 obs. 1, NIRSpec G395H | 2023.481 | $`44.20^{+0.41}_{-0.40}`$ | $`0.920^{+0.007}_{-0.009}`$ | $`38.7^{+1.5}_{-1.3}`$ | $`45.70^{+0.24}_{-0.23}`$ | $`0.9427 \pm 0.0009`$ | 0.0443 |
+| GO 4098 obs. 2, NIRSpec G395H | 2024.195 | $`43.62^{+0.42}_{-0.47}`$ | $`0.925^{+0.008}_{-0.011}`$ | $`38.5^{+1.9}_{-1.5}`$ | $`45.10^{+0.31}_{-0.26}`$ | $`0.9455 \pm 0.0011`$ | 0.0444 |
+
+Linear fits across the three visits: $`T_{14}`$ $`-1.36 \pm 0.51`$ min/yr ($`a/R_\star`$ free; 2.6 $`\sigma`$) and
+$`-1.08 \pm 0.32`$ min/yr ($`a/R_\star = 33.6`$); $`b`$ $`+0.0062 \pm 0.0012`$ yr$`^{-1}`$ ($`a/R_\star = 33.6`$). The TESS
+values over the same years are $`-1.17`$ min/yr and $`+0.006`$ yr$`^{-1}`$, and the JWST $`b`$ at $`a/R_\star = 33.6`$
+(0.938, 0.943, 0.946) lie on the TESS group values at the same $`a/R_\star`$ (0.940 in 2023.3, 0.949 in 2025.5). Joint fit
+of the two NIRSpec visits (same instrument and band): $`\Delta T_{14}`$ (2024.20 minus 2023.48) $`= -0.69 \pm 0.24`$ min
+(2.9 $`\sigma`$, before any uncertainty of the systematics model) and $`\Delta b = +0.0041 \pm 0.0015`$; TESS gives
+$`-0.84`$ min for this interval. Removing the first 10 min of both visits gives $`-0.65 \pm 0.24`$ min; cutting the
+GO 4098 visit to the 38.7 min of data before mid-transit of the GTO 1224 visit gives $`-0.84 \pm 0.26`$ min (the
+GTO 1224 light curve starts about 17 min before ingress, the GO 4098 light curve about 107 min); $`a/R_\star = 33.6`$
+gives $`-0.60 \pm 0.28`$ min. Fixing $`a/R_\star`$ at 33.6 instead of fitting it shifts the single-visit durations by
+1.1-1.5 min, comparable to the whole decline across the three visits. The JWST data support the TESS trend in sign,
+size and $`b`$ at modest significance; they are not an independent detection.
+
+<picture><source srcset="figures/tdv_307210830_dark.svg" media="(prefers-color-scheme: dark)"><img src="figures/tdv_307210830_light.svg" alt="L 98-59 d transit duration per TESS sector and per JWST visit; planets b and c in the same data"></picture>
+
+#### 6.6.5 Checks
+
+| check | result |
+|---|---|
+| time stacking (`data/duration_slopes_307210830.csv`) | per-transit mid-times $`-1.13 \pm 0.12`$; linear ephemeris $`-1.14 \pm 0.12`$; linear ephemeris plus one offset per sector $`-1.15 \pm 0.11`$ min/yr; a 1.7-min timing variation cannot produce a 7-min change of $`T_{14}`$ |
+| flux | SAP $`-1.22 \pm 0.12`$ min/yr |
+| cadence | 20-s PDCSAP (20 sectors, 2020-2025; same photons as the 2-min data) $`-1.13 \pm 0.15`$ min/yr; $`w`$ $`-0.029 \pm 0.006`$ yr$`^{-1}`$ |
+| overlapping transits | only the 58 transits without points of b or c in the window (25 sectors): $`-1.17 \pm 0.14`$ min/yr |
+| control planets, same data and code | c: $`-0.03 \pm 0.08`$ min/yr (27 sectors, $`b`$ = 0.41 template); b: $`+0.18 \pm 0.15`$ min/yr (26 sectors; sector 35 at the grid edge left out) |
+| constant-geometry injections | a copy of d with $`b = 0.915`$ injected into the PDCSAP flux at phases 0.30 and 0.62 of d, full chain re-run: $`-0.29 \pm 0.15`$ and $`+0.12 \pm 0.14`$ min/yr |
+| radius ratio | group fits with $`k`$ free per group: 0.0439, 0.0446, 0.0455, 0.0445 ($`a/R_\star = 33.6`$), no trend |
+| dilution | CROWDSAP 0.992-0.998 in all sectors; TIC contamination ratio 0.003; a constant extra flux in the aperture changes the depth, not the contact times |
+| JWST controls, same code | c: two NIRSpec transits 3.7 d apart differ by $`+0.63^{+0.37}_{-0.35}`$ min; c in NIRISS (2025.17) 74.98 min against 73.9-74.6 min (NIRSpec, 2023.5) and 74-75 min (TESS); b: three NIRSpec transits within 7 d give 59.9, 58.3 and 59.4 min (errors 0.4-0.6 min). The b and c pairs suggest single-visit JWST errors 1.5-2 times larger than quoted |
+| independent check of the fit outputs (no script in this repository) | camera/CCD offsets added: $`-1.22 \pm 0.13`$ min/yr; CROWDSAP and FLFRCSAP as covariates: $`-1.23 \pm 0.14`$; each epoch group left out in turn: $`-0.95`$ to $`-1.31`$; other baseline orders, shorter windows, no flare clipping, free common limb darkening: $`-1.08`$ to $`-1.19`$; eclipses of the 1.0492-d binary (recovered at $`P = 1.049183`$ d, about 195 ppm) masked: $`-1.17`$ to $`-1.19`$ min/yr, and $`\Delta\chi^2 \approx 75`$ for a changing $`b`$; $`k`$ and limb darkening free per group: $`\Delta\chi^2`$ for a changing $`b`$ reduced from 82 to about 44; NIRSpec pair with other polynomial orders and with or without the ramp: $`-0.70`$ to $`-0.81`$ min |
+
+Limits of these checks: SAP and PDCSAP, and the 2-min and 20-s data, share photons and upstream processing; the
+injections enter the extracted light curves and do not test the extraction or the PDC correction; two injection phases
+do not calibrate a false-alarm rate; changing surface brightness along the chord of d near the stellar limb (spots,
+faculae) is not modelled, and the stability of b and c, which cross other chords, does not exclude it.
+
+#### 6.6.6 Comparison with published fits
+
+| publication | data (epoch) | $`b`$ | $`a/R_\star`$ | $`T_{14}`$ |
+|---|---|---|---|---|
+| Kostov et al. (2019) | TESS sectors 2, 5, 8 (2018.6-2019.1) | 0.89 (0.75-0.93) | 37.4 (36.2-38.5) | 0.91 (0.74-1.68) h = 55 min, eccentricity free; 50.3 min for the median $`b`$, $`a/R_\star`$, $`k`$ and a circular orbit |
+| Demangeon et al. (2021) | TESS sectors 2, 5, 8-12, 28, 29 (2018.6-2020.7), with ESPRESSO and HARPS | $`0.922 \pm 0.059`$ | $`33.7^{+1.9}_{-1.7}`$ | $`0.84^{+0.15}_{-0.20}`$ h = 50.4 min |
+| Gressier et al. (2024) | JWST GTO 1224, NIRSpec NRS1 (2023.48) | $`0.9230^{+0.0032}_{-0.0034}`$ | $`37.10 \pm 0.45`$ (prior $`37.1 \pm 0.5`$) | not given; 45.5 min for their $`b`$, $`a/R_\star`$, $`k`$ |
+| Cadieux et al. (2025) | TESS sectors 2-90, 25 sectors (2018.6-2025.3), one geometry for all | $`0.921 \pm 0.007`$ | 33.8 (from $`i = 88.44`$ deg) | $`0.84 \pm 0.04`$ h = 50.4 min |
+| Bessho et al. (2025) | JWST GO 4098 obs. 2, NIRSpec NRS1 (2024.20) | free (not tabulated) | free | $`0.7225 \pm 0.0077`$ h = $`43.35 \pm 0.46`$ min |
+| this section | TESS per sector, 2018.7-2025.96 | 0.893 (2018.7) to 0.948 (2025.96) | 34.8 (template) | 53.3 (2018.7) to 43.2 min (2025.96); group means 52.2, 48.4, 46.7, 44.4 min |
+| this section | JWST, three visits (2022.99-2024.20) | 0.920-0.925 (free) | 36.6-38.7 | 45.30, 44.20, 43.62 min ($`a/R_\star`$ free) |
+
+Zhou et al. (2023) fitted HST WFC3 transits of d with the inclination and $`a/R_\star`$ fixed at the values of Demangeon et
+al. (2021). Cadieux et al. (2025) fitted one geometry to all sectors; this is not a test of a change. Bessho et al. (2025) compared their 2024 JWST duration with published TESS durations from Kostov et al. (2019;
+three sectors) and Demangeon et al. (2021; nine sectors through 2020-09), finding $`\Delta\tau = -0.14 \pm 0.18`$ h
+($`0.77\,\sigma`$), consistent with no change. Their uncertainty reflects the published earlier-duration constraints.
+The per-sector analysis here uses additional epochs and different geometry constraints, giving $`-6.1 \pm 0.6`$ min
+from 2019.0 to 2024.2 conditional on the template; the significance measures are not directly comparable. Their JWST transit is the GO 4098 visit fitted here (an independent reduction of the
+same transit, not another epoch); their $`43.35 \pm 0.46`$ min (NRS1) agrees with $`43.62^{+0.42}_{-0.47}`$ min (NRS2,
+$`a/R_\star`$ free) here. The mid-times fitted here agree with the JWST mid-times listed by Cadieux et al. (2025) to 1.4 s
+(GO 4098, d) and 1.6 s (GTO 1201 obs. 302, c); for GTO 1201 obs. 311 (d) the listed BJD 2459941.79320 differs from
+the fit here (BJD 2459942.29308) by 0.4999 d, i.e. the fitted time is later by half a day minus about 10 s.
+
+#### 6.6.7 Catalogue and literature checks
+
+| date (UTC) | source | result |
+|---|---|---|
+| 2026-10-20 to 21 | ADS: 56 records with L 98-59 in the abstract; full text with "transit duration variation", TDV, "nodal precession", "impact parameter variation", CHEOPS (all aliases) | Bessho et al. (2025) is the only publication that tests the duration of d for a change; Cadieux et al. (2025) state that the JWST transits of GTO 1201 and GO 4098 will be presented by Benneke et al. (in preparation), not found on 2026-10-21 |
+| 2026-10-20 | arXiv API (all aliases) | 28 records returned; the original negative conclusion is superseded by the earlier TDV search of Bessho et al. (2025, arXiv:2512.08530), discussed in section 6.6.6 |
+| 2026-10-20 | Zenodo; GitHub code search | 17 Zenodo records (atmospheres, tidal heating, spectra); GitHub: catalogues and visualisations; no record of a duration change |
+| 2026-10-20 | Planet Hunters TESS Talk; ExoFOP target page (240 files) | discovery-era tags and comments; latest TFOP time-series uploads of 2019; no note on a duration change |
+| 2026-10-20 | general web search | nothing found |
+
+#### 6.6.8 Interpretation
+
+A narrowing transit with a nearly constant freely fitted radius ratio (group fits above) is what a slow change of the orbital inclination to the line of sight
+would produce: at $`a/R_\star = 33.6`$ the measured $`\mathrm{d}b/\mathrm{d}t \approx +0.006`$ yr$`^{-1}`$ corresponds to
+$`\mathrm{d}i/\mathrm{d}t \approx -0.010`$ deg/yr. Nodal precession of the orbit of d driven by the other planets of the
+system (c, e and f lie within a factor of four in period) is one mechanism that could produce such a rate for a
+mutual inclination of order 1 deg; this is an order-of-magnitude statement, not a model of the system. The data do not
+establish a change of the orbit: the evidence rests on four observing campaigns of one instrument, with modest
+support from three JWST visits, and the checks of section 6.6.5 leave campaign-dependent systematics and stellar
+surface features along the chord as open alternatives. No interpretation is established. If a linear trend continued,
+$`b`$ would reach $`1 + k`$ (no transit) after about 2040; this is an extrapolation, not a prediction.
+
+#### 6.6.9 Predictions and decisive tests
+
+- JWST GO 10498 (PI M. M. Murphy), NIRSpec G395H, observation 4 on 2026-08-01 (BTJD 4253.62 predicted mid-transit),
+  exclusive access until 2027-08-01. If the TESS trend continued linearly, its $`T_{14}`$ is $`2.8 \pm 0.3`$ min shorter
+  than that of the GO 4098 transit of 2024-03-12 in the same kind of fit: about 40.8 min with $`a/R_\star`$ free
+  (43.6 min in 2024.20) and about 41.8-42.5 min with $`a/R_\star = 33.6`$ (45.1 min in 2024.20), with
+  $`b \approx 0.960 \pm 0.004`$ at $`a/R_\star = 33.6`$; an unchanged duration would give values near those of 2024.20.
+  A joint fit of the 2023, 2024 and 2026 NIRSpec transits with one reduction is the most direct test.
+- TESS: no additional sector after sector 98 through sector 134 (midpoint 2028-08-30, scheduled end 2028-09-13) covers the star according to
+  tess-point 0.9.5.post1; sectors beyond 134 were not checked.
+- Archival data that would add epochs: an own extraction of the NIRISS GO 4098 observation 1 (2023-12-28) from the
+  rate files; NRS1 white light of the GTO 1224 and GO 4098 visits; the HST WFC3 transits of d (programme 15856 visit 7,
+  2020-11-26; programme 16448, 2023-04-01; partial orbital coverage); CHEOPS visits, if any; ground-based light curves
+  (ExoFOP, 2019).
+- Analysis: one joint inference over TESS and JWST with the stellar density, band-dependent limb darkening, depth and
+  dilution free, the 1.0492-d binary modelled, and constant against changing geometry compared; injections before
+  extraction and over many phases to calibrate a false-alarm rate; a significance corrected for the 802-planet
+  search.
+
+Not checked: HST WFC3 transits of d (not refitted); CHEOPS (the archive at `cheops.esac.esa.int` did not resolve and the
+Geneva archive timed out on 2026-10-21, so whether CHEOPS observed d is not known); ground-based light curves on
+ExoFOP and of ExTrA; the NIRISS GO 4098 observation 1 (2023-12-28; the pipeline white light has a point-to-point scatter
+of about 8500 ppm, and a robust rebuild from the `x1dints` file about 2000 ppm, too noisy to use); NIRSpec NRS1; the
+eclipses of the 1.0492-d binary in the fits of the scripts here (they enter only the independent check above); spot
+crossings; the Reddit and non-English web.
+
+Reproduction: `sh scripts/transit_duration/run_l9859.sh` and `sh scripts/transit_duration/run_toi620.sh` (the table script needs the outputs of both), then `python scripts/transit_duration/make_tables_td.py`, from
+the repository root, in an environment with numpy, scipy, astropy, astroquery, batman-package and emcee (the values here
+were computed with Python 3.11.15, numpy 1.26.4, scipy 1.13.1, astropy 7.2.3, astroquery 0.4.11, batman-package 2.5.3,
+emcee 3.1.6); `python3 figures/make_figures.py tdv` for the figures. The SPOC light curves were retrieved on 2026-10-21,
+the JWST products on 2026-10-21. A complete re-run of the scripts reproduces the slopes of all TESS variants to within
+0.02 min/yr (SAP, 20 s, b and c identically), the group fits to 0.1 min in $`T_{14}`$ and the JWST durations and their
+differences to 0.1 min (the emcee chains are not seeded); the per-transit mid-times depend slightly on the starting
+values of the common-shape fit (rms 0.3 min). The JWST light curves were refitted here from the public MAST products; they
+are not the reductions of the programme teams.
+
+References of this section: Kostov, V. B., et al. 2019, AJ 158, 32; Demangeon, O. D. S., et al. 2021, A&A 653, A41;
+Zhou, L., et al. 2023, RAA 23, 025011; Gressier, A., et al. 2024, ApJL 975, L10; Banerjee, A., et al. 2024, ApJL 975,
+L11; Cadieux, C., et al. 2025, AJ 170, 154; Bessho, K., Ballard, S., & Guerrero, N. 2025, arXiv:2512.08530; Claret,
+A. 2017, A&A 600, A30; Foreman-Mackey, D., et al. 2013, PASP 125, 306 (emcee); Kreidberg, L. 2015, PASP 127, 1161
+(batman).
+
+### 6.7 TOI-620 b: decreasing transit duration
+
+TOI-620 b (Reefe et al. 2022) is a 3.8 $`R_\oplus`$ planet on a 5.10-d orbit around an M2.5 dwarf at 33 pc, with a
+high impact parameter ($`b = 0.887`$). In the five TESS sectors that observed it (2019-2026), its transit duration
+decreases from about 80 min in 2019 to about 62 min in 2025-2026, in the SPOC PDCSAP and SAP fluxes and in own
+photometry of the target pixel files. The evidence is weaker than for L 98-59 d (section 6.6): five epochs of 2-4
+transits each, one instrument, and a duration slope that depends on the aperture. This section reports a weaker
+candidate; a change of the orbit is not established. The planet was selected in the same search as L 98-59 d (section
+6.6), and the significances below are not corrected for that search.
+
+#### 6.7.1 Target
+
+| quantity | value | source |
+|---|---|---|
+| identifiers | TOI-620, G 161-32, TIC 296739893, Gaia DR3 5738284016370287616, 2MASS J09284158-1209551, UCAC4 390-050511 | ExoFOP, TIC v8.2 |
+| position (ICRS, epoch 2016.0) | RA 142.1734509, Dec $`-`$12.1672192 | Gaia DR3 |
+| proper motion (mas/yr); parallax (mas) | 35.858, $`-389.785`$; $`30.290 \pm 0.030`$ (33.0 pc) | Gaia DR3 |
+| $`G`$, $`BP-RP`$, $`T`$; RUWE | 11.308, 2.241, 10.214; 1.395 | Gaia DR3; TIC v8.2 |
+| star | M2.5 dwarf; $`M_\star = 0.577^{+0.024}_{-0.023}\,M_\odot`$, $`R_\star = 0.550 \pm 0.017\,R_\odot`$, $`T_\mathrm{eff} = 3708^{+57}_{-56}`$ K | Reefe et al. (2022) |
+| planet (TESS sectors 8 and 35 and ground photometry 2019-2021, one geometry) | $`P = 5.0988`$ d, $`R_\mathrm{p} = 3.76 \pm 0.15\,R_\oplus`$, $`k = 0.0627 \pm 0.0017`$, $`b = 0.887^{+0.014}_{-0.017}`$, $`a/R_\star = 18.87^{+0.52}_{-0.51}`$, $`T_{14} = 0.0565^{+0.0013}_{-0.0015}`$ d (81.4 min); a 17.7-d radial-velocity signal, not confirmed | Reefe et al. (2022) |
+| neighbour | TIC 296739875 at about 55" (2.55-2.65 pixels in the median-image PSF fits), 1.12-1.17 times the flux of TOI-620 in two-PSF fits of the median images, Gaia DR3 parallax 1.09 mas (background); TIC contamination ratio of TOI-620 0.120; CROWDSAP 0.910-0.948 | Gaia DR3; TIC v8.2; SPOC |
+
+#### 6.7.2 Data and method
+
+SPOC 2-min light curves and target pixel files of sectors 8 (2019.12, camera/CCD 1/2), 35 (2021.14, 1/1), 62 (2023.15,
+1/1), 89 (2025.15, 1/1) and 99 (2026.06, 1/2) (MAST; SPOC versions spoc-5.0.19 to 5.0.126); 18 transits (4, 4, 4, 4, 2).
+tess-point 0.9.5.post1 places the star on silicon in these sectors and in sector 113 (2027-01-16 to 2027-02-13, camera/CCD
+1/4), up to sector 134. Method as in section 6.6.3 (`scripts/transit_duration/run_toi620.sh`), with the ExoFOP TOI-table
+ephemeris ($`P = 5.098784`$ d, $`T_0`$ = BTJD 1518.004514) for windows of $`\pm 0.2`$ d, and the limb-darkening prior centred on
+(0.30, 0.33). Template (common fit of the PDCSAP transits): $`k = 0.0602`$, $`a/R_\star = 16.64`$, $`b = 0.9326`$,
+$`u = (0.294, 0.324)`$. Own photometry: circular apertures of $`r`$ = 1.0-3.0 px around the target position of the
+target pixel file, background = 20th percentile of the pixels of each cadence. Difference images: mean out-of-transit minus
+in-transit image per sector, decomposed onto two Gaussian PSFs (target and neighbour) fitted to the median image,
+and fitted with one PSF at a free position.
+
+#### 6.7.3 Results
+
+`data/durations_296739893.csv`, `data/duration_slopes_296739893.csv`, `data/transit_times_296739893.csv`:
+
+| sector | year | transits | $`T_{14}`$, PDCSAP (min) | $`b`$, PDCSAP | $`w`$, PDCSAP | $`w`$, own $`r = 1.5`$ px | $`w`$, own $`r = 3.0`$ px | $`T_{14}`$, SAP (min) | $`T_{14}`$, own $`r = 1.5`$ px (min) |
+|---|---|---|---|---|---|---|---|---|---|
+| 8 | 2019.12 | 4 | 79.5 (78.3-81.1) | 0.897 | 1.19 (1.14-1.23) | 1.23 | 1.29 | 79.5 | 80.3 |
+| 35 | 2021.14 | 4 | 77.4 (76.1-78.7) | 0.906 | 1.13 (1.09-1.18) | 1.11 | 1.11 | 76.5 | 77.4 |
+| 62 | 2023.15 | 4 | 71.2 (69.7-72.1) | 0.932 | 0.93 (0.89-0.97) | 0.91 | 0.97 | 70.1 | 69.7 |
+| 89 | 2025.15 | 4 | 62.4 (61.3-64.1) | 0.963 | 0.70 (0.66-0.74) | 0.69 | 0.67 | 62.7 | 64.0 |
+| 99 | 2026.06 | 2 | 61.8 (59.5-64.1) | 0.965 | 0.94 (0.80-1.06) | 0.71 | 0.91 | 59.9 | 61.3 |
+
+Slopes (5 sectors, 3 degrees of freedom):
+
+| photometry | $`\mathrm{d}T_{14}/\mathrm{d}t`$ (min/yr) | $`\mathrm{d}w/\mathrm{d}t`$ (yr$`^{-1}`$) | $`\mathrm{d}b/\mathrm{d}t`$ (yr$`^{-1}`$) |
+|---|---|---|---|
+| PDCSAP (transits stacked on one offset per sector) | $`-2.86 \pm 0.41`$ ($`\chi^2 = 6.5`$; 114 about a constant) | $`-0.079 \pm 0.015`$ | $`+0.0113 \pm 0.0013`$ |
+| PDCSAP (per-transit mid-times) | $`-2.68 \pm 0.39`$ | $`-0.065 \pm 0.015`$ | $`+0.0107 \pm 0.0013`$ |
+| SAP | $`-2.99 \pm 0.28`$ | $`-0.081 \pm 0.013`$ | $`+0.0115 \pm 0.0011`$ |
+| own, $`r = 1.5`$ px | $`-2.82 \pm 0.34`$ | $`-0.092 \pm 0.011`$ | $`+0.0112 \pm 0.0013`$ |
+| own, $`r = 3.0`$ px | $`-1.58 \pm 0.47`$ | $`-0.107 \pm 0.019`$ | $`+0.0053 \pm 0.0016`$ |
+
+The PDCSAP slope has $`t \approx 7.0`$ with 3 degrees of freedom; under a common unknown noise scale for the five points
+this corresponds to a two-sided $`p \approx 0.006`$, not to a 7 $`\sigma`$ false-alarm probability. The $`b`$-only
+$`T_{14}`$ slope depends on the aperture ($`-1.58`$ against $`-2.82`$ min/yr for 3.0 and 1.5 px): the larger aperture
+includes more flux of the neighbour, which the fixed-$`k`$ template converts into a higher $`b`$ at every epoch; the
+width $`w`$, fitted with free depth, declines in all photometries. Per transit, the four 2019 transits have
+$`w`$ = 1.13-1.26 and the four 2025 transits $`w`$ = 0.64-0.78; the 2025 $`T_{14}`$ values are 60-65 min, and three of the
+four 2019 values 80-82 min (the first, epoch 0, gives 58 min with a wide interval, 50-63 min, and $`w = 1.26`$).
+
+<picture><source srcset="figures/tdv_296739893_dark.svg" media="(prefers-color-scheme: dark)"><img src="figures/tdv_296739893_light.svg" alt="TOI-620 b transit duration and template width per TESS sector in three photometries"></picture>
+
+Transit times: the per-transit mid-times scatter about a linear ephemeris with $`\chi^2/\mathrm{dof}`$ = 7.2 (PDCSAP;
+6.8 SAP, 5.4 own 1.5 px; 18 transits); the mean offsets per sector are $`-3.3 \pm 1.2`$, $`+7.4 \pm 1.1`$,
+$`-5.9 \pm 1.0`$, $`+3.8 \pm 1.2`$ and $`-3.7 \pm 2.2`$ min (sectors 8, 35, 62, 89, 99), i.e. timing variations of up to about
+$`\pm 7`$ min between sectors, consistent in amplitude with the earlier TTV report by Naponiello (2026). The duration slope is the same whether
+the transits are stacked on per-transit times or on per-sector offsets.
+
+#### 6.7.4 Checks
+
+| check | result |
+|---|---|
+| source of the transit (`data/diffimage_296739893.csv`) | fraction of the difference-image signal on the neighbour PSF: 0.05, $`-0.12`$, 0.06, 0.03, 0.17 ($`\pm`$ 0.02-0.07; sectors 8, 35, 62, 89, 99); a single PSF at a free position lands 0.07-0.40 px from the target in every sector; the transit is on TOI-620 at every epoch |
+| dilution | CROWDSAP 0.910-0.948 with no trend; SAP and PDCSAP agree; the decline of $`w`$ is present in the 1.5-px aperture, which contains least neighbour flux; a constant extra flux changes the depth, not the contact times; the proper motion of TOI-620 (0.39"/yr) changes its separation from the neighbour by less than 3" (0.14 px) over 2019-2026 |
+| timing | stacking on per-transit times and on per-sector offsets gives the same slope (table above) |
+| individual transits | every 2025 transit is narrower than every 2019 transit in $`w`$ (above) |
+
+#### 6.7.5 Comparison with published fits; catalogue and literature checks
+
+Reefe et al. (2022) fitted TESS sectors 8 and 35 and ground-based photometry of 2019-2021 (NGTS, LCO, MuSCAT2, KeplerCam,
+LCRO, ExTrA) with one geometry: $`T_{14}`$ = 81.4 min, $`b = 0.887`$, $`a/R_\star = 18.87`$. The sector-8 and sector-35 values
+here (79.5 and 77.4 min with the template $`a/R_\star = 16.64`$) are consistent with that value. Naponiello (2026) subsequently reported TTVs of
+TOI-620 b with a semi-amplitude of about 7 min on a timescale of about 500 d; that analysis did not fit per-transit
+durations.
+
+| date (UTC) | source | result |
+|---|---|---|
+| 2026-10-20 | ADS full text: "TOI-620", "TOI 620" | 8 records; the discovery paper (2022AJ....163..269R) and later sample papers; none reports a change of the depth or duration |
+| 2026-10-20 | arXiv API; Zenodo; GitHub code search | 1 record; 0 records; catalogue and visualisation files only |
+| 2026-10-20 | Planet Hunters TESS Talk; ExoFOP target page | discovery tags (2019-2023); ground-based time series of 2019-2021 (LCO, NGTS, TCS, FLWO, ExTrA 2021-03), spectra of 2024-2025; no note on a change |
+| 2026-10-20 | Exoplanet Transit Database (var.astro.cz); general web search | no observed transits; nothing found |
+| 2026-10-21 | Targeted literature follow-up: Naponiello (2026), A&A 705, A5; arXiv:2511.16504 | Earlier TOI-620 b TTV report (semi-amplitude ~7 min, timescale ~500 d); no per-transit duration fits |
+
+#### 6.7.6 Interpretation and decisive tests
+
+A transit that narrows is what a slow change of the orbital inclination would produce (the per-sector fits hold
+the radius ratio fixed, so its constancy is not measured here; the free-amplitude width also decreases) ($`\mathrm{d}b/\mathrm{d}t \approx +0.011`$ yr$`^{-1}`$ at $`a/R_\star = 16.6`$, i.e.
+$`\mathrm{d}i/\mathrm{d}t \approx -0.04`$ deg/yr), and the timing variations and the unconfirmed 17.7-d radial-velocity
+signal of Reefe et al. (2022) would be consistent with a perturbing companion; none of this is established, and with
+five epochs a sector-dependent systematic is not excluded. Tests:
+
+- Ground-based or space photometry of complete transits now: if the trend continued linearly, $`T_{14}`$ is about
+  $`59.5 \pm 2`$ min in late 2026 on the PDCSAP scale here (about 80 min in 2019), with a shallower, V-shaped profile.
+- A joint refit of the ExoFOP ground-based light curves of 2019-2021, which would add early epochs and other bands.
+- TESS sector 113 (2027-01-16 to 2027-02-13; about five transits): the linear trend gives about 58.7 min; alone it does
+  not separate a continued decline from a duration that stays near the 2025-2026 value.
+
+Not checked: the ground-based light curves of 2019-2021 (not refitted); the 20-s light curve of sector 99; spot
+crossings; any second instrument after 2021. The S99 point rests on two transits.
+
+Reproduction: `sh scripts/transit_duration/run_toi620.sh` and `sh scripts/transit_duration/run_l9859.sh` (the table script needs the outputs of both), then `python scripts/transit_duration/make_tables_td.py`
+(environment as in section 6.6.9); a complete re-run reproduces the slopes and per-sector values of all five
+analysis variants across four photometries identically. References of this section: Reefe, M. A., et al. 2022, AJ 163, 269; Naponiello, L. 2026, A&A 705, A5; and those of
+section 6.6.
 
 ## 7. Caveats
 
