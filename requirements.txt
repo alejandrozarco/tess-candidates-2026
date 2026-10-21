@@ -13,3 +13,7 @@ requests==2.34.2          # scripts/toi540_timing.py (JPL Horizons)
 # scripts/fit_free_dilution.py was run with Python 3.11.15: emcee==3.1.6, batman-package==2.5.1, numpy==1.26.4, scipy==1.13.1
 # scripts/transit_duration/ (sections 6.6, 6.7) were run with Python 3.11.15: numpy==1.26.4, scipy==1.13.1, astropy==7.2.3,
 # astroquery==0.4.11, batman-package==2.5.3, emcee==3.1.6
+# scripts/transit_duration/joint/ (section 6.6.10) were run with Python 3.11.15: numpy==1.26.4, scipy==1.13.1, astropy==7.2.3,
+# astroquery==0.4.11, batman-package==2.5.3 (batman.__version__ reports 2.5.1), emcee==3.1.6, h5py==3.16.0, arviz==0.23.4,
+# celerite==0.4.3
+# scripts/transit_duration/jwst_chromatic/ (section 6.6.11) were run in the same environment (matplotlib==3.11.2 for the figure)

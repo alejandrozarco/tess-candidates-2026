@@ -1,0 +1,7 @@
+# TOI-6482.01 = TIC 189300053: linear ephemeris and common transit shape from six TESS QLP transits (sectors 8-99); scripts/toi6482/fit_toi6482.py, 2026-10-21
+# T0_btjd at epoch 0 (sector-8 transit); errors and cov_T0_P (d^2) scaled by sqrt(chi2/dof) (scale); chi2 with the unscaled timing errors
+# Tref_btjd at epoch n_ref, cov_Tref_P (d^2) its covariance with P (correlation -0.008); T0 and P are correlated (-0.917), so propagate from Tref:
+#   t(n) = Tref_btjd + (n - n_ref) P_d, sigma(n)^2 = Tref_err_d^2 + (n - n_ref)^2 P_err_d^2 + 2 (n - n_ref) cov_Tref_P (equivalently from T0 with cov_T0_P)
+# depth (no dilution correction), T14 and ingress with errors from the unweighted joint fit; P_prelim, T0_prelim = window centres
+T0_btjd,T0_err_d,P_d,P_err_d,cov_T0_P,chi2,dof,scale,n_ref,Tref_btjd,Tref_err_d,cov_Tref_P,depth_ppt,depth_err_ppt,T14_h,T14_err_h,ingress_h,ingress_err_h,T0_prelim_btjd,P_prelim_d
+1522.1847939,0.0065262,20.04793704,0.000059644,-3.569222e-07,7.27,4,1.348,100,3526.9784978,0.0026041,-1.1800e-09,9.42,0.44,5.106,0.218,1.073,0.192,1522.1871,20.0479129

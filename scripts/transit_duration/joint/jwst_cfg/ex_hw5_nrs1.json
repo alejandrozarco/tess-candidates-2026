@@ -1,0 +1,28 @@
+{
+ "ld": "free",
+ "aR": "rho",
+ "geom": "diff",
+ "regs": [
+  "xshift",
+  "yshift",
+  "width"
+ ],
+ "ramp": 0,
+ "poly": 2,
+ "noise": "white",
+ "bin": 5,
+ "trim_min": 10,
+ "nsteps": 2500,
+ "lcs": [
+  {
+   "file": "out/jwst/wlhw5_1224_nrs1.npz",
+   "visit": "1224",
+   "det": "NRS1"
+  },
+  {
+   "file": "out/jwst/wlhw5_4098_nrs1.npz",
+   "visit": "4098",
+   "det": "NRS1"
+  }
+ ]
+}

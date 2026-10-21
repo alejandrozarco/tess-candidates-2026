@@ -50,3 +50,8 @@
 - Olmschenk, G., et al. 2021, AJ 161, 273; Montalto, M., et al. 2020, MNRAS 498, 1726 (DIAmante); Feliz, D. L., et al.
   2021, arXiv:2103.05647 (NEMESIS); Hawthorn, F., et al. 2024, arXiv:2310.17268; Eschen, Y. N. E., et al. 2024,
   arXiv:2406.06688; Lafarga, M., et al. 2026, arXiv:2603.22597 (RAVEN).
+- Kunimoto, M., et al. 2022, ApJS 259, 33 (QLP faint-star search); Vanderburg, A., et al. 2019, ApJL 881, L19; Scott,
+  N. J., et al. 2021, Front. Astron. Space Sci. 8, 138 (Zorro); Wright, E. L., et al. 2010, AJ 140, 1868 (WISE); Marocco,
+  F., et al. 2021, ApJS 253, 8 (CatWISE2020); Jehin, E., et al. 2011, The Messenger 145, 2 (TRAPPIST).
+
+References of sections 6.6-6.8 are listed at the end of those sections.

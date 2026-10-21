@@ -1,0 +1,411 @@
+# L 98-59 d (TIC 307210830): joint fits of all usable TESS transits (scripts/transit_duration/joint/, run_joint.sh), 2026-10-21
+# data: SPOC 2-min PDCSAP, quality 0, 72 transits in 26 sectors (2 to 98); planets b and c, the 1.0492-d eclipses (+-0.95 h) and flares masked
+# model: batman quadratic limb darkening on an own sky-separation array, 5x supersampling, per-transit quadratic baseline profiled; noise: per-transit white sigma times per-sector beta
+# priors: ln rho* [kg m-3] ~ N(9.50, 0.09) (Cadieux et al. 2025); u1, u2 ~ N(0.162, 0.1), N(0.441, 0.1) via Kipping q1, q2 (Claret 2017); TTV sinusoid at 396.32 d; e = 0 unless stated
+# parameters: k = Rp/R*; lnrho; q1, q2; b0 = b at 2022.0; bdot = db/dt (per yr); i0, idot (deg, deg/yr); bc0-bc3 = b per campaign; k0-k3 = k per campaign; dT0 (min), dP (s), At, Bt (min) = ephemeris and TTV terms; secw, sesw = sqrt(e) cos/sin omega
+# derived: T14 (first to fourth contact, min) at the four campaign mean epochs; dT14dt_min_per_yr = T14(2022.5) - T14(2021.5); aR = a/R*
+# method emcee: median, err_minus = median - 16th percentile, err_plus = 84th percentile - median; fit:* rows = MAP chi2, BIC, ln profile evidence (importance sampling of the profiled likelihood times the unnormalised prior weights, baselines not marginalised; lnZ_lap = Laplace), importance-sampling ESS, max rank-normalised split R-hat, N/tau, ensembles, steps per ensemble
+# method least squares (alt_*): same windows and noise recipe, symmetric errors from the covariance; n_transits differs for the 20-s data (sectors 28-98 only)
+variant,description,method,n_transits,npar,quantity,median,err_minus,err_plus
+main_const,main: constant b,emcee,72,9,fit:chi2,14787.8,,
+main_const,main: constant b,emcee,72,9,fit:bic,14874.2,,
+main_const,main: constant b,emcee,72,9,fit:lnZ,-7413.12,,
+main_const,main: constant b,emcee,72,9,fit:lnZ_lap,-7414.09,,
+main_const,main: constant b,emcee,72,9,fit:ess,3514.19,,
+main_const,main: constant b,emcee,72,9,fit:rhat_max,1.00271,,
+main_const,main: constant b,emcee,72,9,fit:n_over_tau,51.8046,,
+main_const,main: constant b,emcee,72,9,fit:nens,4,,
+main_const,main: constant b,emcee,72,9,fit:nsteps,2500,,
+main_const,main: constant b,emcee,72,9,k,0.044716,0.00101327,0.00108591
+main_const,main: constant b,emcee,72,9,lnrho,9.52792,0.0739394,0.0746092
+main_const,main: constant b,emcee,72,9,q1,0.382446,0.114741,0.133664
+main_const,main: constant b,emcee,72,9,q2,0.136123,0.054738,0.0510296
+main_const,main: constant b,emcee,72,9,b0,0.926284,0.00613322,0.0054099
+main_const,main: constant b,emcee,72,9,dT0,-0.254141,0.35213,0.348867
+main_const,main: constant b,emcee,72,9,dP,0.0784946,0.100453,0.0996259
+main_const,main: constant b,emcee,72,9,At,-0.960766,0.283736,0.283882
+main_const,main: constant b,emcee,72,9,Bt,1.35913,0.249461,0.253816
+main_const,main: constant b,emcee,72,9,T14_min (constant),48.1446,0.72908,0.764569
+main_const,main: constant b,emcee,72,9,aR,34.3033,0.819545,0.864932
+main_lin_b,main: b linear in time,emcee,72,10,fit:chi2,14710.2,,
+main_lin_b,main: b linear in time,emcee,72,10,fit:bic,14806.2,,
+main_lin_b,main: b linear in time,emcee,72,10,fit:lnZ,-7381.49,,
+main_lin_b,main: b linear in time,emcee,72,10,fit:lnZ_lap,-7382.79,,
+main_lin_b,main: b linear in time,emcee,72,10,fit:ess,3542.18,,
+main_lin_b,main: b linear in time,emcee,72,10,fit:rhat_max,1.00181,,
+main_lin_b,main: b linear in time,emcee,72,10,fit:n_over_tau,52.2918,,
+main_lin_b,main: b linear in time,emcee,72,10,fit:nens,4,,
+main_lin_b,main: b linear in time,emcee,72,10,fit:nsteps,2500,,
+main_lin_b,main: b linear in time,emcee,72,10,k,0.0441715,0.000842273,0.000868932
+main_lin_b,main: b linear in time,emcee,72,10,lnrho,9.56749,0.0692199,0.0683801
+main_lin_b,main: b linear in time,emcee,72,10,q1,0.313931,0.0911748,0.102292
+main_lin_b,main: b linear in time,emcee,72,10,q2,0.12513,0.0563257,0.0533247
+main_lin_b,main: b linear in time,emcee,72,10,b0,0.923342,0.00513747,0.00483865
+main_lin_b,main: b linear in time,emcee,72,10,bdot,0.00638566,0.000674286,0.000668636
+main_lin_b,main: b linear in time,emcee,72,10,dT0,-0.404154,0.303088,0.307864
+main_lin_b,main: b linear in time,emcee,72,10,dP,0.108614,0.0922405,0.0909993
+main_lin_b,main: b linear in time,emcee,72,10,At,-0.815708,0.263779,0.260641
+main_lin_b,main: b linear in time,emcee,72,10,Bt,1.52331,0.242057,0.239745
+main_lin_b,main: b linear in time,emcee,72,10,T14_min at 2019.13,51.2161,0.685157,0.684234
+main_lin_b,main: b linear in time,emcee,72,10,T14_min at 2021.09,49.0172,0.623866,0.644465
+main_lin_b,main: b linear in time,emcee,72,10,T14_min at 2023.28,46.4084,0.642976,0.658887
+main_lin_b,main: b linear in time,emcee,72,10,T14_min at 2025.44,43.6291,0.765385,0.818354
+main_lin_b,main: b linear in time,emcee,72,10,dT14dt_min_per_yr,-1.18485,0.112579,0.111967
+main_lin_b,main: b linear in time,emcee,72,10,dbdt_per_yr,0.00636268,0.000674657,0.000664193
+main_lin_b,main: b linear in time,emcee,72,10,aR,34.7297,0.771528,0.778871
+v_camp,one b per campaign,emcee,72,12,fit:chi2,14709.4,,
+v_camp,one b per campaign,emcee,72,12,fit:bic,14824.6,,
+v_camp,one b per campaign,emcee,72,12,fit:lnZ,-7388.59,,
+v_camp,one b per campaign,emcee,72,12,fit:lnZ_lap,-7390.66,,
+v_camp,one b per campaign,emcee,72,12,fit:ess,3015.05,,
+v_camp,one b per campaign,emcee,72,12,fit:rhat_max,1.00861,,
+v_camp,one b per campaign,emcee,72,12,fit:n_over_tau,25.5029,,
+v_camp,one b per campaign,emcee,72,12,fit:nens,2,,
+v_camp,one b per campaign,emcee,72,12,fit:nsteps,1200,,
+v_camp,one b per campaign,emcee,72,12,k,0.0438673,0.000772412,0.000849755
+v_camp,one b per campaign,emcee,72,12,lnrho,9.58579,0.0641905,0.0620574
+v_camp,one b per campaign,emcee,72,12,q1,0.294725,0.0848572,0.0942229
+v_camp,one b per campaign,emcee,72,12,q2,0.121845,0.0581004,0.0554555
+v_camp,one b per campaign,emcee,72,12,bc0,0.899795,0.00636724,0.00622566
+v_camp,one b per campaign,emcee,72,12,bc1,0.920663,0.00547947,0.00517585
+v_camp,one b per campaign,emcee,72,12,bc2,0.931809,0.0054329,0.00496246
+v_camp,one b per campaign,emcee,72,12,bc3,0.942255,0.00451808,0.0046787
+v_camp,one b per campaign,emcee,72,12,dT0,-0.390014,0.308579,0.292457
+v_camp,one b per campaign,emcee,72,12,dP,0.0984733,0.0844245,0.0867474
+v_camp,one b per campaign,emcee,72,12,At,-0.859468,0.244294,0.251063
+v_camp,one b per campaign,emcee,72,12,Bt,1.55475,0.24076,0.224702
+v_camp,one b per campaign,emcee,72,12,aR,34.9568,0.71224,0.748728
+v_camp_slope,one b per campaign plus a common within-campaign slope of b,emcee,72,13,fit:chi2,14706.3,,
+v_camp_slope,one b per campaign plus a common within-campaign slope of b,emcee,72,13,fit:bic,14831.1,,
+v_camp_slope,one b per campaign plus a common within-campaign slope of b,emcee,72,13,fit:lnZ,-7391.04,,
+v_camp_slope,one b per campaign plus a common within-campaign slope of b,emcee,72,13,fit:lnZ_lap,-7393.09,,
+v_camp_slope,one b per campaign plus a common within-campaign slope of b,emcee,72,13,fit:ess,2840.03,,
+v_camp_slope,one b per campaign plus a common within-campaign slope of b,emcee,72,13,fit:rhat_max,1.00679,,
+v_camp_slope,one b per campaign plus a common within-campaign slope of b,emcee,72,13,fit:n_over_tau,23.071,,
+v_camp_slope,one b per campaign plus a common within-campaign slope of b,emcee,72,13,fit:nens,2,,
+v_camp_slope,one b per campaign plus a common within-campaign slope of b,emcee,72,13,fit:nsteps,1200,,
+v_camp_slope,one b per campaign plus a common within-campaign slope of b,emcee,72,13,k,0.0442002,0.000847723,0.00085647
+v_camp_slope,one b per campaign plus a common within-campaign slope of b,emcee,72,13,lnrho,9.56991,0.068049,0.0703132
+v_camp_slope,one b per campaign plus a common within-campaign slope of b,emcee,72,13,q1,0.309773,0.0860636,0.100197
+v_camp_slope,one b per campaign plus a common within-campaign slope of b,emcee,72,13,q2,0.128483,0.05569,0.0552643
+v_camp_slope,one b per campaign plus a common within-campaign slope of b,emcee,72,13,bc0,0.901011,0.00663056,0.00625784
+v_camp_slope,one b per campaign plus a common within-campaign slope of b,emcee,72,13,bc1,0.921733,0.00523901,0.00546171
+v_camp_slope,one b per campaign plus a common within-campaign slope of b,emcee,72,13,bc2,0.932553,0.00565308,0.00502595
+v_camp_slope,one b per campaign plus a common within-campaign slope of b,emcee,72,13,bc3,0.943705,0.0045816,0.00463923
+v_camp_slope,one b per campaign plus a common within-campaign slope of b,emcee,72,13,bdot,0.0107674,0.00487768,0.00498414
+v_camp_slope,one b per campaign plus a common within-campaign slope of b,emcee,72,13,dT0,-0.44986,0.306765,0.30319
+v_camp_slope,one b per campaign plus a common within-campaign slope of b,emcee,72,13,dP,0.125359,0.0928474,0.0917093
+v_camp_slope,one b per campaign plus a common within-campaign slope of b,emcee,72,13,At,-0.822984,0.254958,0.264784
+v_camp_slope,one b per campaign plus a common within-campaign slope of b,emcee,72,13,Bt,1.56762,0.219496,0.226788
+v_camp_slope,one b per campaign plus a common within-campaign slope of b,emcee,72,13,dbdt_per_yr,0.0107452,0.00488432,0.00495579
+v_camp_slope,one b per campaign plus a common within-campaign slope of b,emcee,72,13,aR,34.7936,0.799559,0.79114
+v_const_ecc,"constant b, e and omega with priors",emcee,72,11,fit:chi2,14787.8,,
+v_const_ecc,"constant b, e and omega with priors",emcee,72,11,fit:bic,14893.4,,
+v_const_ecc,"constant b, e and omega with priors",emcee,72,11,fit:lnZ,-7417.42,,
+v_const_ecc,"constant b, e and omega with priors",emcee,72,11,fit:lnZ_lap,-7419.17,,
+v_const_ecc,"constant b, e and omega with priors",emcee,72,11,fit:ess,2044.63,,
+v_const_ecc,"constant b, e and omega with priors",emcee,72,11,fit:rhat_max,1.00644,,
+v_const_ecc,"constant b, e and omega with priors",emcee,72,11,fit:n_over_tau,26.0017,,
+v_const_ecc,"constant b, e and omega with priors",emcee,72,11,fit:nens,2,,
+v_const_ecc,"constant b, e and omega with priors",emcee,72,11,fit:nsteps,1200,,
+v_const_ecc,"constant b, e and omega with priors",emcee,72,11,k,0.0447059,0.000993648,0.00106057
+v_const_ecc,"constant b, e and omega with priors",emcee,72,11,lnrho,9.52672,0.0674749,0.0717005
+v_const_ecc,"constant b, e and omega with priors",emcee,72,11,q1,0.373595,0.111501,0.125996
+v_const_ecc,"constant b, e and omega with priors",emcee,72,11,q2,0.135221,0.0514903,0.0470032
+v_const_ecc,"constant b, e and omega with priors",emcee,72,11,b0,0.927019,0.00571327,0.0049901
+v_const_ecc,"constant b, e and omega with priors",emcee,72,11,secw,0.0504492,0.0333881,0.0315865
+v_const_ecc,"constant b, e and omega with priors",emcee,72,11,sesw,-0.0266245,0.0450508,0.0456119
+v_const_ecc,"constant b, e and omega with priors",emcee,72,11,dT0,-0.261849,0.33152,0.335807
+v_const_ecc,"constant b, e and omega with priors",emcee,72,11,dP,0.0776668,0.0992826,0.0937052
+v_const_ecc,"constant b, e and omega with priors",emcee,72,11,At,-0.966575,0.280208,0.275965
+v_const_ecc,"constant b, e and omega with priors",emcee,72,11,Bt,1.3565,0.254178,0.251289
+v_const_ecc,"constant b, e and omega with priors",emcee,72,11,T14_min (constant),48.1232,0.689862,0.765391
+v_const_ecc,"constant b, e and omega with priors",emcee,72,11,aR,34.2753,0.762302,0.829053
+v_const_fixtc,"constant b, per-transit mid-times fixed",emcee,72,5,fit:chi2,14708.7,,
+v_const_fixtc,"constant b, per-transit mid-times fixed",emcee,72,5,fit:bic,14756.7,,
+v_const_fixtc,"constant b, per-transit mid-times fixed",emcee,72,5,fit:lnZ,-7371.54,,
+v_const_fixtc,"constant b, per-transit mid-times fixed",emcee,72,5,fit:lnZ_lap,-7371.79,,
+v_const_fixtc,"constant b, per-transit mid-times fixed",emcee,72,5,fit:ess,3868.33,,
+v_const_fixtc,"constant b, per-transit mid-times fixed",emcee,72,5,fit:rhat_max,1.00232,,
+v_const_fixtc,"constant b, per-transit mid-times fixed",emcee,72,5,fit:n_over_tau,36.4331,,
+v_const_fixtc,"constant b, per-transit mid-times fixed",emcee,72,5,fit:nens,2,,
+v_const_fixtc,"constant b, per-transit mid-times fixed",emcee,72,5,fit:nsteps,1200,,
+v_const_fixtc,"constant b, per-transit mid-times fixed",emcee,72,5,k,0.0443206,0.000972567,0.00105189
+v_const_fixtc,"constant b, per-transit mid-times fixed",emcee,72,5,lnrho,9.53695,0.0717663,0.0750047
+v_const_fixtc,"constant b, per-transit mid-times fixed",emcee,72,5,q1,0.303832,0.0970474,0.114169
+v_const_fixtc,"constant b, per-transit mid-times fixed",emcee,72,5,q2,0.123968,0.0601216,0.0610881
+v_const_fixtc,"constant b, per-transit mid-times fixed",emcee,72,5,b0,0.92758,0.00526604,0.00472259
+v_const_fixtc,"constant b, per-transit mid-times fixed",emcee,72,5,T14_min (constant),47.6674,0.700899,0.755144
+v_const_fixtc,"constant b, per-transit mid-times fixed",emcee,72,5,aR,34.3923,0.812973,0.870701
+v_const_kcamp,"constant b, one k per campaign",emcee,72,12,fit:chi2,14767.4,,
+v_const_kcamp,"constant b, one k per campaign",emcee,72,12,fit:bic,14882.6,,
+v_const_kcamp,"constant b, one k per campaign",emcee,72,12,fit:lnZ,-7420.95,,
+v_const_kcamp,"constant b, one k per campaign",emcee,72,12,fit:lnZ_lap,-7422.93,,
+v_const_kcamp,"constant b, one k per campaign",emcee,72,12,fit:ess,2968.41,,
+v_const_kcamp,"constant b, one k per campaign",emcee,72,12,fit:rhat_max,1.01208,,
+v_const_kcamp,"constant b, one k per campaign",emcee,72,12,fit:n_over_tau,23.0429,,
+v_const_kcamp,"constant b, one k per campaign",emcee,72,12,fit:nens,2,,
+v_const_kcamp,"constant b, one k per campaign",emcee,72,12,fit:nsteps,1200,,
+v_const_kcamp,"constant b, one k per campaign",emcee,72,12,k0,0.0470759,0.00113738,0.00125042
+v_const_kcamp,"constant b, one k per campaign",emcee,72,12,k1,0.045601,0.00111998,0.00108651
+v_const_kcamp,"constant b, one k per campaign",emcee,72,12,k2,0.0443598,0.0011815,0.0012219
+v_const_kcamp,"constant b, one k per campaign",emcee,72,12,k3,0.042236,0.00121407,0.00116188
+v_const_kcamp,"constant b, one k per campaign",emcee,72,12,lnrho,9.51462,0.0731106,0.0696259
+v_const_kcamp,"constant b, one k per campaign",emcee,72,12,q1,0.407978,0.115165,0.119278
+v_const_kcamp,"constant b, one k per campaign",emcee,72,12,q2,0.137469,0.0525,0.0494727
+v_const_kcamp,"constant b, one k per campaign",emcee,72,12,b0,0.925839,0.00567321,0.00532253
+v_const_kcamp,"constant b, one k per campaign",emcee,72,12,dT0,-0.280103,0.317713,0.327112
+v_const_kcamp,"constant b, one k per campaign",emcee,72,12,dP,0.0837746,0.0979199,0.0978122
+v_const_kcamp,"constant b, one k per campaign",emcee,72,12,At,-1.01012,0.269383,0.27413
+v_const_kcamp,"constant b, one k per campaign",emcee,72,12,Bt,1.34339,0.243165,0.244628
+v_const_kcamp,"constant b, one k per campaign",emcee,72,12,T14_min (constant),48.4842,0.696482,0.665503
+v_const_kcamp,"constant b, one k per campaign",emcee,72,12,aR,34.1373,0.821877,0.801546
+v_const_ldfree,"constant b, limb darkening free",emcee,72,9,fit:chi2,14787.5,,
+v_const_ldfree,"constant b, limb darkening free",emcee,72,9,fit:bic,14873.9,,
+v_const_ldfree,"constant b, limb darkening free",emcee,72,9,fit:lnZ,-7410.95,,
+v_const_ldfree,"constant b, limb darkening free",emcee,72,9,fit:lnZ_lap,-7411.62,,
+v_const_ldfree,"constant b, limb darkening free",emcee,72,9,fit:ess,596.569,,
+v_const_ldfree,"constant b, limb darkening free",emcee,72,9,fit:rhat_max,1.00927,,
+v_const_ldfree,"constant b, limb darkening free",emcee,72,9,fit:n_over_tau,18.9763,,
+v_const_ldfree,"constant b, limb darkening free",emcee,72,9,fit:nens,2,,
+v_const_ldfree,"constant b, limb darkening free",emcee,72,9,fit:nsteps,1200,,
+v_const_ldfree,"constant b, limb darkening free",emcee,72,9,k,0.045701,0.00159434,0.00168041
+v_const_ldfree,"constant b, limb darkening free",emcee,72,9,lnrho,9.53232,0.0779021,0.0785265
+v_const_ldfree,"constant b, limb darkening free",emcee,72,9,q1,0.388439,0.159208,0.208391
+v_const_ldfree,"constant b, limb darkening free",emcee,72,9,q2,0.34499,0.238158,0.328318
+v_const_ldfree,"constant b, limb darkening free",emcee,72,9,b0,0.926661,0.0078241,0.00665127
+v_const_ldfree,"constant b, limb darkening free",emcee,72,9,dT0,-0.267621,0.352086,0.351905
+v_const_ldfree,"constant b, limb darkening free",emcee,72,9,dP,0.0824644,0.101503,0.105695
+v_const_ldfree,"constant b, limb darkening free",emcee,72,9,At,-0.966876,0.279924,0.272339
+v_const_ldfree,"constant b, limb darkening free",emcee,72,9,Bt,1.35211,0.257314,0.23843
+v_const_ldfree,"constant b, limb darkening free",emcee,72,9,T14_min (constant),48.2111,0.889112,1.02642
+v_const_ldfree,"constant b, limb darkening free",emcee,72,9,aR,34.3393,0.880224,0.910716
+v_lin_b_ecc,"b linear, e and omega with priors",emcee,72,12,fit:chi2,14710.2,,
+v_lin_b_ecc,"b linear, e and omega with priors",emcee,72,12,fit:bic,14825.4,,
+v_lin_b_ecc,"b linear, e and omega with priors",emcee,72,12,fit:lnZ,-7385.84,,
+v_lin_b_ecc,"b linear, e and omega with priors",emcee,72,12,fit:lnZ_lap,-7387.84,,
+v_lin_b_ecc,"b linear, e and omega with priors",emcee,72,12,fit:ess,2962.66,,
+v_lin_b_ecc,"b linear, e and omega with priors",emcee,72,12,fit:rhat_max,1.00549,,
+v_lin_b_ecc,"b linear, e and omega with priors",emcee,72,12,fit:n_over_tau,25.4061,,
+v_lin_b_ecc,"b linear, e and omega with priors",emcee,72,12,fit:nens,2,,
+v_lin_b_ecc,"b linear, e and omega with priors",emcee,72,12,fit:nsteps,1200,,
+v_lin_b_ecc,"b linear, e and omega with priors",emcee,72,12,k,0.0441974,0.000833288,0.00084285
+v_lin_b_ecc,"b linear, e and omega with priors",emcee,72,12,lnrho,9.56255,0.0648913,0.0644706
+v_lin_b_ecc,"b linear, e and omega with priors",emcee,72,12,q1,0.314343,0.0896359,0.0957194
+v_lin_b_ecc,"b linear, e and omega with priors",emcee,72,12,q2,0.120557,0.0535689,0.0545144
+v_lin_b_ecc,"b linear, e and omega with priors",emcee,72,12,b0,0.923831,0.00483374,0.00471485
+v_lin_b_ecc,"b linear, e and omega with priors",emcee,72,12,bdot,0.00637199,0.000648518,0.000676919
+v_lin_b_ecc,"b linear, e and omega with priors",emcee,72,12,secw,0.05094,0.0334168,0.0331889
+v_lin_b_ecc,"b linear, e and omega with priors",emcee,72,12,sesw,-0.0218682,0.04198,0.0446359
+v_lin_b_ecc,"b linear, e and omega with priors",emcee,72,12,dT0,-0.390881,0.284683,0.291939
+v_lin_b_ecc,"b linear, e and omega with priors",emcee,72,12,dP,0.10712,0.0876975,0.0846664
+v_lin_b_ecc,"b linear, e and omega with priors",emcee,72,12,At,-0.809961,0.252487,0.253342
+v_lin_b_ecc,"b linear, e and omega with priors",emcee,72,12,Bt,1.518,0.237941,0.227986
+v_lin_b_ecc,"b linear, e and omega with priors",emcee,72,12,T14_min at 2019.13,51.2908,0.623984,0.664309
+v_lin_b_ecc,"b linear, e and omega with priors",emcee,72,12,T14_min at 2021.09,49.0823,0.598684,0.614102
+v_lin_b_ecc,"b linear, e and omega with priors",emcee,72,12,T14_min at 2023.28,46.4438,0.635306,0.655014
+v_lin_b_ecc,"b linear, e and omega with priors",emcee,72,12,T14_min at 2025.44,43.6277,0.772038,0.793447
+v_lin_b_ecc,"b linear, e and omega with priors",emcee,72,12,dT14dt_min_per_yr,-1.2031,0.104658,0.117592
+v_lin_b_ecc,"b linear, e and omega with priors",emcee,72,12,dbdt_per_yr,0.00642397,0.000651155,0.000644784
+v_lin_b_ecc,"b linear, e and omega with priors",emcee,72,12,aR,34.7079,0.700002,0.76177
+v_lin_b_fixtc,"b linear, per-transit mid-times fixed",emcee,72,6,fit:chi2,14617,,
+v_lin_b_fixtc,"b linear, per-transit mid-times fixed",emcee,72,6,fit:bic,14674.6,,
+v_lin_b_fixtc,"b linear, per-transit mid-times fixed",emcee,72,6,fit:lnZ,-7332.92,,
+v_lin_b_fixtc,"b linear, per-transit mid-times fixed",emcee,72,6,fit:lnZ_lap,-7333.3,,
+v_lin_b_fixtc,"b linear, per-transit mid-times fixed",emcee,72,6,fit:ess,3962.12,,
+v_lin_b_fixtc,"b linear, per-transit mid-times fixed",emcee,72,6,fit:rhat_max,1.00208,,
+v_lin_b_fixtc,"b linear, per-transit mid-times fixed",emcee,72,6,fit:n_over_tau,37.9793,,
+v_lin_b_fixtc,"b linear, per-transit mid-times fixed",emcee,72,6,fit:nens,2,,
+v_lin_b_fixtc,"b linear, per-transit mid-times fixed",emcee,72,6,fit:nsteps,1200,,
+v_lin_b_fixtc,"b linear, per-transit mid-times fixed",emcee,72,6,k,0.043859,0.000795298,0.00085901
+v_lin_b_fixtc,"b linear, per-transit mid-times fixed",emcee,72,6,lnrho,9.59173,0.0674706,0.0691168
+v_lin_b_fixtc,"b linear, per-transit mid-times fixed",emcee,72,6,q1,0.256231,0.0802483,0.0950246
+v_lin_b_fixtc,"b linear, per-transit mid-times fixed",emcee,72,6,q2,0.116376,0.060826,0.0622985
+v_lin_b_fixtc,"b linear, per-transit mid-times fixed",emcee,72,6,b0,0.922685,0.00482294,0.00480534
+v_lin_b_fixtc,"b linear, per-transit mid-times fixed",emcee,72,6,bdot,0.00670606,0.000713677,0.000722506
+v_lin_b_fixtc,"b linear, per-transit mid-times fixed",emcee,72,6,T14_min at 2019.13,50.9965,0.671436,0.672044
+v_lin_b_fixtc,"b linear, per-transit mid-times fixed",emcee,72,6,T14_min at 2021.09,48.7093,0.594121,0.62432
+v_lin_b_fixtc,"b linear, per-transit mid-times fixed",emcee,72,6,T14_min at 2023.28,45.9781,0.598025,0.65209
+v_lin_b_fixtc,"b linear, per-transit mid-times fixed",emcee,72,6,T14_min at 2025.44,43.078,0.738411,0.777066
+v_lin_b_fixtc,"b linear, per-transit mid-times fixed",emcee,72,6,dT14dt_min_per_yr,-1.2362,0.113632,0.112805
+v_lin_b_fixtc,"b linear, per-transit mid-times fixed",emcee,72,6,dbdt_per_yr,0.00670606,0.000713677,0.000722506
+v_lin_b_fixtc,"b linear, per-transit mid-times fixed",emcee,72,6,aR,35.0262,0.778953,0.816333
+v_lin_b_kcamp,"b linear, one k per campaign",emcee,72,13,fit:chi2,14709.2,,
+v_lin_b_kcamp,"b linear, one k per campaign",emcee,72,13,fit:bic,14834,,
+v_lin_b_kcamp,"b linear, one k per campaign",emcee,72,13,fit:lnZ,-7398.44,,
+v_lin_b_kcamp,"b linear, one k per campaign",emcee,72,13,fit:lnZ_lap,-7400.67,,
+v_lin_b_kcamp,"b linear, one k per campaign",emcee,72,13,fit:ess,2374.75,,
+v_lin_b_kcamp,"b linear, one k per campaign",emcee,72,13,fit:rhat_max,1.02344,,
+v_lin_b_kcamp,"b linear, one k per campaign",emcee,72,13,fit:n_over_tau,22.0321,,
+v_lin_b_kcamp,"b linear, one k per campaign",emcee,72,13,fit:nens,2,,
+v_lin_b_kcamp,"b linear, one k per campaign",emcee,72,13,fit:nsteps,1200,,
+v_lin_b_kcamp,"b linear, one k per campaign",emcee,72,13,k0,0.0443292,0.000877642,0.000932701
+v_lin_b_kcamp,"b linear, one k per campaign",emcee,72,13,k1,0.0441799,0.0010058,0.000987781
+v_lin_b_kcamp,"b linear, one k per campaign",emcee,72,13,k2,0.0451983,0.00117225,0.00123836
+v_lin_b_kcamp,"b linear, one k per campaign",emcee,72,13,k3,0.0459593,0.00161028,0.00186188
+v_lin_b_kcamp,"b linear, one k per campaign",emcee,72,13,lnrho,9.54844,0.0675332,0.0660191
+v_lin_b_kcamp,"b linear, one k per campaign",emcee,72,13,q1,0.36527,0.1052,0.107665
+v_lin_b_kcamp,"b linear, one k per campaign",emcee,72,13,q2,0.136127,0.0507087,0.0481908
+v_lin_b_kcamp,"b linear, one k per campaign",emcee,72,13,b0,0.924056,0.00529215,0.00498911
+v_lin_b_kcamp,"b linear, one k per campaign",emcee,72,13,bdot,0.00706748,0.000814662,0.000803375
+v_lin_b_kcamp,"b linear, one k per campaign",emcee,72,13,dT0,-0.478144,0.28795,0.301701
+v_lin_b_kcamp,"b linear, one k per campaign",emcee,72,13,dP,0.129454,0.0855679,0.0847046
+v_lin_b_kcamp,"b linear, one k per campaign",emcee,72,13,At,-0.789127,0.255759,0.25256
+v_lin_b_kcamp,"b linear, one k per campaign",emcee,72,13,Bt,1.52587,0.223108,0.22566
+v_lin_b_kcamp,"b linear, one k per campaign",emcee,72,13,T14_min at 2019.13,51.9056,0.803454,0.854869
+v_lin_b_kcamp,"b linear, one k per campaign",emcee,72,13,T14_min at 2021.09,49.4663,0.659687,0.7436
+v_lin_b_kcamp,"b linear, one k per campaign",emcee,72,13,T14_min at 2023.28,46.5663,0.66407,0.69905
+v_lin_b_kcamp,"b linear, one k per campaign",emcee,72,13,T14_min at 2025.44,43.4597,0.833853,0.831398
+v_lin_b_kcamp,"b linear, one k per campaign",emcee,72,13,dT14dt_min_per_yr,-1.32172,0.15141,0.151758
+v_lin_b_kcamp,"b linear, one k per campaign",emcee,72,13,dbdt_per_yr,0.00704059,0.000816854,0.000797677
+v_lin_b_kcamp,"b linear, one k per campaign",emcee,72,13,aR,34.4965,0.762899,0.761722
+v_lin_b_ldfree,"b linear, limb darkening free",emcee,72,10,fit:chi2,14710.1,,
+v_lin_b_ldfree,"b linear, limb darkening free",emcee,72,10,fit:bic,14806.1,,
+v_lin_b_ldfree,"b linear, limb darkening free",emcee,72,10,fit:lnZ,-7379.53,,
+v_lin_b_ldfree,"b linear, limb darkening free",emcee,72,10,fit:lnZ_lap,-7380.59,,
+v_lin_b_ldfree,"b linear, limb darkening free",emcee,72,10,fit:ess,1320.46,,
+v_lin_b_ldfree,"b linear, limb darkening free",emcee,72,10,fit:rhat_max,1.02008,,
+v_lin_b_ldfree,"b linear, limb darkening free",emcee,72,10,fit:n_over_tau,22.0999,,
+v_lin_b_ldfree,"b linear, limb darkening free",emcee,72,10,fit:nens,2,,
+v_lin_b_ldfree,"b linear, limb darkening free",emcee,72,10,fit:nsteps,1200,,
+v_lin_b_ldfree,"b linear, limb darkening free",emcee,72,10,k,0.0443669,0.00129192,0.0015242
+v_lin_b_ldfree,"b linear, limb darkening free",emcee,72,10,lnrho,9.5564,0.0741591,0.0708738
+v_lin_b_ldfree,"b linear, limb darkening free",emcee,72,10,q1,0.252879,0.106302,0.121971
+v_lin_b_ldfree,"b linear, limb darkening free",emcee,72,10,q2,0.350917,0.235703,0.307053
+v_lin_b_ldfree,"b linear, limb darkening free",emcee,72,10,b0,0.925888,0.0055731,0.0053128
+v_lin_b_ldfree,"b linear, limb darkening free",emcee,72,10,bdot,0.0063094,0.000672487,0.000700093
+v_lin_b_ldfree,"b linear, limb darkening free",emcee,72,10,dT0,-0.393723,0.310959,0.311774
+v_lin_b_ldfree,"b linear, limb darkening free",emcee,72,10,dP,0.112231,0.0941945,0.0915638
+v_lin_b_ldfree,"b linear, limb darkening free",emcee,72,10,At,-0.783503,0.264401,0.2494
+v_lin_b_ldfree,"b linear, limb darkening free",emcee,72,10,Bt,1.53685,0.23989,0.245752
+v_lin_b_ldfree,"b linear, limb darkening free",emcee,72,10,T14_min at 2019.13,50.9929,0.684743,0.722444
+v_lin_b_ldfree,"b linear, limb darkening free",emcee,72,10,T14_min at 2021.09,48.779,0.632182,0.692556
+v_lin_b_ldfree,"b linear, limb darkening free",emcee,72,10,T14_min at 2023.28,46.1435,0.671632,0.735574
+v_lin_b_ldfree,"b linear, limb darkening free",emcee,72,10,T14_min at 2025.44,43.3522,0.840356,0.900404
+v_lin_b_ldfree,"b linear, limb darkening free",emcee,72,10,dT14dt_min_per_yr,-1.19287,0.115522,0.113822
+v_lin_b_ldfree,"b linear, limb darkening free",emcee,72,10,dbdt_per_yr,0.0063094,0.000672487,0.000700093
+v_lin_b_ldfree,"b linear, limb darkening free",emcee,72,10,aR,34.616,0.845208,0.827527
+v_lin_b_rhofree,"b linear, uniform prior on ln rho*: U(8, 11)",emcee,72,10,fit:chi2,14708.4,,
+v_lin_b_rhofree,"b linear, uniform prior on ln rho*: U(8, 11)",emcee,72,10,fit:bic,14804.5,,
+v_lin_b_rhofree,"b linear, uniform prior on ln rho*: U(8, 11)",emcee,72,10,fit:lnZ,-7379.23,,
+v_lin_b_rhofree,"b linear, uniform prior on ln rho*: U(8, 11)",emcee,72,10,fit:lnZ_lap,-7380.26,,
+v_lin_b_rhofree,"b linear, uniform prior on ln rho*: U(8, 11)",emcee,72,10,fit:ess,1894.87,,
+v_lin_b_rhofree,"b linear, uniform prior on ln rho*: U(8, 11)",emcee,72,10,fit:rhat_max,1.00591,,
+v_lin_b_rhofree,"b linear, uniform prior on ln rho*: U(8, 11)",emcee,72,10,fit:n_over_tau,23.6686,,
+v_lin_b_rhofree,"b linear, uniform prior on ln rho*: U(8, 11)",emcee,72,10,fit:nens,2,,
+v_lin_b_rhofree,"b linear, uniform prior on ln rho*: U(8, 11)",emcee,72,10,fit:nsteps,1200,,
+v_lin_b_rhofree,"b linear, uniform prior on ln rho*: U(8, 11)",emcee,72,10,k,0.0438657,0.000779676,0.000815964
+v_lin_b_rhofree,"b linear, uniform prior on ln rho*: U(8, 11)",emcee,72,10,lnrho,9.85587,0.160951,0.177117
+v_lin_b_rhofree,"b linear, uniform prior on ln rho*: U(8, 11)",emcee,72,10,q1,0.44175,0.118963,0.122461
+v_lin_b_rhofree,"b linear, uniform prior on ln rho*: U(8, 11)",emcee,72,10,q2,0.139691,0.0508975,0.0460636
+v_lin_b_rhofree,"b linear, uniform prior on ln rho*: U(8, 11)",emcee,72,10,b0,0.902774,0.0157789,0.0123043
+v_lin_b_rhofree,"b linear, uniform prior on ln rho*: U(8, 11)",emcee,72,10,bdot,0.00767804,0.000998015,0.00123321
+v_lin_b_rhofree,"b linear, uniform prior on ln rho*: U(8, 11)",emcee,72,10,dT0,-0.428615,0.292634,0.315458
+v_lin_b_rhofree,"b linear, uniform prior on ln rho*: U(8, 11)",emcee,72,10,dP,0.110969,0.0936225,0.0866638
+v_lin_b_rhofree,"b linear, uniform prior on ln rho*: U(8, 11)",emcee,72,10,At,-0.848603,0.257969,0.252032
+v_lin_b_rhofree,"b linear, uniform prior on ln rho*: U(8, 11)",emcee,72,10,Bt,1.54627,0.220193,0.228604
+v_lin_b_rhofree,"b linear, uniform prior on ln rho*: U(8, 11)",emcee,72,10,T14_min at 2019.13,50.0772,0.88906,0.859624
+v_lin_b_rhofree,"b linear, uniform prior on ln rho*: U(8, 11)",emcee,72,10,T14_min at 2021.09,47.9016,0.818616,0.801575
+v_lin_b_rhofree,"b linear, uniform prior on ln rho*: U(8, 11)",emcee,72,10,T14_min at 2023.28,45.2868,0.806708,0.814388
+v_lin_b_rhofree,"b linear, uniform prior on ln rho*: U(8, 11)",emcee,72,10,T14_min at 2025.44,42.4919,0.880134,0.94938
+v_lin_b_rhofree,"b linear, uniform prior on ln rho*: U(8, 11)",emcee,72,10,dT14dt_min_per_yr,-1.18181,0.112526,0.115317
+v_lin_b_rhofree,"b linear, uniform prior on ln rho*: U(8, 11)",emcee,72,10,dbdt_per_yr,0.00767804,0.000998015,0.00123321
+v_lin_b_rhofree,"b linear, uniform prior on ln rho*: U(8, 11)",emcee,72,10,aR,38.2499,1.99804,2.32622
+v_lin_i,inclination linear in time,emcee,72,10,fit:chi2,14710.2,,
+v_lin_i,inclination linear in time,emcee,72,10,fit:bic,14806.2,,
+v_lin_i,inclination linear in time,emcee,72,10,fit:lnZ,-7380.46,,
+v_lin_i,inclination linear in time,emcee,72,10,fit:lnZ_lap,-7382.02,,
+v_lin_i,inclination linear in time,emcee,72,10,fit:ess,3220.59,,
+v_lin_i,inclination linear in time,emcee,72,10,fit:rhat_max,1.00563,,
+v_lin_i,inclination linear in time,emcee,72,10,fit:n_over_tau,29.5343,,
+v_lin_i,inclination linear in time,emcee,72,10,fit:nens,2,,
+v_lin_i,inclination linear in time,emcee,72,10,fit:nsteps,1200,,
+v_lin_i,inclination linear in time,emcee,72,10,k,0.0440884,0.000793025,0.000871587
+v_lin_i,inclination linear in time,emcee,72,10,lnrho,9.5601,0.0651725,0.0673769
+v_lin_i,inclination linear in time,emcee,72,10,q1,0.305806,0.0874367,0.102311
+v_lin_i,inclination linear in time,emcee,72,10,q2,0.122928,0.0580364,0.0516455
+v_lin_i,inclination linear in time,emcee,72,10,i0,88.4724,0.0404578,0.0416124
+v_lin_i,inclination linear in time,emcee,72,10,idot,-0.0105201,0.000983743,0.00103108
+v_lin_i,inclination linear in time,emcee,72,10,dT0,-0.409862,0.290834,0.305392
+v_lin_i,inclination linear in time,emcee,72,10,dP,0.106192,0.0888434,0.089112
+v_lin_i,inclination linear in time,emcee,72,10,At,-0.804346,0.266145,0.257622
+v_lin_i,inclination linear in time,emcee,72,10,Bt,1.52386,0.240156,0.232426
+v_lin_i,inclination linear in time,emcee,72,10,T14_min at 2019.13,51.2213,0.650429,0.662723
+v_lin_i,inclination linear in time,emcee,72,10,T14_min at 2021.09,49.022,0.596831,0.623848
+v_lin_i,inclination linear in time,emcee,72,10,T14_min at 2023.28,46.4151,0.63382,0.633748
+v_lin_i,inclination linear in time,emcee,72,10,T14_min at 2025.44,43.6396,0.786279,0.765635
+v_lin_i,inclination linear in time,emcee,72,10,dT14dt_min_per_yr,-1.18961,0.109512,0.113395
+v_lin_i,inclination linear in time,emcee,72,10,dbdt_per_yr,0.00636417,0.000657449,0.000641205
+v_lin_i,inclination linear in time,emcee,72,10,aR,34.6588,0.744813,0.787207
+alt_own_r15,"own TPF photometry, r = 1.5 px",least squares,72,10,dT14dt_min_per_yr,-1.15218,0.180945,0.180945
+alt_own_r15,"own TPF photometry, r = 1.5 px",least squares,72,10,dbdt_per_yr,0.00615122,0.00104593,0.00104593
+alt_own_r15,"own TPF photometry, r = 1.5 px",least squares,72,10,dchi2 (constant minus linear b),39.6417,,
+alt_own_r15,"own TPF photometry, r = 1.5 px",least squares,72,10,k,0.0443993,,
+alt_own_r15,"own TPF photometry, r = 1.5 px",least squares,72,10,b0,0.925238,,
+alt_own_r15,"own TPF photometry, r = 1.5 px",least squares,72,10,lnrho,9.57517,,
+alt_own_r15_regs,"own TPF photometry, r = 1.5 px, regressors",least squares,72,10,dT14dt_min_per_yr,-1.05779,0.163065,0.163065
+alt_own_r15_regs,"own TPF photometry, r = 1.5 px, regressors",least squares,72,10,dbdt_per_yr,0.00562051,0.000936264,0.000936264
+alt_own_r15_regs,"own TPF photometry, r = 1.5 px, regressors",least squares,72,10,dchi2 (constant minus linear b),41.6363,,
+alt_own_r15_regs,"own TPF photometry, r = 1.5 px, regressors",least squares,72,10,k,0.044378,,
+alt_own_r15_regs,"own TPF photometry, r = 1.5 px, regressors",least squares,72,10,b0,0.926183,,
+alt_own_r15_regs,"own TPF photometry, r = 1.5 px, regressors",least squares,72,10,lnrho,9.57545,,
+alt_own_r25,"own TPF photometry, r = 2.5 px",least squares,72,10,dT14dt_min_per_yr,-1.25722,0.161538,0.161538
+alt_own_r25,"own TPF photometry, r = 2.5 px",least squares,72,10,dbdt_per_yr,0.00685708,0.000976251,0.000976251
+alt_own_r25,"own TPF photometry, r = 2.5 px",least squares,72,10,dchi2 (constant minus linear b),61.16,,
+alt_own_r25,"own TPF photometry, r = 2.5 px",least squares,72,10,k,0.0453739,,
+alt_own_r25,"own TPF photometry, r = 2.5 px",least squares,72,10,b0,0.921014,,
+alt_own_r25,"own TPF photometry, r = 2.5 px",least squares,72,10,lnrho,9.56407,,
+alt_own_r25_regs,"own TPF photometry, r = 2.5 px, regressors",least squares,72,10,dT14dt_min_per_yr,-1.16555,0.1348,0.1348
+alt_own_r25_regs,"own TPF photometry, r = 2.5 px, regressors",least squares,72,10,dbdt_per_yr,0.00631777,0.000823401,0.000823401
+alt_own_r25_regs,"own TPF photometry, r = 2.5 px, regressors",least squares,72,10,dchi2 (constant minus linear b),74.4074,,
+alt_own_r25_regs,"own TPF photometry, r = 2.5 px, regressors",least squares,72,10,k,0.0443406,,
+alt_own_r25_regs,"own TPF photometry, r = 2.5 px, regressors",least squares,72,10,b0,0.923199,,
+alt_own_r25_regs,"own TPF photometry, r = 2.5 px, regressors",least squares,72,10,lnrho,9.59097,,
+alt_own_spoc,"own TPF photometry, SPOC aperture",least squares,72,10,dT14dt_min_per_yr,-1.26,0.160451,0.160451
+alt_own_spoc,"own TPF photometry, SPOC aperture",least squares,72,10,dbdt_per_yr,0.00686067,0.000968756,0.000968756
+alt_own_spoc,"own TPF photometry, SPOC aperture",least squares,72,10,dchi2 (constant minus linear b),62.3614,,
+alt_own_spoc,"own TPF photometry, SPOC aperture",least squares,72,10,k,0.0455708,,
+alt_own_spoc,"own TPF photometry, SPOC aperture",least squares,72,10,b0,0.921339,,
+alt_own_spoc,"own TPF photometry, SPOC aperture",least squares,72,10,lnrho,9.56122,,
+alt_own_spoc_regs,"own TPF photometry, SPOC aperture, regressors",least squares,72,10,dT14dt_min_per_yr,-1.14014,0.135586,0.135586
+alt_own_spoc_regs,"own TPF photometry, SPOC aperture, regressors",least squares,72,10,dbdt_per_yr,0.00618146,0.0008235,0.0008235
+alt_own_spoc_regs,"own TPF photometry, SPOC aperture, regressors",least squares,72,10,dchi2 (constant minus linear b),72.2604,,
+alt_own_spoc_regs,"own TPF photometry, SPOC aperture, regressors",least squares,72,10,k,0.044324,,
+alt_own_spoc_regs,"own TPF photometry, SPOC aperture, regressors",least squares,72,10,b0,0.923137,,
+alt_own_spoc_regs,"own TPF photometry, SPOC aperture, regressors",least squares,72,10,lnrho,9.59096,,
+alt_pdc20s,PDCSAP 20 s,least squares,56,10,dT14dt_min_per_yr,-1.06625,0.164923,0.164923
+alt_pdc20s,PDCSAP 20 s,least squares,56,10,dbdt_per_yr,0.0055412,0.000937878,0.000937878
+alt_pdc20s,PDCSAP 20 s,least squares,56,10,dchi2 (constant minus linear b),39.5229,,
+alt_pdc20s,PDCSAP 20 s,least squares,56,10,k,0.0456764,,
+alt_pdc20s,PDCSAP 20 s,least squares,56,10,b0,0.928409,,
+alt_pdc20s,PDCSAP 20 s,least squares,56,10,lnrho,9.5253,,
+alt_pdc2m,PDCSAP 2 min,least squares,72,10,dT14dt_min_per_yr,-1.19338,0.133645,0.133645
+alt_pdc2m,PDCSAP 2 min,least squares,72,10,dbdt_per_yr,0.00637705,0.000807327,0.000807327
+alt_pdc2m,PDCSAP 2 min,least squares,72,10,dchi2 (constant minus linear b),77.6055,,
+alt_pdc2m,PDCSAP 2 min,least squares,72,10,k,0.0440998,,
+alt_pdc2m,PDCSAP 2 min,least squares,72,10,b0,0.923893,,
+alt_pdc2m,PDCSAP 2 min,least squares,72,10,lnrho,9.56174,,
+alt_pdc2m_ebmodel,"PDCSAP 2 min, eclipses modelled instead of masked",least squares,77,10,dT14dt_min_per_yr,-1.17486,0.127021,0.127021
+alt_pdc2m_ebmodel,"PDCSAP 2 min, eclipses modelled instead of masked",least squares,77,10,dbdt_per_yr,0.00629927,0.000775198,0.000775198
+alt_pdc2m_ebmodel,"PDCSAP 2 min, eclipses modelled instead of masked",least squares,77,10,dchi2 (constant minus linear b),84.289,,
+alt_pdc2m_ebmodel,"PDCSAP 2 min, eclipses modelled instead of masked",least squares,77,10,k,0.0441972,,
+alt_pdc2m_ebmodel,"PDCSAP 2 min, eclipses modelled instead of masked",least squares,77,10,b0,0.924075,,
+alt_pdc2m_ebmodel,"PDCSAP 2 min, eclipses modelled instead of masked",least squares,77,10,lnrho,9.57327,,
+alt_pdc2m_regs,"PDCSAP 2 min, pointing and background regressors",least squares,72,10,dT14dt_min_per_yr,-1.11286,0.126977,0.126977
+alt_pdc2m_regs,"PDCSAP 2 min, pointing and background regressors",least squares,72,10,dbdt_per_yr,0.00604345,0.000775895,0.000775895
+alt_pdc2m_regs,"PDCSAP 2 min, pointing and background regressors",least squares,72,10,dchi2 (constant minus linear b),78.0009,,
+alt_pdc2m_regs,"PDCSAP 2 min, pointing and background regressors",least squares,72,10,k,0.0438046,,
+alt_pdc2m_regs,"PDCSAP 2 min, pointing and background regressors",least squares,72,10,b0,0.922628,,
+alt_pdc2m_regs,"PDCSAP 2 min, pointing and background regressors",least squares,72,10,lnrho,9.59511,,
+alt_sap20s,SAP 20 s,least squares,56,10,dT14dt_min_per_yr,-1.08955,0.171617,0.171617
+alt_sap20s,SAP 20 s,least squares,56,10,dbdt_per_yr,0.00566194,0.000974347,0.000974347
+alt_sap20s,SAP 20 s,least squares,56,10,dchi2 (constant minus linear b),38.5591,,
+alt_sap20s,SAP 20 s,least squares,56,10,k,0.0456727,,
+alt_sap20s,SAP 20 s,least squares,56,10,b0,0.928426,,
+alt_sap20s,SAP 20 s,least squares,56,10,lnrho,9.52542,,
+alt_sap2m,SAP 2 min,least squares,72,10,dT14dt_min_per_yr,-1.24652,0.141034,0.141034
+alt_sap2m,SAP 2 min,least squares,72,10,dbdt_per_yr,0.00665603,0.000852667,0.000852667
+alt_sap2m,SAP 2 min,least squares,72,10,dchi2 (constant minus linear b),75.4248,,
+alt_sap2m,SAP 2 min,least squares,72,10,k,0.0444919,,
+alt_sap2m,SAP 2 min,least squares,72,10,b0,0.923994,,
+alt_sap2m,SAP 2 min,least squares,72,10,lnrho,9.55585,,

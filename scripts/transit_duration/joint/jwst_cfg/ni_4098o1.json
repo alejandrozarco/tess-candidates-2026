@@ -1,0 +1,22 @@
+{
+ "ld": "free",
+ "aR": "rho",
+ "geom": "diff",
+ "regs": [
+  "bkg",
+  "tilt"
+ ],
+ "ramp": 0,
+ "poly": 2,
+ "noise": "white",
+ "bin": 5,
+ "trim_min": 10,
+ "nsteps": 2500,
+ "lcs": [
+  {
+   "file": "out/jwst/wl_4098o1_soss.npz",
+   "visit": "4098o1",
+   "det": "SOSS"
+  }
+ ]
+}

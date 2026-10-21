@@ -5,7 +5,7 @@
 Transit candidates TIC 402710280, TIC 324429952, TIC 89247735, TIC 455017950 and TIC 311179599 (sections [1](1_TIC402710280.md)-[5](5_TIC311179599.md)), with a
 candidate second transit signal on TIC 311179599 (section [5.10](5_TIC311179599.md#510-a-second-transit-signal-candidate-c)); the eclipsing binaries TIC 11613676 and TIC 124751008
 and the planet TOI-540 b (sections [6.1](6.1_TIC11613676.md), [6.4](6.4_TIC124751008.md), [6.2](6.2_TOI-540b.md)); nine new eclipsing binaries (section [6.3](6.3_eclipsing_binaries.md)); candidate decreases of the
-transit durations of the known planets L 98-59 d and TOI-620 b (sections [6.6](6.6_L98-59d.md), [6.7](6.7_TOI-620b.md)).
+transit durations of the known planets L 98-59 d and TOI-620 b (sections [6.6](6.6_L98-59d.md), [6.7](6.7_TOI-620b.md)); an ephemeris update of TOI-6482.01 (section [6.8](6.8_TOI-6482.md)).
 
 Five stars observed in TESS full-frame images show periodic transit-shaped dips that are not listed as TOI or CTOI, in
 the NASA Exoplanet Archive, VSX, SIMBAD, the Gaia DR3 variability and non-single-star tables, VizieR or ADS (checks
@@ -62,15 +62,26 @@ change by up to 43 min between consecutive cycles. The geometric models require 
 with a minimum near 2024.3 (a sinusoid gives a period of about 20 yr), as nodal precession by a third body would
 produce; the star has no variable-star or eclipsing-binary entry in the catalogues checked (section [6.4](6.4_TIC124751008.md)).
 
-Two known planets are candidates for a decreasing transit duration. L 98-59 d (TOI-175.02, $`b \approx 0.92`$) shows
-$`\mathrm{d}T_{14}/\mathrm{d}t = -1.17 \pm 0.12`$ min/yr in per-sector fits of the TESS 2-min data from 2018.7 to 2025.96
-(about 52 to 44 min; the error is conditional on a fixed transit shape, and most of the leverage comes from four
-observing campaigns), while planets b and c show no change in the same data, and three public JWST transits
-(2022.99-2024.20), refitted here, decline at a consistent rate at modest significance; an earlier search by Bessho et al.
-(2025) found a change of the same sign that was not significant (section [6.6](6.6_L98-59d.md)). TOI-620 b is a weaker candidate: its
+Two known planets are candidates for a decreasing transit duration. For L 98-59 d (TOI-175.02, $`b \approx 0.92`$) a joint
+fit of 72 TESS transits (2018.65-2026.01; campaign mean epochs 2019.13-2025.44) gives evidence for a secular decrease
+of the transit duration, $`\mathrm{d}T_{14}/\mathrm{d}t = -1.185 \pm 0.112`$ min/yr (about 51 to 44 min; nominal local
+$`z`$ = 6.7-7.4; an illustrative Gaussian trials adjustment gives $`z`$ = 5.4-6.4, subject to the assumptions in section
+6.6.10), with no significant improvement from allowing the radius ratio to vary between campaigns; the evidence rests
+on four observing campaigns (1.8 $`\sigma`$ within campaigns), and planets b and c show no change in the same data. The
+two JWST NIRSpec detectors differ by about 0.8 min in each visit, with opposite signs. With the post-hoc detector
+averaging and empirical systematic floor, the NIRSpec pair differs from no change by 1.3 $`\sigma`$. Adding NIRISS gives
+a slope 2.2 $`\sigma`$ from zero. Both are consistent with the TESS trend; JWST does not independently confirm it. An
+earlier search by Bessho et al. (2025) found a change of the same sign that was not significant
+(section [6.6](6.6_L98-59d.md)). TOI-620 b is a weaker candidate: its
 transit duration falls from about 80 min (2019) to about 62 min (2025-2026) in five TESS sectors
 ($`-2.9 \pm 0.4`$ min/yr, $`p \approx 0.006`$ with three degrees of freedom; the slope depends on the aperture), and its
 transit times vary by up to about $`\pm 7`$ min between sectors, consistent in amplitude with the earlier TTV report by Naponiello (2026; section [6.7](6.7_TOI-620b.md)).
+
+For the known planet candidate TOI-6482.01 (TIC 189300053), listed in the TOI table with $`P = 1483.5175`$ d, six TESS
+QLP transits (sectors 8-99, 2019-2026) give $`P = 20.047937 \pm 0.000060`$ d (the TOI-table period is close to 74 times this
+value; TFOP notes on ExoFOP give 20.04753 d, the TOI-table period divided by 74), a depth of about 9.4 ppt and $`R_\mathrm{p} \approx 17\,R_\oplus`$ with the
+TIC stellar radius; the nature of the transiting object is not established; an earlier version of this ephemeris was
+uploaded to ExoFOP on 2026-10-20 (section [6.8](6.8_TOI-6482.md)).
 
 Nine eclipsing binaries without a previous eclipse report in the catalogues checked (section [6.3](6.3_eclipsing_binaries.md)): TIC 13957664, a
 single 2.0 % eclipse at the conjunction predicted by its Gaia DR3 astrometric+spectroscopic orbit ($`P = 245.66`$ d,

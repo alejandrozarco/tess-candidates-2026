@@ -1,0 +1,277 @@
+# L 98-59 d (TIC 307210830), section 6.6.11: derived quantities of the JWST per-detector and per-wavelength duration analysis (scripts/transit_duration/jwst_chromatic/c6_analyze.py, c7_white_diag.py, c9_sysvariants.py, c11_summary.py, m5_predictions.py; run 2026-10-21)
+# ld: prior = Kurucz-prior limb darkening, free = free limb darkening, ramp = prior + exponential ramp; value and error in the unit given in the quantity; errors are formal (statistical) unless the note says otherwise; shared-b T14 values and their errors are approximate and conditional (header of data/jwst_chromatic_307210830.csv, section 6.6.11)
+# systematics-model variants of the pipeline NRS2 white light (NRS2pipe): the product has no regressors, so the variants named +regs use the polynomial (and ramp) terms only
+# the detector averages and the systematic floor were defined after the NRS1-NRS2 discrepancy had been seen (section 6.6.11); predictions: TESS trend -1.185 +- 0.112 min/yr from the GO 4098 visit (2024.195), Cadieux et al. (2025) linear ephemeris
+group,quantity,ld,value,error,note
+"per-detector, GTO 1224 obs. 1","NRS1 minus NRS2, shared-b T14 (min)",prior,0.8055,0.1819,
+"per-detector, GTO 1224 obs. 1","NRS1 minus NRS2, weighted-mean T14 (min)",prior,0.7371,0.228,
+"per-detector, GTO 1224 obs. 1","delta chi2, step (one b per detector) vs constant b",prior,14.9158,,approximate shared-b profiles (local quadratic minima)
+"per-detector, GTO 1224 obs. 1","delta chi2, b linear in wavelength vs constant b",prior,,,Withheld: inconsistent profile approximations produce negative improvements for nested models.
+"per-detector, GTO 1224 obs. 1","delta chi2, step added to the linear model",prior,,,Withheld: inconsistent profile approximations produce negative improvements for nested models.
+"per-detector, GTO 1224 obs. 1","delta chi2, linear term added to the step model",prior,,,Withheld: inconsistent profile approximations produce negative improvements for nested models.
+"per-detector, GTO 1224 obs. 1","adjacent bins across the detector gap, NRS1 3.605-3.710 minus NRS2 3.830-3.995 um, T14 (min)",prior,0.5573,0.5998,
+"per-detector, GTO 1224 obs. 1","within-detector lines extrapolated to 3.77 um, NRS1 minus NRS2 (min)",prior,0.7721,0.4805,
+"per-detector, GTO 1224 obs. 1","NRS1 minus NRS2, shared-b T14 (min)",free,1.1182,0.3051,
+"per-detector, GTO 1224 obs. 1","NRS1 minus NRS2, weighted-mean T14 (min)",free,0.894,0.3004,
+"per-detector, GTO 1224 obs. 1","delta chi2, step (one b per detector) vs constant b",free,7.5678,,approximate shared-b profiles (local quadratic minima)
+"per-detector, GTO 1224 obs. 1","delta chi2, b linear in wavelength vs constant b",free,,,Withheld: inconsistent profile approximations produce negative improvements for nested models.
+"per-detector, GTO 1224 obs. 1","delta chi2, step added to the linear model",free,,,Withheld: inconsistent profile approximations produce negative improvements for nested models.
+"per-detector, GTO 1224 obs. 1","delta chi2, linear term added to the step model",free,,,Withheld: inconsistent profile approximations produce negative improvements for nested models.
+"per-detector, GTO 1224 obs. 1","adjacent bins across the detector gap, NRS1 3.605-3.710 minus NRS2 3.830-3.995 um, T14 (min)",free,0.5492,0.809,
+"per-detector, GTO 1224 obs. 1","within-detector lines extrapolated to 3.77 um, NRS1 minus NRS2 (min)",free,0.6968,0.6392,
+"per-detector, GTO 1224 obs. 1","NRS1 minus NRS2, shared-b T14 (min)",ramp,1.0313,0.1892,
+"per-detector, GTO 1224 obs. 1","NRS1 minus NRS2, weighted-mean T14 (min)",ramp,0.975,0.2365,
+"per-detector, GTO 1224 obs. 1","delta chi2, step (one b per detector) vs constant b",ramp,17.9414,,approximate shared-b profiles (local quadratic minima)
+"per-detector, GTO 1224 obs. 1","delta chi2, b linear in wavelength vs constant b",ramp,,,Withheld: inconsistent profile approximations produce negative improvements for nested models.
+"per-detector, GTO 1224 obs. 1","delta chi2, step added to the linear model",ramp,,,Withheld: inconsistent profile approximations produce negative improvements for nested models.
+"per-detector, GTO 1224 obs. 1","delta chi2, linear term added to the step model",ramp,,,Withheld: inconsistent profile approximations produce negative improvements for nested models.
+"per-detector, GTO 1224 obs. 1","adjacent bins across the detector gap, NRS1 3.605-3.710 minus NRS2 3.830-3.995 um, T14 (min)",ramp,0.6006,0.6163,
+"per-detector, GTO 1224 obs. 1","within-detector lines extrapolated to 3.77 um, NRS1 minus NRS2 (min)",ramp,1.138,0.4968,
+"per-detector, GO 4098 obs. 2","NRS1 minus NRS2, shared-b T14 (min)",prior,-0.8287,0.1787,
+"per-detector, GO 4098 obs. 2","NRS1 minus NRS2, weighted-mean T14 (min)",prior,-0.8987,0.2137,
+"per-detector, GO 4098 obs. 2","delta chi2, step (one b per detector) vs constant b",prior,6.2927,,approximate shared-b profiles (local quadratic minima)
+"per-detector, GO 4098 obs. 2","delta chi2, b linear in wavelength vs constant b",prior,,,Withheld: inconsistent profile approximations produce negative improvements for nested models.
+"per-detector, GO 4098 obs. 2","delta chi2, step added to the linear model",prior,,,Withheld: inconsistent profile approximations produce negative improvements for nested models.
+"per-detector, GO 4098 obs. 2","delta chi2, linear term added to the step model",prior,,,Withheld: inconsistent profile approximations produce negative improvements for nested models.
+"per-detector, GO 4098 obs. 2","adjacent bins across the detector gap, NRS1 3.605-3.710 minus NRS2 3.830-3.995 um, T14 (min)",prior,-0.2964,0.519,
+"per-detector, GO 4098 obs. 2","within-detector lines extrapolated to 3.77 um, NRS1 minus NRS2 (min)",prior,-0.3906,0.4489,
+"per-detector, GO 4098 obs. 2","NRS1 minus NRS2, shared-b T14 (min)",free,-1.0481,0.2773,
+"per-detector, GO 4098 obs. 2","NRS1 minus NRS2, weighted-mean T14 (min)",free,-1.0775,0.281,
+"per-detector, GO 4098 obs. 2","delta chi2, step (one b per detector) vs constant b",free,5.2156,,approximate shared-b profiles (local quadratic minima)
+"per-detector, GO 4098 obs. 2","delta chi2, b linear in wavelength vs constant b",free,,,Withheld: inconsistent profile approximations produce negative improvements for nested models.
+"per-detector, GO 4098 obs. 2","delta chi2, step added to the linear model",free,,,Withheld: inconsistent profile approximations produce negative improvements for nested models.
+"per-detector, GO 4098 obs. 2","delta chi2, linear term added to the step model",free,,,Withheld: inconsistent profile approximations produce negative improvements for nested models.
+"per-detector, GO 4098 obs. 2","adjacent bins across the detector gap, NRS1 3.605-3.710 minus NRS2 3.830-3.995 um, T14 (min)",free,-0.2494,0.6641,
+"per-detector, GO 4098 obs. 2","within-detector lines extrapolated to 3.77 um, NRS1 minus NRS2 (min)",free,-0.5457,0.5882,
+"between NIRSpec visits, GO 4098 obs. 2 minus GTO 1224 obs. 1","NRS1, weighted mean of the per-bin delta T14 (min)",prior,-1.5266,0.2104,chi2 2.1 for 7 dof
+"between NIRSpec visits, GO 4098 obs. 2 minus GTO 1224 obs. 1","NRS1, slope of the per-bin delta T14 (min/um)",prior,-0.0617,0.9235,
+"between NIRSpec visits, GO 4098 obs. 2 minus GTO 1224 obs. 1","NRS1, delta of the shared-b T14 (min)",prior,-1.5651,0.1639,
+"between NIRSpec visits, GO 4098 obs. 2 minus GTO 1224 obs. 1","NRS2, weighted mean of the per-bin delta T14 (min)",prior,0.0645,0.2353,chi2 4.3 for 7 dof
+"between NIRSpec visits, GO 4098 obs. 2 minus GTO 1224 obs. 1","NRS2, slope of the per-bin delta T14 (min/um)",prior,0.6177,0.6221,
+"between NIRSpec visits, GO 4098 obs. 2 minus GTO 1224 obs. 1","NRS2, delta of the shared-b T14 (min)",prior,0.069,0.1953,
+"between NIRSpec visits, GO 4098 obs. 2 minus GTO 1224 obs. 1","all 16 bins, weighted mean delta T14 (min)",prior,-0.8195,0.1568,"chi2 about a constant 31.8 for 15 dof, p = 0.007"
+"between NIRSpec visits, GO 4098 obs. 2 minus GTO 1224 obs. 1","all 16 bins, step NRS2 minus NRS1 (min)",prior,1.5911,0.3156,chi2 6.4
+"between NIRSpec visits, GO 4098 obs. 2 minus GTO 1224 obs. 1","all 16 bins, linear in wavelength (min/um)",prior,1.201,0.2509,chi2 8.9
+"between NIRSpec visits, GO 4098 obs. 2 minus GTO 1224 obs. 1","all 16 bins, step given the linear term (min)",prior,1.1451,0.6491,chi2 5.8
+"planet c control, NRS1","GO 2512 obs. 16 (2023-07-09) minus obs. 15 (2023-07-13), weighted-mean T14 (min)",prior,-0.0324,0.1067,
+"planet c control, NRS1","GO 2512 obs. 16 (2023-07-09) minus obs. 15 (2023-07-13), shared-b T14 (min)",prior,-0.0318,0.1141,
+"between NIRSpec visits, GO 4098 obs. 2 minus GTO 1224 obs. 1","NRS1, weighted mean of the per-bin delta T14 (min)",free,-1.7259,0.2727,chi2 2.9 for 7 dof
+"between NIRSpec visits, GO 4098 obs. 2 minus GTO 1224 obs. 1","NRS1, slope of the per-bin delta T14 (min/um)",free,-0.0523,1.2442,
+"between NIRSpec visits, GO 4098 obs. 2 minus GTO 1224 obs. 1","NRS1, delta of the shared-b T14 (min)",free,-1.9017,0.2489,
+"between NIRSpec visits, GO 4098 obs. 2 minus GTO 1224 obs. 1","NRS2, weighted mean of the per-bin delta T14 (min)",free,0.1157,0.3248,chi2 4.1 for 7 dof
+"between NIRSpec visits, GO 4098 obs. 2 minus GTO 1224 obs. 1","NRS2, slope of the per-bin delta T14 (min/um)",free,0.5803,0.8623,
+"between NIRSpec visits, GO 4098 obs. 2 minus GTO 1224 obs. 1","NRS2, delta of the shared-b T14 (min)",free,0.2646,0.3287,
+"between NIRSpec visits, GO 4098 obs. 2 minus GTO 1224 obs. 1","all 16 bins, weighted mean delta T14 (min)",free,-0.9647,0.2088,"chi2 about a constant 25.8 for 15 dof, p = 0.040"
+"between NIRSpec visits, GO 4098 obs. 2 minus GTO 1224 obs. 1","all 16 bins, step NRS2 minus NRS1 (min)",free,1.8416,0.4241,chi2 7.0
+"between NIRSpec visits, GO 4098 obs. 2 minus GTO 1224 obs. 1","all 16 bins, linear in wavelength (min/um)",free,1.3991,0.3455,chi2 9.4
+"between NIRSpec visits, GO 4098 obs. 2 minus GTO 1224 obs. 1","all 16 bins, step given the linear term (min)",free,1.4397,0.8699,chi2 6.7
+"planet c control, NRS1","GO 2512 obs. 16 (2023-07-09) minus obs. 15 (2023-07-13), weighted-mean T14 (min)",free,0.21,0.1213,
+"planet c control, NRS1","GO 2512 obs. 16 (2023-07-09) minus obs. 15 (2023-07-13), shared-b T14 (min)",free,0.2373,0.124,
+detector systematics and averages,change of NRS1 minus NRS2 between the visits (min),prior,-1.6341,0.255,formal errors only
+detector systematics and averages,empirical systematic floor per detector and visit (min),prior,0.5636,,"sqrt(mean(d_v^2 - s_v^2) / 2) over the two visits; plug-in estimate from two differences, rough uncertainty about 50 % (not a calibrated interval); assumes zero-mean offsets independent between detectors and visits with a common variance (applied to NIRISS by assumption); errors that include the floor hold it fixed"
+detector systematics and averages,"detector-averaged T14, 2023.481 (min)",prior,44.8357,0.4087,statistical error 0.09; error column includes the floor / sqrt(2)
+detector systematics and averages,"detector-averaged T14, 2024.195 (min)",prior,44.0877,0.4084,statistical error 0.09; error column includes the floor / sqrt(2)
+detector systematics and averages,"detector-averaged delta T14, 2024.195 minus 2023.481 (min)",prior,-0.748,0.5778,statistical error 0.13; TESS trend predicts -0.85 +- 0.08
+JWST-only slopes (formal),"NIRSpec pair, detector average (min/yr)",prior,-1.0476,0.1786,
+JWST-only slopes (formal),NIRISS 1201 + NIRSpec pair (avg) (min/yr),prior,-1.2352,0.1172,
+JWST-only slopes (formal),"NIRSpec pair, NRS1 only (min/yr)",prior,-2.192,0.2296,
+JWST-only slopes (formal),NIRISS 1201 + NRS1 pair (min/yr),prior,-1.6664,0.136,
+JWST-only slopes (formal),"NIRSpec pair, NRS2 only (min/yr)",prior,0.0967,0.2735,
+JWST-only slopes (formal),NIRISS 1201 + NRS2 pair (min/yr),prior,-0.9246,0.1482,
+JWST-only slopes (with sigma_sys),"NIRSpec pair, detector average (min/yr)",prior,-1.0476,0.8092,
+JWST-only slopes (with sigma_sys),NIRISS 1201 + NIRSpec pair (avg) (min/yr),prior,-1.2238,0.5543,NIRISS 1201 point: SOSS1 shared-b T14 with the full floor added
+JWST-only slopes (with sigma_sys),"NIRSpec pair, NRS1 only (min/yr)",prior,-2.192,1.1396,
+JWST-only slopes (with sigma_sys),NIRISS 1201 + NRS1 pair (min/yr),prior,-1.6669,0.6726,NIRISS 1201 point: SOSS1 shared-b T14 with the full floor added
+JWST-only slopes (with sigma_sys),"NIRSpec pair, NRS2 only (min/yr)",prior,0.0967,1.1493,
+JWST-only slopes (with sigma_sys),NIRISS 1201 + NRS2 pair (min/yr),prior,-0.8645,0.6753,NIRISS 1201 point: SOSS1 shared-b T14 with the full floor added
+detector systematics and averages,change of NRS1 minus NRS2 between the visits (min),free,-2.1663,0.4123,formal errors only
+detector systematics and averages,empirical systematic floor per detector and visit (min),free,0.7381,,"sqrt(mean(d_v^2 - s_v^2) / 2) over the two visits; plug-in estimate from two differences, rough uncertainty about 50 % (not a calibrated interval); assumes zero-mean offsets independent between detectors and visits with a common variance (applied to NIRISS by assumption); errors that include the floor hold it fixed"
+detector systematics and averages,"detector-averaged T14, 2023.481 (min)",free,44.9359,0.5437,statistical error 0.15; error column includes the floor / sqrt(2)
+detector systematics and averages,"detector-averaged T14, 2024.195 (min)",free,44.1173,0.54,statistical error 0.14; error column includes the floor / sqrt(2)
+detector systematics and averages,"detector-averaged delta T14, 2024.195 minus 2023.481 (min)",free,-0.8186,0.7663,statistical error 0.21; TESS trend predicts -0.85 +- 0.08
+JWST-only slopes (formal),"NIRSpec pair, detector average (min/yr)",free,-1.1465,0.2887,
+JWST-only slopes (formal),NIRISS 1201 + NIRSpec pair (avg) (min/yr),free,-1.1326,0.1766,
+JWST-only slopes (formal),"NIRSpec pair, NRS1 only (min/yr)",free,-2.6635,0.3486,
+JWST-only slopes (formal),NIRISS 1201 + NRS1 pair (min/yr),free,-1.655,0.1868,
+JWST-only slopes (formal),"NIRSpec pair, NRS2 only (min/yr)",free,0.3706,0.4604,
+JWST-only slopes (formal),NIRISS 1201 + NRS2 pair (min/yr),free,-0.7384,0.2369,
+JWST-only slopes (with sigma_sys),"NIRSpec pair, detector average (min/yr)",free,-1.1465,1.0733,
+JWST-only slopes (with sigma_sys),NIRISS 1201 + NIRSpec pair (avg) (min/yr),free,-1.1341,0.7316,NIRISS 1201 point: SOSS1 shared-b T14 with the full floor added
+JWST-only slopes (with sigma_sys),"NIRSpec pair, NRS1 only (min/yr)",free,-2.6635,1.5029,
+JWST-only slopes (with sigma_sys),NIRISS 1201 + NRS1 pair (min/yr),free,-1.6467,0.8826,NIRISS 1201 point: SOSS1 shared-b T14 with the full floor added
+JWST-only slopes (with sigma_sys),"NIRSpec pair, NRS2 only (min/yr)",free,0.3706,1.5327,
+JWST-only slopes (with sigma_sys),NIRISS 1201 + NRS2 pair (min/yr),free,-0.6266,0.8955,NIRISS 1201 point: SOSS1 shared-b T14 with the full floor added
+"systematics-model variants (c9_sysvariants.py; white light, Kurucz-prior LD, least squares)","GTO 1224 obs. 1 NRS1, poly2: T14 (min)",prior,45.2801,0.1849,
+"systematics-model variants (c9_sysvariants.py; white light, Kurucz-prior LD, least squares)","GTO 1224 obs. 1 NRS1, poly2+xshift: T14 (min)",prior,45.2922,0.1856,
+"systematics-model variants (c9_sysvariants.py; white light, Kurucz-prior LD, least squares)","GTO 1224 obs. 1 NRS1, poly2+yshift: T14 (min)",prior,45.2854,0.1849,
+"systematics-model variants (c9_sysvariants.py; white light, Kurucz-prior LD, least squares)","GTO 1224 obs. 1 NRS1, poly2+width: T14 (min)",prior,45.3418,0.1849,
+"systematics-model variants (c9_sysvariants.py; white light, Kurucz-prior LD, least squares)","GTO 1224 obs. 1 NRS1, poly2+regs (section 6.6.10): T14 (min)",prior,45.3596,0.1856,
+"systematics-model variants (c9_sysvariants.py; white light, Kurucz-prior LD, least squares)","GTO 1224 obs. 1 NRS1, poly1+regs: T14 (min)",prior,45.4908,0.1859,
+"systematics-model variants (c9_sysvariants.py; white light, Kurucz-prior LD, least squares)","GTO 1224 obs. 1 NRS1, poly3+regs: T14 (min)",prior,45.4219,0.1839,
+"systematics-model variants (c9_sysvariants.py; white light, Kurucz-prior LD, least squares)","GTO 1224 obs. 1 NRS1, poly2+regs+ramp15: T14 (min)",prior,45.619,0.1896,
+"systematics-model variants (c9_sysvariants.py; white light, Kurucz-prior LD, least squares)","GTO 1224 obs. 1 NRS1, poly2+regs, +-30 min of contacts: T14 (min)",prior,45.3268,0.187,
+"systematics-model variants (c9_sysvariants.py; white light, Kurucz-prior LD, least squares)","GTO 1224 obs. 1 NRS2, poly2: T14 (min)",prior,44.3122,0.1944,
+"systematics-model variants (c9_sysvariants.py; white light, Kurucz-prior LD, least squares)","GTO 1224 obs. 1 NRS2, poly2+xshift: T14 (min)",prior,44.3133,0.1946,
+"systematics-model variants (c9_sysvariants.py; white light, Kurucz-prior LD, least squares)","GTO 1224 obs. 1 NRS2, poly2+yshift: T14 (min)",prior,44.3354,0.1927,
+"systematics-model variants (c9_sysvariants.py; white light, Kurucz-prior LD, least squares)","GTO 1224 obs. 1 NRS2, poly2+width: T14 (min)",prior,44.3271,0.1959,
+"systematics-model variants (c9_sysvariants.py; white light, Kurucz-prior LD, least squares)","GTO 1224 obs. 1 NRS2, poly2+regs (section 6.6.10): T14 (min)",prior,44.351,0.1943,
+"systematics-model variants (c9_sysvariants.py; white light, Kurucz-prior LD, least squares)","GTO 1224 obs. 1 NRS2, poly1+regs: T14 (min)",prior,44.465,0.1945,
+"systematics-model variants (c9_sysvariants.py; white light, Kurucz-prior LD, least squares)","GTO 1224 obs. 1 NRS2, poly3+regs: T14 (min)",prior,44.3406,0.1943,
+"systematics-model variants (c9_sysvariants.py; white light, Kurucz-prior LD, least squares)","GTO 1224 obs. 1 NRS2, poly2+regs+ramp15: T14 (min)",prior,44.342,0.1985,
+"systematics-model variants (c9_sysvariants.py; white light, Kurucz-prior LD, least squares)","GTO 1224 obs. 1 NRS2, poly2+regs, +-30 min of contacts: T14 (min)",prior,44.0647,0.1842,
+"systematics-model variants (c9_sysvariants.py; white light, Kurucz-prior LD, least squares)","GTO 1224 obs. 1 NRS2 pipeline (stage 3), poly2: T14 (min)",prior,44.4115,0.188,
+"systematics-model variants (c9_sysvariants.py; white light, Kurucz-prior LD, least squares)","GTO 1224 obs. 1 NRS2 pipeline (stage 3), poly1+regs: T14 (min)",prior,44.4959,0.1847,
+"systematics-model variants (c9_sysvariants.py; white light, Kurucz-prior LD, least squares)","GTO 1224 obs. 1 NRS2 pipeline (stage 3), poly3+regs: T14 (min)",prior,44.4038,0.1868,
+"systematics-model variants (c9_sysvariants.py; white light, Kurucz-prior LD, least squares)","GTO 1224 obs. 1 NRS2 pipeline (stage 3), poly2+regs+ramp15: T14 (min)",prior,44.2456,0.1867,
+"systematics-model variants (c9_sysvariants.py; white light, Kurucz-prior LD, least squares)","GTO 1224 obs. 1 NRS2 pipeline (stage 3), poly2+regs, +-30 min of contacts: T14 (min)",prior,44.1396,0.1901,
+"systematics-model variants (c9_sysvariants.py; white light, Kurucz-prior LD, least squares)","GO 4098 obs. 2 NRS1, poly2: T14 (min)",prior,43.5332,0.162,
+"systematics-model variants (c9_sysvariants.py; white light, Kurucz-prior LD, least squares)","GO 4098 obs. 2 NRS1, poly2+xshift: T14 (min)",prior,43.5784,0.1644,
+"systematics-model variants (c9_sysvariants.py; white light, Kurucz-prior LD, least squares)","GO 4098 obs. 2 NRS1, poly2+yshift: T14 (min)",prior,43.5582,0.1634,
+"systematics-model variants (c9_sysvariants.py; white light, Kurucz-prior LD, least squares)","GO 4098 obs. 2 NRS1, poly2+width: T14 (min)",prior,43.5291,0.1618,
+"systematics-model variants (c9_sysvariants.py; white light, Kurucz-prior LD, least squares)","GO 4098 obs. 2 NRS1, poly2+regs (section 6.6.10): T14 (min)",prior,43.6156,0.1669,
+"systematics-model variants (c9_sysvariants.py; white light, Kurucz-prior LD, least squares)","GO 4098 obs. 2 NRS1, poly1+regs: T14 (min)",prior,43.7799,0.1696,
+"systematics-model variants (c9_sysvariants.py; white light, Kurucz-prior LD, least squares)","GO 4098 obs. 2 NRS1, poly3+regs: T14 (min)",prior,43.6747,0.1691,
+"systematics-model variants (c9_sysvariants.py; white light, Kurucz-prior LD, least squares)","GO 4098 obs. 2 NRS1, poly2+regs+ramp15: T14 (min)",prior,43.6395,0.169,
+"systematics-model variants (c9_sysvariants.py; white light, Kurucz-prior LD, least squares)","GO 4098 obs. 2 NRS1, poly2+regs, +-30 min of contacts: T14 (min)",prior,43.9263,0.1857,
+"systematics-model variants (c9_sysvariants.py; white light, Kurucz-prior LD, least squares)","GO 4098 obs. 2 NRS2, poly2: T14 (min)",prior,44.3521,0.1978,
+"systematics-model variants (c9_sysvariants.py; white light, Kurucz-prior LD, least squares)","GO 4098 obs. 2 NRS2, poly2+xshift: T14 (min)",prior,44.3541,0.1981,
+"systematics-model variants (c9_sysvariants.py; white light, Kurucz-prior LD, least squares)","GO 4098 obs. 2 NRS2, poly2+yshift: T14 (min)",prior,44.5204,0.2029,
+"systematics-model variants (c9_sysvariants.py; white light, Kurucz-prior LD, least squares)","GO 4098 obs. 2 NRS2, poly2+width: T14 (min)",prior,44.3599,0.1918,
+"systematics-model variants (c9_sysvariants.py; white light, Kurucz-prior LD, least squares)","GO 4098 obs. 2 NRS2, poly2+regs (section 6.6.10): T14 (min)",prior,44.5321,0.1954,
+"systematics-model variants (c9_sysvariants.py; white light, Kurucz-prior LD, least squares)","GO 4098 obs. 2 NRS2, poly1+regs: T14 (min)",prior,44.5403,0.1924,
+"systematics-model variants (c9_sysvariants.py; white light, Kurucz-prior LD, least squares)","GO 4098 obs. 2 NRS2, poly3+regs: T14 (min)",prior,44.5455,0.1967,
+"systematics-model variants (c9_sysvariants.py; white light, Kurucz-prior LD, least squares)","GO 4098 obs. 2 NRS2, poly2+regs+ramp15: T14 (min)",prior,44.5023,0.1967,
+"systematics-model variants (c9_sysvariants.py; white light, Kurucz-prior LD, least squares)","GO 4098 obs. 2 NRS2, poly2+regs, +-30 min of contacts: T14 (min)",prior,44.4555,0.2137,
+"systematics-model variants (c9_sysvariants.py; white light, Kurucz-prior LD, least squares)","GO 4098 obs. 2 NRS2 pipeline (stage 3), poly2: T14 (min)",prior,43.6447,0.2075,
+"systematics-model variants (c9_sysvariants.py; white light, Kurucz-prior LD, least squares)","GO 4098 obs. 2 NRS2 pipeline (stage 3), poly1+regs: T14 (min)",prior,43.6758,0.2041,
+"systematics-model variants (c9_sysvariants.py; white light, Kurucz-prior LD, least squares)","GO 4098 obs. 2 NRS2 pipeline (stage 3), poly3+regs: T14 (min)",prior,43.6684,0.2087,
+"systematics-model variants (c9_sysvariants.py; white light, Kurucz-prior LD, least squares)","GO 4098 obs. 2 NRS2 pipeline (stage 3), poly2+regs+ramp15: T14 (min)",prior,43.5964,0.208,
+"systematics-model variants (c9_sysvariants.py; white light, Kurucz-prior LD, least squares)","GO 4098 obs. 2 NRS2 pipeline (stage 3), poly2+regs, +-30 min of contacts: T14 (min)",prior,43.4108,0.2151,
+"white-light diagnostics, GTO 1224 obs. 1 (c7_white_diag.py)","delta chi2, common b minus one b per detector",prior,8.8916,,
+"white-light diagnostics, GTO 1224 obs. 1 (c7_white_diag.py)",one b per detector: NRS1 T14 (min),prior,45.3595,,
+"white-light diagnostics, GTO 1224 obs. 1 (c7_white_diag.py)",one b per detector: NRS2 T14 (min),prior,44.351,,
+"white-light diagnostics, GTO 1224 obs. 1 (c7_white_diag.py)","contact 1, minutes after the exposure start",prior,19.2854,,
+"white-light diagnostics, GTO 1224 obs. 1 (c7_white_diag.py)","contact 2, minutes after the exposure start",prior,31.6418,,
+"white-light diagnostics, GTO 1224 obs. 1 (c7_white_diag.py)","contact 3, minutes after the exposure start",prior,51.9091,,
+"white-light diagnostics, GTO 1224 obs. 1 (c7_white_diag.py)","contact 4, minutes after the exposure start",prior,64.2654,,
+"white-light diagnostics, GTO 1224 obs. 1 (c7_white_diag.py)",NRS1/NRS2 ratio light curve: part of the per-detector T14 difference supported (min),prior,0.9334,0.3958,of 1.01 min; red-noise factor 1.11
+"white-light diagnostics, GTO 1224 obs. 1 (c7_white_diag.py)","NRS1/NRS2 ratio: delta chi2, common minus per-detector geometry",prior,6.5796,,
+"white-light diagnostics, GTO 1224 obs. 1 (c7_white_diag.py)","NRS1/NRS2 ratio minus common-geometry model, mean in window pre (ppm)",prior,-15.6076,23.9086,
+"white-light diagnostics, GTO 1224 obs. 1 (c7_white_diag.py)","NRS1/NRS2 ratio minus common-geometry model, mean in window ingress (ppm)",prior,-37.381,21.1508,
+"white-light diagnostics, GTO 1224 obs. 1 (c7_white_diag.py)","NRS1/NRS2 ratio minus common-geometry model, mean in window bottom (ppm)",prior,-14.8169,16.6759,
+"white-light diagnostics, GTO 1224 obs. 1 (c7_white_diag.py)","NRS1/NRS2 ratio minus common-geometry model, mean in window egress (ppm)",prior,12.2144,20.7054,
+"white-light diagnostics, GTO 1224 obs. 1 (c7_white_diag.py)","NRS1/NRS2 ratio minus common-geometry model, mean in window post (ppm)",prior,0.9254,5.8466,
+"white-light diagnostics, GTO 1224 obs. 1 (c7_white_diag.py)","largest 10-min in-transit residual excess, NRS1 (ppm)",prior,3.8598,14.7671,
+"white-light diagnostics, GTO 1224 obs. 1 (c7_white_diag.py)","largest 10-min in-transit residual excess, NRS2 (ppm)",prior,16.536,18.0983,
+"white-light diagnostics, GTO 1224 obs. 1 (c7_white_diag.py)","residual-regressor correlation tests (5-min bins, 2000 permutations) with p < 0.05",prior,2.0,,"of 24 tests; nrs2 vs xshift_nrs1 r = -0.40, p = 0.011; nrs1_minus_nrs2 vs xshift_nrs1 r = 0.34, p = 0.034"
+"white-light diagnostics, GO 4098 obs. 2 (c7_white_diag.py)","delta chi2, common b minus one b per detector",prior,4.9649,,
+"white-light diagnostics, GO 4098 obs. 2 (c7_white_diag.py)",one b per detector: NRS1 T14 (min),prior,43.6156,,
+"white-light diagnostics, GO 4098 obs. 2 (c7_white_diag.py)",one b per detector: NRS2 T14 (min),prior,44.5321,,
+"white-light diagnostics, GO 4098 obs. 2 (c7_white_diag.py)","contact 1, minutes after the exposure start",prior,109.6783,,
+"white-light diagnostics, GO 4098 obs. 2 (c7_white_diag.py)","contact 2, minutes after the exposure start",prior,122.2328,,
+"white-light diagnostics, GO 4098 obs. 2 (c7_white_diag.py)","contact 3, minutes after the exposure start",prior,141.1999,,
+"white-light diagnostics, GO 4098 obs. 2 (c7_white_diag.py)","contact 4, minutes after the exposure start",prior,153.7544,,
+"white-light diagnostics, GO 4098 obs. 2 (c7_white_diag.py)",NRS1/NRS2 ratio light curve: part of the per-detector T14 difference supported (min),prior,-0.4646,0.6853,of -0.92 min; red-noise factor 1.48
+"white-light diagnostics, GO 4098 obs. 2 (c7_white_diag.py)","NRS1/NRS2 ratio: delta chi2, common minus per-detector geometry",prior,0.0172,,
+"white-light diagnostics, GO 4098 obs. 2 (c7_white_diag.py)","NRS1/NRS2 ratio minus common-geometry model, mean in window pre (ppm)",prior,-2.8161,7.6928,
+"white-light diagnostics, GO 4098 obs. 2 (c7_white_diag.py)","NRS1/NRS2 ratio minus common-geometry model, mean in window ingress (ppm)",prior,21.0843,21.5877,
+"white-light diagnostics, GO 4098 obs. 2 (c7_white_diag.py)","NRS1/NRS2 ratio minus common-geometry model, mean in window bottom (ppm)",prior,-9.1217,17.6263,
+"white-light diagnostics, GO 4098 obs. 2 (c7_white_diag.py)","NRS1/NRS2 ratio minus common-geometry model, mean in window egress (ppm)",prior,-14.5961,22.052,
+"white-light diagnostics, GO 4098 obs. 2 (c7_white_diag.py)","NRS1/NRS2 ratio minus common-geometry model, mean in window post (ppm)",prior,3.9906,9.1704,
+"white-light diagnostics, GO 4098 obs. 2 (c7_white_diag.py)","largest 10-min in-transit residual excess, NRS1 (ppm)",prior,6.8895,15.131,
+"white-light diagnostics, GO 4098 obs. 2 (c7_white_diag.py)","largest 10-min in-transit residual excess, NRS2 (ppm)",prior,40.448,18.3336,
+"white-light diagnostics, GO 4098 obs. 2 (c7_white_diag.py)","residual-regressor correlation tests (5-min bins, 2000 permutations) with p < 0.05",prior,0.0,,of 24 tests
+"own minus pipeline NRS2 white light, GTO 1224 obs. 1",own (quadratic + regressors) minus pipeline (quadratic) T14 (min),prior,-0.0605,,
+"own minus pipeline NRS2 white light, GTO 1224 obs. 1","own minus pipeline, both quadratic only, T14 (min)",prior,-0.0993,,
+"own minus pipeline NRS2 white light, GO 4098 obs. 2",own (quadratic + regressors) minus pipeline (quadratic) T14 (min),prior,0.8874,,
+"own minus pipeline NRS2 white light, GO 4098 obs. 2","own minus pipeline, both quadratic only, T14 (min)",prior,0.7074,,
+"prediction, GO 10498 obs 4 (executed), mid-transit 2026-08-01 02:55 UTC (2026.582)","T14 on the scale joint NRS1+NRS2 (ns_main_v2), TESS trend continued (min)",,41.4583,0.3413,
+"prediction, GO 10498 obs 4 (executed), mid-transit 2026-08-01 02:55 UTC (2026.582)","T14 on the scale joint NRS1+NRS2 (ns_main_v2), no change (min)",,44.2865,0.2122,
+"prediction, GO 10498 obs 4 (executed), mid-transit 2026-08-01 02:55 UTC (2026.582)","T14 on the scale NRS1 only (ns_nrs1), TESS trend continued (min)",,41.2582,0.3841,
+"prediction, GO 10498 obs 4 (executed), mid-transit 2026-08-01 02:55 UTC (2026.582)","T14 on the scale NRS1 only (ns_nrs1), no change (min)",,44.0864,0.2759,
+"prediction, GO 10498 obs 4 (executed), mid-transit 2026-08-01 02:55 UTC (2026.582)","T14 on the scale NRS2 only (ns_nrs2), TESS trend continued (min)",,41.6863,0.3596,
+"prediction, GO 10498 obs 4 (executed), mid-transit 2026-08-01 02:55 UTC (2026.582)","T14 on the scale NRS2 only (ns_nrs2), no change (min)",,44.5145,0.2406,
+"prediction, GO 10498 obs 4 (executed), mid-transit 2026-08-01 02:55 UTC (2026.582)","T14 on the scale NRS2 pipeline (pipe_nrs2), TESS trend continued (min)",,40.8588,0.3739,
+"prediction, GO 10498 obs 4 (executed), mid-transit 2026-08-01 02:55 UTC (2026.582)","T14 on the scale NRS2 pipeline (pipe_nrs2), no change (min)",,43.6871,0.2614,
+"prediction, GO 10498 obs 4 (executed), mid-transit 2026-08-01 02:55 UTC (2026.582)","T14 on the scale detector average with floor (c11_summary), TESS trend continued (min)",,41.2595,0.4881,
+"prediction, GO 10498 obs 4 (executed), mid-transit 2026-08-01 02:55 UTC (2026.582)","T14 on the scale detector average with floor (c11_summary), no change (min)",,44.0877,0.4084,
+"prediction, GO 10498 obs 2, mid-transit 2027-03-20 02:16 UTC (2027.214)","T14 on the scale joint NRS1+NRS2 (ns_main_v2), TESS trend continued (min)",,40.7089,0.3992,
+"prediction, GO 10498 obs 2, mid-transit 2027-03-20 02:16 UTC (2027.214)","T14 on the scale joint NRS1+NRS2 (ns_main_v2), no change (min)",,44.2865,0.2122,
+"prediction, GO 10498 obs 2, mid-transit 2027-03-20 02:16 UTC (2027.214)","T14 on the scale NRS1 only (ns_nrs1), TESS trend continued (min)",,40.5089,0.4364,
+"prediction, GO 10498 obs 2, mid-transit 2027-03-20 02:16 UTC (2027.214)","T14 on the scale NRS1 only (ns_nrs1), no change (min)",,44.0864,0.2759,
+"prediction, GO 10498 obs 2, mid-transit 2027-03-20 02:16 UTC (2027.214)","T14 on the scale NRS2 only (ns_nrs2), TESS trend continued (min)",,40.9369,0.415,
+"prediction, GO 10498 obs 2, mid-transit 2027-03-20 02:16 UTC (2027.214)","T14 on the scale NRS2 only (ns_nrs2), no change (min)",,44.5145,0.2406,
+"prediction, GO 10498 obs 2, mid-transit 2027-03-20 02:16 UTC (2027.214)","T14 on the scale NRS2 pipeline (pipe_nrs2), TESS trend continued (min)",,40.1095,0.4274,
+"prediction, GO 10498 obs 2, mid-transit 2027-03-20 02:16 UTC (2027.214)","T14 on the scale NRS2 pipeline (pipe_nrs2), no change (min)",,43.6871,0.2614,
+"prediction, GO 10498 obs 2, mid-transit 2027-03-20 02:16 UTC (2027.214)","T14 on the scale detector average with floor (c11_summary), TESS trend continued (min)",,40.5101,0.5302,
+"prediction, GO 10498 obs 2, mid-transit 2027-03-20 02:16 UTC (2027.214)","T14 on the scale detector average with floor (c11_summary), no change (min)",,44.0877,0.4084,
+"prediction, GO 10498 obs 5, mid-transit 2027-04-03 23:54 UTC (2027.255)","T14 on the scale joint NRS1+NRS2 (ns_main_v2), TESS trend continued (min)",,40.6606,0.4031,
+"prediction, GO 10498 obs 5, mid-transit 2027-04-03 23:54 UTC (2027.255)","T14 on the scale joint NRS1+NRS2 (ns_main_v2), no change (min)",,44.2865,0.2122,
+"prediction, GO 10498 obs 5, mid-transit 2027-04-03 23:54 UTC (2027.255)","T14 on the scale NRS1 only (ns_nrs1), TESS trend continued (min)",,40.4605,0.4399,
+"prediction, GO 10498 obs 5, mid-transit 2027-04-03 23:54 UTC (2027.255)","T14 on the scale NRS1 only (ns_nrs1), no change (min)",,44.0864,0.2759,
+"prediction, GO 10498 obs 5, mid-transit 2027-04-03 23:54 UTC (2027.255)","T14 on the scale NRS2 only (ns_nrs2), TESS trend continued (min)",,40.8886,0.4187,
+"prediction, GO 10498 obs 5, mid-transit 2027-04-03 23:54 UTC (2027.255)","T14 on the scale NRS2 only (ns_nrs2), no change (min)",,44.5145,0.2406,
+"prediction, GO 10498 obs 5, mid-transit 2027-04-03 23:54 UTC (2027.255)","T14 on the scale NRS2 pipeline (pipe_nrs2), TESS trend continued (min)",,40.0611,0.431,
+"prediction, GO 10498 obs 5, mid-transit 2027-04-03 23:54 UTC (2027.255)","T14 on the scale NRS2 pipeline (pipe_nrs2), no change (min)",,43.6871,0.2614,
+"prediction, GO 10498 obs 5, mid-transit 2027-04-03 23:54 UTC (2027.255)","T14 on the scale detector average with floor (c11_summary), TESS trend continued (min)",,40.4618,0.5331,
+"prediction, GO 10498 obs 5, mid-transit 2027-04-03 23:54 UTC (2027.255)","T14 on the scale detector average with floor (c11_summary), no change (min)",,44.0877,0.4084,
+"prediction, GO 10498 obs 7, mid-transit 2027-05-26 03:37 UTC (2027.398)","T14 on the scale joint NRS1+NRS2 (ns_main_v2), TESS trend continued (min)",,40.4913,0.4168,
+"prediction, GO 10498 obs 7, mid-transit 2027-05-26 03:37 UTC (2027.398)","T14 on the scale joint NRS1+NRS2 (ns_main_v2), no change (min)",,44.2865,0.2122,
+"prediction, GO 10498 obs 7, mid-transit 2027-05-26 03:37 UTC (2027.398)","T14 on the scale NRS1 only (ns_nrs1), TESS trend continued (min)",,40.2913,0.4525,
+"prediction, GO 10498 obs 7, mid-transit 2027-05-26 03:37 UTC (2027.398)","T14 on the scale NRS1 only (ns_nrs1), no change (min)",,44.0864,0.2759,
+"prediction, GO 10498 obs 7, mid-transit 2027-05-26 03:37 UTC (2027.398)","T14 on the scale NRS2 only (ns_nrs2), TESS trend continued (min)",,40.7193,0.4319,
+"prediction, GO 10498 obs 7, mid-transit 2027-05-26 03:37 UTC (2027.398)","T14 on the scale NRS2 only (ns_nrs2), no change (min)",,44.5145,0.2406,
+"prediction, GO 10498 obs 7, mid-transit 2027-05-26 03:37 UTC (2027.398)","T14 on the scale NRS2 pipeline (pipe_nrs2), TESS trend continued (min)",,39.8919,0.4439,
+"prediction, GO 10498 obs 7, mid-transit 2027-05-26 03:37 UTC (2027.398)","T14 on the scale NRS2 pipeline (pipe_nrs2), no change (min)",,43.6871,0.2614,
+"prediction, GO 10498 obs 7, mid-transit 2027-05-26 03:37 UTC (2027.398)","T14 on the scale detector average with floor (c11_summary), TESS trend continued (min)",,40.2925,0.5436,
+"prediction, GO 10498 obs 7, mid-transit 2027-05-26 03:37 UTC (2027.398)","T14 on the scale detector average with floor (c11_summary), no change (min)",,44.0877,0.4084,
+"prediction, GO 10498 obs 3, mid-transit 2027-06-10 01:15 UTC (2027.439)","T14 on the scale joint NRS1+NRS2 (ns_main_v2), TESS trend continued (min)",,40.443,0.4207,
+"prediction, GO 10498 obs 3, mid-transit 2027-06-10 01:15 UTC (2027.439)","T14 on the scale joint NRS1+NRS2 (ns_main_v2), no change (min)",,44.2865,0.2122,
+"prediction, GO 10498 obs 3, mid-transit 2027-06-10 01:15 UTC (2027.439)","T14 on the scale NRS1 only (ns_nrs1), TESS trend continued (min)",,40.243,0.4561,
+"prediction, GO 10498 obs 3, mid-transit 2027-06-10 01:15 UTC (2027.439)","T14 on the scale NRS1 only (ns_nrs1), no change (min)",,44.0864,0.2759,
+"prediction, GO 10498 obs 3, mid-transit 2027-06-10 01:15 UTC (2027.439)","T14 on the scale NRS2 only (ns_nrs2), TESS trend continued (min)",,40.671,0.4357,
+"prediction, GO 10498 obs 3, mid-transit 2027-06-10 01:15 UTC (2027.439)","T14 on the scale NRS2 only (ns_nrs2), no change (min)",,44.5145,0.2406,
+"prediction, GO 10498 obs 3, mid-transit 2027-06-10 01:15 UTC (2027.439)","T14 on the scale NRS2 pipeline (pipe_nrs2), TESS trend continued (min)",,39.8436,0.4476,
+"prediction, GO 10498 obs 3, mid-transit 2027-06-10 01:15 UTC (2027.439)","T14 on the scale NRS2 pipeline (pipe_nrs2), no change (min)",,43.6871,0.2614,
+"prediction, GO 10498 obs 3, mid-transit 2027-06-10 01:15 UTC (2027.439)","T14 on the scale detector average with floor (c11_summary), TESS trend continued (min)",,40.2442,0.5466,
+"prediction, GO 10498 obs 3, mid-transit 2027-06-10 01:15 UTC (2027.439)","T14 on the scale detector average with floor (c11_summary), no change (min)",,44.0877,0.4084,
+"prediction, GO 10498 obs 9, mid-transit 2027-06-17 12:04 UTC (2027.459)","T14 on the scale joint NRS1+NRS2 (ns_main_v2), TESS trend continued (min)",,40.4188,0.4227,
+"prediction, GO 10498 obs 9, mid-transit 2027-06-17 12:04 UTC (2027.459)","T14 on the scale joint NRS1+NRS2 (ns_main_v2), no change (min)",,44.2865,0.2122,
+"prediction, GO 10498 obs 9, mid-transit 2027-06-17 12:04 UTC (2027.459)","T14 on the scale NRS1 only (ns_nrs1), TESS trend continued (min)",,40.2188,0.458,
+"prediction, GO 10498 obs 9, mid-transit 2027-06-17 12:04 UTC (2027.459)","T14 on the scale NRS1 only (ns_nrs1), no change (min)",,44.0864,0.2759,
+"prediction, GO 10498 obs 9, mid-transit 2027-06-17 12:04 UTC (2027.459)","T14 on the scale NRS2 only (ns_nrs2), TESS trend continued (min)",,40.6468,0.4376,
+"prediction, GO 10498 obs 9, mid-transit 2027-06-17 12:04 UTC (2027.459)","T14 on the scale NRS2 only (ns_nrs2), no change (min)",,44.5145,0.2406,
+"prediction, GO 10498 obs 9, mid-transit 2027-06-17 12:04 UTC (2027.459)","T14 on the scale NRS2 pipeline (pipe_nrs2), TESS trend continued (min)",,39.8194,0.4494,
+"prediction, GO 10498 obs 9, mid-transit 2027-06-17 12:04 UTC (2027.459)","T14 on the scale NRS2 pipeline (pipe_nrs2), no change (min)",,43.6871,0.2614,
+"prediction, GO 10498 obs 9, mid-transit 2027-06-17 12:04 UTC (2027.459)","T14 on the scale detector average with floor (c11_summary), TESS trend continued (min)",,40.22,0.5481,
+"prediction, GO 10498 obs 9, mid-transit 2027-06-17 12:04 UTC (2027.459)","T14 on the scale detector average with floor (c11_summary), no change (min)",,44.0877,0.4084,
+"prediction, GO 10498 obs 6, mid-transit 2027-07-02 09:42 UTC (2027.500)","T14 on the scale joint NRS1+NRS2 (ns_main_v2), TESS trend continued (min)",,40.3705,0.4266,
+"prediction, GO 10498 obs 6, mid-transit 2027-07-02 09:42 UTC (2027.500)","T14 on the scale joint NRS1+NRS2 (ns_main_v2), no change (min)",,44.2865,0.2122,
+"prediction, GO 10498 obs 6, mid-transit 2027-07-02 09:42 UTC (2027.500)","T14 on the scale NRS1 only (ns_nrs1), TESS trend continued (min)",,40.1704,0.4616,
+"prediction, GO 10498 obs 6, mid-transit 2027-07-02 09:42 UTC (2027.500)","T14 on the scale NRS1 only (ns_nrs1), no change (min)",,44.0864,0.2759,
+"prediction, GO 10498 obs 6, mid-transit 2027-07-02 09:42 UTC (2027.500)","T14 on the scale NRS2 only (ns_nrs2), TESS trend continued (min)",,40.5985,0.4414,
+"prediction, GO 10498 obs 6, mid-transit 2027-07-02 09:42 UTC (2027.500)","T14 on the scale NRS2 only (ns_nrs2), no change (min)",,44.5145,0.2406,
+"prediction, GO 10498 obs 6, mid-transit 2027-07-02 09:42 UTC (2027.500)","T14 on the scale NRS2 pipeline (pipe_nrs2), TESS trend continued (min)",,39.7711,0.4531,
+"prediction, GO 10498 obs 6, mid-transit 2027-07-02 09:42 UTC (2027.500)","T14 on the scale NRS2 pipeline (pipe_nrs2), no change (min)",,43.6871,0.2614,
+"prediction, GO 10498 obs 6, mid-transit 2027-07-02 09:42 UTC (2027.500)","T14 on the scale detector average with floor (c11_summary), TESS trend continued (min)",,40.1717,0.5512,
+"prediction, GO 10498 obs 6, mid-transit 2027-07-02 09:42 UTC (2027.500)","T14 on the scale detector average with floor (c11_summary), no change (min)",,44.0877,0.4084,
+"prediction, GO 10498 obs 8, mid-transit 2027-07-09 20:32 UTC (2027.520)","T14 on the scale joint NRS1+NRS2 (ns_main_v2), TESS trend continued (min)",,40.3463,0.4286,
+"prediction, GO 10498 obs 8, mid-transit 2027-07-09 20:32 UTC (2027.520)","T14 on the scale joint NRS1+NRS2 (ns_main_v2), no change (min)",,44.2865,0.2122,
+"prediction, GO 10498 obs 8, mid-transit 2027-07-09 20:32 UTC (2027.520)","T14 on the scale NRS1 only (ns_nrs1), TESS trend continued (min)",,40.1463,0.4635,
+"prediction, GO 10498 obs 8, mid-transit 2027-07-09 20:32 UTC (2027.520)","T14 on the scale NRS1 only (ns_nrs1), no change (min)",,44.0864,0.2759,
+"prediction, GO 10498 obs 8, mid-transit 2027-07-09 20:32 UTC (2027.520)","T14 on the scale NRS2 only (ns_nrs2), TESS trend continued (min)",,40.5743,0.4434,
+"prediction, GO 10498 obs 8, mid-transit 2027-07-09 20:32 UTC (2027.520)","T14 on the scale NRS2 only (ns_nrs2), no change (min)",,44.5145,0.2406,
+"prediction, GO 10498 obs 8, mid-transit 2027-07-09 20:32 UTC (2027.520)","T14 on the scale NRS2 pipeline (pipe_nrs2), TESS trend continued (min)",,39.7469,0.455,
+"prediction, GO 10498 obs 8, mid-transit 2027-07-09 20:32 UTC (2027.520)","T14 on the scale NRS2 pipeline (pipe_nrs2), no change (min)",,43.6871,0.2614,
+"prediction, GO 10498 obs 8, mid-transit 2027-07-09 20:32 UTC (2027.520)","T14 on the scale detector average with floor (c11_summary), TESS trend continued (min)",,40.1475,0.5527,
+"prediction, GO 10498 obs 8, mid-transit 2027-07-09 20:32 UTC (2027.520)","T14 on the scale detector average with floor (c11_summary), no change (min)",,44.0877,0.4084,
+"prediction, GO 10498 obs 1, mid-transit 2027-08-01 04:59 UTC (2027.582)","T14 on the scale joint NRS1+NRS2 (ns_main_v2), TESS trend continued (min)",,40.2738,0.4346,
+"prediction, GO 10498 obs 1, mid-transit 2027-08-01 04:59 UTC (2027.582)","T14 on the scale joint NRS1+NRS2 (ns_main_v2), no change (min)",,44.2865,0.2122,
+"prediction, GO 10498 obs 1, mid-transit 2027-08-01 04:59 UTC (2027.582)","T14 on the scale NRS1 only (ns_nrs1), TESS trend continued (min)",,40.0738,0.469,
+"prediction, GO 10498 obs 1, mid-transit 2027-08-01 04:59 UTC (2027.582)","T14 on the scale NRS1 only (ns_nrs1), no change (min)",,44.0864,0.2759,
+"prediction, GO 10498 obs 1, mid-transit 2027-08-01 04:59 UTC (2027.582)","T14 on the scale NRS2 only (ns_nrs2), TESS trend continued (min)",,40.5018,0.4491,
+"prediction, GO 10498 obs 1, mid-transit 2027-08-01 04:59 UTC (2027.582)","T14 on the scale NRS2 only (ns_nrs2), no change (min)",,44.5145,0.2406,
+"prediction, GO 10498 obs 1, mid-transit 2027-08-01 04:59 UTC (2027.582)","T14 on the scale NRS2 pipeline (pipe_nrs2), TESS trend continued (min)",,39.6744,0.4606,
+"prediction, GO 10498 obs 1, mid-transit 2027-08-01 04:59 UTC (2027.582)","T14 on the scale NRS2 pipeline (pipe_nrs2), no change (min)",,43.6871,0.2614,
+"prediction, GO 10498 obs 1, mid-transit 2027-08-01 04:59 UTC (2027.582)","T14 on the scale detector average with floor (c11_summary), TESS trend continued (min)",,40.075,0.5573,
+"prediction, GO 10498 obs 1, mid-transit 2027-08-01 04:59 UTC (2027.582)","T14 on the scale detector average with floor (c11_summary), no change (min)",,44.0877,0.4084,

@@ -1,0 +1,31 @@
+{
+ "ld": "free",
+ "aR": "rho",
+ "geom": "diff",
+ "regs": [
+  "xshift",
+  "yshift",
+  "width"
+ ],
+ "ramp": 0,
+ "poly": 2,
+ "noise": "white",
+ "bin": 5,
+ "trim_min": 10,
+ "nsteps": 3000,
+ "lcs": [
+  {
+   "file": "out/jwst/wl_c2512a_nrs1.npz",
+   "visit": "c2512a",
+   "det": "NRS1"
+  },
+  {
+   "file": "out/jwst/wl_c2512b_nrs1.npz",
+   "visit": "c2512b",
+   "det": "NRS1"
+  }
+ ],
+ "planet": "c",
+ "b_guess": 0.45,
+ "k_guess": 0.038
+}

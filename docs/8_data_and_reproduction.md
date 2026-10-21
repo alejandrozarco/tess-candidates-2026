@@ -269,3 +269,28 @@ projected separations; the predicted conjunction recomputed on 2026-10-19 with t
 documentation for the correlation vector), a two-sphere eclipse model with quadratic limb darkening fitted to the TESScut photometry of
 sector 100, and an occultation-template search of sector 99; and the catalogue queries listed in section [6.3](6.3_eclipsing_binaries.md)
 (2026-10-18 and 2026-10-19).
+
+For L 98-59 d and TOI-620 b (sections [6.6](6.6_L98-59d.md) and [6.7](6.7_TOI-620b.md)) the reproduction steps are given in the sections themselves:
+`scripts/transit_duration/run_l9859.sh` and `run_toi620.sh` (sections 6.6.3-6.6.9, 6.7),
+`scripts/transit_duration/joint/run_joint.sh` (section 6.6.10) and `scripts/transit_duration/jwst_chromatic/run_chromatic.sh`
+(section [6.6.11](6.6_L98-59d.md#6611-jwst-durations-per-detector-and-wavelength-2026-10-21), after steps 8-10 of `run_joint.sh`; tables by `make_tables_chromatic.py`, figure by
+`python3 figures/make_figures.py jwstchrom`). The per-column JWST light curves of section 6.6.11 (about 90 MB) are not
+part of this repository; `run_chromatic.sh` rebuilds them from the public MAST `calints` subsets retrieved by
+`run_joint.sh`.
+
+For TOI-6482.01 (section [6.8](6.8_TOI-6482.md)), run from the repository root with the versions of `requirements.txt`:
+
+```
+python scripts/toi6482/fit_toi6482.py            # QLP light curves (MAST HLSP) -> data/*_189300053.csv
+python scripts/toi6482/timestamp_check_s99.py    # sector-99 QLP time stamps against TESScut (MAST)
+python figures/make_figures.py toi6482
+```
+
+The QLP files (`hlsp_qlp_tess_ffi_s00{08,35,62,89,99}-0000000189300053_tess_v01_llc.fits`) were retrieved on 2026-10-20 and
+again on 2026-10-21 (identical checksums); the run of 2026-10-21 reproduces the mid-times of the ExoFOP upload of
+2026-10-20 within 0.11 min. With numpy 2.4.4, scipy 1.17.1 and astropy 7.2.0 the transit-time, phase-window and depth
+tables are identical, the ephemeris table differs only beyond the precision quoted in section 6.8, and the light-curve
+table differs in the last written digit. The TRAPPIST-South light curve (reduction v2 provided by the observer) is not
+in this repository; without `--trappist FILE` the script keeps the TRAPPIST row of the existing table, if present. Without
+script in this repository: the Gaia DR3, AllWISE and CatWISE2020 values, the speckle separation limits (interpolated
+in the contrast-curve tables on ExoFOP), the tess-point sector check and the catalogue checks of section [6.8.6](6.8_TOI-6482.md#686-catalogue-and-literature-checks).

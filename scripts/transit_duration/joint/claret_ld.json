@@ -1,0 +1,6 @@
+{
+ "u1": 0.16235199999999997,
+ "u2": 0.4414,
+ "source": "Claret 2017 A&A 600 A30 tableab, PHOENIX-COND quasi-spherical q-method LSM, Teff 3415 logg 4.91 (Z=0 only in VizieR table)",
+ "sigma_prior": 0.1
+}

@@ -19,7 +19,9 @@
   to sector 104 (orbits 210-220), not yet corrected at the date of this record. No QLP time stamp enters the tables; all
   mid-transit times come from TESScut cutouts (SPOC-calibrated full-frame images) or SPOC light curves. For
   TIC 402710280 the QLP-minus-TESScut time-stamp differences measured in sectors 100 and 102 are within $`\pm 1.7`$ min
-  (medians $`+0.3`$ and $`-0.3`$ min), far below the 24-29 min deviations of section [1.3](1_TIC402710280.md#13-transit-epochs-and-o-c).
+  (medians $`+0.3`$ and $`-0.3`$ min), far below the 24-29 min deviations of section [1.3](1_TIC402710280.md#13-transit-epochs-and-o-c). Exception: the mid-transit times of
+  TOI-6482.01 (section [6.8](6.8_TOI-6482.md)) come from QLP light curves; in sector 99 the QLP time stamps differ from
+  SPOC full-frame-image time stamps referred to the target position by $`+1.71`$ to $`+2.04`$ s (orbits 209 and 210).
 - The 2.3" neighbour of TIC 402710280 (Gaia DR3 5828441289812582656; TIC 1208600633, without TIC stellar parameters) is
   6.4 mag fainter and lies in the background. TRICERATOPS treats it with solar parameters by default; the run with
   K-dwarf parameters gives the same FPP within the seed-to-seed scatter.
@@ -117,6 +119,7 @@
   The change of the impact parameter between 2018 and 2020 is 1.2-2.9 $`\sigma`$ depending on the photometry, and the
   companion masses of section [6.2.7](6.2_TOI-540b.md#627-interpretation) are order-of-magnitude estimates for stated assumptions; no companion is detected.
   Ground-based transit observations made after 2019 but not posted to ExoFOP or published cannot be checked.
+- The duration-change evidence for L 98-59 d and TOI-620 b (sections [6.6](6.6_L98-59d.md) and [6.7](6.7_TOI-620b.md)) rests on few observing campaigns of one instrument. For L 98-59 d, the within-campaign diagnostic is only 1.8 $`\sigma`$ and JWST does not independently confirm the trend. Its quoted trials-adjusted significance assumes Gaussian tails and 801 or 3204 independent trials; TOI-620 b has no corresponding adjustment.
 - Eclipsing binaries of section [6.3](6.3_eclipsing_binaries.md): no spectroscopy; the periods come from TESS full-frame images, with QLP eclipse
   times in sectors 99-104 (timing notice above); TIC 13957664 and TIC 342194997 rest on one eclipse each and their
   periods on the Gaia orbits, TIC 304936165 on two eclipses, and the period of CPD-62 2890 is not determined; the

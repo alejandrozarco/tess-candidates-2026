@@ -1,0 +1,205 @@
+# L 98-59 d (TIC 307210830): joint fits of JWST white-light curves from own calints/x1dints extractions and stage-3 pipeline comparisons (scripts/transit_duration/joint/j1_extract.py, j1b_soss.py, j1c_soss2d.py, j2_fit.py, t21_jwst_slope.py), 2026-10-21
+# visits: 1201 = GTO 1201 obs. 311 NIRISS SOSS (2022.99); 1224 = GTO 1224 obs. 1 NIRSpec G395H (2023.48); 4098 = GO 4098 obs. 2 NIRSpec G395H (2024.20); 4098o1 = GO 4098 obs. 1 NIRISS SOSS (2023.99); c2512a/b = GO 2512 obs. 15/16 (planet c)
+# bands: NRS1 2.870-3.710 um, NRS2 3.830-5.150 um (same wavelength bounds applied independently to each visit; the selected detector columns are not identical), box half-width 3 px unless stated; NIRISS order 1
+# model: shared a/R* (stellar-density prior ln rho ~ N(9.50, 0.09) unless stated), k and LD (quadratic, free) per detector, b and mid-time per visit; quadratic in time plus trace x/y shift and width regressors, profiled; white noise times beta, or celerite Matern-3/2 GP
+# values: posterior median and standard deviation; delta_chi2_const = chi2 increase when all b are tied (same noise model, MAP); slope: weighted line through the visits per posterior sample (visits with T14 error > 1 min dropped)
+fit,description,visits,quantity,value,error,delta_chi2_const,note
+all_visits,NIRISS 1201 and 4098o1 (x1dints) + NIRSpec pair; 4098o1 excluded only from the duration-versus-time regression,1201,T14_min,45.5152,0.310928,,0.9247 +- 0.0027
+all_visits,NIRISS 1201 and 4098o1 (x1dints) + NIRSpec pair; 4098o1 excluded only from the duration-versus-time regression,1224,T14_min,44.8323,0.185774,,0.9295 +- 0.0025
+all_visits,NIRISS 1201 and 4098o1 (x1dints) + NIRSpec pair; 4098o1 excluded only from the duration-versus-time regression,4098,T14_min,44.1504,0.199858,,0.9333 +- 0.0024
+all_visits,NIRISS 1201 and 4098o1 (x1dints) + NIRSpec pair; 4098o1 excluded only from the duration-versus-time regression,4098o1,T14_min,41.0596,1.76157,,0.9482 +- 0.0090
+all_visits,NIRISS 1201 and 4098o1 (x1dints) + NIRSpec pair; 4098o1 excluded only from the duration-versus-time regression,,a/R*,36.5184,0.454213,,
+all_visits,NIRISS 1201 and 4098o1 (x1dints) + NIRSpec pair; 4098o1 excluded only from the duration-versus-time regression,"1201,1224,4098",slope_min_per_yr,-1.07706,0.224848,,JWST minus TESS 0.43 sigma
+all_visits,NIRISS 1201 and 4098o1 (x1dints) + NIRSpec pair; 4098o1 excluded only from the duration-versus-time regression,,fit:n_over_tau,25.6453,,,max R-hat 1.020
+all_visits_2d,NIRISS 1201 and 4098o1 (own 2D) + NIRSpec pair; both NIRISS visits excluded only from the duration-versus-time regression (T14 error > 1 min),1201,T14_min,47.2194,1.20224,,0.9190 +- 0.0067
+all_visits_2d,NIRISS 1201 and 4098o1 (own 2D) + NIRSpec pair; both NIRISS visits excluded only from the duration-versus-time regression (T14 error > 1 min),1224,T14_min,44.819,0.182364,,0.9299 +- 0.0025
+all_visits_2d,NIRISS 1201 and 4098o1 (own 2D) + NIRSpec pair; both NIRISS visits excluded only from the duration-versus-time regression (T14 error > 1 min),4098,T14_min,44.1463,0.193167,,0.9336 +- 0.0024
+all_visits_2d,NIRISS 1201 and 4098o1 (own 2D) + NIRSpec pair; both NIRISS visits excluded only from the duration-versus-time regression (T14 error > 1 min),4098o1,T14_min,44.1932,1.31307,,0.9360 +- 0.0069
+all_visits_2d,NIRISS 1201 and 4098o1 (own 2D) + NIRSpec pair; both NIRISS visits excluded only from the duration-versus-time regression (T14 error > 1 min),,a/R*,36.4587,0.469946,,
+all_visits_2d,NIRISS 1201 and 4098o1 (own 2D) + NIRSpec pair; both NIRISS visits excluded only from the duration-versus-time regression (T14 error > 1 min),"1224,4098",slope_min_per_yr,-0.944777,0.194675,,JWST minus TESS 1.06 sigma
+all_visits_2d,NIRISS 1201 and 4098o1 (own 2D) + NIRSpec pair; both NIRISS visits excluded only from the duration-versus-time regression (T14 error > 1 min),,fit:n_over_tau,26.9716,,,max R-hat 1.007
+all_visits_2d_nrs1,NIRISS 1201 and 4098o1 (own 2D) + NRS1; both NIRISS visits excluded only from the duration-versus-time regression (T14 error > 1 min),1201,T14_min,47.1817,1.24342,,0.9216 +- 0.0065
+all_visits_2d_nrs1,NIRISS 1201 and 4098o1 (own 2D) + NRS1; both NIRISS visits excluded only from the duration-versus-time regression (T14 error > 1 min),1224,T14_min,45.2815,0.24777,,0.9294 +- 0.0030
+all_visits_2d_nrs1,NIRISS 1201 and 4098o1 (own 2D) + NRS1; both NIRISS visits excluded only from the duration-versus-time regression (T14 error > 1 min),4098,T14_min,44.0002,0.25063,,0.9362 +- 0.0028
+all_visits_2d_nrs1,NIRISS 1201 and 4098o1 (own 2D) + NRS1; both NIRISS visits excluded only from the duration-versus-time regression (T14 error > 1 min),4098o1,T14_min,44.1439,1.36833,,0.9383 +- 0.0069
+all_visits_2d_nrs1,NIRISS 1201 and 4098o1 (own 2D) + NRS1; both NIRISS visits excluded only from the duration-versus-time regression (T14 error > 1 min),,a/R*,36.1306,0.549454,,
+all_visits_2d_nrs1,NIRISS 1201 and 4098o1 (own 2D) + NRS1; both NIRISS visits excluded only from the duration-versus-time regression (T14 error > 1 min),"1224,4098",slope_min_per_yr,-1.77989,0.268598,,JWST minus TESS -2.04 sigma
+all_visits_2d_nrs1,NIRISS 1201 and 4098o1 (own 2D) + NRS1; both NIRISS visits excluded only from the duration-versus-time regression (T14 error > 1 min),,fit:n_over_tau,27.1249,,,max R-hat 1.007
+all_visits_2d_nrs2,NIRISS 1201 and 4098o1 (own 2D) + NRS2; both NIRISS visits excluded only from the duration-versus-time regression (T14 error > 1 min),1201,T14_min,47.2735,1.19423,,0.9212 +- 0.0064
+all_visits_2d_nrs2,NIRISS 1201 and 4098o1 (own 2D) + NRS2; both NIRISS visits excluded only from the duration-versus-time regression (T14 error > 1 min),1224,T14_min,44.4351,0.248475,,0.9339 +- 0.0024
+all_visits_2d_nrs2,NIRISS 1201 and 4098o1 (own 2D) + NRS2; both NIRISS visits excluded only from the duration-versus-time regression (T14 error > 1 min),4098,T14_min,44.3418,0.247316,,0.9344 +- 0.0024
+all_visits_2d_nrs2,NIRISS 1201 and 4098o1 (own 2D) + NRS2; both NIRISS visits excluded only from the duration-versus-time regression (T14 error > 1 min),4098o1,T14_min,44.1395,1.38243,,0.9386 +- 0.0071
+all_visits_2d_nrs2,NIRISS 1201 and 4098o1 (own 2D) + NRS2; both NIRISS visits excluded only from the duration-versus-time regression (T14 error > 1 min),,a/R*,36.0871,0.494682,,
+all_visits_2d_nrs2,NIRISS 1201 and 4098o1 (own 2D) + NRS2; both NIRISS visits excluded only from the duration-versus-time regression (T14 error > 1 min),"1224,4098",slope_min_per_yr,-0.127767,0.249308,,JWST minus TESS 3.85 sigma
+all_visits_2d_nrs2,NIRISS 1201 and 4098o1 (own 2D) + NRS2; both NIRISS visits excluded only from the duration-versus-time regression (T14 error > 1 min),,fit:n_over_tau,25.258,,,max R-hat 1.011
+all_visits_gp,"NIRISS 1201 and 4098o1 (x1dints) + NIRSpec pair, GP noise; 4098o1 excluded only from the duration-versus-time regression",1201,T14_min,45.5369,0.293252,,0.9245 +- 0.0026
+all_visits_gp,"NIRISS 1201 and 4098o1 (x1dints) + NIRSpec pair, GP noise; 4098o1 excluded only from the duration-versus-time regression",1224,T14_min,44.8087,0.20592,,0.9295 +- 0.0024
+all_visits_gp,"NIRISS 1201 and 4098o1 (x1dints) + NIRSpec pair, GP noise; 4098o1 excluded only from the duration-versus-time regression",4098,T14_min,44.1112,0.21254,,0.9333 +- 0.0023
+all_visits_gp,"NIRISS 1201 and 4098o1 (x1dints) + NIRSpec pair, GP noise; 4098o1 excluded only from the duration-versus-time regression",4098o1,T14_min,40.9958,1.72213,,0.9485 +- 0.0086
+all_visits_gp,"NIRISS 1201 and 4098o1 (x1dints) + NIRSpec pair, GP noise; 4098o1 excluded only from the duration-versus-time regression",,a/R*,36.5219,0.441433,,
+all_visits_gp,"NIRISS 1201 and 4098o1 (x1dints) + NIRSpec pair, GP noise; 4098o1 excluded only from the duration-versus-time regression","1201,1224,4098",slope_min_per_yr,-1.13164,0.252216,,JWST minus TESS 0.19 sigma
+all_visits_gp,"NIRISS 1201 and 4098o1 (x1dints) + NIRSpec pair, GP noise; 4098o1 excluded only from the duration-versus-time regression",,fit:n_over_tau,20.1134,,,max R-hat 1.010
+ctrl_c_nrs1,"planet c control, GO 2512 pair, NRS1",c2512a,T14_min,74.0773,0.153771,,0.3703 +- 0.0419
+ctrl_c_nrs1,"planet c control, GO 2512 pair, NRS1",c2512b,T14_min,74.0012,0.152453,,0.3730 +- 0.0414
+ctrl_c_nrs1,"planet c control, GO 2512 pair, NRS1",,a/R*,22.2023,0.387272,,
+ctrl_c_nrs1,"planet c control, GO 2512 pair, NRS1",second minus first,delta_T14_min,-0.0757995,0.132976,0.233541,delta b 0.0026 +- 0.0047
+ctrl_c_nrs1,"planet c control, GO 2512 pair, NRS1",,fit:n_over_tau,40.3081,,,max R-hat 1.004
+ex_blue_nrs2,NRS2 blue half (3.83-4.45 um),1224,T14_min,44.5475,0.293428,,0.9342 +- 0.0033
+ex_blue_nrs2,NRS2 blue half (3.83-4.45 um),4098,T14_min,44.3982,0.279358,,0.9350 +- 0.0032
+ex_blue_nrs2,NRS2 blue half (3.83-4.45 um),,a/R*,36.0131,0.625343,,
+ex_blue_nrs2,NRS2 blue half (3.83-4.45 um),second minus first,delta_T14_min,-0.14743,0.227113,0.512707,delta b 0.0008 +- 0.0012
+ex_blue_nrs2,NRS2 blue half (3.83-4.45 um),"1224,4098",slope_min_per_yr,-0.202496,0.318755,,JWST minus TESS 2.90 sigma
+ex_blue_nrs2,NRS2 blue half (3.83-4.45 um),,fit:n_over_tau,28.9374,,,max R-hat 1.004
+ex_hw5_nrs1,"NRS1 only, box half-width 5 px",1224,T14_min,45.4738,0.370882,,0.9319 +- 0.0034
+ex_hw5_nrs1,"NRS1 only, box half-width 5 px",4098,T14_min,44.0979,0.347876,,0.9390 +- 0.0029
+ex_hw5_nrs1,"NRS1 only, box half-width 5 px",,a/R*,35.5549,0.608835,,
+ex_hw5_nrs1,"NRS1 only, box half-width 5 px",second minus first,delta_T14_min,-1.37441,0.279263,21.7008,delta b 0.0071 +- 0.0015
+ex_hw5_nrs1,"NRS1 only, box half-width 5 px","1224,4098",slope_min_per_yr,-1.92348,0.388692,,JWST minus TESS -1.82 sigma
+ex_hw5_nrs1,"NRS1 only, box half-width 5 px",,fit:n_over_tau,38.6443,,,max R-hat 1.007
+ex_hw5_nrs2,"NRS2 only, box half-width 5 px",1224,T14_min,44.3841,0.281924,,0.9335 +- 0.0030
+ex_hw5_nrs2,"NRS2 only, box half-width 5 px",4098,T14_min,44.5101,0.281136,,0.9328 +- 0.0030
+ex_hw5_nrs2,"NRS2 only, box half-width 5 px",,a/R*,36.2419,0.588017,,
+ex_hw5_nrs2,"NRS2 only, box half-width 5 px",second minus first,delta_T14_min,0.137078,0.211566,0.0958155,delta b -0.0007 +- 0.0011
+ex_hw5_nrs2,"NRS2 only, box half-width 5 px","1224,4098",slope_min_per_yr,0.170397,0.301156,,JWST minus TESS 4.20 sigma
+ex_hw5_nrs2,"NRS2 only, box half-width 5 px",,fit:n_over_tau,25.8381,,,max R-hat 1.003
+ex_red_nrs2,NRS2 red half (4.45-5.15 um),1224,T14_min,44.7006,0.329867,,0.9340 +- 0.0029
+ex_red_nrs2,NRS2 red half (4.45-5.15 um),4098,T14_min,44.7533,0.339792,,0.9338 +- 0.0029
+ex_red_nrs2,NRS2 red half (4.45-5.15 um),,a/R*,35.8446,0.589589,,
+ex_red_nrs2,NRS2 red half (4.45-5.15 um),second minus first,delta_T14_min,0.0614814,0.262255,0.0253845,delta b -0.0003 +- 0.0014
+ex_red_nrs2,NRS2 red half (4.45-5.15 um),"1224,4098",slope_min_per_yr,0.0838993,0.36468,,JWST minus TESS 3.32 sigma
+ex_red_nrs2,NRS2 red half (4.45-5.15 um),,fit:n_over_tau,31.2497,,,max R-hat 1.007
+ni2d_pair,"NIRISS pair, own 2D",1201,T14_min,46.6034,0.554441,,0.9324 +- 0.0039
+ni2d_pair,"NIRISS pair, own 2D",4098o1,T14_min,42.9617,0.747446,,0.9501 +- 0.0041
+ni2d_pair,"NIRISS pair, own 2D",,a/R*,34.494,0.724559,,
+ni2d_pair,"NIRISS pair, own 2D",second minus first,delta_T14_min,-3.65202,0.619355,24.4007,delta b 0.0177 +- 0.0030
+ni2d_pair,"NIRISS pair, own 2D","1201,4098o1",slope_min_per_yr,-3.67373,0.607094,,JWST minus TESS -4.03 sigma
+ni2d_pair,"NIRISS pair, own 2D",,fit:n_over_tau,54.2716,,,max R-hat 1.001
+ni_1201,NIRISS 1201 alone (x1dints),1201,T14_min,45.653,0.327117,,0.9310 +- 0.0030
+ni_1201,NIRISS 1201 alone (x1dints),,a/R*,35.3098,0.608629,,
+ni_1201,NIRISS 1201 alone (x1dints),,fit:n_over_tau,43.9885,,,max R-hat 1.007
+ns_aR33.6,"NIRSpec pair, a/R* = 33.6",1224,T14_min,45.6556,0.103984,,0.9424 +- 0.0005
+ns_aR33.6,"NIRSpec pair, a/R* = 33.6",4098,T14_min,45.108,0.11668,,0.9449 +- 0.0005
+ns_aR33.6,"NIRSpec pair, a/R* = 33.6",,a/R*,33.6,7.10543e-15,,
+ns_aR33.6,"NIRSpec pair, a/R* = 33.6",second minus first,delta_T14_min,-0.544785,0.137637,,delta b 0.0025 +- 0.0006
+ns_aR33.6,"NIRSpec pair, a/R* = 33.6","1224,4098",slope_min_per_yr,-0.753969,0.192479,,JWST minus TESS 1.92 sigma
+ns_aR33.6,"NIRSpec pair, a/R* = 33.6",,fit:n_over_tau,25.5741,,,max R-hat 1.015
+ns_aR37.1,"NIRSpec pair, a/R* = 37.1",1224,T14_min,44.8534,0.187045,,0.9263 +- 0.0009
+ns_aR37.1,"NIRSpec pair, a/R* = 37.1",4098,T14_min,44.2352,0.192378,,0.9298 +- 0.0009
+ns_aR37.1,"NIRSpec pair, a/R* = 37.1",,a/R*,37.1,7.10543e-15,,
+ns_aR37.1,"NIRSpec pair, a/R* = 37.1",second minus first,delta_T14_min,-0.618556,0.136532,14.1703,delta b 0.0035 +- 0.0008
+ns_aR37.1,"NIRSpec pair, a/R* = 37.1","1224,4098",slope_min_per_yr,-0.861978,0.194719,,JWST minus TESS 1.43 sigma
+ns_aR37.1,"NIRSpec pair, a/R* = 37.1",,fit:n_over_tau,40.6015,,,max R-hat 1.005
+ns_aRfree,"NIRSpec pair, a/R* free",1224,T14_min,44.832,0.206883,,0.9223 +- 0.0037
+ns_aRfree,"NIRSpec pair, a/R* free",4098,T14_min,44.1984,0.203104,,0.9260 +- 0.0035
+ns_aRfree,"NIRSpec pair, a/R* free",,a/R*,37.8259,0.646565,,
+ns_aRfree,"NIRSpec pair, a/R* free",second minus first,delta_T14_min,-0.631966,0.141565,,delta b 0.0037 +- 0.0009
+ns_aRfree,"NIRSpec pair, a/R* free","1224,4098",slope_min_per_yr,-0.891915,0.200165,,JWST minus TESS 1.27 sigma
+ns_aRfree,"NIRSpec pair, a/R* free",,fit:n_over_tau,30.4536,,,max R-hat 1.012
+ns_gp,"NIRSpec pair, GP noise",1224,T14_min,44.9368,0.197695,,0.9296 +- 0.0025
+ns_gp,"NIRSpec pair, GP noise",4098,T14_min,44.329,0.205978,,0.9329 +- 0.0024
+ns_gp,"NIRSpec pair, GP noise",,a/R*,36.4451,0.464306,,
+ns_gp,"NIRSpec pair, GP noise",second minus first,delta_T14_min,-0.616952,0.160631,10.8623,delta b 0.0034 +- 0.0009
+ns_gp,"NIRSpec pair, GP noise","1224,4098",slope_min_per_yr,-0.871454,0.225765,,JWST minus TESS 1.24 sigma
+ns_gp,"NIRSpec pair, GP noise",,fit:n_over_tau,30.6525,,,max R-hat 1.004
+ns_gp_nrs1,"NRS1 only, GP noise",1224,T14_min,45.3674,0.296444,,0.9306 +- 0.0034
+ns_gp_nrs1,"NRS1 only, GP noise",4098,T14_min,44.1074,0.305764,,0.9372 +- 0.0031
+ns_gp_nrs1,"NRS1 only, GP noise",,a/R*,35.8653,0.595415,,
+ns_gp_nrs1,"NRS1 only, GP noise",second minus first,delta_T14_min,-1.25702,0.232995,21.9518,delta b 0.0066 +- 0.0013
+ns_gp_nrs1,"NRS1 only, GP noise","1224,4098",slope_min_per_yr,-1.76246,0.322641,,JWST minus TESS -1.69 sigma
+ns_gp_nrs1,"NRS1 only, GP noise",,fit:n_over_tau,37.1147,,,max R-hat 1.002
+ns_gp_nrs2,"NRS2 only, GP noise",1224,T14_min,44.5401,0.287469,,0.9330 +- 0.0028
+ns_gp_nrs2,"NRS2 only, GP noise",4098,T14_min,44.5177,0.270383,,0.9332 +- 0.0028
+ns_gp_nrs2,"NRS2 only, GP noise",,a/R*,36.1757,0.544813,,
+ns_gp_nrs2,"NRS2 only, GP noise",second minus first,delta_T14_min,-0.02018,0.22496,0.00572781,delta b 0.0001 +- 0.0012
+ns_gp_nrs2,"NRS2 only, GP noise","1224,4098",slope_min_per_yr,-0.035822,0.313973,,JWST minus TESS 3.44 sigma
+ns_gp_nrs2,"NRS2 only, GP noise",,fit:n_over_tau,39.896,,,max R-hat 1.005
+ns_ldGressier,"NIRSpec pair, LD fixed (Gressier et al. 2024)",1224,T14_min,44.9991,0.199769,,0.9274 +- 0.0014
+ns_ldGressier,"NIRSpec pair, LD fixed (Gressier et al. 2024)",4098,T14_min,44.3678,0.212641,,0.9309 +- 0.0014
+ns_ldGressier,"NIRSpec pair, LD fixed (Gressier et al. 2024)",,a/R*,36.6762,0.312267,,
+ns_ldGressier,"NIRSpec pair, LD fixed (Gressier et al. 2024)",second minus first,delta_T14_min,-0.62971,0.154003,14.3726,delta b 0.0035 +- 0.0009
+ns_ldGressier,"NIRSpec pair, LD fixed (Gressier et al. 2024)","1224,4098",slope_min_per_yr,-0.875693,0.214888,,JWST minus TESS 1.27 sigma
+ns_ldGressier,"NIRSpec pair, LD fixed (Gressier et al. 2024)",,fit:n_over_tau,66.1936,,,max R-hat 1.002
+ns_main_v2,"NIRSpec pair, NRS1 + NRS2, main",1224,T14_min,44.889,0.201189,,0.9294 +- 0.0026
+ns_main_v2,"NIRSpec pair, NRS1 + NRS2, main",4098,T14_min,44.2865,0.212205,,0.9326 +- 0.0025
+ns_main_v2,"NIRSpec pair, NRS1 + NRS2, main",,a/R*,36.518,0.484868,,
+ns_main_v2,"NIRSpec pair, NRS1 + NRS2, main",second minus first,delta_T14_min,-0.609012,0.146921,13.8358,delta b 0.0033 +- 0.0008
+ns_main_v2,"NIRSpec pair, NRS1 + NRS2, main","1224,4098",slope_min_per_yr,-0.857058,0.200055,,JWST minus TESS 1.42 sigma
+ns_main_v2,"NIRSpec pair, NRS1 + NRS2, main",,fit:n_over_tau,42.8268,,,max R-hat 1.003
+ns_matchcov,"NIRSpec pair, matched pre/post coverage",1224,T14_min,44.8732,0.193118,,0.9305 +- 0.0025
+ns_matchcov,"NIRSpec pair, matched pre/post coverage",4098,T14_min,44.3653,0.187222,,0.9332 +- 0.0024
+ns_matchcov,"NIRSpec pair, matched pre/post coverage",,a/R*,36.3549,0.467493,,
+ns_matchcov,"NIRSpec pair, matched pre/post coverage",second minus first,delta_T14_min,-0.51085,0.140441,9.28521,delta b 0.0028 +- 0.0008
+ns_matchcov,"NIRSpec pair, matched pre/post coverage","1224,4098",slope_min_per_yr,-0.706675,0.19301,,JWST minus TESS 2.13 sigma
+ns_matchcov,"NIRSpec pair, matched pre/post coverage",,fit:n_over_tau,29.5289,,,max R-hat 1.009
+ns_matchcov_nrs1,"NRS1 only, matched coverage",1224,T14_min,45.3451,0.285343,,0.9307 +- 0.0032
+ns_matchcov_nrs1,"NRS1 only, matched coverage",4098,T14_min,44.2413,0.29793,,0.9366 +- 0.0029
+ns_matchcov_nrs1,"NRS1 only, matched coverage",,a/R*,35.8638,0.591312,,
+ns_matchcov_nrs1,"NRS1 only, matched coverage",second minus first,delta_T14_min,-1.09951,0.2057,22.8968,delta b 0.0058 +- 0.0011
+ns_matchcov_nrs1,"NRS1 only, matched coverage","1224,4098",slope_min_per_yr,-1.54955,0.286693,,JWST minus TESS -1.18 sigma
+ns_matchcov_nrs1,"NRS1 only, matched coverage",,fit:n_over_tau,37.9268,,,max R-hat 1.006
+ns_matchcov_nrs2,"NRS2 only, matched coverage",1224,T14_min,44.5381,0.243986,,0.9337 +- 0.0027
+ns_matchcov_nrs2,"NRS2 only, matched coverage",4098,T14_min,44.5422,0.239446,,0.9336 +- 0.0026
+ns_matchcov_nrs2,"NRS2 only, matched coverage",,a/R*,36.092,0.517545,,
+ns_matchcov_nrs2,"NRS2 only, matched coverage",second minus first,delta_T14_min,0.0124204,0.186732,-0.00670399,delta b -0.0001 +- 0.0010
+ns_matchcov_nrs2,"NRS2 only, matched coverage","1224,4098",slope_min_per_yr,0.0216625,0.259936,,JWST minus TESS 4.25 sigma
+ns_matchcov_nrs2,"NRS2 only, matched coverage",,fit:n_over_tau,33.6235,,,max R-hat 1.010
+ns_noregs,"NIRSpec pair, no detector regressors",1224,T14_min,44.8205,0.184631,,0.9299 +- 0.0026
+ns_noregs,"NIRSpec pair, no detector regressors",4098,T14_min,44.1483,0.19909,,0.9335 +- 0.0026
+ns_noregs,"NIRSpec pair, no detector regressors",,a/R*,36.4506,0.486597,,
+ns_noregs,"NIRSpec pair, no detector regressors",second minus first,delta_T14_min,-0.666824,0.148993,17.3919,delta b 0.0036 +- 0.0008
+ns_noregs,"NIRSpec pair, no detector regressors","1224,4098",slope_min_per_yr,-0.933525,0.202883,,JWST minus TESS 1.08 sigma
+ns_noregs,"NIRSpec pair, no detector regressors",,fit:n_over_tau,25.4184,,,max R-hat 1.011
+ns_nrs1,NRS1 only,1224,T14_min,45.3835,0.271165,,0.9289 +- 0.0035
+ns_nrs1,NRS1 only,4098,T14_min,44.0864,0.275879,,0.9358 +- 0.0032
+ns_nrs1,NRS1 only,,a/R*,36.1722,0.603078,,
+ns_nrs1,NRS1 only,second minus first,delta_T14_min,-1.29557,0.202526,33.5249,delta b 0.0070 +- 0.0011
+ns_nrs1,NRS1 only,"1224,4098",slope_min_per_yr,-1.82024,0.28335,,JWST minus TESS -2.08 sigma
+ns_nrs1,NRS1 only,,fit:n_over_tau,38.0708,,,max R-hat 1.006
+ns_nrs2,NRS2 only,1224,T14_min,44.5121,0.243564,,0.9334 +- 0.0027
+ns_nrs2,NRS2 only,4098,T14_min,44.5145,0.240596,,0.9334 +- 0.0027
+ns_nrs2,NRS2 only,,a/R*,36.1323,0.532636,,
+ns_nrs2,NRS2 only,second minus first,delta_T14_min,-0.00836591,0.178836,0.00104019,delta b 0.0000 +- 0.0010
+ns_nrs2,NRS2 only,"1224,4098",slope_min_per_yr,-0.0114977,0.256032,,JWST minus TESS 4.18 sigma
+ns_nrs2,NRS2 only,,fit:n_over_tau,38.3771,,,max R-hat 1.004
+ns_poly1,"NIRSpec pair, time polynomial order 1",1224,T14_min,44.9527,0.201666,,0.9300 +- 0.0027
+ns_poly1,"NIRSpec pair, time polynomial order 1",4098,T14_min,44.36,0.198319,,0.9333 +- 0.0026
+ns_poly1,"NIRSpec pair, time polynomial order 1",,a/R*,36.3742,0.499784,,
+ns_poly1,"NIRSpec pair, time polynomial order 1",second minus first,delta_T14_min,-0.594071,0.139133,12.9569,delta b 0.0032 +- 0.0008
+ns_poly1,"NIRSpec pair, time polynomial order 1","1224,4098",slope_min_per_yr,-0.834117,0.198037,,JWST minus TESS 1.53 sigma
+ns_poly1,"NIRSpec pair, time polynomial order 1",,fit:n_over_tau,28.2045,,,max R-hat 1.004
+ns_poly3,"NIRSpec pair, time polynomial order 3",1224,T14_min,44.9944,0.173839,,0.9285 +- 0.0028
+ns_poly3,"NIRSpec pair, time polynomial order 3",4098,T14_min,44.3271,0.18494,,0.9322 +- 0.0026
+ns_poly3,"NIRSpec pair, time polynomial order 3",,a/R*,36.5915,0.507255,,
+ns_poly3,"NIRSpec pair, time polynomial order 3",second minus first,delta_T14_min,-0.665339,0.134792,16.5862,delta b 0.0036 +- 0.0008
+ns_poly3,"NIRSpec pair, time polynomial order 3","1224,4098",slope_min_per_yr,-0.923543,0.192945,,JWST minus TESS 1.16 sigma
+ns_poly3,"NIRSpec pair, time polynomial order 3",,fit:n_over_tau,29.1681,,,max R-hat 1.005
+ns_power2,"NIRSpec pair, power-2 law",1224,T14_min,44.8552,0.184419,,0.9317 +- 0.0027
+ns_power2,"NIRSpec pair, power-2 law",4098,T14_min,44.2449,0.19466,,0.9348 +- 0.0026
+ns_power2,"NIRSpec pair, power-2 law",,a/R*,36.0696,0.491625,,
+ns_power2,"NIRSpec pair, power-2 law",second minus first,delta_T14_min,-0.596537,0.132261,13.6837,delta b 0.0032 +- 0.0007
+ns_power2,"NIRSpec pair, power-2 law","1224,4098",slope_min_per_yr,-0.831249,0.187097,,JWST minus TESS 1.61 sigma
+ns_power2,"NIRSpec pair, power-2 law",,fit:n_over_tau,14.7579,,,max R-hat 1.025
+ns_ramp,"NIRSpec pair, exponential ramp",1224,T14_min,44.9537,0.193997,,0.9289 +- 0.0027
+ns_ramp,"NIRSpec pair, exponential ramp",4098,T14_min,44.3145,0.19351,,0.9324 +- 0.0025
+ns_ramp,"NIRSpec pair, exponential ramp",,a/R*,36.5578,0.477862,,
+ns_ramp,"NIRSpec pair, exponential ramp",second minus first,delta_T14_min,-0.640549,0.141448,14.8306,delta b 0.0035 +- 0.0008
+ns_ramp,"NIRSpec pair, exponential ramp","1224,4098",slope_min_per_yr,-0.891966,0.197833,,JWST minus TESS 1.28 sigma
+ns_ramp,"NIRSpec pair, exponential ramp",,fit:n_over_tau,34.9056,,,max R-hat 1.007
+ns_sqrtlaw,"NIRSpec pair, square-root law",1224,T14_min,45.0012,0.192389,,0.9291 +- 0.0024
+ns_sqrtlaw,"NIRSpec pair, square-root law",4098,T14_min,44.3889,0.196208,,0.9324 +- 0.0022
+ns_sqrtlaw,"NIRSpec pair, square-root law",,a/R*,36.3918,0.412241,,
+ns_sqrtlaw,"NIRSpec pair, square-root law",second minus first,delta_T14_min,-0.614547,0.141142,13.7893,delta b 0.0033 +- 0.0008
+ns_sqrtlaw,"NIRSpec pair, square-root law","1224,4098",slope_min_per_yr,-0.86388,0.193396,,JWST minus TESS 1.43 sigma
+ns_sqrtlaw,"NIRSpec pair, square-root law",,fit:n_over_tau,22.8474,,,max R-hat 1.020
+pipe_nrs2,NRS2 pipeline white light (stage 3),1224,T14_min,44.4239,0.272379,,0.9321 +- 0.0023
+pipe_nrs2,NRS2 pipeline white light (stage 3),4098,T14_min,43.6871,0.261424,,0.9361 +- 0.0022
+pipe_nrs2,NRS2 pipeline white light (stage 3),,a/R*,36.3,0.479038,,
+pipe_nrs2,NRS2 pipeline white light (stage 3),second minus first,delta_T14_min,-0.729077,0.208213,9.33253,delta b 0.0039 +- 0.0011
+pipe_nrs2,NRS2 pipeline white light (stage 3),"1224,4098",slope_min_per_yr,-1.01387,0.29175,,JWST minus TESS 0.55 sigma
+pipe_nrs2,NRS2 pipeline white light (stage 3),,fit:n_over_tau,35.3749,,,max R-hat 1.004
+pipe_nrs2_ramp,"NRS2 pipeline white light, exponential ramp",1224,T14_min,44.2944,0.266107,,0.9324 +- 0.0026
+pipe_nrs2_ramp,"NRS2 pipeline white light, exponential ramp",4098,T14_min,43.6494,0.25192,,0.9360 +- 0.0024
+pipe_nrs2_ramp,"NRS2 pipeline white light, exponential ramp",,a/R*,36.3219,0.507149,,
+pipe_nrs2_ramp,"NRS2 pipeline white light, exponential ramp",second minus first,delta_T14_min,-0.654293,0.197535,8.46149,delta b 0.0035 +- 0.0011
+pipe_nrs2_ramp,"NRS2 pipeline white light, exponential ramp","1224,4098",slope_min_per_yr,-0.929634,0.281907,,JWST minus TESS 0.84 sigma
+pipe_nrs2_ramp,"NRS2 pipeline white light, exponential ramp",,fit:n_over_tau,33.0301,,,max R-hat 1.005

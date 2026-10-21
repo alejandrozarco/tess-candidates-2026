@@ -2,7 +2,7 @@
 
 ## 6. Other TESS results
 
-Results that are not transit candidates: an eclipsing binary whose eclipses were absent in 2018 and present from
+Additional TESS results include: an eclipsing binary whose eclipses were absent in 2018 and present from
 2020 (section [6.1](6.1_TIC11613676.md)), a known planet whose transits are not detected in one TESS sector (section [6.2](6.2_TOI-540b.md)), both computed from
 public TESS products by the scripts listed in section [8](8_data_and_reproduction.md), nine new eclipsing binaries (section [6.3](6.3_eclipsing_binaries.md)), whose values
 come from the vetting record (section [8](8_data_and_reproduction.md)), and an eclipsing binary whose eclipses became shallower from 2018 to 2025 and
@@ -17,3 +17,4 @@ Subsections:
 - [6.5 HIP 23309: three further dimming events](6.5_HIP23309.md)
 - [6.6 L 98-59 d: decreasing transit duration, 2019-2025](6.6_L98-59d.md)
 - [6.7 TOI-620 b: decreasing transit duration](6.7_TOI-620b.md)
+- [6.8 TOI-6482.01: ephemeris from six TESS transits](6.8_TOI-6482.md)

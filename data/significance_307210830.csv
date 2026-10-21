@@ -1,0 +1,149 @@
+# L 98-59 d (TIC 307210830): significance of the TESS duration trend and audits (scripts/transit_duration/joint/; t9_boot.py, t10_inject.py, t13_audit.py, t20_summary.py, t22_significance.py), 2026-10-21
+# model comparison: evolving against constant geometry, same data and noise model; delta chi2 and delta BIC (separate MAP fits) positive favour the first model; likelihood-ratio z nominal, not a calibrated test
+# look-elsewhere (illustrative): p_global = 1 - (1 - p_local)^N, N = 801 (planets with a screening statistic) or 3204 (801 x 4 flag statistics); two-sided normal p; assumes Gaussian tails and N independent, correctly calibrated trials (not established)
+# injections: constant-geometry copy of d (b = 0.923, posterior k, a/R*, LD) at phases U(0.08, 0.92), inserted into quality-selected, normalised PDCSAP flux, or into calibrated pixels after the own background subtraction and before aperture summation (whole background-subtracted image multiplied); the subsequent transit-processing and fitting steps are rerun; mean dT14/dt uncertainty = sd / sqrt(n)
+# telemetry audit: per-transit T14 (shape fixed at the posterior median) minus a linear trend; Pearson correlation of each covariate with the residuals divided by their individual uncertainties, 4000-permutation p-value; time covariates (dt_*) as log10 days
+# uncertainty column: 1-sigma where given
+group,statistic,value,uncertainty,note
+model comparison: b linear vs constant (main),delta chi2,77.6024,,extra parameters 1
+model comparison: b linear vs constant (main),delta BIC,68.0009,,
+model comparison: b linear vs constant (main),profile-evidence log contrast,33.9262,,"importance sampling of the profiled likelihood times the implemented prior weights; uniform prior width of the slope parameter included; baselines not marginalised, prior normalisations incomplete (i0 prior of the linear-i model); not a fully normalised Bayes factor"
+model comparison: b linear vs constant (main),likelihood-ratio z,8.80922,,p = 1.26e-18
+"model comparison: b linear vs constant, k per campaign",delta chi2,58.196,,extra parameters 1
+"model comparison: b linear vs constant, k per campaign",delta BIC,48.5945,,
+"model comparison: b linear vs constant, k per campaign",profile-evidence log contrast,24.8134,,"importance sampling of the profiled likelihood times the implemented prior weights; uniform prior width of the slope parameter included; baselines not marginalised, prior normalisations incomplete (i0 prior of the linear-i model); not a fully normalised Bayes factor"
+"model comparison: b linear vs constant, k per campaign",likelihood-ratio z,7.62863,,p = 2.37e-14
+"model comparison: b linear vs constant, LD free",delta chi2,77.4509,,extra parameters 1
+"model comparison: b linear vs constant, LD free",delta BIC,67.8494,,
+"model comparison: b linear vs constant, LD free",profile-evidence log contrast,33.7208,,"importance sampling of the profiled likelihood times the implemented prior weights; uniform prior width of the slope parameter included; baselines not marginalised, prior normalisations incomplete (i0 prior of the linear-i model); not a fully normalised Bayes factor"
+"model comparison: b linear vs constant, LD free",likelihood-ratio z,8.80062,,p = 1.36e-18
+"model comparison: b linear vs constant, e and omega",delta chi2,77.5926,,extra parameters 1
+"model comparison: b linear vs constant, e and omega",delta BIC,67.9911,,
+"model comparison: b linear vs constant, e and omega",profile-evidence log contrast,33.8905,,"importance sampling of the profiled likelihood times the implemented prior weights; uniform prior width of the slope parameter included; baselines not marginalised, prior normalisations incomplete (i0 prior of the linear-i model); not a fully normalised Bayes factor"
+"model comparison: b linear vs constant, e and omega",likelihood-ratio z,8.80867,,p = 1.27e-18
+"model comparison: b linear vs constant, mid-times fixed",delta chi2,91.6807,,extra parameters 1
+"model comparison: b linear vs constant, mid-times fixed",delta BIC,82.0792,,
+"model comparison: b linear vs constant, mid-times fixed",profile-evidence log contrast,40.9175,,"importance sampling of the profiled likelihood times the implemented prior weights; uniform prior width of the slope parameter included; baselines not marginalised, prior normalisations incomplete (i0 prior of the linear-i model); not a fully normalised Bayes factor"
+"model comparison: b linear vs constant, mid-times fixed",likelihood-ratio z,9.575,,p = 1.02e-21
+model comparison: i linear vs constant b,delta chi2,77.6027,,extra parameters 1
+model comparison: i linear vs constant b,delta BIC,68.0011,,
+model comparison: i linear vs constant b,profile-evidence log contrast,32.6589,,"importance sampling of the profiled likelihood times the implemented prior weights; uniform prior width of the slope parameter included; baselines not marginalised, prior normalisations incomplete (i0 prior of the linear-i model); not a fully normalised Bayes factor"
+model comparison: i linear vs constant b,likelihood-ratio z,8.80924,,p = 1.26e-18
+model comparison: within-campaign slope of b vs one b per campaign,delta chi2,3.09913,,extra parameters 1
+model comparison: within-campaign slope of b vs one b per campaign,delta BIC,-6.50237,,
+model comparison: within-campaign slope of b vs one b per campaign,profile-evidence log contrast,-0.150509,,"importance sampling of the profiled likelihood times the implemented prior weights; uniform prior width of the slope parameter included; baselines not marginalised, prior normalisations incomplete (i0 prior of the linear-i model); not a fully normalised Bayes factor"
+model comparison: within-campaign slope of b vs one b per campaign,likelihood-ratio z,1.76043,,p = 0.0783
+model comparison: one b per campaign vs b linear,delta chi2,0.80678,,extra parameters 2
+model comparison: one b per campaign vs b linear,delta BIC,-18.3962,,
+model comparison: one b per campaign vs b linear,profile-evidence log contrast,,,not computed
+model comparison: one b per campaign vs b linear,likelihood-ratio z,,,not applicable: non-nested models
+posterior,dT14/dt (min/yr),-1.18485,0.112273,z = -10.55
+within campaigns,"db/dt (per yr), common slope within campaigns",0.0107674,0.00493091,"delta chi2 3.10, z 1.76"
+block bootstrap: whole transits,dT14/dt (min/yr),-1.20546,0.106668,n = 500; fraction >= 0: 0
+block bootstrap: whole transits,db/dt (per yr),0.00641597,0.000591101,n = 500
+block bootstrap: whole sectors,dT14/dt (min/yr),-1.20512,0.117977,n = 300; fraction >= 0: 0
+block bootstrap: whole sectors,db/dt (per yr),0.00645629,0.000630782,n = 300
+jackknife,"dT14/dt (min/yr), campaign 2019 left out",-0.974017,,
+jackknife,"dT14/dt (min/yr), campaign 2021 left out",-1.2654,,
+jackknife,"dT14/dt (min/yr), campaign 2023 left out",-1.17743,,
+jackknife,"dT14/dt (min/yr), campaign 2025 left out",-1.43103,,
+jackknife,"dT14/dt (min/yr), sector 2 left out",-1.13745,,
+jackknife,"dT14/dt (min/yr), sector 8 left out",-1.22381,,
+jackknife,"dT14/dt (min/yr), sector 9 left out",-1.18505,,
+jackknife,"dT14/dt (min/yr), sector 10 left out",-1.14687,,
+jackknife,"dT14/dt (min/yr), sector 11 left out",-1.19408,,
+jackknife,"dT14/dt (min/yr), sector 12 left out",-1.17752,,
+jackknife,"dT14/dt (min/yr), sector 28 left out",-1.19315,,
+jackknife,"dT14/dt (min/yr), sector 29 left out",-1.21711,,
+jackknife,"dT14/dt (min/yr), sector 32 left out",-1.18048,,
+jackknife,"dT14/dt (min/yr), sector 35 left out",-1.18491,,
+jackknife,"dT14/dt (min/yr), sector 36 left out",-1.20159,,
+jackknife,"dT14/dt (min/yr), sector 37 left out",-1.21129,,
+jackknife,"dT14/dt (min/yr), sector 38 left out",-1.20481,,
+jackknife,"dT14/dt (min/yr), sector 39 left out",-1.2005,,
+jackknife,"dT14/dt (min/yr), sector 61 left out",-1.20296,,
+jackknife,"dT14/dt (min/yr), sector 62 left out",-1.18655,,
+jackknife,"dT14/dt (min/yr), sector 63 left out",-1.18881,,
+jackknife,"dT14/dt (min/yr), sector 64 left out",-1.18702,,
+jackknife,"dT14/dt (min/yr), sector 65 left out",-1.19356,,
+jackknife,"dT14/dt (min/yr), sector 69 left out",-1.18856,,
+jackknife,"dT14/dt (min/yr), sector 87 left out",-1.21148,,
+jackknife,"dT14/dt (min/yr), sector 88 left out",-1.16939,,
+jackknife,"dT14/dt (min/yr), sector 89 left out",-1.19078,,
+jackknife,"dT14/dt (min/yr), sector 90 left out",-1.21341,,
+jackknife,"dT14/dt (min/yr), sector 96 left out",-1.26111,,
+jackknife,"dT14/dt (min/yr), sector 98 left out",-1.18567,,
+null injections into the PDCSAP flux,n,200,,
+null injections into the PDCSAP flux,mean dT14/dt (min/yr),-0.00338711,0.0113015,
+null injections into the PDCSAP flux,sd of dT14/dt (min/yr),0.159827,,
+null injections into the PDCSAP flux,z = slope/error: mean,-0.0238723,,
+null injections into the PDCSAP flux,z = slope/error: sd,1.08442,,68% interval 1.028-1.137
+null injections into the PDCSAP flux,max delta chi2,10.8099,,fraction > 9: 0.01; KS p vs chi2(1): 0.0014
+null injections into the PDCSAP flux,injections with |dT14/dt| >= observed,0,,
+null injections into the PDCSAP flux,injections with delta chi2 >= observed,0,,
+null injections into the PDCSAP flux,z: observed slope / injection sd,-7.39215,,
+null injections into the target pixels,n,40,,
+null injections into the target pixels,mean dT14/dt (min/yr),0.00206519,0.0279752,
+null injections into the target pixels,sd of dT14/dt (min/yr),0.17693,,
+null injections into the target pixels,z = slope/error: mean,0.00189394,,
+null injections into the target pixels,z = slope/error: sd,0.996764,,68% interval 0.890-1.073
+null injections into the target pixels,max delta chi2,4.80082,,fraction > 9: 0; KS p vs chi2(1): 0.611
+null injections into the target pixels,injections with |dT14/dt| >= observed,0,,
+null injections into the target pixels,injections with delta chi2 >= observed,0,,
+null injections into the target pixels,z: observed slope / injection sd,-6.7084,,
+look-elsewhere: posterior slope/width,"z_global, trials = planets (801)",9.9058,,"z_local 10.55, p_local 4.9e-26, p_global 3.93e-23"
+look-elsewhere: posterior slope/width,"z_global, trials = planets x 4 flag types (3204)",9.76627,,"z_local 10.55, p_local 4.9e-26, p_global 1.57e-22"
+look-elsewhere: likelihood ratio (nominal),"z_global, trials = planets (801)",8.02571,,"z_local 8.81, p_local 1.26e-18, p_global 1.01e-15"
+look-elsewhere: likelihood ratio (nominal),"z_global, trials = planets x 4 flag types (3204)",7.85375,,"z_local 8.81, p_local 1.26e-18, p_global 4.04e-15"
+look-elsewhere: posterior scaled by the injection scatter of slope/error,"z_global, trials = planets (801)",9.02678,,"z_local 9.73, p_local 2.21e-22, p_global 1.77e-19"
+look-elsewhere: posterior scaled by the injection scatter of slope/error,"z_global, trials = planets x 4 flag types (3204)",8.87376,,"z_local 9.73, p_local 2.21e-22, p_global 7.07e-19"
+look-elsewhere: posterior scaled by the injection scatter of slope/error (84th percentile),"z_global, trials = planets (801)",8.54456,,"z_local 9.29, p_local 1.61e-20, p_global 1.29e-17"
+look-elsewhere: posterior scaled by the injection scatter of slope/error (84th percentile),"z_global, trials = planets x 4 flag types (3204)",8.38296,,"z_local 9.29, p_local 1.61e-20, p_global 5.16e-17"
+look-elsewhere: sector-bootstrap slope/width,"z_global, trials = planets (801)",9.36104,,"z_local 10.04, p_local 9.86e-24, p_global 7.9e-21"
+look-elsewhere: sector-bootstrap slope/width,"z_global, trials = planets x 4 flag types (3204)",9.21345,,"z_local 10.04, p_local 9.86e-24, p_global 3.16e-20"
+"look-elsewhere: slope / injection sd, light-curve level","z_global, trials = planets (801)",6.44484,,"z_local 7.39, p_local 1.44e-13, p_global 1.16e-10"
+"look-elsewhere: slope / injection sd, light-curve level","z_global, trials = planets x 4 flag types (3204)",6.23119,,"z_local 7.39, p_local 1.44e-13, p_global 4.63e-10"
+"look-elsewhere: slope / injection sd, pixel level","z_global, trials = planets (801)",5.65306,,"z_local 6.71, p_local 1.97e-11, p_global 1.58e-08"
+"look-elsewhere: slope / injection sd, pixel level","z_global, trials = planets x 4 flag types (3204)",5.40994,,"z_local 6.71, p_local 1.97e-11, p_global 6.3e-08"
+survey,planets with a screening statistic,801,,
+survey,screening statistic of L 98-59 d (duration change),5.05953,,
+survey,planets with a statistic >= that of L 98-59 d,19,,
+survey,stable reference planets,197,,
+survey,stable reference planets with a statistic >= that of L 98-59 d,1,,
+telemetry audit,per-transit T14 slope (min/yr),-1.34494,0.146904,chi2 80.6 for 70 dof
+telemetry audit: correlation of T14 residual with covariate,bkg_mean,-0.00124994,,permutation p = 0.990; correlation with time 0.01
+telemetry audit: correlation of T14 residual with covariate,bkg_in_minus_out,0.050319,,permutation p = 0.677; correlation with time -0.12
+telemetry audit: correlation of T14 residual with covariate,bkg_slope,0.00938889,,permutation p = 0.938; correlation with time 0.10
+telemetry audit: correlation of T14 residual with covariate,pc_rms,-0.058026,,permutation p = 0.631; correlation with time -0.43
+telemetry audit: correlation of T14 residual with covariate,mc_rms,-0.0674874,,permutation p = 0.579; correlation with time -0.42
+telemetry audit: correlation of T14 residual with covariate,mc_in_minus_out,-0.0896637,,permutation p = 0.450; correlation with time -0.05
+telemetry audit: correlation of T14 residual with covariate,n_desat_win,-0.0140054,,permutation p = 0.902; correlation with time -0.20
+telemetry audit: correlation of T14 residual with covariate,dt_desat,0.0411211,,permutation p = 0.735; correlation with time 0.32
+telemetry audit: correlation of T14 residual with covariate,dt_stray,-0.147999,,permutation p = 0.221; correlation with time 0.03
+telemetry audit: correlation of T14 residual with covariate,dt_edge,0.0425113,,permutation p = 0.718; correlation with time -0.17
+telemetry audit: correlation of T14 residual with covariate,cov_in,-0.0311812,,permutation p = 0.796; correlation with time -0.08
+telemetry audit: correlation of T14 residual with covariate,rms_raw,-0.0800979,,permutation p = 0.514; correlation with time 0.26
+telemetry audit: correlation of T14 residual with covariate,crowd,0.112426,,permutation p = 0.346; correlation with time -0.42
+telemetry audit: correlation of T14 residual with covariate,flfr,-0.149861,,permutation p = 0.216; correlation with time -0.02
+telemetry audit: correlation of T14 residual with covariate,data_rel,0.0488533,,permutation p = 0.684; correlation with time 0.97
+telemetry audit: correlation of T14 residual with covariate,ap_npix,-0.082841,,permutation p = 0.473; correlation with time 0.11
+telemetry audit: correlation of T14 residual with covariate,other_in_window,-0.0311323,,permutation p = 0.787; correlation with time 0.04
+telemetry audit: correlation of T14 residual with covariate,dtc_min,0.115445,,permutation p = 0.351; correlation with time 0.14
+telemetry audit: correlation of T14 residual with covariate,sig,-0.217536,,permutation p = 0.065; correlation with time 0.12
+telemetry audit,slope with all covariates except data release (min/yr),-1.30432,0.259781,
+telemetry audit,slope with camera/CCD offsets (min/yr),-1.43042,0.156116,
+telemetry audit,slope with all covariates including data release (min/yr),-2.87375,0.675758,data release correlates with time (r = 0.97)
+telemetry audit,data release coefficient within campaigns (min per sd),-0.282281,0.353143,
+telemetry audit: per camera.CCD,"slope (min/yr), camera.CCD 3.3",-1.94808,0.856741,n = 11 transits
+telemetry audit: per camera.CCD,"slope (min/yr), camera.CCD 3.4",-1.34597,0.456339,n = 10 transits
+telemetry audit: per camera.CCD,"slope (min/yr), camera.CCD 4.1",-1.24246,0.268747,n = 19 transits
+telemetry audit: per camera.CCD,"slope (min/yr), camera.CCD 4.2",-1.40897,1.02436,n = 8 transits
+telemetry audit: per camera.CCD,"slope (min/yr), camera.CCD 4.3",-1.34345,0.266879,n = 14 transits
+telemetry audit: per camera.CCD,"slope (min/yr), camera.CCD 4.4",-1.84009,0.457143,n = 10 transits
+activity,flare rate vs sector-mean T14 residual: r,-0.226715,,p = 0.268
+activity,6-h SAP variability vs sector-mean T14 residual: r,-0.182902,,p = 0.374
+activity,flare rate vs time: r,-0.345956,,p = 0.081
+activity,rotation-phase sinusoid (P = 77.3 d): amplitude (min),1.30194,,delta chi2 8.50 for 2 dof
+activity,slope with the rotation term (min/yr),-1.37591,0.141576,
+activity,residual periodogram 30-150 d: best period (d),33.0151,,"delta chi2 17.3, permutation FAP 0.045"
+activity,transits with an in-transit bump > 3 sigma (fraction),0.0138889,,out-of-transit controls 0.0244; KS p = 0.63

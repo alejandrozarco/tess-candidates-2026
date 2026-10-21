@@ -12,6 +12,9 @@ Figures: fold_<tic>  (TTV-corrected fold of the detrended epochs with 20-min bin
 'eb124751008': eb_depths_124751008 (eclipse depth of TIC 124751008 against time, with the inclination models).
 'tdv': tdv_307210830 (per-sector transit duration of L 98-59 d with the JWST fits and the linear fit; controls b and c),
        tdv_296739893 (per-sector transit duration and width of TOI-620 b in three photometries).
+'toi6482': transits_189300053 (the six TESS QLP transits of TOI-6482.01 with the common model, and the O-C diagram).
+'jwstchrom': jwst_chromatic_307210830 (JWST transit duration of L 98-59 d per wavelength bin and per detector, the change
+       between the two NIRSpec visits per bin, and the per-detector and detector-averaged durations per visit).
 """
 import csv, os, sys
 import matplotlib
@@ -321,10 +324,86 @@ def fig_tdv_toi620(t, name):
     fig.tight_layout(); save(fig, t, name)
 
 
+def fig_jwst_chrom(t, name):
+    B = read("jwst_chromatic_307210830.csv"); Q = read("jwst_chromatic_summary_307210830.csv")
+    fig = plt.figure(figsize=(12.5, 9)); fig.patch.set_facecolor(t["surface"]); gs = fig.add_gridspec(2, 2, height_ratios=[1.1, 1])
+    ax = fig.add_subplot(gs[0, :]); bx = fig.add_subplot(gs[1, 0]); cx = fig.add_subplot(gs[1, 1])
+    vis = (("d1224_prior", t["mark"], "o", -0.012, "GTO 1224 obs. 1 (NIRSpec, 2023.48)"), ("d4098_prior", t["mark2"], "s", 0.012, "GO 4098 obs. 2 (NIRSpec, 2024.20)"),
+           ("d1201_prior", t["mark3"], "D", 0.0, "GTO 1201 obs. 311 (NIRISS SOSS order 1, 2022.99)"))
+    for f, col, fmt, off, lab in vis:
+        m = (B["fit"] == f) & (B["row"] == "bin") & (B["used"] == 1); lam = 0.5 * (B["lam_lo_um"][m] + B["lam_hi_um"][m])
+        ax.errorbar(lam + off, B["T14_min"][m], B["T14_err_min"][m], fmt=fmt, color=col, ms=4.5, capsize=2, label=lab)
+        for ch in ("NRS1", "NRS2", "SOSS1"):
+            k = (B["fit"] == f) & (B["row"] == "channel, shared b") & (B["channel"] == ch)
+            if k.any():
+                y, e = B["T14_min"][k][0], B["T14_err_min"][k][0]; x0, x1 = B["lam_lo_um"][k][0], B["lam_hi_um"][k][0]
+                ax.fill_between([x0, x1], y - e, y + e, color=col, alpha=0.25, lw=0); ax.plot([x0, x1], [y, y], "-", color=col, lw=1.6)
+    for a in (ax, bx):
+        a.axvspan(3.71, 3.83, color=t["grid"], alpha=0.9, lw=0)
+    ax.text(3.77, 47.35, "detector\ngap", ha="center", va="top", fontsize=7.5, color=t["muted"])
+    ax.set_xlim(0.8, 5.25); ax.set_ylim(42.6, 47.4); ax.set_xlabel("wavelength (µm)"); ax.set_ylabel("T14 per bin (min)"); style(ax, t)
+    title(ax, t, "L 98-59 d: JWST transit duration per wavelength bin (Kurucz-prior limb darkening; P, mid-time and a/R* = 36.25 fixed per visit)\n"
+              "(bands: one b per detector, T14 with its approximate conditional error (see section 6.6.11); NRS1 2.87-3.71 µm, NRS2 3.83-5.15 µm)")
+    ax.legend(loc="lower left", fontsize=8, frameon=False, labelcolor=t["ink2"])
+    a1 = (B["fit"] == "d1224_prior") & (B["row"] == "bin"); a2 = (B["fit"] == "d4098_prior") & (B["row"] == "bin")
+    lam = 0.5 * (B["lam_lo_um"][a1] + B["lam_hi_um"][a1]); d = B["T14_min"][a2] - B["T14_min"][a1]; e = np.hypot(B["T14_err_min"][a1], B["T14_err_min"][a2])
+    bx.errorbar(lam, d, e, fmt="o", color=t["ink"], ms=4, capsize=2, label="per bin")
+    for ch, x0, x1 in (("NRS1", 2.87, 3.71), ("NRS2", 3.83, 5.15)):
+        k = (Q["ld"] == "prior") & (Q["quantity"] == f"{ch}, weighted mean of the per-bin delta T14 (min)")
+        y, s = Q["value"][k][0], Q["error"][k][0]
+        bx.fill_between([x0, x1], y - s, y + s, color=t["mark"], alpha=0.25, lw=0); bx.plot([x0, x1], [y, y], "-", color=t["mark"], lw=1.6)
+        bx.text(0.5 * (x0 + x1), 1.75, f"{ch} mean: {y:+.2f} $\\pm$ {s:.2f} min", ha="center", va="top", fontsize=8, color=t["ink2"])
+    bx.axhline(0, color=t["axis"], lw=0.8); bx.axhline(-0.85, color=t["mark3"], lw=1.2, ls="--", label="TESS trend, -0.85 $\\pm$ 0.08 min")
+    bx.set_xlim(2.8, 5.22); bx.set_ylim(-2.9, 1.9); bx.set_xlabel("wavelength (µm)"); bx.set_ylabel("T14(2024.20) - T14(2023.48) (min)"); style(bx, t)
+    title(bx, t, "change between the two NIRSpec visits, per bin\n(bands: weighted mean per detector, formal error)")
+    bx.legend(loc="lower right", fontsize=8, frameon=False, labelcolor=t["ink2"])
+    yr = {"d1224_prior": 2023.481, "d4098_prior": 2024.195}
+    for ch, fmt, col, off in (("NRS1", "o", t["mark"], -0.012), ("NRS2", "s", t["mark2"], 0.012)):
+        xs, ys, es = [], [], []
+        for f in ("d1224_prior", "d4098_prior"):
+            k = (B["fit"] == f) & (B["row"] == "channel, shared b") & (B["channel"] == ch); xs.append(yr[f] + off); ys.append(B["T14_min"][k][0]); es.append(B["T14_err_min"][k][0])
+        cx.errorbar(xs, ys, es, fmt=fmt, color=col, ms=5, capsize=2, lw=1, ls=":", label=f"{ch} alone (approximate conditional error)")
+    xs, ys, es = [], [], []
+    for y0 in (2023.481, 2024.195):
+        k = (Q["ld"] == "prior") & (Q["quantity"] == f"detector-averaged T14, {y0} (min)"); xs.append(y0); ys.append(Q["value"][k][0]); es.append(Q["error"][k][0])
+    k = (B["fit"] == "d1201_prior") & (B["row"] == "channel, shared b") & (B["channel"] == "SOSS1"); fl = Q["value"][(Q["ld"] == "prior") & (Q["quantity"] == "empirical systematic floor per detector and visit (min)")][0]
+    cx.errorbar(xs, ys, es, fmt="D", color=t["ink"], ms=6, capsize=3, label="NIRSpec detector average (error incl. floor / $\\sqrt{2}$)")
+    cx.errorbar([2022.992], B["T14_min"][k], [np.hypot(B["T14_err_min"][k][0], fl)], fmt="D", color=t["mark3"], ms=6, capsize=3, label="NIRISS SOSS order 1 (error incl. floor)")
+    xa = np.array(xs + [2022.992]); ya = np.array(ys + [B["T14_min"][k][0]]); wa = 1 / np.array(es + [np.hypot(B["T14_err_min"][k][0], fl)]) ** 2
+    xx = np.array([2022.85, 2024.35]); y0 = np.sum(wa * (ya + 1.185 * (xa - 2023.5))) / np.sum(wa)
+    cx.plot(xx, y0 - 1.185 * (xx - 2023.5), "--", color=t["mark3"], lw=1.0, label="slope of the TESS trend (offset fitted)")
+    cx.set_xlim(2022.85, 2024.35); cx.set_xlabel("year"); cx.set_ylabel("T14 (min)"); style(cx, t)
+    title(cx, t, "per-detector and detector-averaged T14 per visit\n(averages and floor defined after the detector difference was seen)")
+    cx.legend(loc="lower left", fontsize=7.5, frameon=False, labelcolor=t["ink2"])
+    fig.tight_layout(); save(fig, t, name)
+
+
+def fig_toi6482(t, name):
+    L = read("transits_189300053.csv"); T = read("transit_times_189300053.csv"); E = read("ephemeris_189300053.csv")
+    fig, (ax, bx) = plt.subplots(2, 1, figsize=(8, 10.5), gridspec_kw=dict(height_ratios=[3.3, 1])); fig.patch.set_facecolor(t["surface"])
+    tess = T["in_fit"] == 1
+    for k, (s, e) in enumerate(zip(T["sector"][tess], T["epoch"][tess])):
+        m = (L["sector"] == s) & (L["epoch"] == e); x = L["dt_lin_h"][m]; o = np.argsort(x); off = -0.022 * k
+        ax.plot(x, L["flux"][m] + off, ".", color=t["pts"], ms=1.6)
+        xb, yb, _ = binned(x, L["flux"][m], 0.5); ax.plot(xb, yb + off, "o", color=t["mark"], ms=3.2)
+        ax.plot(x[o], L["model"][m][o] + off, "-", color=t["ink"], lw=1.1)
+        ax.text(-15.6, 1.0075 + off, f"sector {int(s)}, epoch {int(e)}", color=t["ink2"], fontsize=8)
+    ax.set_xlim(-16, 16); ax.set_ylim(0.87, 1.014); ax.set_xlabel("hours from mid-transit (linear ephemeris)"); ax.set_ylabel("relative flux (baseline divided out) + offset")
+    style(ax, t); title(ax, t, f"TOI-6482.01 (TIC 189300053): six TESS QLP transits, 2019-2026, P = {E['P_d'][0]:.6f} d\n(grey: cadences; blue: 30-min bins; line: common exposure-averaged trapezoid at the fitted mid-time)")
+    bx.axhline(0, color=t["axis"], lw=0.8)
+    bx.errorbar(T["epoch"][tess], T["o_c_min"][tess], T["tc_err_min"][tess], fmt="o", color=t["ink"], ms=5, capsize=2, label="TESS QLP (fitted)")
+    g = ~tess
+    if g.any():
+        bx.errorbar(T["epoch"][g], T["o_c_min"][g], T["o_c_err_min"][g], fmt="s", color=t["mark2"], ms=5, capsize=2, label="TRAPPIST-South 2025-04-21, reduction v2 (not in the fit; error includes the ephemeris uncertainty)")
+    bx.set_xlabel("epoch"); bx.set_ylabel("O - C (min)"); style(bx, t)
+    bx.legend(loc="upper left", fontsize=8, frameon=False, labelcolor=t["ink2"])
+    fig.tight_layout(); save(fig, t, name)
+
+
 if __name__ == "__main__":
     for th, t in THEMES.items():
         plt.rcParams.update({"text.color": t["ink"], "axes.edgecolor": t["axis"], "axes.titlecolor": t["ink"]})
-        sel = sys.argv[1:] or [str(x) for x in TICS] + ["other", "c311179599", "eb124751008", "tdv"]
+        sel = sys.argv[1:] or [str(x) for x in TICS] + ["other", "c311179599", "eb124751008", "tdv", "toi6482", "jwstchrom"]
         if "other" in sel:
             fig_eb_history(t, f"eb_history_11613676_{th}.svg"); fig_eb_profiles(t, f"eb_profiles_11613676_{th}.svg")
             fig_toi540_sectors(t, f"toi540_sectors_{th}.svg"); fig_toi540_depths(t, f"toi540_depths_{th}.svg")
@@ -334,7 +413,11 @@ if __name__ == "__main__":
             fig_eb_depths_124(t, f"eb_depths_124751008_{th}.svg")
         if "tdv" in sel:
             fig_tdv_l9859(t, f"tdv_307210830_{th}.svg"); fig_tdv_toi620(t, f"tdv_296739893_{th}.svg")
-        for tic in [int(x) for x in sel if x not in ("other", "c311179599", "eb124751008", "tdv")]:
+        if "toi6482" in sel:
+            fig_toi6482(t, f"transits_189300053_{th}.svg")
+        if "jwstchrom" in sel:
+            fig_jwst_chrom(t, f"jwst_chromatic_307210830_{th}.svg")
+        for tic in [int(x) for x in sel if x not in ("other", "c311179599", "eb124751008", "tdv", "toi6482", "jwstchrom")]:
             fig_fold(t, f"fold_{tic}_{th}.svg", tic)
             fig_epochs(t, f"epochs_{tic}_{th}.svg", tic)
             fig_oc(t, f"oc_{tic}_{th}.svg", tic)

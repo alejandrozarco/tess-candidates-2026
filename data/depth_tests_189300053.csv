@@ -1,0 +1,17 @@
+# TOI-6482.01 = TIC 189300053: depth tests on the TESS QLP data (shape fixed at the common fit); 2026-10-21
+# per-transit depths: data/transit_times_189300053.csv; means are inverse-variance weighted with white errors except where noted
+# shape_limit: largest magnitude difference of a blended eclipsing source that can give the flat-bottomed shape, 2.5 log10((T12/T13)^2/depth) (Vanderburg et al. 2019)
+test,value,error,unit,note
+depth_even,9.86,0.41,ppt,epochs 0 74 110 126
+depth_odd,8.72,0.63,ppt,epochs 37 127
+odd_minus_even,-1.14,0.75,ppt,1.5 sigma
+depth_weighted_mean_per_transit,9.52,0.34,ppt,chi2 = 9.7 for 5 dof about the mean (p = 0.08)
+depth_linear_trend,-0.38,0.13,ppt/yr,weighted linear fit of the per-transit depths against time (white errors); 2.96 sigma; chi2 = 0.9 for 4 dof
+secondary_phase_0.5,-0.36,0.58,ppt,3 windows; 3-sigma upper limit 1.39 ppt; with beta: error 0.59
+alias_P/2,-0.36,0.59,ppt,3 windows; errors with beta
+alias_P/3,-0.29,0.31,ppt,10 windows; errors with beta
+shape_limit_dm_nominal,2.19,,mag,ingress as fitted
+shape_limit_dm_ingress_+1sigma,2.65,,mag,
+shape_limit_dm_ingress_+3sigma,3.46,,mag,
+blend_dm_100pct_eclipse,5.06,,mag,
+blend_dm_50pct_eclipse,4.31,,mag,

@@ -38,8 +38,9 @@ version are kept. The full summary paragraphs are in [docs/summary.md](docs/summ
 | TIC 342194997 (TYC 9251-1375-1) | eclipsing binary (known Gaia binary) | $`P = 550.75`$ d (Gaia orbit), one 16.9 % eclipse | single eclipse; predicted occultation not observed | T. Chopard-Vilhem, Zenodo 2026-10-13 | [section 6.3](docs/6.3_eclipsing_binaries.md) |
 | TIC 124751008 | eclipsing binary, changing eclipses | $`P = 12.61`$ d; primary 2.25 % (2018), 0.28 % (2024-2025), 0.77 % (2026) | inclination change inferred from models; third body not detected | none listed | [section 6.4](docs/6.4_TIC124751008.md) |
 | HIP 23309 (TIC 220473309) | dimming events | three further events of 1.9-5.7 %, about 1 d long | no interpretation established | two earlier events: Gollotti et al. (2024) | [section 6.5](docs/6.5_HIP23309.md) |
-| L 98-59 d | known planet, transit-duration change candidate | $`\mathrm{d}T_{14}/\mathrm{d}t = -1.17 \pm 0.12`$ min/yr (about 52 to 44 min, 2018.7-2025.96) | change of the orbit not established; error conditional on a fixed transit shape | earlier duration search, not significant: Bessho et al. (2025) | [section 6.6](docs/6.6_L98-59d.md) |
+| L 98-59 d | known planet, evidence for a decreasing transit duration | $`\mathrm{d}T_{14}/\mathrm{d}t = -1.185 \pm 0.112`$ min/yr (about 51 to 44 min, 2019-2025; nominal local $`z`$ = 6.7-7.4; an illustrative Gaussian trials adjustment gives $`z`$ = 5.4-6.4, subject to the assumptions in section 6.6.10) | rests on four TESS campaigns (1.8 $`\sigma`$ within campaigns); its two JWST NIRSpec detectors differ by about 0.8 min per visit, with opposite signs; with the post-hoc detector averaging and empirical systematic floor, the NIRSpec pair differs from no change by 1.3 $`\sigma`$, and adding NIRISS gives a slope 2.2 $`\sigma`$ from zero; both are consistent with the TESS trend, and JWST does not independently confirm it; change of the orbit not established | earlier duration search, not significant: Bessho et al. (2025) | [section 6.6](docs/6.6_L98-59d.md) |
 | TOI-620 b | known planet, transit-duration change candidate (weaker) | $`-2.9 \pm 0.4`$ min/yr (about 80 to 62 min, 2019-2026) | slope depends on the aperture; five epochs | TTV report: Naponiello (2026) | [section 6.7](docs/6.7_TOI-620b.md) |
+| TOI-6482.01 (TIC 189300053) | known TOI, ephemeris update | $`P = 20.047937 \pm 0.000060`$ d (six TESS transits, 2019-2026; TOI table: 1483.5175 d), about 9.4 ppt, $`R_\mathrm{p} \approx 17\,R_\oplus`$ (TIC stellar radius) | planet candidate (TOI); nature not established | TOI (TESS project); TFOP period 20.04753 d in the ExoFOP notes; earlier version of this ephemeris: ExoFOP upload 2026-10-20 | [section 6.8](docs/6.8_TOI-6482.md) |
 
 Earlier public records. Two of the five signals were reported publicly by others before this record: TIC 402710280 by
 R. Vora (Zenodo, 2026-10-15) and TIC 89247735 by F. Molina (Zenodo, 2026-10-17); see sections
@@ -68,9 +69,12 @@ software versions are in section [8](docs/8_data_and_reproduction.md). The figur
   TIC 311179599 a transit-timing variation is not established.
 - The third bodies of TIC 11613676 and TIC 124751008 are inferred from the eclipse histories, not detected; the
   nodal and outer periods are orders of magnitude. The TOI-540 b non-detection rests on one TESS sector.
-- The duration changes of L 98-59 d and TOI-620 b rest on few observing campaigns of one instrument (with modest JWST
-  support for L 98-59 d), and their significances are not corrected for the search of 802 planets that selected them.
-- QLP light curves carry a barycentric timing error in sectors 99-104; no QLP time stamp enters the transit tables.
+- The duration-change evidence for L 98-59 d and TOI-620 b rests on few observing campaigns of one instrument. For
+  L 98-59 d, the within-campaign diagnostic is only 1.8 $`\sigma`$ and JWST does not independently confirm the trend. Its quoted
+  trials-adjusted significance assumes Gaussian tails and 801 or 3204 independent trials; TOI-620 b has no
+  corresponding adjustment.
+- QLP light curves carry a barycentric timing error in sectors 99-104; no QLP time stamp enters the transit tables,
+  except for TOI-6482.01 (section 6.8), whose sector-99 QLP time stamps differ from recomputed SPOC time stamps by +1.71 to +2.04 s.
   Full list: section [7](docs/7_caveats.md).
 
 ## How to cite
