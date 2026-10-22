@@ -1,4 +1,4 @@
-# TIC 324429952: TESS sectors with full-frame-image cutouts used here, 2026-10-18
+# TIC 324429952: TESS sectors with full-frame-image cutouts used here, 2026-10-22
 # span = first/last cadence (BTJD) in the 21x21 TESScut; cadence_min = median cadence; predicted = mid-transit times of the linear ephemeris inside the span
 # covered = number of quality-0 cadences within +-T14/2 of each predicted time (0 = in a data gap)
 sector,camera,ccd,cadence_min,span_start_btjd,span_end_btjd,n_cadences_q0,predicted_transits_btjd,covered_cadences,transit_fitted

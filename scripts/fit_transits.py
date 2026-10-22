@@ -48,7 +48,8 @@ for s in USE:
         m &= (q == 0)
     t, f = t[m], f[m]; f = f / np.median(f); cad = np.median(np.diff(t))
     pp = batman.TransitParams(); pp.t0 = tc0[s]; pp.per = P; pp.rp = c['k0']; pp.a = c['aR0']; pp.inc = 89.6; pp.ecc = 0; pp.w = 90; pp.u = u; pp.limb_dark = 'quadratic'
-    D[s] = dict(t=t, f=f, cad=cad, p=pp, mod=batman.TransitModel(pp, t, supersample_factor=max(1, int(round(cad * 1440 / 2))), exp_time=cad))
+    ns = max(1, int(round(cad * 1440 / 2)))   # sub-exposures at the centres of n equal parts of the exposure (batman spans exp_time end to end)
+    D[s] = dict(t=t, f=f, cad=cad, p=pp, mod=batman.TransitModel(pp, t, supersample_factor=ns, exp_time=cad * (ns - 1) / ns))
 
 
 def lc(s, tc, k, b, aR):

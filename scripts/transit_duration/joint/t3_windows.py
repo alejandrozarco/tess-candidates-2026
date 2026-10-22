@@ -12,7 +12,7 @@ import batman
 def inject(t, f, exptime, inj, T0x):
     p = batman.TransitParams(); p.t0 = T0x; p.per = Pd; p.rp = inj['k']; p.a = inj['aR']; p.inc = np.degrees(np.arccos(inj['b'] / inj['aR']))
     p.ecc = 0.; p.w = 90.; p.limb_dark = 'quadratic'; p.u = [inj['u1'], inj['u2']]
-    m = batman.TransitModel(p, t, supersample_factor=7, exp_time=exptime / 86400.)
+    m = batman.TransitModel(p, t, supersample_factor=7, exp_time=exptime / 86400. * 6 / 7)   # midpoint sub-exposures
     return f * m.light_curve(p)
 def make_windows(lcs, fluxk, ebmode, inj=None, regs=False, apply_inj=True):
     segs, flares = [], []

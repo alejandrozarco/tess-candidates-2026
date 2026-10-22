@@ -1,13 +1,13 @@
-# TIC 311179599: TESS sectors with full-frame-image cutouts used here, 2026-10-19
+# TIC 311179599: TESS sectors with full-frame-image cutouts used here, 2026-10-22
 # span = first/last cadence (BTJD) in the 21x21 TESScut; cadence_min = median cadence; predicted = mid-transit times of the linear ephemeris inside the span
 # covered = number of quality-0 cadences within +-T14/2 of each predicted time (0 = in a data gap)
 sector,camera,ccd,cadence_min,span_start_btjd,span_end_btjd,n_cadences_q0,predicted_transits_btjd,covered_cadences,transit_fitted
-12,2,2,30.0,1624.973,1652.869,1234,1649.304,7,yes
-13,2,1,30.0,1653.931,1682.348,1283,1674.131,6,yes
-39,2,2,10.0,2361.778,2389.716,3865,2369.282,18,yes
+12,2,2,30.0,1624.973,1652.869,1234,1649.302,6,yes
+13,2,1,30.0,1653.931,1682.348,1283,1674.129,6,yes
+39,2,2,10.0,2361.778,2389.716,3865,2369.281,19,yes
 66,2,1,3.3,3097.674,3126.428,11141,3114.087,56,yes
 93,2,1,3.3,3829.857,3856.051,10348,3834.066,57,yes
-100,4,3,3.3,4073.987,4100.463,10577,4082.334,56,yes
+100,4,3,3.3,4073.987,4100.463,10577,4082.334,57,yes
 101,3,3,3.3,4100.677,4126.806,10478,4107.161,0,no
 102,3,2,3.3,4127.018,4151.781,10136,4131.988,56,yes
-103,2,1,3.3,4152.029,4178.373,9671,4156.814,56,yes
+103,2,1,3.3,4152.029,4178.373,9671,4156.815,56,yes

@@ -1,40 +1,40 @@
-# TOI-540 b = TIC 200322593: transit depth at the predicted times in TESS sector 98 and checks (scripts/toi540_analysis.py), 2026-10-19
-# ephemeris: own photometry, sectors 4-32, T0 = BTJD 1821.984418 at cycle -285, P = 1.23914923 d; predicted mid-time of the central sector-98 transit BTJD 4017.75685 +- 2.93 min
-# depth_ppm = peak depth of the common shape (k = 0.0409, a/R* = 13.86, b = 0.783, T14 = 28.2 min) fitted at the predicted times; error scaled by beta; reference depth (sectors 4-32) = 1666 ppm
+# TOI-540 b = TIC 200322593: transit depth at the predicted times in TESS sector 98 and checks (scripts/toi540_analysis.py), 2026-10-22
+# ephemeris: own photometry, sectors 4-32, T0 = BTJD 1813.310347 at cycle -292, P = 1.23914927 d; predicted mid-time of the central sector-98 transit BTJD 4017.75690 +- 2.75 min
+# depth_ppm = peak depth of the common shape (k = 0.0409, a/R* = 13.86, b = 0.783, T14 = 28.2 min) fitted at the predicted times; error scaled by beta; reference depth (sectors 4-32) = 1664 ppm
 # sigma_below = (expected - depth)/error, expected = reference depth or, for the grazing-shape rows, the peak depth of the shape with the b given in the note
 # scan_max_snr, scan_offset_min = highest S/N of the same template at any phase (2-min steps, 0.5-min phase bins) and its offset from the prediction; scan_near_snr = highest S/N within +-5 sigma of the prediction
 # src: own = TPF photometry (aperture ap), pdc / sap = SPOC 2-min PDCSAP / SAP, pdc_fast = SPOC 20-s PDCSAP; qual: zero = quality 0, default = standard mask, none = all finite cadences
 test,sector,src,ap,qual,window_d,n_points,rms_ppm,beta,n_transits,depth_ppm,depth_err_ppm,expected_ppm,sigma_below,scan_max_snr,scan_offset_min,scan_near_snr,note
-S98 product and window,98,own,r2.0,zero,0.2,26154,2512,1.34,28,108,201,1666,7.8,2.9,-262,1.3,
-S98 product and window,98,own,r2.0,zero,0.4,26157,2822,1.99,28,19,335,1666,4.9,1.9,-262,0.6,
-S98 product and window,98,pdc,,zero,0.2,26145,2425,1.38,28,12,200,1666,8.3,2.1,-280,0.8,
-S98 product and window,98,pdc,,zero,0.4,26152,2791,2.10,28,-70,351,1666,5.0,1.4,-280,0.3,
-S98 product and window,98,sap,,zero,0.2,26146,2363,1.38,28,3,195,1666,8.5,2.3,-280,0.9,
-S98 product and window,98,sap,,zero,0.4,26152,2717,2.09,28,-87,340,1666,5.2,1.6,-280,0.3,
-S98 aperture,98,own,r1.5,zero,0.3,26148,2533,1.76,28,91,266,1666,5.9,,,,
-S98 aperture,98,own,r2.5,zero,0.3,26160,2845,1.60,28,83,272,1666,5.8,,,,
-S98 aperture,98,own,r3.0,zero,0.3,26165,3205,1.48,28,111,282,1666,5.5,,,,
-S98 aperture,98,own,spoc,zero,0.3,26153,2622,1.74,28,58,272,1666,5.9,,,,
-S98 quality flags,98,own,r2.0,default,0.3,40067,2936,1.53,44,35,211,1666,7.7,1.8,-262,0.9,
-S98 quality flags,98,own,r2.0,none,0.3,40147,2943,1.55,44,33,214,1666,7.6,1.8,-262,0.9,
-S98 20-s cadence,98,pdc_fast,,zero,0.3,155804,5474,2.14,29,-26,282,1666,6.0,1.6,-754,0.3,
-S98 reference,98,own,r2.0,zero,0.3,26156,2660,1.69,28,83,268,1666,5.9,2.4,-262,0.9,
-S98 segment,98,own,r2.0,zero,0.3,6683,2660,1.69,,369,528,1666,2.5,,,,BTJD 3993.75-4003.47
-S98 segment,98,own,r2.0,zero,0.3,6439,2660,1.69,,-347,524,1666,3.8,,,,BTJD 4008.37-4017.75
-S98 segment,98,own,r2.0,zero,0.3,6535,2660,1.69,,84,528,1666,3.0,,,,BTJD 4022.75-4032.30
-S98 segment,98,own,r2.0,zero,0.3,6181,2660,1.69,,258,570,1666,2.5,,,,BTJD 4037.01-4045.87
-S98 period x phase grid,98,own,r2.0,zero,0.3,26156,2660,1.69,,831,,1666,,3.2,-264,,"61 periods P +- 6e-4 d (530 sigma_P), 2-min phase steps; best P = 1.238549 d"
-S98 grazing shape,98,own,r2.0,zero,0.2,26154,2512,1.34,,109,200,1668,7.8,,,,"b = 0.78, T14 = 28.3 min"
-S98 grazing shape,98,pdc,,zero,0.2,26145,2425,1.38,,13,200,1668,8.3,,,,"b = 0.78, T14 = 28.3 min"
-S98 grazing shape,98,own,r2.0,zero,0.2,26154,2512,1.34,,110,219,1561,6.6,,,,"b = 0.85, T14 = 24.7 min"
-S98 grazing shape,98,pdc,,zero,0.2,26145,2425,1.38,,11,219,1561,7.1,,,,"b = 0.85, T14 = 24.7 min"
-S98 grazing shape,98,own,r2.0,zero,0.2,26154,2512,1.34,,129,242,1450,5.4,,,,"b = 0.90, T14 = 21.5 min"
-S98 grazing shape,98,pdc,,zero,0.2,26145,2425,1.38,,-21,242,1450,6.1,,,,"b = 0.90, T14 = 21.5 min"
-S98 grazing shape,98,own,r2.0,zero,0.2,26154,2512,1.34,,268,293,1273,3.4,,,,"b = 0.95, T14 = 17.5 min"
-S98 grazing shape,98,pdc,,zero,0.2,26145,2425,1.38,,-8,293,1273,4.4,,,,"b = 0.95, T14 = 17.5 min"
-S98 grazing shape,98,own,r2.0,zero,0.2,26154,2512,1.34,,455,350,900,1.3,,,,"b = 0.98, T14 = 14.4 min"
-S98 grazing shape,98,pdc,,zero,0.2,26145,2425,1.38,,91,349,900,2.3,,,,"b = 0.98, T14 = 14.4 min"
-S98 grazing shape,98,own,r2.0,zero,0.2,26154,2512,1.34,,602,391,523,-0.2,,,,"b = 1.00, T14 = 11.9 min"
-S98 grazing shape,98,pdc,,zero,0.2,26145,2425,1.38,,194,390,523,0.8,,,,"b = 1.00, T14 = 11.9 min"
-S98 grazing shape,98,own,r2.0,zero,0.2,26154,2512,1.34,,809,462,189,-1.3,,,,"b = 1.02, T14 = 8.5 min"
-S98 grazing shape,98,pdc,,zero,0.2,26145,2425,1.38,,369,461,189,-0.4,,,,"b = 1.02, T14 = 8.5 min"
+S98 product and window,98,own,r2.0,zero,0.2,26154,2512,1.34,28,106,201,1664,7.8,2.9,-262,1.3,
+S98 product and window,98,own,r2.0,zero,0.4,26157,2822,1.99,28,17,335,1664,4.9,1.9,-260,0.6,
+S98 product and window,98,pdc,,zero,0.2,26145,2425,1.38,28,9,200,1664,8.3,2.1,-280,0.8,
+S98 product and window,98,pdc,,zero,0.4,26152,2791,2.10,28,-72,350,1664,5.0,1.4,-280,0.3,
+S98 product and window,98,sap,,zero,0.2,26146,2363,1.38,28,-0,195,1664,8.5,2.4,-280,0.9,
+S98 product and window,98,sap,,zero,0.4,26152,2717,2.09,28,-90,339,1664,5.2,1.6,-280,0.3,
+S98 aperture,98,own,r1.5,zero,0.3,26148,2533,1.76,28,88,266,1664,5.9,,,,
+S98 aperture,98,own,r2.5,zero,0.3,26160,2845,1.60,28,81,272,1664,5.8,,,,
+S98 aperture,98,own,r3.0,zero,0.3,26165,3205,1.48,28,109,282,1664,5.5,,,,
+S98 aperture,98,own,spoc,zero,0.3,26153,2622,1.74,28,55,272,1664,5.9,,,,
+S98 quality flags,98,own,r2.0,default,0.3,40067,2936,1.53,44,33,211,1664,7.7,1.8,-680,0.8,
+S98 quality flags,98,own,r2.0,none,0.3,40147,2943,1.55,44,31,214,1664,7.6,1.8,-264,0.8,
+S98 20-s cadence,98,pdc_fast,,zero,0.3,155804,5474,2.14,29,-27,282,1664,6.0,1.6,-754,0.3,
+S98 reference,98,own,r2.0,zero,0.3,26156,2660,1.69,28,81,268,1664,5.9,2.4,-260,0.9,
+S98 segment,98,own,r2.0,zero,0.3,6683,2660,1.69,,367,527,1664,2.5,,,,BTJD 3993.75-4003.47
+S98 segment,98,own,r2.0,zero,0.3,6439,2660,1.69,,-345,524,1664,3.8,,,,BTJD 4008.37-4017.75
+S98 segment,98,own,r2.0,zero,0.3,6535,2660,1.69,,77,527,1664,3.0,,,,BTJD 4022.75-4032.30
+S98 segment,98,own,r2.0,zero,0.3,6181,2660,1.69,,255,570,1664,2.5,,,,BTJD 4037.01-4045.87
+S98 period x phase grid,98,own,r2.0,zero,0.3,26156,2660,1.69,,832,,1664,,3.2,-264,,"61 periods P +- 6e-4 d (566 sigma_P), 2-min phase steps; best P = 1.238549 d"
+S98 grazing shape,98,own,r2.0,zero,0.2,26154,2512,1.34,,107,200,1667,7.8,,,,"b = 0.78, T14 = 28.3 min"
+S98 grazing shape,98,pdc,,zero,0.2,26145,2425,1.38,,10,199,1667,8.3,,,,"b = 0.78, T14 = 28.3 min"
+S98 grazing shape,98,own,r2.0,zero,0.2,26154,2512,1.34,,109,219,1560,6.6,,,,"b = 0.85, T14 = 24.7 min"
+S98 grazing shape,98,pdc,,zero,0.2,26145,2425,1.38,,11,218,1560,7.1,,,,"b = 0.85, T14 = 24.7 min"
+S98 grazing shape,98,own,r2.0,zero,0.2,26154,2512,1.34,,128,242,1449,5.5,,,,"b = 0.90, T14 = 21.5 min"
+S98 grazing shape,98,pdc,,zero,0.2,26145,2425,1.38,,-22,241,1449,6.1,,,,"b = 0.90, T14 = 21.5 min"
+S98 grazing shape,98,own,r2.0,zero,0.2,26154,2512,1.34,,272,293,1272,3.4,,,,"b = 0.95, T14 = 17.5 min"
+S98 grazing shape,98,pdc,,zero,0.2,26145,2425,1.38,,-5,292,1272,4.4,,,,"b = 0.95, T14 = 17.5 min"
+S98 grazing shape,98,own,r2.0,zero,0.2,26154,2512,1.34,,464,350,903,1.3,,,,"b = 0.98, T14 = 14.4 min"
+S98 grazing shape,98,pdc,,zero,0.2,26145,2425,1.38,,100,349,903,2.3,,,,"b = 0.98, T14 = 14.4 min"
+S98 grazing shape,98,own,r2.0,zero,0.2,26154,2512,1.34,,612,391,526,-0.2,,,,"b = 1.00, T14 = 11.9 min"
+S98 grazing shape,98,pdc,,zero,0.2,26145,2425,1.38,,204,390,526,0.8,,,,"b = 1.00, T14 = 11.9 min"
+S98 grazing shape,98,own,r2.0,zero,0.2,26154,2512,1.34,,819,464,192,-1.4,,,,"b = 1.02, T14 = 8.5 min"
+S98 grazing shape,98,pdc,,zero,0.2,26145,2425,1.38,,382,462,192,-0.4,,,,"b = 1.02, T14 = 8.5 min"

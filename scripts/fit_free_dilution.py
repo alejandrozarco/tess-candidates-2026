@@ -46,7 +46,8 @@ for s in USE:
     m = (np.abs(t - tc) < args.window) & np.isfinite(f) & (q == 0); t, f = t[m], f[m] / np.median(f[m])
     pp = batman.TransitParams(); pp.t0 = tc; pp.per = P; pp.rp = 0.1; pp.a = 33; pp.inc = 89.9; pp.ecc = 0; pp.w = 90; pp.u = [0.5, 0.2]; pp.limb_dark = 'quadratic'
     x = t - tc; exp_s = round(float(np.median(np.diff(t))) * 86400)
-    D[s] = dict(t=t, f=f, p=pp, mod=batman.TransitModel(pp, t, supersample_factor=max(3, round(exp_s / 120)), exp_time=exp_s / 86400.), A=np.c_[np.ones(len(t)), x, x * x],
+    ns = max(3, round(exp_s / 120))   # midpoint sub-exposures (batman spans exp_time end to end)
+    D[s] = dict(t=t, f=f, p=pp, mod=batman.TransitModel(pp, t, supersample_factor=ns, exp_time=exp_s / 86400. * (ns - 1) / ns), A=np.c_[np.ones(len(t)), x, x * x],
                 tc0=tc, sig=FJ[s]['rms'] * 1e-6)
 NAMES = ['k', 'b', 'log_rho_circ', 'q1', 'q2', 'f_t'] + [f'dtc_{s}' for s in USE]
 print(f'{sum(len(d["t"]) for d in D.values())} points in epochs {USE}; noise per epoch (ppm)', {s: round(d['sig'] * 1e6) for s, d in D.items()})

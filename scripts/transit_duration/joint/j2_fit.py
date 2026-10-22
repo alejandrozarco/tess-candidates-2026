@@ -37,7 +37,7 @@ for item in cfg['lcs']:        # {"file":..., "visit":..., "det":...}
     tc0 = item.get('tc_guess', None)
     if tc0 is None:   # predicted mid-time from the linear ephemeris
         nn = np.round((tb.mean() - PL[PLN][1]) / P); tc0 = PL[PLN][1] + nn * P
-    m = batman.TransitModel(pm, tb, supersample_factor=3, exp_time=(np.median(np.diff(tb))))
+    m = batman.TransitModel(pm, tb, supersample_factor=3, exp_time=np.median(np.diff(tb)) * 2 / 3)   # midpoint sub-exposures
     lcs.append(dict(t=tb, f=fb, X=X, visit=item['visit'], det=item['det'], tc0=tc0, pm=pm, m=m, sig=s / np.sqrt(1.), beta=1.))
 visits = sorted(set(l['visit'] for l in lcs)); dets = sorted(set(l['det'] for l in lcs))
 names = ['lnrho' if AR in ('rho', 'free') else None] + ['k_' + d for d in dets]

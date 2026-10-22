@@ -85,7 +85,8 @@ def lc(sec, src='own', win=0.3, ap='r2.0', qual='zero'):
 def bmodel(t, tc, P, k, aR, b, texp=TEXP):
     pp = batman.TransitParams(); pp.t0 = tc; pp.per = P; pp.rp = k; pp.a = aR; pp.inc = np.degrees(np.arccos(min(b / aR, 1))); pp.ecc = 0; pp.w = 90
     pp.u = c['u']; pp.limb_dark = 'quadratic'
-    return batman.TransitModel(pp, t, supersample_factor=max(1, int(round(texp * 86400 / 24))), exp_time=texp).light_curve(pp)
+    ns = max(1, int(round(texp * 86400 / 24)))   # midpoint sub-exposures (batman spans exp_time end to end)
+    return batman.TransitModel(pp, t, supersample_factor=ns, exp_time=texp * (ns - 1) / ns).light_curve(pp)
 
 
 def t14(P, k, aR, b):

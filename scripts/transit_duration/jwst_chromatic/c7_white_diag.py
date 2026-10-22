@@ -32,7 +32,7 @@ for v in ('1224', '4098'):
         tau = (tb - tb.mean()) / (tb.max() - tb.min())
         X = np.vstack([tau ** j for j in range(3)] + [(R[r] - R[r].mean()) / (R[r].std() + 1e-12) for r in REGS]).T
         pm = batman.TransitParams(); pm.t0 = TC[v]; pm.per = P; pm.rp = 0.045; pm.a = AR; pm.inc = 88.4; pm.ecc = 0; pm.w = 90; pm.limb_dark = 'quadratic'; pm.u = [0, 0.2]
-        m = batman.TransitModel(pm, tb, supersample_factor=3, exp_time=np.median(np.diff(tb)))
+        m = batman.TransitModel(pm, tb, supersample_factor=3, exp_time=np.median(np.diff(tb)) * 2 / 3)   # midpoint sub-exposures
         u0 = np.array([LD[det.upper() + '_white'][0]['u1'], LD[det.upper() + '_white'][0]['u2']])
         L[det] = dict(t=tb, f=fb, X=X, ok=ok, R=R, pm=pm, m=m, u0=u0, sig=1.4826 * np.median(np.abs(np.diff(fb[ok]))) / np.sqrt(2), t0=t0)
     def lcmod(l, k, b, u1, u2):

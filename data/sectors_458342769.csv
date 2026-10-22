@@ -1,0 +1,21 @@
+# TOI-2638.01 = TIC 458342769: TESS light-curve products used, with SPOC header keywords; scripts/toi2638/checks_toi2638.py, 2026-10-22
+# cadence_s = median time step; aperture_pixels = pixels with bit 2 of the SPOC aperture image; crowdsap, flfrcsap = SPOC header keywords (fraction of the flux in the aperture from the target; fraction of the target flux in the aperture); sap_e_s, pdcsap_e_s, bkg_e_s = medians of SAP_FLUX, PDCSAP_FLUX, SAP_BKG (QUALITY = 0)
+# target_flux_e_s = sap_e_s x crowdsap / flfrcsap (the target flux implied by the SPOC crowding model); times BTJD
+product,sector,camera,ccd,cadence_s,start_btjd,end_btjd,aperture_pixels,crowdsap,flfrcsap,sap_e_s,pdcsap_e_s,bkg_e_s,target_flux_e_s,file
+SPOC,36,3,1,120,2280.901,2305.992,8,0.7299,0.7426,5306,5214,1910.8,5215,tess2021065132309-s0036-0000000458342769-0207-s_lc.fits
+SPOC,37,3,2,120,2307.237,2332.582,12,0.6600,0.8302,6662,5296,3154.9,5296,tess2021091135823-s0037-0000000458342769-0208-s_lc.fits
+SPOC,63,3,1,120,3014.366,3040.902,9,0.7216,0.7735,5794,5400,2173.1,5405,tess2023069172124-s0063-0000000458342769-0255-s_lc.fits
+SPOC,64,3,2,120,3041.112,3068.034,11,0.7041,0.8166,6304,5434,2745.1,5435,tess2023096110322-s0064-0000000458342769-0257-s_lc.fits
+SPOC,90,3,1,120,3747.157,3775.079,9,0.7207,0.7690,5813,5446,2208.2,5448,tess2025071122000-s0090-0000000458342769-0287-s_lc.fits
+SPOC,99,3,3,120,4046.109,4073.779,7,0.6940,0.7392,5498,5159,1839.7,5162,tess2026005125623-s0099-0000000458342769-0300-s_lc.fits
+TESS-SPOC,36,3,1,600,2280.909,2305.986,8,0.6777,0.7426,5309,4840,1910.4,4845,hlsp_tess-spoc_tess_phot_0000000458342769-s0036_tess_v1_lc.fits
+TESS-SPOC,37,3,2,600,2307.243,2332.576,12,0.6044,0.8302,6663,4850,3152.9,4850,hlsp_tess-spoc_tess_phot_0000000458342769-s0037_tess_v1_lc.fits
+TESS-SPOC,63,3,1,200,3014.367,3040.900,9,0.6670,0.7735,5794,4991,2173.2,4996,hlsp_tess-spoc_tess_phot_0000000458342769-s0063_tess_v1_lc.fits
+TESS-SPOC,64,3,2,200,3041.113,3068.032,10,0.6542,0.7929,6095,5029,2500.9,5029,hlsp_tess-spoc_tess_phot_0000000458342769-s0064_tess_v1_lc.fits
+QLP,10,3,2,1800,1569.452,1595.660,,,,,,,,hlsp_qlp_tess_ffi_s0010-0000000458342769_tess_v01_llc.fits
+QLP,36,3,1,600,2280.909,2305.986,,,,,,,,hlsp_qlp_tess_ffi_s0036-0000000458342769_tess_v01_llc.fits
+QLP,37,3,2,600,2307.243,2332.576,,,,,,,,hlsp_qlp_tess_ffi_s0037-0000000458342769_tess_v01_llc.fits
+QLP,63,3,1,200,3014.367,3040.900,,,,,,,,hlsp_qlp_tess_ffi_s0063-0000000458342769_tess_v01_llc.fits
+QLP,64,3,2,200,3041.113,3068.032,,,,,,,,hlsp_qlp_tess_ffi_s0064-0000000458342769_tess_v01_llc.fits
+QLP,90,3,1,200,3747.157,3775.079,,,,,,,,hlsp_qlp_tess_ffi_s0090-0000000458342769_tess_v01_llc.fits
+QLP,99,3,3,200,4046.110,4073.778,,,,,,,,hlsp_qlp_tess_ffi_s0099-0000000458342769_tess_v01_llc.fits

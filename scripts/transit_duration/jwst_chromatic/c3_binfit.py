@@ -46,7 +46,7 @@ for ib, row in enumerate(ld):
     cols_ = [tau[ok] ** j for j in range(POLY + 1)] + [(v[ok] - v[ok].mean()) / (v[ok].std() + 1e-12) for v in Rb.values()]
     if cfg.get('ramp_min'): cols_.append(np.exp(-(tb[ok] - t_all.min()) * 1440. / cfg['ramp_min']))   # exponential ramp from the exposure start
     X = np.vstack(cols_).T
-    m = batman.TransitModel(pm, t, supersample_factor=3, exp_time=np.median(np.diff(t)))
+    m = batman.TransitModel(pm, t, supersample_factor=3, exp_time=np.median(np.diff(t)) * 2 / 3)   # midpoint sub-exposures
     U0 = np.array([row['u1'], row['u2']]); state = dict(sig=s, beta=1.)
     def model(k, b, u1, u2):
         pm.rp = k; pm.inc = np.degrees(np.arccos(b / AR)); pm.u = [u1, u2]; return m.light_curve(pm)

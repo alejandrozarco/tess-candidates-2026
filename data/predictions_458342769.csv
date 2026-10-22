@@ -1,0 +1,32 @@
+# TOI-2638.01 = TIC 458342769: extrapolations of the fitted models; scripts/toi2638/fit_toi2638.py, 2026-10-22
+# M2 rows: model M2 of jointfit_458342769.csv (b linear in time), instantaneous peak depth and first-to-fourth-contact T14 of the circular model; grazing = 1 if b > 1 - k; the rows "b = 1 - k" and "b = 1 + k" give the year at which the linear b(t) reaches that value
+# linear-trend rows: weighted linear fits of the per-sector depths (errors scaled by sqrt(chi2/dof)) and trapezoid durations (bootstrap errors, not calibrated); errors propagate the intercept and slope errors only (correlation neglected); these are extrapolations, not forecasts of a model
+source,year,b,depth_ppm,depth_err_ppm,T14_min,T14_err_min,grazing
+M2 (SPOC PDCSAP + QLP sector 10),2019.00,1.0118,1401,,67.9,,1
+M2 (SPOC PDCSAP + QLP sector 10),2021.00,0.9933,2076,,77.8,,1
+M2 (SPOC PDCSAP + QLP sector 10),2023.00,0.9748,2767,,86.4,,1
+M2 (SPOC PDCSAP + QLP sector 10),2025.00,0.9562,3419,,94.1,,1
+M2 (SPOC PDCSAP + QLP sector 10),2026.00,0.9470,3707,,97.7,,1
+M2 (SPOC PDCSAP + QLP sector 10),2027.00,0.9377,3947,,101.1,,1
+M2 (SPOC PDCSAP + QLP sector 10),2027.25,0.9354,3995,,101.9,,1
+M2 (SPOC PDCSAP + QLP sector 10),2028.00,0.9285,4087,,104.3,,0
+M2 (SPOC PDCSAP + QLP sector 10),2030.00,0.9100,4219,,110.5,,0
+M2 (SPOC PDCSAP + QLP sector 10): b = 1 - k (end of grazing),2027.71,0.9312,,,,,
+M2 (SPOC PDCSAP + QLP sector 10): b = 1 + k (first transit),2012.84,1.0688,,,,,
+M2 (SPOC SAP crowding-corrected),2019.00,1.0113,1308,,66.7,,1
+M2 (SPOC SAP crowding-corrected),2021.00,0.9915,2007,,77.3,,1
+M2 (SPOC SAP crowding-corrected),2023.00,0.9716,2716,,86.5,,1
+M2 (SPOC SAP crowding-corrected),2025.00,0.9518,3362,,94.6,,1
+M2 (SPOC SAP crowding-corrected),2026.00,0.9419,3626,,98.4,,1
+M2 (SPOC SAP crowding-corrected),2027.00,0.9320,3793,,102.0,,0
+M2 (SPOC SAP crowding-corrected),2027.25,0.9295,3813,,102.8,,0
+M2 (SPOC SAP crowding-corrected),2028.00,0.9221,3867,,105.4,,0
+M2 (SPOC SAP crowding-corrected),2030.00,0.9023,3986,,111.8,,0
+M2 (SPOC SAP crowding-corrected): b = 1 - k (end of grazing),2026.85,0.9335,,,,,
+M2 (SPOC SAP crowding-corrected): b = 1 + k (first transit),2013.43,1.0665,,,,,
+linear depth trend (SPOC PDCSAP + QLP sector 10),2027.00,,4216,248,,,
+linear trapezoid T14 trend (SPOC PDCSAP; bootstrap errors),2027.00,,,,106.2,9.0,
+linear depth trend (SPOC PDCSAP + QLP sector 10),2027.25,,4312,261,,,
+linear trapezoid T14 trend (SPOC PDCSAP; bootstrap errors),2027.25,,,,108.0,9.4,
+linear depth trend (SPOC PDCSAP + QLP sector 10),2027.50,,4408,274,,,
+linear trapezoid T14 trend (SPOC PDCSAP; bootstrap errors),2027.50,,,,109.7,9.9,

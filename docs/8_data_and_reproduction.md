@@ -74,7 +74,7 @@ from TESScut on 2026-10-18 with the same request as `tesscut_download.py` (Gaia 
 pixels); the re-download of these three sectors timed out at MAST on 2026-10-18 (sector 13 was re-downloaded and is
 identical). [`data/triceratops_input_89247735.csv`](../data/triceratops_input_89247735.csv) is the binned light curve that was given to TRICERATOPS; it was built
 from the common-shape fit itself, and `triceratops_prep.py`, which refits the shape with the mid-transit times fixed,
-reproduces it to within 7 ppm per bin (bin scatter 542.1 instead of 541.7 ppm). The TRICERATOPS tables
+reproduces it to within 9 ppm per bin (bin scatter 542.0 instead of 541.7 ppm). The TRICERATOPS tables
 (`data/triceratops/probs_89247735_*.csv`, `gaia_background_89247735.csv`) are the outputs of those runs, copied
 verbatim. The product-by-product box depths of section [3.4](3_TIC89247735.md#34-checks-against-false-positives) (QLP, TARS) and the catalogue checks of section [3.8](3_TIC89247735.md#38-catalogue-and-literature-checks) have no
 script in this repository. [`scripts/sed_fit.py`](../scripts/sed_fit.py) holds the catalogue magnitudes it fits (copied from VizieR: Gaia DR3,
@@ -116,7 +116,7 @@ when present. Exceptions for TIC 455017950: the eight cutouts were re-downloaded
 (only the request coordinates in the header differ in the 13th digit), and the tables regenerated from them are
 identical. [`data/triceratops_input_455017950.csv`](../data/triceratops_input_455017950.csv) is the binned light curve that was given to TRICERATOPS; it was built
 from a common-shape fit of the same photometry ($`b = 0.16`$, $`a/R_\star = 67.3`$, $`k^2 = 1207`$ ppm), and
-`triceratops_prep.py` reproduces it to within 5 ppm per bin (bin scatter 180.5 instead of 180.2 ppm). The TRICERATOPS
+`triceratops_prep.py` reproduces it to within 6 ppm per bin (bin scatter 180.7 instead of 180.2 ppm). The TRICERATOPS
 tables (`data/triceratops/probs_455017950_*.csv`, `gaia_background_455017950.csv`) are the outputs of those runs, copied
 verbatim; their period (40.605653 d) is that of the first fit, 0.1 $`\sigma`$ from the adopted one. Without script in
 this repository: the product-by-product box depths and the SPOC 2-min fit (section [4.4](4_TIC455017950.md#44-checks-against-false-positives)), the diluted-eclipse fits
@@ -162,7 +162,7 @@ TRICERATOPS runs. The cutouts of all nine sectors were downloaded with `tesscut_
 fitted with the common shape but left out of the adopted ephemeris (`ephem_exclude` in [`scripts/targets.py`](../scripts/targets.py));
 `fit_transits.py` then also writes the ephemeris through all epochs, and `make_tables.py` adds the column
 `oc_all_epochs_min`. `event_checks.py` uses the QLP light curves of the star in `work/311179599/dl/mastDownload/HLSP/`
-(MAST HLSP files `hlsp_qlp_tess_ffi_s<sector>-0000000311179599_tess_v01_llc.fits`, retrieved 2026-10-19). [`data/triceratops_input_311179599.csv`](../data/triceratops_input_311179599.csv) is the light curve written by `triceratops_prep.py`. The
+(MAST HLSP files `hlsp_qlp_tess_ffi_s<sector>-0000000311179599_tess_v01_llc.fits`, retrieved 2026-10-19). [`data/triceratops_input_311179599.csv`](../data/triceratops_input_311179599.csv) is the light curve written by `triceratops_prep.py` before the correction of 2026-10-22 (end of this section). The
 TRICERATOPS target object was not built by `triceratops_target.py`: on 2026-10-19 the TESScut queries that TRICERATOPS
 makes through lightkurve failed for two or three of the six sectors in each of two attempts (MAST "Request failed"),
 and the script stops when an image is missing. The object used (`work/311179599/triceratops_target.pkl`) was built with
@@ -294,3 +294,50 @@ table differs in the last written digit. The TRAPPIST-South light curve (reducti
 in this repository; without `--trappist FILE` the script keeps the TRAPPIST row of the existing table, if present. Without
 script in this repository: the Gaia DR3, AllWISE and CatWISE2020 values, the speckle separation limits (interpolated
 in the contrast-curve tables on ExoFOP), the tess-point sector check and the catalogue checks of section [6.8.6](6.8_TOI-6482.md#686-catalogue-and-literature-checks).
+
+For TOI-2638.01 (section [6.9](6.9_TOI-2638.md)), run from the repository root with the versions of `requirements.txt` (pyvo 1.9.1 for the
+Gaia DR3 query):
+
+```
+python scripts/toi2638/download_toi2638.py --tpf    # MAST: SPOC 2-min light curves and target pixel files, TESS-SPOC, QLP, TGLC; QLP of the 17" neighbour
+python scripts/toi2638/fit_toi2638.py               # -> data/{ephemeris,depths,pertransit,shape,jointfit,trends,predictions}_458342769.csv
+python scripts/toi2638/checks_toi2638.py            # -> data/{sectors,neighbours,checks,precession}_458342769.csv (queries Gaia DR3)
+python scripts/toi2638/pixels_toi2638.py            # -> data/pixels_458342769.csv
+python scripts/toi2638/sims_toi2638.py              # -> data/simulations_458342769.csv
+python figures/make_figures.py toi2638
+```
+
+The MAST products (the download script writes their MAST URIs to `work/458342769/dl/products.txt`) were retrieved on 2026-10-22; the light
+curves are identical to copies retrieved on 2026-10-21. The scripts use TESS data, Gaia DR3 and tess-point only.
+Without script in this repository: the search that selected the planet, the TOI-table and ExoFOP values and the
+Gaia DR3 astrophysical parameters of section [6.9.1](6.9_TOI-2638.md#691-target), and the catalogue and literature checks of section
+[6.9.7](6.9_TOI-2638.md#697-catalogue-and-literature-checks).
+
+Correction of 2026-10-22 (exposure sampling; no conclusion changed). batman's `supersample_factor` places the
+sub-exposures from one end of the exposure to the other, which smooths the model more than the exposure does (by
+factors of 1.07-1.73 in rms for 15 to 2 sub-exposures). The transit models of `fit_transits.py`, `make_tables.py`,
+`triceratops_prep.py`, `fit_free_dilution.py`, `fit_second_signal.py`, `toi540_analysis.py`, `toi540_controls.py` and of
+`transit_duration/lib.py`, `v8_inject.py`, `joint/t3_windows.py`, `joint/t11_tpf.py`, `joint/j2_fit.py` and
+`jwst_chromatic/c3_binfit.py`, `c7_white_diag.py`, `c9_sysvariants.py` now sample each exposure at the centres of its
+n equal parts (`exp_time` passed as $`T (n - 1)/n`$); `scripts/toi2638/` uses the same sampling. Regenerated with the
+corrected scripts on 2026-10-22, with the commands above: `transit_times_`, `folded_`, `model_` and `sectors_` of TIC 402710280,
+324429952, 89247735, 455017950 and 311179599; `predicted_transits_311179599.csv` and `tess_sectors_311179599.csv`;
+`fit_free_dilution[_rho]_` of TIC 89247735, 455017950 and 311179599; the four tables of candidate c (and its $`r = 1.5`$ px fit quoted in section 5.10.1); the eight tables of
+`toi540_analysis.py` and `control_planets_s98.csv` (with the control light curves of the original selection). The
+values quoted in sections 1-6.2 were updated where they changed at the quoted precision. The figure models of `make_tables.py`
+are fixed-mid-time refits of the common shape (TIC 324429952: shape fixed in `targets.py`) and can differ slightly from
+the simultaneous fits quoted in sections 1-5. The ephemeris of TIC 311179599 b
+in `targets.py` was updated to the corrected fit ($`P = 24.826859 \pm 0.000044`$ d, $`T_0`$ = BTJD $`4082.33414 \pm 0.00154`$;
+before: $`24.826839 \pm 0.000047`$ d, BTJD $`4082.33390 \pm 0.00167`$). The adopted ephemerides of TIC 402710280,
+324429952, 89247735 and 455017950 and of candidate c, which set the O $`-`$ C values and the predicted transits, were
+kept; the corrected fits differ from them by at most 0.15 $`\sigma`$ (TIC 402710280: $`T_0`$ = BTJD 4128.92682, $`P = 36.340046`$ d;
+TIC 324429952: 4174.88768, 42.375735 d; TIC 89247735: 4196.80900, 18.323174 d; TIC 455017950: 4055.48919, 40.605654 d;
+candidate c: 4088.51676, 73.86722 d). Not regenerated: the difference-image tables (`diffimage_*`), which use the
+mid-transit times of the earlier fits (shifts of at most 1.7 min); the TRICERATOPS inputs and scenario tables, whose
+inputs change by at most 9 ppm per bin (TIC 311179599: the sector-100 mid-time moved across 10-min bin edges, so its
+input is re-binned, with bin scatter 279 instead of 285 ppm, depth 1252 instead of 1254 ppm); the FPPs were not re-run;
+and the tables of sections 6.6 and 6.7, whose slopes and durations change by at most 0.21 $`\sigma`$ in a check of
+the same scripts with both samplings (TOI-620 b PDCSAP slope $`-2.86`$ to $`-2.94`$ min/yr; the L 98-59 d core of
+section 6.6.10 does not use batman). The 2-min PDCSAP per-sector timing files used in sections 6.6.3-6.6.9 predate a
+later edit of `scripts/transit_duration/lib.py`; a rerun of the scripts gives slopes that differ from the tabulated
+ones by up to 0.021 min/yr (0.18 $`\sigma`$).

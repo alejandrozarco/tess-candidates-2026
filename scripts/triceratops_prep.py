@@ -33,7 +33,8 @@ for s, tc in sorted(tcs.items(), key=lambda kv: c['ncyc'][kv[0]]):
         z = np.load(os.path.join(wd, 'cut', f'lc_s{sec}.npz')); t = z['tm']; f = z['f2.0']; q = z['q']; src = 'TESScut r=2.0 px'
     m = (np.abs(t - tc) < args.window) & np.isfinite(f) & (q == 0); t, f = t[m], f[m]; f = f / np.median(f); cad = np.median(np.diff(t))
     pp = batman.TransitParams(); pp.t0 = tc; pp.per = c['P']; pp.rp = 0.04; pp.a = 50; pp.inc = 89.5; pp.ecc = 0; pp.w = 90; pp.u = c['u']; pp.limb_dark = 'quadratic'
-    E[s] = dict(t=t, f=f, dt=t - tc, p=pp, mod=batman.TransitModel(pp, t, supersample_factor=max(1, int(round(cad * 1440 / 2))), exp_time=cad), src=src, cad=cad * 1440)
+    ns = max(1, int(round(cad * 1440 / 2)))   # midpoint sub-exposures (batman spans exp_time end to end)
+    E[s] = dict(t=t, f=f, dt=t - tc, p=pp, mod=batman.TransitModel(pp, t, supersample_factor=ns, exp_time=cad * (ns - 1) / ns), src=src, cad=cad * 1440)
 
 
 def ep(s, k, b, aR):

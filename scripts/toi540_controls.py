@@ -33,7 +33,7 @@ def template(t, tc, P, k, aR, b, texp):
     key = (P, k, aR, b, round(texp * 86400))
     if key not in GRID:
         g = np.arange(-0.2, 0.2, 10 / 86400.); pp = batman.TransitParams(); pp.t0 = 0; pp.per = P; pp.rp = k; pp.a = aR; pp.inc = np.degrees(np.arccos(b / aR)); pp.ecc = 0; pp.w = 90
-        pp.u = [0.25, 0.35]; pp.limb_dark = 'quadratic'; sh = 1 - batman.TransitModel(pp, g, supersample_factor=5, exp_time=texp).light_curve(pp); GRID[key] = (g, sh / sh.max())
+        pp.u = [0.25, 0.35]; pp.limb_dark = 'quadratic'; sh = 1 - batman.TransitModel(pp, g, supersample_factor=5, exp_time=texp * 4 / 5).light_curve(pp); GRID[key] = (g, sh / sh.max())
     g, sh = GRID[key]
     return np.interp((((t - tc) / P + 0.5) % 1 - 0.5) * P, g, sh, left=0, right=0)
 

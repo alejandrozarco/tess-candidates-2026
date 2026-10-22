@@ -16,8 +16,9 @@
   For TIC 324429952, TIC 89247735, TIC 455017950 and TIC 311179599 there are no archival spectra (for TIC 455017950 there are
   catalogue radial velocities of km/s precision only, section [4.6](4_TIC455017950.md#46-companion-limits)).
 - QLP timing notice: MAST reports a barycentric timing error in the QLP light curves from the second half of sector 99
-  to sector 104 (orbits 210-220), not yet corrected at the date of this record. No QLP time stamp enters the tables; all
-  mid-transit times come from TESScut cutouts (SPOC-calibrated full-frame images) or SPOC light curves. For
+  to sector 104 (orbits 210-220), not yet corrected at the date of this record. The mid-transit times of
+  sections 1-5 come from TESScut cutouts or SPOC light curves. TOI-2638.01 also uses a QLP sector-10 mid-time in its
+  ephemeris and QLP timestamps in its product comparisons, including sector 99. For
   TIC 402710280 the QLP-minus-TESScut time-stamp differences measured in sectors 100 and 102 are within $`\pm 1.7`$ min
   (medians $`+0.3`$ and $`-0.3`$ min), far below the 24-29 min deviations of section [1.3](1_TIC402710280.md#13-transit-epochs-and-o-c). Exception: the mid-transit times of
   TOI-6482.01 (section [6.8](6.8_TOI-6482.md)) come from QLP light curves; in sector 99 the QLP time stamps differ from
@@ -38,12 +39,12 @@
 - TIC 89247735: a brown dwarf below about 30 $`M_\mathrm{J}`$ is not excluded; the Gaia DR3 radial-velocity scatter is
   the only constraint on the companion mass, the TESS data give no usable ellipsoidal or beaming limit, and
   TRICERATOPS does not model a brown-dwarf or low-mass-star companion on the target.
-- TIC 89247735: the TIC contamination ratio is 0.274, and the raw depth depends on the aperture (0.70-0.93 %). The
+- TIC 89247735: the TIC contamination ratio is 0.274, and the raw depth depends on the aperture (0.70-0.92 %). The
   dilution correction rests on a Gaussian PSF model of the Gaia DR3 sources within 60" (sources beyond 60" are not
   included); in the joint fit the target flux fraction is set by its prior from that model, not by the light curve.
   The adopted radius ($`8.7 \pm 0.6\,R_\oplus`$) uses the SED-based stellar radius, whose error (5 %) is dominated by
   the choice of $`T_\mathrm{eff}`$ (the SED fit is formally poor and does not constrain the extinction); with the TIC
-  radius it is 9.1-9.4 $`R_\oplus`$. The orbital eccentricity is not measured ($`e < 0.74`$ at 95 %). The TRICERATOPS
+  radius it is 9.1-9.4 $`R_\oplus`$. The orbital eccentricity is not measured ($`e < 0.75`$ at 95 %). The TRICERATOPS
   FPP of three seeds spans $`4 \times 10^{-15}`$ to $`2.7 \times 10^{-3}`$.
 - TIC 89247735: the search for further transiting planets (section [3.10](3_TIC89247735.md#310-search-for-additional-transiting-signals)) excludes only planets larger than about
   3-4 $`R_\oplus`$; no archival ground-based light curve constrains the transit, and the KELT-South light curves, which
@@ -51,8 +52,8 @@
 - TIC 455017950: the transit of epoch 0 (sector 99) lies at the end of an orbit, 3.6 h before the data end, and its
   depth depends on the detrending; it agrees with the ephemeris but is not an independent confirmation. The period rests
   on the other four transits, two of them (epochs 1 and 2) one cycle apart.
-- TIC 455017950: the departure of the mid-transit times from a linear ephemeris rests on one epoch (epoch 2, +8.5 to
-  +16 min); its significance depends on the photometry and the baseline model ($`p`$ = 0.001-0.10), and without that
+- TIC 455017950: the departure of the mid-transit times from a linear ephemeris rests on one epoch (epoch 2, +8.0 to
+  +17 min); its significance depends on the photometry and the baseline model ($`p`$ = 0.001-0.10), and without that
   epoch all timing sets are linear. A transit-timing variation is not established; further transits (TESS sector 114 on
   2027-02-25, or from the ground) would test it.
 - TIC 455017950: the star is chromospherically and coronally active ($`P_\mathrm{rot} = 8.3`$ d, spot modulation
@@ -76,7 +77,7 @@
   ephemeris of the other seven epochs, is a single 10-min-cadence epoch in a sector with strong scattered light; a noise
   dip combined with a transit hidden by noise at the predicted time has a probability of order $`10^{-3}`$ per epoch
   from the red-noise and injection statistics of that sector, which rest on 300 injections and so sample tail
-  probabilities below about 1 % poorly. The other offsets (up to 50 min) lie at or near the 95th percentiles of the
+  probabilities below about 1 % poorly. The other offsets (up to 49 min) lie at or near the 95th percentiles of the
   injection distributions, whose tails are not Gaussian. A transit-timing variation is not established; the adopted
   ephemeris excludes sector 39, and predicted times need windows of at least $`\pm 1`$ h. The two transits of TESS
   sectors 113 and 114 (2027-01-24, 2027-02-18) would test it.
@@ -120,6 +121,14 @@
   companion masses of section [6.2.7](6.2_TOI-540b.md#627-interpretation) are order-of-magnitude estimates for stated assumptions; no companion is detected.
   Ground-based transit observations made after 2019 but not posted to ExoFOP or published cannot be checked.
 - The duration-change evidence for L 98-59 d and TOI-620 b (sections [6.6](6.6_L98-59d.md) and [6.7](6.7_TOI-620b.md)) rests on few observing campaigns of one instrument. For L 98-59 d, the within-campaign diagnostic is only 1.8 $`\sigma`$ and JWST does not independently confirm the trend. Its quoted trials-adjusted significance assumes Gaussian tails and 801 or 3204 independent trials; TOI-620 b has no corresponding adjustment.
+- TOI-2638.01 (section [6.9](6.9_TOI-2638.md)): the depth change rests on seven TESS sectors of one instrument (sector 10 from QLP only, which is
+  not deblended here), and the sector-99 depth differs between products (3.2-4.4 ppt). The shape change that separates a
+  change of the transit geometry from a change of dilution is about 2.6-3.1 $`\sigma`$ when calibrated by simulation; the
+  bootstrap error of the duration slope underestimates its scatter. At this grazing geometry $`k`$, $`b`$ and $`a/R_\star`$ are
+  degenerate, so the impact parameters, the end of the grazing phase and the predicted depths depend on the model; no
+  gravity-darkened model was fitted. The ellipsoidal limit uses PDCSAP fluxes. The precession estimate is an order of
+  magnitude for assumed apsidal constant and moment of inertia, and the stellar obliquity is not measured. The
+  ground-based photometry, imaging and spectroscopy listed on ExoFOP were not used.
 - Eclipsing binaries of section [6.3](6.3_eclipsing_binaries.md): no spectroscopy; the periods come from TESS full-frame images, with QLP eclipse
   times in sectors 99-104 (timing notice above); TIC 13957664 and TIC 342194997 rest on one eclipse each and their
   periods on the Gaia orbits, TIC 304936165 on two eclipses, and the period of CPD-62 2890 is not determined; the

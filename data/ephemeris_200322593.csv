@@ -1,7 +1,7 @@
-# TOI-540 b = TIC 200322593: common transit shape and linear ephemeris from TESS sectors 4, 5, 6, 31, 32 (scripts/toi540_analysis.py), 2026-10-19
+# TOI-540 b = TIC 200322593: common transit shape and linear ephemeris from TESS sectors 4, 5, 6, 31, 32 (scripts/toi540_analysis.py), 2026-10-22
 # source = own TPF photometry (r = 2.0 px) or SPOC PDCSAP; window_d = biweight detrending window; k, b, a/R* from the joint fit with the a/R* prior; T14_min, peak_ppm = model duration and peak depth
 # T0_btjd at cycle E_ref (cycles counted from the ExoFOP TOI epoch BJD 2459175.141647), P_d with errors scaled by max(1, chi2/dof) of the five per-sector mid-transit times; cov_T0_P = covariance (d^2)
 source,window_d,k,k_err,b,b_err,aR,aR_err,T14_min,peak_ppm,chi2_fit,n_points,E_ref,T0_btjd,T0_err_d,P_d,P_err_d,cov_T0_P,chi2_ephemeris,dof
-own,0.3,0.0409,0.0013,0.783,0.031,13.86,0.71,28.2,1665,26148.2,25452,-285,1821.984418,0.000325,1.23914923,0.00000113,4.782e-13,1.02,3
-own,0.5,0.0417,0.0013,0.777,0.032,13.84,0.71,28.5,1735,26154.4,25454,-246,1870.311237,0.000439,1.23914924,0.00000155,9.301e-14,0.54,3
-pdc,0.3,0.0427,0.0013,0.800,0.028,13.84,0.71,27.5,1790,26262.5,25447,-409,1668.329691,0.000317,1.23914887,0.00000119,-6.260e-13,2.40,3
+own,0.3,0.0409,0.0013,0.783,0.030,13.86,0.71,28.2,1663,26148.3,25452,-292,1813.310347,0.000301,1.23914927,0.00000106,-2.303e-13,1.13,3
+own,0.5,0.0417,0.0013,0.779,0.031,13.84,0.71,28.4,1735,26154.6,25454,-221,1901.289933,0.000408,1.23914925,0.00000148,9.292e-13,0.68,3
+pdc,0.3,0.0426,0.0012,0.799,0.027,13.85,0.71,27.5,1785,26262.6,25447,-399,1680.721262,0.000324,1.23914931,0.00000120,1.721e-13,0.82,3

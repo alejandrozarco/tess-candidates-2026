@@ -31,7 +31,8 @@ for lab_, (s, tc0) in EV.items():
     inb = np.min(np.abs(t[:, None] - BTC[None, :]), 1) < 0.1
     m = (np.abs(t - tc0) < 0.6) & np.isfinite(f) & (z['q'] == 0) & ~inb; t, y = t[m], f[m] / np.median(f[m]); cad = np.median(np.diff(t))
     pp = batman.TransitParams(); pp.t0 = tc0; pp.per = PREF; pp.rp = 0.031; pp.a = 100; pp.inc = 89.9; pp.ecc = 0; pp.w = 90; pp.u = U; pp.limb_dark = 'quadratic'
-    D[lab_] = dict(t=t, y=y, x=t - tc0, p=pp, mod=batman.TransitModel(pp, t, supersample_factor=max(3, int(round(cad * 1440 / 2))), exp_time=cad), cad=cad, tc0=tc0, sector=s)
+    ns = max(3, int(round(cad * 1440 / 2)))   # midpoint sub-exposures (batman spans exp_time end to end)
+    D[lab_] = dict(t=t, y=y, x=t - tc0, p=pp, mod=batman.TransitModel(pp, t, supersample_factor=ns, exp_time=cad * (ns - 1) / ns), cad=cad, tc0=tc0, sector=s)
 
 
 def lcm(d, tc, k, aR, b):

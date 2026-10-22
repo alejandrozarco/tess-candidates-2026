@@ -8,6 +8,8 @@ batman-package==2.5.3
 wotan==1.10
 tess-point==0.9.5.post1
 requests==2.34.2          # scripts/toi540_timing.py (JPL Horizons)
+pyvo==1.9.1               # scripts/toi2638/checks_toi2638.py (Gaia DR3 TAP)
+pandas==2.3.3             # scripts/toi2638/pixels_toi2638.py
 # TRICERATOPS runs were made in a separate environment: triceratops==1.1.0, numpy==1.26.4, astropy==7.2.3,
 # lightkurve==2.5.1, pandas==3.0.6, scipy==1.13.1, pytransit==2.2.0, batman-package==2.5.3
 # scripts/fit_free_dilution.py was run with Python 3.11.15: emcee==3.1.6, batman-package==2.5.1, numpy==1.26.4, scipy==1.13.1

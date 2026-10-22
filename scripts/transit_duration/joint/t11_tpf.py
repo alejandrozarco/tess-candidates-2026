@@ -23,7 +23,7 @@ def model_inj(t, inj, exptime):
     P, T0, _ = PL['d']
     p = batman.TransitParams(); p.t0 = T0 + inj['phase'] * P; p.per = P; p.rp = inj['k']; p.a = inj['aR']; p.inc = np.degrees(np.arccos(inj['b'] / inj['aR']))
     p.ecc = 0.; p.w = 90.; p.limb_dark = 'quadratic'; p.u = [inj['u1'], inj['u2']]
-    return batman.TransitModel(p, t, supersample_factor=7, exp_time=exptime / 86400.).light_curve(p)
+    return batman.TransitModel(p, t, supersample_factor=7, exp_time=exptime / 86400. * 6 / 7).light_curve(p)   # midpoint sub-exposures
 def phot(apmode, outdir, inj=None):
     os.makedirs(outdir, exist_ok=True)
     lcmeta = {int(z['meta'][0]['sector']): z['meta'][0] for z in (np.load(f, allow_pickle=True) for f in glob.glob(ROOT + '/out/lc/%d_s*_2m.npz' % TIC))}

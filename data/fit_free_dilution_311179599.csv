@@ -1,32 +1,32 @@
-# TIC 311179599 = Gaia DR3 5801882036668103680: joint transit fit with free target flux fraction f_t (scripts/fit_free_dilution.py), 2026-10-19
+# TIC 311179599 = Gaia DR3 5801882036668103680: joint transit fit with free target flux fraction f_t (scripts/fit_free_dilution.py), 2026-10-22
 # data: TESScut r = 2.0 px raw aperture flux, epochs 12,13,39,66,93,100,102,103, quality 0, +-0.6 d, 2878 points; per-epoch noise fixed at the fit_transits.py residual rms
-# priors: f_t ~ N(0.955, 0.01); u1 ~ N(0.33, 0.1), u2 ~ N(0.27, 0.1); log10 rho_circ uniform; circular orbit; P = 24.826839 d fixed
-# emcee: 44 walkers x 6000 steps, first 2000 discarded, thinned by 10; acceptance 0.28; best chi2 2879.4 for 2878 points
+# priors: f_t ~ N(0.955, 0.01); u1 ~ N(0.33, 0.1), u2 ~ N(0.27, 0.1); log10 rho_circ uniform; circular orbit; P = 24.826859 d fixed
+# emcee: 44 walkers x 6000 steps, first 2000 discarded, thinned by 10; acceptance 0.26; best chi2 2878.2 for 2878 points
 # columns p2.5 ... p97.5 = percentiles of the posterior; k = Rp/R* corrected for dilution; depth_true_ppm = k^2; rho_circ in g cm^-3; T14_h, T23_h in hours
 # photoeccentric rows: Dawson & Johnson (2012) with uniform priors e in [0, 0.95), omega in [0, 2 pi)
 quantity,p2.5,p16,p50,p84,p97.5,note
-k,0.0344429,0.0356162,0.0369523,0.0385131,0.0407911,
-depth_true_ppm,1186.32,1268.51,1365.47,1483.26,1663.91,
-f_t,0.93516,0.945107,0.955211,0.964985,0.974539,
-b,0.0185149,0.122128,0.376947,0.646785,0.808003,
-aR,38.1553,49.0956,59.2977,63.8012,66.1919,
-rho_circ,1.70482,3.63197,6.39924,7.9708,8.90082,
-inc_deg,88.7911,89.2463,89.6362,89.8907,89.9836,
-T14_h,2.91981,3.00993,3.09255,3.19001,3.32132,
-T23_h,2.52956,2.71032,2.80951,2.89134,2.97752,
-q1,0.132412,0.24199,0.384328,0.558765,0.761538,
-q2,0.167248,0.226267,0.280291,0.338586,0.405633,
-dtc_12,-0.021241,-0.0135643,-0.00237001,0.00758173,0.0213024,BTJD offset from the fit_transits.py time (d)
-dtc_13,-0.0188082,-0.0088838,-0.000880284,0.00518497,0.010493,BTJD offset from the fit_transits.py time (d)
-dtc_39,-0.0153979,-0.00757135,-0.00133377,0.00271247,0.00660031,BTJD offset from the fit_transits.py time (d)
-dtc_66,-0.00772979,-0.00267714,0.000307437,0.00362747,0.00802887,BTJD offset from the fit_transits.py time (d)
-dtc_93,-0.00988899,-0.00430768,0.000670289,0.00495422,0.00824831,BTJD offset from the fit_transits.py time (d)
-dtc_100,-0.0045213,-0.00165306,0.00167901,0.00532893,0.009436,BTJD offset from the fit_transits.py time (d)
-dtc_102,-0.00540523,-0.00247463,-0.000258391,0.0016949,0.00408813,BTJD offset from the fit_transits.py time (d)
-dtc_103,-0.00949893,-0.00431062,0.000357872,0.00509059,0.0102037,BTJD offset from the fit_transits.py time (d)
-Rp_Rearth,2.20061,2.30244,2.41543,2.54191,2.69794,R* = 0.599 +- 0.018 Rsun
-Rp_RJ,0.196325,0.20541,0.21549,0.226774,0.240694,R* = 0.599 +- 0.018 Rsun
+k,0.0344817,0.0357941,0.0371211,0.0391161,0.042023,
+depth_true_ppm,1188.99,1281.22,1377.98,1530.07,1765.93,
+f_t,0.934895,0.944468,0.954557,0.964634,0.974942,
+b,0.0265453,0.159228,0.44715,0.721759,0.874794,
+aR,31.3449,44.4475,57.2476,63.3585,65.7309,
+rho_circ,0.945182,2.69498,5.75818,7.80599,8.7161,
+inc_deg,88.3985,89.0691,89.5532,89.8555,89.9762,
+T14_h,2.93734,3.01919,3.10309,3.22181,3.43927,
+T23_h,2.30569,2.66787,2.79675,2.87932,2.96505,
+q1,0.129545,0.241327,0.379777,0.552965,0.74546,
+q2,0.164179,0.219239,0.27436,0.335488,0.402864,
+dtc_12,-0.0214766,-0.0143325,-0.00381892,0.00595515,0.0204897,BTJD offset from the fit_transits.py time (d)
+dtc_13,-0.0186345,-0.00991899,-0.00147159,0.00479565,0.0101022,BTJD offset from the fit_transits.py time (d)
+dtc_39,-0.0152984,-0.00783538,-0.00104948,0.00291463,0.00696352,BTJD offset from the fit_transits.py time (d)
+dtc_66,-0.00762315,-0.00247174,0.000538431,0.00381582,0.00830335,BTJD offset from the fit_transits.py time (d)
+dtc_93,-0.0101572,-0.00450171,0.000730719,0.00515756,0.00869293,BTJD offset from the fit_transits.py time (d)
+dtc_100,-0.00299475,-0.000493002,0.00300399,0.00679619,0.0111922,BTJD offset from the fit_transits.py time (d)
+dtc_102,-0.0052811,-0.00214352,8.94637e-05,0.00210025,0.00453518,BTJD offset from the fit_transits.py time (d)
+dtc_103,-0.00944348,-0.00436276,-0.00010592,0.00419741,0.00881316,BTJD offset from the fit_transits.py time (d)
+Rp_Rearth,2.20388,2.31299,2.42918,2.57738,2.76838,R* = 0.599 +- 0.018 Rsun
+Rp_RJ,0.196617,0.206351,0.216717,0.229938,0.246978,R* = 0.599 +- 0.018 Rsun
 rho_star,3.2312,3.51888,3.85017,4.2244,4.64123,"M/R^3, M = 0.587 +- 0.012, R = 0.599 +- 0.018"
-rho_circ_over_rho_star,0.448375,0.931217,1.63502,2.09786,2.46124,
-g,0.765386,0.976525,1.17808,1.28014,1.35016,(rho_circ/rho*)^(1/3)
-e,0.0168739,0.101053,0.2674,0.565723,0.852036,"photoeccentric; e < 0.38 (68 %), < 0.78 (95 %); P(e < 0.1) = 0.16; P(e > 0.3) = 0.44; Savage-Dickey ratio at e = 0: 1.42"
+rho_circ_over_rho_star,0.245656,0.695011,1.47788,2.04523,2.41194,
+g,0.62629,0.88579,1.13906,1.26935,1.34108,(rho_circ/rho*)^(1/3)
+e,0.0156191,0.095671,0.267324,0.569758,0.85144,"photoeccentric; e < 0.39 (68 %), < 0.78 (95 %); P(e < 0.1) = 0.17; P(e > 0.3) = 0.44; Savage-Dickey ratio at e = 0: 1.52"

@@ -1,16 +1,16 @@
-# TIC 311179599 = Gaia DR3 5801882036668103680: mid-transit times from the common-shape fit (scripts/fit_transits.py), 2026-10-19
-# Linear ephemeris used for O-C: T0 = BTJD 4082.33390 +- 0.00167, P = 24.826839 +- 0.000047 d; epoch = cycle number relative to T0
+# TIC 311179599 = Gaia DR3 5801882036668103680: mid-transit times from the common-shape fit (scripts/fit_transits.py), 2026-10-22
+# Linear ephemeris used for O-C: T0 = BTJD 4082.33414 +- 0.00154, P = 24.826859 +- 0.000044 d; epoch = cycle number relative to T0
 # tc_btjd = BJD_TDB - 2457000. tc_err = max(formal error x beta, prayer-bead error), in days; tc_err_min in minutes
 # depth_ppm = per-epoch depth with the common shape (k free, b and a/R* fixed); rms_ppm = per-epoch residual rms
 # product: TESScut 21x21 cutout, circular aperture r = 2.0 px, annulus background; or SPOC 2-min SAP_FLUX (S13 of TIC 324429952)
 # Not used: QLP light curves (QLP timing error in S99-S104; see README).
-# oc_all_epochs_min = O-C against the linear ephemeris through all epochs: T0 = BTJD 4082.33312 +- 0.00167, P = 24.827123 +- 0.000043 d (chi2 = 327.8 for 6 degrees of freedom)
+# oc_all_epochs_min = O-C against the linear ephemeris through all epochs: T0 = BTJD 4082.33370 +- 0.00154, P = 24.827147 +- 0.000041 d (chi2 = 385.2 for 6 degrees of freedom)
 epoch,sector,product,tc_btjd,tc_bjd_tdb,tc_err_d,tc_err_min,oc_min,oc_all_epochs_min,depth_ppm,depth_err_ppm,rms_ppm,beta,prayer_bead_err_min,note
--98,12,TESScut r=2.0 px,1649.322800,2458649.322800,0.006159,8.9,+27.54,+68.68,1350,204,454,1.00,8.9,used in ephemeris
--97,13,TESScut r=2.0 px,1674.136117,2458674.136117,0.006421,9.2,+8.06,+48.80,1396,217,484,1.00,8.6,used in ephemeris
--69,39,TESScut r=2.0 px,2369.187923,2459369.187923,0.005489,7.9,-135.48,-106.18,1196,194,763,1.03,7.9,sector 39 (-2.2 h); not used in the adopted ephemeris
--39,66,TESScut r=2.0 px,3114.052779,2460114.052779,0.004230,6.1,-49.54,-32.49,1273,171,1167,1.00,6.1,used in ephemeris
--10,93,TESScut r=2.0 px,3834.081672,2460834.081672,0.003680,5.3,+23.27,+28.47,1112,180,1236,1.00,5.1,used in ephemeris
-0,100,TESScut r=2.0 px,4082.337677,2461082.337677,0.003386,4.9,+5.44,+6.56,1269,159,1086,1.00,4.9,used in ephemeris
-2,102,TESScut r=2.0 px,4131.985480,2461131.985480,0.003287,4.7,-3.02,-2.72,1580,172,1176,1.00,4.7,used in ephemeris
-3,103,TESScut r=2.0 px,4156.813909,2461156.813909,0.003307,4.8,-0.73,-0.84,1104,167,1141,1.00,4.8,used in ephemeris
+-98,12,TESScut r=2.0 px,1649.322944,2458649.322944,0.006082,8.8,+30.22,+71.51,1351,205,454,1.00,8.8,used in ephemeris
+-97,13,TESScut r=2.0 px,1674.136651,2458674.136651,0.005878,8.5,+11.28,+52.16,1398,218,484,1.00,8.3,used in ephemeris
+-69,39,TESScut r=2.0 px,2369.187776,2459369.187776,0.005112,7.4,-134.05,-104.80,1199,194,763,1.03,7.4,sector 39 (-2.2 h); not used in the adopted ephemeris
+-39,66,TESScut r=2.0 px,3114.052629,2460114.052629,0.003726,5.4,-48.98,-32.16,1275,171,1167,1.00,5.4,used in ephemeris
+-10,93,TESScut r=2.0 px,3834.081539,2460834.081539,0.003048,4.4,+23.02,+27.80,1114,181,1236,1.00,4.4,used in ephemeris
+0,100,TESScut r=2.0 px,4082.336562,2461082.336562,0.003063,4.4,+3.49,+4.12,1267,159,1086,1.00,4.4,used in ephemeris
+2,102,TESScut r=2.0 px,4131.985133,2461131.985133,0.003223,4.6,-3.92,-4.12,1586,172,1175,1.00,4.6,used in ephemeris
+3,103,TESScut r=2.0 px,4156.814121,2461156.814121,0.003136,4.5,-0.86,-1.47,1106,167,1141,1.00,4.5,used in ephemeris

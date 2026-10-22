@@ -35,7 +35,7 @@ class Model:
         p.t0 = 0.; p.per = P; p.rp = 0.04; p.a = 30.; p.inc = 89.; p.ecc = 0.; p.w = 90.; p.limb_dark = 'quadratic'; p.u = [0.2, 0.4]
         if ss is None: ss = max(1, int(round(exptime_s / 20.)))
         if exptime_s > 30:
-            self.m = batman.TransitModel(p, dt, supersample_factor=ss, exp_time=exptime_s / 86400.)
+            self.m = batman.TransitModel(p, dt, supersample_factor=ss, exp_time=exptime_s / 86400. * (ss - 1) / ss)   # midpoint sub-exposures
         else:
             self.m = batman.TransitModel(p, dt)
     def lc(self, k, aR, b, u1, u2):

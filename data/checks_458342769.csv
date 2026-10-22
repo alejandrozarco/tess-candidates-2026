@@ -1,0 +1,46 @@
+# TOI-2638.01 = TIC 458342769: checks of the transit signal and of its change; scripts/toi2638/checks_toi2638.py, 2026-10-22
+# ephemeris of ephemeris_458342769.csv; common shape of jointfit_458342769.csv (null, SPOC PDCSAP + QLP sector 10): k = 0.0576, b = 0.947, a/R* = 9.96; methods in the script header
+test,scope,value,err,unit,note
+target flux implied by the SPOC keywords,SPOC sectors 36-99,5162 to 5448,,e-/s,median SAP_FLUX x CROWDSAP / FLFRCSAP; range 5.4 % of the mean (5327 e-/s)
+"Gaia DR3 flux within 42"" relative to the target","G < 19, excluding the target",0.41,,,29 sources; sum of 10^(-0.4 dG)
+nearest bright neighbour,Gaia DR3 5353676910584550272,17.1,,arcsec,"dG = 1.35, BP-RP = 0.147, phot_variable_flag NOT_AVAILABLE"
+"Gaia DR3 VARIABLE flag within 120""",Gaia DR3 5353676910584553216,15.1,,arcsec,dG = 5.56; flux 0.59 % of the target
+"Gaia DR3 VARIABLE flag within 120""",Gaia DR3 5353676803184243072,67.3,,arcsec,dG = 6.76; flux 0.20 % of the target
+"Gaia DR3 VARIABLE flag within 120""",Gaia DR3 5353676807479138432,81.1,,arcsec,dG = 6.50; flux 0.25 % of the target
+"Gaia DR3 VARIABLE flag within 120""",Gaia DR3 5353676841865118848,81.2,,arcsec,dG = 3.04; flux 6.06 % of the target
+"Gaia DR3 VARIABLE flag within 120""",Gaia DR3 5353676493946541824,95.8,,arcsec,dG = 6.88; flux 0.18 % of the target
+"Gaia DR3 VARIABLE flag within 120""",Gaia DR3 5353676665745220608,119.4,,arcsec,dG = 5.29; flux 0.76 % of the target
+odd minus even depth,campaign 2021 (sectors 36+37),-256,316,ppm,"odd 1802 +- 244, even 2059 +- 201 ppm; -0.8 sigma; white errors"
+odd minus even depth,campaign 2023 (sectors 63+64),277,296,ppm,"odd 2833 +- 212, even 2555 +- 206 ppm; +0.9 sigma; white errors"
+odd minus even depth,campaign 2025 (sectors 90),403,386,ppm,"odd 3477 +- 250, even 3074 +- 294 ppm; +1.0 sigma; white errors"
+odd minus even depth,campaign 2026 (sectors 99),-761,489,ppm,"odd 4001 +- 309, even 4762 +- 380 ppm; -1.6 sigma; white errors"
+secondary eclipse depth at phase 0.5,"box 0.040 d, SPOC PDCSAP all sectors",3,76,ppm,white error; transits removed; 0.5-d running-median detrending
+secondary eclipse depth at phase 0.5,"box 0.056 d, SPOC PDCSAP all sectors",-22,64,ppm,white error; transits removed; 0.5-d running-median detrending
+secondary eclipse depth at phase 0.5,"box 0.075 d, SPOC PDCSAP all sectors",-107,55,ppm,white error; transits removed; 0.5-d running-median detrending
+largest box S/N over phases 0.15-0.85,SPOC PDCSAP all sectors,3.42,,,"phase 0.2850, box 0.075 d, depth 189 ppm; 843 trials; 99.9th percentile of |S/N| over the scan 3.52; rms of S/N 1.10"
+phase curve,sector 36,-5.9,42.7,ppm,"ellipsoidal amplitude; reflection 67.0 +- 43.4, beaming 37.9 +- 41.1 ppm; red-noise factor 1.49"
+phase curve,sector 37,-27.7,33.1,ppm,"ellipsoidal amplitude; reflection 173.6 +- 34.2, beaming -12.2 +- 31.6 ppm; red-noise factor 1.12"
+phase curve,sector 63,18.7,41.1,ppm,"ellipsoidal amplitude; reflection -159.1 +- 41.4, beaming -40.3 +- 39.7 ppm; red-noise factor 1.54"
+phase curve,sector 64,58.4,34.0,ppm,"ellipsoidal amplitude; reflection -101.8 +- 34.3, beaming -120.0 +- 31.9 ppm; red-noise factor 1.26"
+phase curve,sector 90,0.2,34.3,ppm,"ellipsoidal amplitude; reflection -28.6 +- 34.2, beaming 117.2 +- 32.7 ppm; red-noise factor 1.32"
+phase curve,sector 99,-113.1,55.6,ppm,"ellipsoidal amplitude; reflection -68.1 +- 55.3, beaming -46.0 +- 52.6 ppm; red-noise factor 1.69"
+"phase curve, weighted mean","ellipsoidal, SPOC sectors 36-99",-0.8,15.6,ppm,sector-to-sector standard deviation 53 ppm; PDCSAP (PDC may suppress a 3.93-d signal)
+"phase curve, weighted mean","reflection, SPOC sectors 36-99",-10.4,15.8,ppm,sector-to-sector standard deviation 111 ppm; PDCSAP (PDC may suppress a 3.93-d signal)
+a/R* from the Gaia DR3 FLAME mass and radius,"M = 2.09 Msun, R = 1.67 Rsun",8.02,,,"a = 0.0623 au; fitted a/R*: null 9.96, M2 9.19 (PDCSAP + QLP 10), 9.21 (SAP)"
+companion mass limit from the ellipsoidal amplitude,"3 x error of the mean (sector scatter / sqrt(6) or formal, the larger)",0.054,,Msun,"A_ell < 70 ppm; M2 / M1 = A / (alpha (R/a)^3 sin^2 i), alpha = 1.4, a/R* = 8.02, M1 = 2.09 Msun; order of magnitude; PDCSAP"
+"amplitude spectrum, out of transit",SPOC sector 36,139,,ppm,"highest peak above 1 c/d at 1.357 c/d; five highest peaks overall (c/d: ppm) 0.202: 220; 0.336: 175; 1.357: 139; 1.038: 135; 150.171: 128; median amplitude 0.5-20 c/d 34 ppm, above 20 c/d 33 ppm; amplitude at 7.3210 c/d (7.311 +- 0.01) 44 ppm"
+"amplitude spectrum, out of transit",SPOC sector 37,122,,ppm,"highest peak above 1 c/d at 237.395 c/d; five highest peaks overall (c/d: ppm) 0.262: 165; 237.395: 122; 160.498: 121; 67.260: 118; 178.689: 118; median amplitude 0.5-20 c/d 34 ppm, above 20 c/d 34 ppm; amplitude at 7.3010 c/d (7.311 +- 0.01) 111 ppm"
+"amplitude spectrum, out of transit",SPOC sector 63,119,,ppm,"highest peak above 1 c/d at 213.962 c/d; five highest peaks overall (c/d: ppm) 0.077: 456; 0.266: 201; 0.659: 119; 213.962: 119; 203.774: 117; median amplitude 0.5-20 c/d 33 ppm, above 20 c/d 30 ppm; amplitude at 7.3111 c/d (7.311 +- 0.01) 64 ppm"
+"amplitude spectrum, out of transit",SPOC sector 64,121,,ppm,"highest peak above 1 c/d at 290.822 c/d; five highest peaks overall (c/d: ppm) 0.159: 241; 0.279: 126; 0.058: 122; 290.822: 121; 275.022: 111; median amplitude 0.5-20 c/d 31 ppm, above 20 c/d 30 ppm; amplitude at 7.3191 c/d (7.311 +- 0.01) 80 ppm"
+"amplitude spectrum, out of transit",SPOC sector 90,124,,ppm,"highest peak above 1 c/d at 1.630 c/d; five highest peaks overall (c/d: ppm) 0.191: 219; 0.090: 136; 1.630: 124; 136.031: 114; 117.470: 112; median amplitude 0.5-20 c/d 31 ppm, above 20 c/d 29 ppm; amplitude at 7.3210 c/d (7.311 +- 0.01) 80 ppm"
+"amplitude spectrum, out of transit",SPOC sector 99,138,,ppm,"highest peak above 1 c/d at 249.284 c/d; five highest peaks overall (c/d: ppm) 0.136: 377; 0.342: 333; 0.547: 222; 0.822: 194; 249.284: 138; median amplitude 0.5-20 c/d 40 ppm, above 20 c/d 37 ppm; amplitude at 7.3010 c/d (7.311 +- 0.01) 44 ppm"
+"neighbour TIC 458342741, QLP: strongest peak",sector 10,7.312,,c/d,"amplitude 1025 ppm (median amplitude 163 ppm); highest peak within 7.311 +- 0.02 c/d: 7.312 c/d, 1025 ppm; mean flux within +-0.03 d of the TOI-2638.01 transits lower than at 0.05-0.25 d by 2145 +- 649 ppm"
+"neighbour TIC 458342741, QLP: strongest peak",sector 36,7.308,,c/d,"amplitude 1016 ppm (median amplitude 151 ppm); highest peak within 7.311 +- 0.02 c/d: 7.308 c/d, 1016 ppm; mean flux within +-0.03 d of the TOI-2638.01 transits lower than at 0.05-0.25 d by 3197 +- 696 ppm"
+"neighbour TIC 458342741, QLP: strongest peak",sector 37,7.313,,c/d,"amplitude 1171 ppm (median amplitude 162 ppm); highest peak within 7.311 +- 0.02 c/d: 7.313 c/d, 1171 ppm; mean flux within +-0.03 d of the TOI-2638.01 transits lower than at 0.05-0.25 d by 3613 +- 841 ppm"
+"neighbour TIC 458342741, QLP: strongest peak",sector 63,7.313,,c/d,"amplitude 943 ppm (median amplitude 136 ppm); highest peak within 7.311 +- 0.02 c/d: 7.313 c/d, 943 ppm; mean flux within +-0.03 d of the TOI-2638.01 transits lower than at 0.05-0.25 d by 5807 +- 654 ppm"
+"neighbour TIC 458342741, QLP: strongest peak",sector 64,7.314,,c/d,"amplitude 999 ppm (median amplitude 130 ppm); highest peak within 7.311 +- 0.02 c/d: 7.314 c/d, 999 ppm; mean flux within +-0.03 d of the TOI-2638.01 transits lower than at 0.05-0.25 d by 4438 +- 675 ppm"
+"neighbour TIC 458342741, QLP: strongest peak",sector 90,7.310,,c/d,"amplitude 1173 ppm (median amplitude 139 ppm); highest peak within 7.311 +- 0.02 c/d: 7.310 c/d, 1173 ppm; mean flux within +-0.03 d of the TOI-2638.01 transits lower than at 0.05-0.25 d by 7374 +- 633 ppm"
+"neighbour TIC 458342741, QLP: strongest peak",sector 99,1.351,,c/d,"amplitude 1116 ppm (median amplitude 113 ppm); highest peak within 7.311 +- 0.02 c/d: 7.313 c/d, 837 ppm; mean flux within +-0.03 d of the TOI-2638.01 transits lower than at 0.05-0.25 d by 6507 +- 1000 ppm"
+future TESS sector (tess-point),sector 111,camera 4 CCD 2,,,nominal window 2026-11-25 to 2026-12-22 (midtime +- 13.7 d); 7 transits of the linear ephemeris in the window
+future TESS sector (tess-point),sector 112,camera 3 CCD 3,,,nominal window 2026-12-21 to 2027-01-17 (midtime +- 13.7 d); 7 transits of the linear ephemeris in the window
+future TESS sector (tess-point),sector 113,camera 3 CCD 2,,,nominal window 2027-01-16 to 2027-02-13 (midtime +- 13.7 d); 7 transits of the linear ephemeris in the window

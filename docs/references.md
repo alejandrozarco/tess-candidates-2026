@@ -53,5 +53,9 @@
 - Kunimoto, M., et al. 2022, ApJS 259, 33 (QLP faint-star search); Vanderburg, A., et al. 2019, ApJL 881, L19; Scott,
   N. J., et al. 2021, Front. Astron. Space Sci. 8, 138 (Zorro); Wright, E. L., et al. 2010, AJ 140, 1868 (WISE); Marocco,
   F., et al. 2021, ApJS 253, 8 (CatWISE2020); Jehin, E., et al. 2011, The Messenger 145, 2 (TRAPPIST).
+- Creevey, O. L., et al. 2023, A&A 674, A26 (Gaia DR3 astrophysical parameters); Claret, A. 2017, A&A 600, A30; Han, T.,
+  & Brandt, T. D. 2023, AJ 165, 71 (TGLC); Szabó, Gy. M., et al. 2012, MNRAS 421, L122; Masuda, K. 2015, ApJ 805, 28;
+  Johnson, M. C., et al. 2015, ApJL 810, L23; Stephan, A. P., et al. 2022, ApJ 931, 111; Green, M. J., et al. 2023,
+  MNRAS 522, 29.
 
-References of sections 6.6-6.8 are listed at the end of those sections.
+References of sections 6.6-6.9 are listed at the end of those sections.

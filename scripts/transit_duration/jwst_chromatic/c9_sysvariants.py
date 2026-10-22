@@ -36,7 +36,7 @@ for v in ('1224', '4098'):
             if ramp: cols.append(np.exp(-(t - t0) * 1440 / ramp))
             X = np.vstack(cols).T
             pm = batman.TransitParams(); pm.t0 = TC[v]; pm.per = P; pm.rp = 0.045; pm.a = AR; pm.inc = 88.4; pm.ecc = 0; pm.w = 90; pm.limb_dark = 'quadratic'; pm.u = list(u0)
-            m = batman.TransitModel(pm, t, supersample_factor=3, exp_time=np.median(np.diff(t)))
+            m = batman.TransitModel(pm, t, supersample_factor=3, exp_time=np.median(np.diff(t)) * 2 / 3)   # midpoint sub-exposures
             st = dict(sig=s0)
             def chi(th):
                 k, b, u1, u2 = th

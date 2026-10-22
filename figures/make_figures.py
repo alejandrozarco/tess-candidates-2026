@@ -15,6 +15,8 @@ Figures: fold_<tic>  (TTV-corrected fold of the detrended epochs with 20-min bin
 'toi6482': transits_189300053 (the six TESS QLP transits of TOI-6482.01 with the common model, and the O-C diagram).
 'jwstchrom': jwst_chromatic_307210830 (JWST transit duration of L 98-59 d per wavelength bin and per detector, the change
        between the two NIRSpec visits per bin, and the per-detector and detector-averaged durations per visit).
+'toi2638': depth_t14_458342769 (transit depth of TOI-2638.01 per TESS sector in every product, and the per-sector
+       trapezoid duration, with model M2 and the extrapolation to 2027.0).
 """
 import csv, os, sys
 import matplotlib
@@ -400,10 +402,41 @@ def fig_toi6482(t, name):
     fig.tight_layout(); save(fig, t, name)
 
 
+def fig_toi2638(t, name):
+    D = read("depths_458342769.csv"); S = read("shape_458342769.csv"); X = read("pixels_458342769.csv"); R = read("predictions_458342769.csv"); TR = read("trends_458342769.csv")
+    fig, (ax, bx) = plt.subplots(1, 2, figsize=(13, 4.8)); fig.patch.set_facecolor(t["surface"])
+    for prod, fmt, col, off, lab in (("SPOC PDCSAP", "o", t["mark"], 0.0, "SPOC 2-min PDCSAP"), ("SPOC SAP crowding-corrected", "s", t["ink2"], 0.06, "SPOC 2-min SAP / CROWDSAP"),
+                                     ("TESS-SPOC PDCSAP", "D", t["mark3"], -0.06, "TESS-SPOC FFI"), ("QLP KSPSAP", "^", t["mark2"], 0.12, "QLP FFI (not deblended)"),
+                                     ("TGLC cal_psf_flux", "v", t["muted"], -0.12, "TGLC PSF (sector 10)")):
+        m = D["product"] == prod
+        ax.errorbar(D["year"][m] + off, D["depth_ppm"][m] / 1e3, D["err_ppm"][m] / 1e3, fmt=fmt, color=col, ms=5, capsize=2, label=lab)
+    yx = np.array([D["year"][(D["product"] == "SPOC PDCSAP") & (D["sector"] == s)][0] for s in X["sector"]])
+    ax.errorbar(yx - 0.18, X["ap1.5_undiluted_ppm"] / 1e3, X["ap1.5_err_ppm"] / X["ap1.5_target_fraction"] / 1e3, fmt="P", color=t["mark"], mfc="none", ms=6, capsize=2,
+                label="own TPF photometry, r = 1.5 px, scene-model dilution removed")
+    m = np.char.startswith(R["source"].astype(str), "M2 (SPOC PDCSAP + QLP sector 10)") & np.isfinite(R["depth_ppm"])
+    ax.plot(R["year"][m], R["depth_ppm"][m] / 1e3, "-", color=t["ink"], lw=1.0, label="model M2 (impact parameter linear in time), peak depth")
+    j = np.where((TR["quantity"] == "depth slope") & (TR["variant"] == "SPOC PDCSAP + QLP sector 10"))[0][0]
+    ax.set_xlim(2018.7, 2027.6); ax.set_xlabel("year"); ax.set_ylabel("transit depth (ppt)"); style(ax, t)
+    title(ax, t, f"TOI-2638.01: transit depth per TESS sector and product\n(common transit shape; linear trend {TR['value'][j]:+.0f} $\\pm$ {TR['err'][j]:.0f} ppm/yr, SPOC PDCSAP + QLP sector 10)")
+    ax.legend(loc="upper left", fontsize=7.5, frameon=False, labelcolor=t["ink2"])
+    ok = np.isfinite(S["trapezoid_T14_min"])
+    bx.errorbar(S["year"][ok], S["trapezoid_T14_min"][ok], S["trapezoid_T14_err_min"][ok], fmt="o", color=t["mark"], ms=5, capsize=2,
+                label="trapezoid T14 per sector, depth free (SPOC PDCSAP; bootstrap errors)")
+    m2 = m & np.isfinite(R["T14_min"])
+    bx.plot(R["year"][m2], R["T14_min"][m2], "-", color=t["ink"], lw=1.0, label="model M2, first to fourth contact")
+    k = np.char.startswith(R["source"].astype(str), "linear trapezoid") & (np.abs(R["year"] - 2027.0) < 1e-6)
+    bx.errorbar(R["year"][k] + 0.05, R["T14_min"][k], R["T14_err_min"][k], fmt="s", mfc="none", color=t["mark2"], ms=6, capsize=2,
+                label="linear-trend extrapolation to 2027.0 (TESS sectors 111-113)")
+    bx.set_xlim(2018.7, 2027.6); bx.set_xlabel("year"); bx.set_ylabel("transit duration T14 (min)"); style(bx, t)
+    title(bx, t, "TOI-2638.01: transit duration per SPOC sector\n(trapezoid with free depth: independent of dilution)")
+    bx.legend(loc="lower right", fontsize=7.5, frameon=False, labelcolor=t["ink2"])
+    fig.tight_layout(); save(fig, t, name)
+
+
 if __name__ == "__main__":
     for th, t in THEMES.items():
         plt.rcParams.update({"text.color": t["ink"], "axes.edgecolor": t["axis"], "axes.titlecolor": t["ink"]})
-        sel = sys.argv[1:] or [str(x) for x in TICS] + ["other", "c311179599", "eb124751008", "tdv", "toi6482", "jwstchrom"]
+        sel = sys.argv[1:] or [str(x) for x in TICS] + ["other", "c311179599", "eb124751008", "tdv", "toi6482", "jwstchrom", "toi2638"]
         if "other" in sel:
             fig_eb_history(t, f"eb_history_11613676_{th}.svg"); fig_eb_profiles(t, f"eb_profiles_11613676_{th}.svg")
             fig_toi540_sectors(t, f"toi540_sectors_{th}.svg"); fig_toi540_depths(t, f"toi540_depths_{th}.svg")
@@ -417,7 +450,9 @@ if __name__ == "__main__":
             fig_toi6482(t, f"transits_189300053_{th}.svg")
         if "jwstchrom" in sel:
             fig_jwst_chrom(t, f"jwst_chromatic_307210830_{th}.svg")
-        for tic in [int(x) for x in sel if x not in ("other", "c311179599", "eb124751008", "tdv", "toi6482", "jwstchrom")]:
+        if "toi2638" in sel:
+            fig_toi2638(t, f"depth_t14_458342769_{th}.svg")
+        for tic in [int(x) for x in sel if x not in ("other", "c311179599", "eb124751008", "tdv", "toi6482", "jwstchrom", "toi2638")]:
             fig_fold(t, f"fold_{tic}_{th}.svg", tic)
             fig_epochs(t, f"epochs_{tic}_{th}.svg", tic)
             fig_oc(t, f"oc_{tic}_{th}.svg", tic)

@@ -1,4 +1,4 @@
-# TOI-540 b = TIC 200322593: order-of-magnitude companion masses for a nodal precession that moves b from 0.807 (2020.88) to 0.986 (2025.93) (scripts/toi540_analysis.py), 2026-10-19
+# TOI-540 b = TIC 200322593: order-of-magnitude companion masses for a nodal precession that moves b from 0.806 (2020.88) to 0.986 (2025.93) (scripts/toi540_analysis.py), 2026-10-22
 # required |di/dt| = 0.147 deg/yr; secular rate |di/dt| <= (3/8) n_b (m_c/M*) (a_b/a_c)^3 (circular orbits, a_c >> a_b, mutual inclination 45 deg); M* = 0.159 Msun, a_b = 0.0122 au
 # K_ms = radial-velocity semi-amplitude of the star for that companion with sin i_c = 0.7; values are lower limits on m_c for the assumptions stated and are not a model of the system
 P_c_d,a_c_au,m_c_min_earth,m_c_min_jup,K_ms
@@ -7,9 +7,9 @@ P_c_d,a_c_au,m_c_min_earth,m_c_min_jup,K_ms
 5,0.0310,3.2,0.010,2.9
 7.5,0.0406,7.2,0.023,5.6
 10,0.0492,12.8,0.040,9.1
-20,0.0781,51.2,0.161,28.8
-30,0.1024,115.3,0.363,56.5
-60,0.1625,461.1,1.451,178.5
-100,0.2284,1280.7,4.030,414.1
-365,0.5415,17062.1,53.685,3021.9
+20,0.0781,51.3,0.161,28.8
+30,0.1024,115.4,0.363,56.6
+60,0.1625,461.6,1.453,178.8
+100,0.2284,1282.3,4.035,414.6
+365,0.5415,17083.7,53.753,3025.1
 # stellar oblateness (rotation 17.43 h, Love number 0.29): J2 = 1.05e-04, maximum |db/dt| = 0.0105 per yr (required 0.036)

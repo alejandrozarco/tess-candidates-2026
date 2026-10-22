@@ -5,7 +5,7 @@
 Transit candidates TIC 402710280, TIC 324429952, TIC 89247735, TIC 455017950 and TIC 311179599 (sections [1](1_TIC402710280.md)-[5](5_TIC311179599.md)), with a
 candidate second transit signal on TIC 311179599 (section [5.10](5_TIC311179599.md#510-a-second-transit-signal-candidate-c)); the eclipsing binaries TIC 11613676 and TIC 124751008
 and the planet TOI-540 b (sections [6.1](6.1_TIC11613676.md), [6.4](6.4_TIC124751008.md), [6.2](6.2_TOI-540b.md)); nine new eclipsing binaries (section [6.3](6.3_eclipsing_binaries.md)); candidate decreases of the
-transit durations of the known planets L 98-59 d and TOI-620 b (sections [6.6](6.6_L98-59d.md), [6.7](6.7_TOI-620b.md)); an ephemeris update of TOI-6482.01 (section [6.8](6.8_TOI-6482.md)).
+transit durations of the known planets L 98-59 d and TOI-620 b (sections [6.6](6.6_L98-59d.md), [6.7](6.7_TOI-620b.md)); an ephemeris update of TOI-6482.01 (section [6.8](6.8_TOI-6482.md)); an increasing transit depth of the planet candidate TOI-2638.01 (section [6.9](6.9_TOI-2638.md)).
 
 Five stars observed in TESS full-frame images show periodic transit-shaped dips that are not listed as TOI or CTOI, in
 the NASA Exoplanet Archive, VSX, SIMBAD, the Gaia DR3 variability and non-single-star tables, VizieR or ADS (checks
@@ -18,7 +18,7 @@ epochs give a radial-velocity change of $`-4.1 \pm 1.8`$ m/s between orbital pha
 dwarf, 108 pc, $`T = 9.64`$): $`P = 42.37574`$ d, depth about 1500 ppm, duration 3.8-4.3 h,
 $`R_\mathrm{p} \approx 3.9\,R_\oplus`$, eight transits in sectors 13 to 103 on a linear ephemeris; TRICERATOPS
 false-positive probability about 0.03. TIC 89247735 (SCR J1820-4533, K5 dwarf, 105 pc, $`T = 11.14`$): $`P = 18.323173`$
-d, dilution-corrected depth 1.13-1.22 % (raw aperture depth 0.70-0.93 %; TIC contamination ratio 0.27), duration 4.5 h,
+d, dilution-corrected depth 1.13-1.22 % (raw aperture depth 0.70-0.92 %; TIC contamination ratio 0.27), duration 4.5 h,
 flat-bottomed, $`R_\mathrm{p} = 8.7 \pm 0.6\,R_\oplus`$ ($`0.78\,R_\mathrm{J}`$) with the stellar radius from an SED
 fit ($`9.1`$-$`9.4\,R_\oplus`$ with the TIC radius), four transits in sectors 66, 93 (two) and 104 on a linear ephemeris;
 TRICERATOPS false-positive probability $`\lesssim 3 \times 10^{-3}`$ (three seeds); the Gaia DR3 radial-velocity scatter limits a
@@ -26,14 +26,14 @@ companion at this period to $`M_2 \sin i < 29\,M_\mathrm{J}`$.
 TIC 455017950 (HD 134147, G9/K0 dwarf, 65 pc, $`T = 9.14`$): $`P = 40.60566`$ d, dilution-corrected depth about
 1310 ppm (raw aperture depth 1180-1270 ppm), duration 4.7 h, $`R_\mathrm{p} = 3.16 \pm 0.12\,R_\oplus`$ with the stellar
 radius from an SED fit, five transits in sectors 38, 65, 99, 100 and 102 (the sector-99 transit at the end of an
-orbit); the mid-transit times deviate from a linear ephemeris by up to 12 min, which is not an established
+orbit); the mid-transit times deviate from a linear ephemeris by up to 13 min, which is not an established
 transit-timing variation; TRICERATOPS false-positive probability $`(6 \pm 4) \times 10^{-4}`$ with the published SOAR
 speckle contrast curve (five seeds); the Gaia DR3 radial-velocity scatter limits a companion at this period to
 $`M_2 \sin i < 17\,M_\mathrm{J}`$.
-TIC 311179599 (M0 dwarf, 47.5 pc, $`T = 10.44`$): $`P = 24.82684`$ d, dilution-corrected depth about 1435 ppm, duration
+TIC 311179599 (M0 dwarf, 47.5 pc, $`T = 10.44`$): $`P = 24.82686`$ d, dilution-corrected depth about 1430 ppm, duration
 3.1 h, $`R_\mathrm{p} = 2.47 \pm 0.10\,R_\oplus`$ with the stellar radius and density from the Mann et al. relations,
 insolation 4.0 times that of the Earth, eight transits in sectors 12 to 103; the sector-39 transit is 2.2 h earlier
-than the linear ephemeris of the other seven, whose mid-transit times deviate from it by up to 50 min; a
+than the linear ephemeris of the other seven, whose mid-transit times deviate from it by up to 49 min; a
 transit-timing variation is not established; TRICERATOPS false-positive probability 0.025-0.031 (five seeds, no imaging
 constraint); the Gaia DR3 radial-velocity scatter limits a companion at this period to $`M_2 \sin i < 20\,M_\mathrm{J}`$;
 the star is in the Habitable Worlds Observatory preliminary target lists (HPIC, TSS25). Three further events on the same
@@ -53,7 +53,7 @@ radial-velocity amplitude of 33 km/s, and the geometric model adopted here has t
 with a period of about 23 yr, as nodal precession by a third body would produce; the
 star has no variable-star or eclipsing-binary entry in the catalogues checked. TOI-540 b (Ment et al. 2021), a known
 planet, transits in TESS sectors 4-32 (2018-2020) at about 1.7 ppt; in TESS sector 98 (2025-11 to 2026-01) the transits
-are not detected in any product examined ($`83 \pm 268`$ ppm). The checks find no instrumental cause; ground-based
+are not detected in any product examined ($`81 \pm 268`$ ppm). The checks find no instrumental cause; ground-based
 photometry of one transit (windows in section [6.2.9](6.2_TOI-540b.md#629-decisive-test)) would decide between a data problem and a change of the transit
 geometry. TIC 124751008 (2MASS J06162084-3509125, an M-dwarf multiple at 57 pc) is a 12.61-d eclipsing binary whose
 primary eclipses, measured in the same aperture, were 2.25 % deep in 2018, 0.28 % in TESS sector 87 (2024-2025) and
@@ -82,6 +82,17 @@ QLP transits (sectors 8-99, 2019-2026) give $`P = 20.047937 \pm 0.000060`$ d (th
 value; TFOP notes on ExoFOP give 20.04753 d, the TOI-table period divided by 74), a depth of about 9.4 ppt and $`R_\mathrm{p} \approx 17\,R_\oplus`$ with the
 TIC stellar radius; the nature of the transiting object is not established; an earlier version of this ephemeris was
 uploaded to ExoFOP on 2026-10-20 (section [6.8](6.8_TOI-6482.md)).
+
+The transit of the TESS planet candidate TOI-2638.01 (TIC 458342769, $`P = 3.93`$ d; an A-type star with Gaia DR3
+$`T_\mathrm{eff} \approx 8800`$-9500 K and $`v \sin i = 110 \pm 7`$ km/s) deepens from 1.8 ppt in 2021 to 4.3 ppt in 2026 in the
+SPOC 2-min PDCSAP light curves (1.6 ppt in the 2019 QLP light curve), $`+384 \pm 56`$ ppm/yr (5.9 $`\sigma`$ in a bootstrap
+over sectors), in every TESS product examined and in own photometry of the target pixel files, with constant implied
+target flux and the signal located on the target rather than on a 17" neighbour. Its duration measured with a free
+depth lengthens from about 60 to about 100 min, but the shape change that separates a change of the transit geometry
+from a change of dilution is only about 2.6-3.1 $`\sigma`$. A grazing companion whose impact parameter decreases from
+about 1.00 to 0.95, for example by nodal precession driven by the oblateness of the rapidly rotating star, describes
+the data; the cause and the nature of the companion are not established. TESS sectors 111-113 (2026-11 to 2027-02)
+test the extrapolation (about 4.2 ppt and 106 min in the linear trends). Only TESS data are used (section [6.9](6.9_TOI-2638.md)).
 
 Nine eclipsing binaries without a previous eclipse report in the catalogues checked (section [6.3](6.3_eclipsing_binaries.md)): TIC 13957664, a
 single 2.0 % eclipse at the conjunction predicted by its Gaia DR3 astrometric+spectroscopic orbit ($`P = 245.66`$ d,

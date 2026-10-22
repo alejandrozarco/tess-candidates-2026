@@ -8,8 +8,8 @@ output: data/transit_times_<tic>.csv, folded_<tic>.csv, model_<tic>.csv, sectors
 Epochs are labelled by sector, or '<sector>a/b' when a sector holds two transits; the tables carry the sector and the
 cycle number (epoch). Epochs in `ephem_exclude` (targets.py) are marked in the note and in_ephemeris columns, and the O-C
 against the ephemeris through all epochs (from the fit's _shape.json) is added as oc_all_epochs_min. --window = half-width (d) of the light-curve windows (the fit window of fit_transits.py).
-The folded light curve divides each epoch by the quadratic baseline solved jointly with the common transit model
-(same model as fit_transits.py; for TIC 402710280 the shape is refitted with the mid-transit times fixed).
+The folded light curves use quadratic baselines solved by this script. For every target without a fixed shape in
+targets.py, the common shape is refitted with the supplied mid-transit times held fixed.
 """
 import argparse, csv, glob, json, os
 import numpy as np
@@ -47,7 +47,8 @@ def load_epoch(s, tc, win=args.window):
 def model(t, tc, k, b, aR, cad):
     pp = batman.TransitParams(); pp.t0 = tc; pp.per = c['P']; pp.rp = k; pp.a = aR; pp.inc = np.degrees(np.arccos(min(b / aR, 1)))
     pp.ecc = 0; pp.w = 90; pp.u = c['u']; pp.limb_dark = 'quadratic'
-    return batman.TransitModel(pp, t, supersample_factor=max(1, int(round(cad * 1440 / 2))), exp_time=cad).light_curve(pp)
+    ns = max(1, int(round(cad * 1440 / 2)))   # midpoint sub-exposures (batman spans exp_time end to end)
+    return batman.TransitModel(pp, t, supersample_factor=ns, exp_time=cad * (ns - 1) / ns).light_curve(pp)
 
 
 def resid_epoch(E, s, k, b, aR):
@@ -104,7 +105,7 @@ else:
 print(f'shape: k={k:.4f} b={b:.2f} a/R*={aR:.1f}')
 with open(os.path.join(args.out, f'folded_{tic}.csv'), 'w') as fo:
     fo.write(hdr([f'TIC {tic} = Gaia DR3 {c["gaia_dr3"]}: per-epoch light curves within +-{args.window:.1f} d of each fitted mid-transit time, {DATE}',
-                  'flux = aperture flux divided by the per-epoch quadratic baseline that was solved jointly with the common transit model (scripts/fit_transits.py); not dilution corrected',
+                  'flux = aperture flux divided by the per-epoch quadratic baseline solved by make_tables.py at the supplied mid-transit times; the common shape is refitted unless fixed in targets.py; not dilution corrected',
                   f'dt_days = time - tc(epoch) (TTV-corrected); phase = ((time - T0)/P + 0.5) mod 1 - 0.5 with T0 = BTJD {c["T0"]:.5f}, P = {PS} d',
                   f'common shape used for the model: k = Rp/R* = {k:.4f}, b = {b:.2f}, a/R* = {aR:.1f}, quadratic limb darkening u = {c["u"]} (TESS band)',
                   'flux_err = per-epoch residual rms; quality flag 0 cadences only; in_ephemeris = 0 marks the sector-66 event of TIC 402710280 (scattered light), which is not used in the ephemeris or the fold, '

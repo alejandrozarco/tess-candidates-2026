@@ -1,0 +1,9 @@
+# TOI-2638.01 = TIC 458342769: calibration of the shape tests by simulation; scripts/toi2638/sims_toi2638.py, 2026-10-22 (seed 1)
+# truth M5 = one transit shape whose depth scales linearly in time (what a change of dilution gives); truth M2 = impact parameter linear in time; both at the best fits of jointfit_458342769.csv (variant SPOC PDCSAP + QLP sector 10); noise = observed M2 residuals of each sector shifted cyclically by a random amount
+# test 1: delta chi2 = chi2(M5) - chi2(M2) after refitting both models; test 2: weighted slope of the per-sector trapezoid T14 (SPOC sectors, bootstrap errors of shape_458342769.csv)
+# n_ge_observed = number of simulations with a value >= the observed one; z_equiv = (observed - mean) / std; noiseless_T14_min = trapezoid T14 per SPOC sector fitted to the noise-free truth
+test,truth,n_sim,observed,mean,std,median,p16,p84,maximum,n_ge_observed,z_equiv,noiseless_T14_min
+delta chi2 M5 - M2,M5,500,10.57,-6.36,5.47,-5.80,-12.02,-1.17,8.02,0,3.10,
+delta chi2 M5 - M2,M2,500,10.57,6.57,5.56,6.32,1.00,12.06,24.69,113,0.72,
+trapezoid T14 slope (min/yr),M5,500,7.18,0.58,2.52,0.69,-2.04,3.03,7.23,1,2.62,86.3 86.2 86.3 86.2 86.3 86.3
+trapezoid T14 slope (min/yr),M2,500,7.18,4.61,2.40,4.67,2.21,6.90,10.51,69,1.07,76.6 76.9 85.2 85.5 92.8 95.7

@@ -1,0 +1,13 @@
+# TOI-2638.01 = TIC 458342769: per-sector mid-transit times and linear ephemeris; scripts/toi2638/fit_toi2638.py, 2026-10-22
+# one mid-time per sector: common transit shape fixed (null model of jointfit_458342769.csv at the TOI-table ephemeris), amplitude and time offset free, on the detrended +-0.30 d windows; SPOC PDCSAP (2 min) and QLP KSPSAP (sector 10, 1800 s); tc_btjd = BJD_TDB - 2457000 at the window-median epoch
+# tc_err_min = max(formal, bootstrap over transits (100 draws)); o_c_min relative to the linear ephemeris of the rows with row_type = ephemeris
+# linear ephemeris: weighted fit of the sector mid-times, errors scaled by sqrt(chi2/dof) = 1.00 when above 1; chi2 = 1.47 for 5 degrees of freedom; epoch 0 = TOI-table epoch 284; TOI table (ExoFOP, TESS project, 2025-07-09): P = 3.9299344 d, epoch BTJD 2282.149063
+row_type,sector,product,epoch,n_transits,tc_btjd,tc_err_min,formal_err_min,bootstrap_err_min,o_c_min,T0_btjd,T0_err_d,P_d,P_err_d
+sector,10,QLP,-461,5,1586.54597,6.80,6.80,6.72,-1.38,,,,
+sector,36,SPOC PDCSAP,-282,6,2290.00653,3.17,3.17,2.90,-1.19,,,,
+sector,37,SPOC PDCSAP,-274,6,2321.44893,2.87,2.87,2.19,+2.88,,,,
+sector,63,SPOC PDCSAP,-94,6,3028.83670,1.93,1.93,0.83,-0.87,,,,
+sector,64,SPOC PDCSAP,-87,6,3056.34657,2.30,2.30,0.99,-0.51,,,,
+sector,90,SPOC PDCSAP,92,7,3759.80740,1.55,1.54,1.55,+0.08,,,,
+sector,99,SPOC PDCSAP,167,5,4054.55348,1.49,1.49,1.34,+0.21,,,,
+ephemeris,,,0,,,,,,,3398.25227,0.00055,3.9299465,0.0000034

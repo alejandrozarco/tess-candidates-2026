@@ -1,11 +1,11 @@
-# TIC 89247735 = Gaia DR3 6708071581514074368: mid-transit times from the common-shape fit (scripts/fit_transits.py), 2026-10-18
+# TIC 89247735 = Gaia DR3 6708071581514074368: mid-transit times from the common-shape fit (scripts/fit_transits.py), 2026-10-22
 # Linear ephemeris used for O-C: T0 = BTJD 4196.80899 +- 0.00100, P = 18.323173 +- 0.000031 d; epoch = cycle number relative to T0
 # tc_btjd = BJD_TDB - 2457000. tc_err = max(formal error x beta, prayer-bead error), in days; tc_err_min in minutes
 # depth_ppm = per-epoch depth with the common shape (k free, b and a/R* fixed); rms_ppm = per-epoch residual rms
 # product: TESScut 21x21 cutout, circular aperture r = 2.0 px, annulus background; or SPOC 2-min SAP_FLUX (S13 of TIC 324429952)
 # Not used: QLP light curves (QLP timing error in S99-S104; see README).
 epoch,sector,product,tc_btjd,tc_bjd_tdb,tc_err_d,tc_err_min,oc_min,depth_ppm,depth_err_ppm,rms_ppm,beta,prayer_bead_err_min,note
--59,66,TESScut r=2.0 px,3115.741814,2460115.741814,0.001219,1.8,+0.04,8572,215,1784,1.02,1.8,used in ephemeris
--20,93,TESScut r=2.0 px,3830.346317,2460830.346317,0.001157,1.7,+1.13,7801,235,1907,1.00,1.5,used in ephemeris
--19,93,TESScut r=2.0 px,3848.668007,2460848.668007,0.001032,1.5,-1.00,8227,207,1716,1.00,1.4,used in ephemeris
-0,104,TESScut r=2.0 px,4196.809127,2461196.809127,0.001528,2.2,+0.20,8419,264,2185,1.13,2.2,used in ephemeris
+-59,66,TESScut r=2.0 px,3115.741768,2460115.741768,0.001211,1.7,-0.02,8568,215,1784,1.02,1.7,used in ephemeris
+-20,93,TESScut r=2.0 px,3830.346292,2460830.346292,0.001143,1.6,+1.10,7798,234,1907,1.00,1.5,used in ephemeris
+-19,93,TESScut r=2.0 px,3848.667977,2460848.667977,0.001028,1.5,-1.05,8223,207,1716,1.00,1.4,used in ephemeris
+0,104,TESScut r=2.0 px,4196.809171,2461196.809171,0.001508,2.2,+0.26,8415,264,2185,1.13,2.2,used in ephemeris

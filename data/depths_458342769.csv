@@ -1,0 +1,35 @@
+# TOI-2638.01 = TIC 458342769: transit depth per sector and light-curve product; scripts/toi2638/fit_toi2638.py, 2026-10-22
+# depth_ppm = amplitude of the common transit shape (k = 0.0576, b = 0.947, a/R* = 9.96; null model of jointfit_458342769.csv, SPOC PDCSAP + QLP sector 10) times its instantaneous peak depth, exposure-averaged model, weighted least squares on the detrended +-0.30 d windows
+# err_ppm = max(white_err_ppm x beta, bootstrap_err_ppm); beta = red-noise factor of the residuals binned to 15, 30 and 60 min; bootstrap over transits (300 draws); year = median time of the windows
+# products: SPOC 2-min PDCSAP_FLUX; SPOC SAP_FLUX divided by its median and corrected with the header CROWDSAP, (f - (1 - CROWDSAP)) / CROWDSAP; SPOC SAP_FLUX without that correction (depth diluted by the other stars in the SPOC aperture); TESS-SPOC FFI PDCSAP_FLUX; QLP KSPSAP_FLUX (no deblending applied here); TGLC cal_psf_flux (sector 10); QUALITY = 0
+product,sector,year,cadence_s,n_transits,depth_ppm,err_ppm,white_err_ppm,beta,bootstrap_err_ppm
+SPOC PDCSAP,36,2021.205,120,6,1822,302,215,1.00,302
+SPOC PDCSAP,37,2021.285,120,6,2098,224,224,1.00,87
+SPOC PDCSAP,63,2023.227,120,6,2784,203,200,1.00,203
+SPOC PDCSAP,64,2023.302,120,6,2578,234,219,1.00,234
+SPOC PDCSAP,90,2025.229,120,7,3308,190,190,1.00,181
+SPOC PDCSAP,99,2026.036,120,5,4304,242,240,1.01,228
+SPOC SAP crowding-corrected,36,2021.205,120,6,1665,303,249,1.00,303
+SPOC SAP crowding-corrected,37,2021.285,120,6,2150,227,227,1.00,78
+SPOC SAP crowding-corrected,63,2023.227,120,6,2760,212,211,1.00,212
+SPOC SAP crowding-corrected,64,2023.302,120,6,2739,253,226,1.02,253
+SPOC SAP crowding-corrected,90,2025.229,120,7,3221,196,196,1.00,153
+SPOC SAP crowding-corrected,99,2026.036,120,5,4232,318,259,1.02,318
+SPOC SAP uncorrected,36,2021.205,120,6,1215,219,181,1.00,219
+SPOC SAP uncorrected,37,2021.285,120,6,1419,150,150,1.00,50
+SPOC SAP uncorrected,63,2023.227,120,6,1991,152,152,1.00,146
+SPOC SAP uncorrected,64,2023.302,120,6,1929,193,159,1.02,193
+SPOC SAP uncorrected,90,2025.229,120,7,2320,141,141,1.00,107
+SPOC SAP uncorrected,99,2026.036,120,5,2936,212,180,1.02,212
+TESS-SPOC PDCSAP,36,2021.205,600,6,1698,259,237,1.00,259
+TESS-SPOC PDCSAP,37,2021.285,600,6,2409,247,247,1.00,126
+TESS-SPOC PDCSAP,63,2023.227,200,6,3074,235,215,1.00,235
+TESS-SPOC PDCSAP,64,2023.302,200,6,2652,233,230,1.00,233
+QLP KSPSAP,10,2019.279,1800,5,1625,384,358,1.00,384
+QLP KSPSAP,36,2021.205,600,5,1599,403,336,1.00,403
+QLP KSPSAP,37,2021.291,600,5,1801,492,398,1.06,492
+QLP KSPSAP,63,2023.227,200,6,2473,329,320,1.03,184
+QLP KSPSAP,64,2023.302,200,6,2314,376,328,1.10,376
+QLP KSPSAP,90,2025.229,200,7,3604,315,315,1.00,249
+QLP KSPSAP,99,2026.036,200,5,3179,187,187,1.00,151
+TGLC cal_psf_flux,10,2019.289,1800,4,2004,497,444,1.12,92

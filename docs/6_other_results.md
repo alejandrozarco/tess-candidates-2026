@@ -18,3 +18,4 @@ Subsections:
 - [6.6 L 98-59 d: decreasing transit duration, 2019-2025](6.6_L98-59d.md)
 - [6.7 TOI-620 b: decreasing transit duration](6.7_TOI-620b.md)
 - [6.8 TOI-6482.01: ephemeris from six TESS transits](6.8_TOI-6482.md)
+- [6.9 TOI-2638.01: transit depth increasing from 2019 to 2026](6.9_TOI-2638.md)
