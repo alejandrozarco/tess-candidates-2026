@@ -17,6 +17,8 @@ Figures: fold_<tic>  (TTV-corrected fold of the detrended epochs with 20-min bin
        between the two NIRSpec visits per bin, and the per-detector and detector-averaged durations per visit).
 'toi2638': depth_t14_458342769 (transit depth of TOI-2638.01 per TESS sector in every product, and the per-sector
        trapezoid duration, with model M2 and the extrapolation to 2027.0).
+'toi1117': fold_295541511 (the 4.5787-d signal of TOI-1117 c folded on the selected model sample of the adopted fit: SPOC 2-min sectors 39, 100-103 and
+       TESS-SPOC sector 13, with the adopted and the free-density transit models).
 """
 import csv, os, sys
 import matplotlib
@@ -433,10 +435,30 @@ def fig_toi2638(t, name):
     fig.tight_layout(); save(fig, t, name)
 
 
+def fig_toi1117(t, name):
+    F = read("folded_295541511.csv"); M = read("model_295541511.csv"); E = read("ephemeris_295541511.csv"); R = read("fit_295541511.csv")
+    bval = lambda cfg: R["value"][(R["config"] == cfg) & (R["quantity"] == "b")][0]
+    fig, axs = plt.subplots(1, 2, figsize=(13, 4.8), gridspec_kw=dict(width_ratios=[1.6, 1])); fig.patch.set_facecolor(t["surface"])
+    for ax, sel, bw, mcol, ttl in ((axs[0], F["sector"] != 13, 15 / 60, "rho_2min", "SPOC 2-min PDCSAP, sectors 39, 100-103"),
+                                   (axs[1], F["sector"] == 13, 30 / 60, "rho_30min", "TESS-SPOC FFI (1800 s), sector 13: not in the adopted fit")):
+        x = F["dt_days"][sel] * 24; y = (F["flux"][sel] - 1) * 1e6
+        ax.plot(x, y, ".", color=t["pts"], ms=1.2 if bw < 0.3 else 3, rasterized=bw < 0.3, label="detrended cadences")
+        xb, yb, eb = binned(x, y, bw)
+        ax.errorbar(xb, yb, eb, fmt="o", color=t["ink"], ms=3.2, lw=0.8, label=f"{int(round(bw * 60))}-min bins")
+        ax.plot(M["dt_days"] * 24, (M[mcol] - 1) * 1e6, "-", color=t["mark2"], lw=1.6, label=f"adopted fit (stellar-density prior, b = {bval('rho_2min_pdc'):.2f})")
+        if bw < 0.3:
+            ax.plot(M["dt_days"] * 24, (M["free_2min"] - 1) * 1e6, "--", color=t["mark"], lw=1.3, label="free-density model (uniform q1, q2)")
+        ax.set_xlim(-10.8, 10.8); ax.set_ylim(-1500, 900); ax.set_xlabel("hours from mid-transit (selected model sample)"); ax.set_ylabel("relative flux - 1 (ppm)")
+        style(ax, t); title(ax, t, ttl); ax.legend(loc="lower left", fontsize=7.5, frameon=False, labelcolor=t["ink2"])
+    i = list(E["role"]).index("adopted")
+    fig.suptitle(f"TOI-1117 (TIC 295541511): transit-like signal at the period of planet c, P = {E['P_d'][i]:.7f} d (planet b masked)", color=t["ink"], fontsize=11, x=0.01, ha="left")
+    fig.tight_layout(); save(fig, t, name)
+
+
 if __name__ == "__main__":
     for th, t in THEMES.items():
         plt.rcParams.update({"text.color": t["ink"], "axes.edgecolor": t["axis"], "axes.titlecolor": t["ink"]})
-        sel = sys.argv[1:] or [str(x) for x in TICS] + ["other", "c311179599", "eb124751008", "tdv", "toi6482", "jwstchrom", "toi2638"]
+        sel = sys.argv[1:] or [str(x) for x in TICS] + ["other", "c311179599", "eb124751008", "tdv", "toi6482", "jwstchrom", "toi2638", "toi1117"]
         if "other" in sel:
             fig_eb_history(t, f"eb_history_11613676_{th}.svg"); fig_eb_profiles(t, f"eb_profiles_11613676_{th}.svg")
             fig_toi540_sectors(t, f"toi540_sectors_{th}.svg"); fig_toi540_depths(t, f"toi540_depths_{th}.svg")
@@ -452,7 +474,9 @@ if __name__ == "__main__":
             fig_jwst_chrom(t, f"jwst_chromatic_307210830_{th}.svg")
         if "toi2638" in sel:
             fig_toi2638(t, f"depth_t14_458342769_{th}.svg")
-        for tic in [int(x) for x in sel if x not in ("other", "c311179599", "eb124751008", "tdv", "toi6482", "jwstchrom", "toi2638")]:
+        if "toi1117" in sel:
+            fig_toi1117(t, f"fold_295541511_{th}.svg")
+        for tic in [int(x) for x in sel if x not in ("other", "c311179599", "eb124751008", "tdv", "toi6482", "jwstchrom", "toi2638", "toi1117")]:
             fig_fold(t, f"fold_{tic}_{th}.svg", tic)
             fig_epochs(t, f"epochs_{tic}_{th}.svg", tic)
             fig_oc(t, f"oc_{tic}_{th}.svg", tic)

@@ -1,0 +1,50 @@
+# TOI-1117 (TIC 295541511): circular three-planet fits to the published HARPS velocities (rv_harps_295541511.csv, removed = 0; 133 points); scripts/toi1117/rv_toi1117.py, 2026-10-23
+# mode free: orbit of c from the RVs alone; mode transit: P_c and T_c with Gaussian priors from the adopted transit ephemeris (ephemeris_295541511.csv); planet b: Gaussian priors on P and T0 from Lockley et al. (2025)
+# value = posterior median, err_lo/err_hi = distances to the 16th/84th percentiles; T_* = time of inferior conjunction (BTJD = BJD_TDB - 2457000); ln_jitter in ln(m/s)
+# Msini = minimum mass (M* = 0.97 +- 0.02 Msun); rows "transit + ...": inclination and radius samples of the named transit fit combined with the Msini_c samples of mode transit (true mass and density of c, conditional on that fit)
+# tau_steps_max = longest autocorrelation time (steps); K_c_over_err = median / standard deviation of K_c
+mode,quantity,value,err_lo,err_hi
+free,offset_ms,-24894.361,0.356,0.343
+free,ln_jitter,0.72,0.33,0.22
+free,P_b_d,2.228160,0.000010,0.000010
+free,T_b_btjd,2386.9640,0.0040,0.0040
+free,K_b_ms,4.43,0.46,0.47
+free,P_c_d,4.57927,0.00371,0.00386
+free,T_c_btjd,2498.936,0.487,0.467
+free,K_c_ms,3.46,0.47,0.46
+free,P_d_d,8.6658,0.0109,0.0112
+free,T_d_btjd,2495.571,0.734,0.712
+free,K_d_ms,3.42,0.49,0.49
+free,Msini_b_earth,8.88,0.94,0.96
+free,Msini_c_earth,8.81,1.20,1.18
+free,Msini_d_earth,10.76,1.56,1.56
+free,acceptance,0.395,,
+free,tau_steps_max,299,,
+free,n_rv,133,,
+free,K_c_over_err,7.3,,
+transit,offset_ms,-24894.338,0.344,0.339
+transit,ln_jitter,0.69,0.36,0.23
+transit,P_b_d,2.228160,0.000010,0.000010
+transit,T_b_btjd,2386.9642,0.0040,0.0039
+transit,K_b_ms,4.45,0.46,0.46
+transit,P_c_d,4.57865,0.00001,0.00001
+transit,T_c_btjd,2498.904,0.004,0.003
+transit,K_c_ms,3.47,0.45,0.45
+transit,P_d_d,8.6653,0.0108,0.0111
+transit,T_d_btjd,2495.603,0.728,0.716
+transit,K_d_ms,3.31,0.48,0.48
+transit,Msini_b_earth,8.91,0.93,0.93
+transit,Msini_c_earth,8.84,1.14,1.15
+transit,Msini_d_earth,10.42,1.53,1.53
+transit,acceptance,0.393,,
+transit,tau_steps_max,286,,
+transit,n_rv,133,,
+transit,K_c_over_err,7.7,,
+transit + adopted transit fit (rho_2min_pdc),inc_deg,85.51,0.21,0.20
+transit + adopted transit fit (rho_2min_pdc),M_c_earth,8.87,1.14,1.15
+transit + adopted transit fit (rho_2min_pdc),R_c_earth,2.73,0.15,0.16
+transit + adopted transit fit (rho_2min_pdc),rho_c_gcc,2.40,0.46,0.57
+transit + free-density transit fit (free_2min_pdc),inc_deg,88.53,2.17,1.05
+transit + free-density transit fit (free_2min_pdc),M_c_earth,8.85,1.14,1.15
+transit + free-density transit fit (free_2min_pdc),R_c_earth,2.51,0.18,0.23
+transit + free-density transit fit (free_2min_pdc),rho_c_gcc,3.06,0.83,0.91

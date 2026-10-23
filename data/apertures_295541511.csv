@@ -1,0 +1,52 @@
+# TOI-1117 c (TIC 295541511): transit depth in circular apertures centred on the target, from the deficit and out-of-transit images; scripts/toi1117/pixels_toi1117.py, 2026-10-23
+# depth_ppm = summed deficit / summed out-of-transit flux; target_fraction = modelled target flux / modelled flux of all Gaia DR3 stars (G < 17 plus fitted brighter stars) in the aperture
+# depth_corr_ppm = depth_ppm / target_fraction (the depth on the target if the signal is on it); combined rows: weighted mean over the six independent pixel sets
+pixel_set,radius_px,n_pix,depth_ppm,err_ppm,target_fraction,depth_corr_ppm,err_corr_ppm
+TSPOC13,1.0,4,680,304,0.981,694,310
+TSPOC13,1.5,7,413,271,0.976,424,278
+TSPOC13,2.0,14,319,225,0.919,347,245
+TSPOC13,2.5,19,299,212,0.897,333,236
+TSPOC13,3.0,28,375,189,0.801,469,236
+TSPOC13,4.0,50,382,172,0.734,520,235
+SPOC39,1.0,4,418,176,0.986,424,179
+SPOC39,1.5,6,403,155,0.957,421,162
+SPOC39,2.0,13,431,132,0.922,467,144
+SPOC39,2.5,20,490,121,0.870,563,139
+SPOC39,3.0,30,450,112,0.796,565,141
+SPOC39,4.0,52,431,106,0.712,605,149
+SPOC100,1.0,2,100,239,0.993,100,240
+SPOC100,1.5,7,180,173,0.978,184,177
+SPOC100,2.0,13,323,153,0.941,343,162
+SPOC100,2.5,19,278,138,0.880,315,157
+SPOC100,3.0,27,282,133,0.846,334,158
+SPOC100,4.0,51,169,122,0.733,231,166
+SPOC101,1.0,3,891,199,0.991,899,200
+SPOC101,1.5,7,745,172,0.984,757,174
+SPOC101,2.0,12,647,154,0.965,671,160
+SPOC101,2.5,21,525,140,0.911,576,154
+SPOC101,3.0,29,542,128,0.815,665,157
+SPOC101,4.0,50,503,119,0.753,667,158
+SPOC102,1.0,4,137,389,0.985,139,395
+SPOC102,1.5,6,209,352,0.981,213,359
+SPOC102,2.0,13,354,281,0.939,377,299
+SPOC102,2.5,19,336,246,0.870,386,282
+SPOC102,3.0,29,215,224,0.821,262,274
+SPOC102,4.0,52,252,204,0.747,337,273
+SPOC103,1.0,4,-141,320,0.987,-143,325
+SPOC103,1.5,7,14,290,0.975,14,297
+SPOC103,2.0,13,357,244,0.949,376,257
+SPOC103,2.5,19,353,226,0.917,385,247
+SPOC103,3.0,29,208,196,0.807,257,243
+SPOC103,4.0,52,405,180,0.738,549,244
+TSPOC39,1.0,4,384,164,0.985,390,166
+TSPOC39,1.5,6,336,144,0.956,351,150
+TSPOC39,2.0,13,367,123,0.921,398,134
+TSPOC39,2.5,20,413,113,0.869,476,130
+TSPOC39,3.0,30,377,105,0.796,474,132
+TSPOC39,4.0,52,378,100,0.714,530,140
+combined (six independent sets),1.0,,,,,442,100
+combined (six independent sets),1.5,,,,,401,86
+combined (six independent sets),2.0,,,,,460,77
+combined (six independent sets),2.5,,,,,460,74
+combined (six independent sets),3.0,,,,,475,75
+combined (six independent sets),4.0,,,,,504,77

@@ -58,4 +58,7 @@
   Johnson, M. C., et al. 2015, ApJL 810, L23; Stephan, A. P., et al. 2022, ApJ 931, 111; Green, M. J., et al. 2023,
   MNRAS 522, 29.
 
-References of sections 6.6-6.9 are listed at the end of those sections.
+- Lockley, I. S., et al. 2025, MNRAS 541, 919 (TOI-1117; doi:10.1093/mnras/staf939; arXiv:2506.05521); Melton, E. J., et al.
+  2024, AJ 167, 203 (DTARPS II).
+
+References of sections 6.6-6.10 are listed at the end of those sections.

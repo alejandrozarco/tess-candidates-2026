@@ -313,6 +313,33 @@ Without script in this repository: the search that selected the planet, the TOI-
 Gaia DR3 astrophysical parameters of section [6.9.1](6.9_TOI-2638.md#691-target), and the catalogue and literature checks of section
 [6.9.7](6.9_TOI-2638.md#697-catalogue-and-literature-checks).
 
+For TOI-1117 c (section [6.10](6.10_TOI-1117c.md)), run from the repository root; `download_toi1117.py`, `fit_toi1117.py`,
+`checks_toi1117.py`, `pixels_toi1117.py` and the figure use the versions of `requirements.txt`, and `mcmc_toi1117.py`,
+`ephemeris_toi1117.py`, `rv_toi1117.py` and `triceratops_toi1117.py` the emcee/TRICERATOPS environment listed there:
+
+```
+python scripts/toi1117/download_toi1117.py      # MAST: SPOC 2-min and 20-s, TESS-SPOC, QLP, eleanor-lite and TARS light curves, target pixel files, DV reports; Gaia DR3 and TIC cones; arXiv source 2506.05521
+python scripts/toi1117/fit_toi1117.py           # -> data/{depths,pertransit,depth_tests}_295541511.csv and work/295541511/lc_fit_{pdc,sap}.npz
+python scripts/toi1117/mcmc_toi1117.py          # -> data/fit_295541511.csv and work/295541511/chain_*.npz (about 30 min)
+python scripts/toi1117/ephemeris_toi1117.py     # -> data/{ephemeris,transit_times,predicted_transits,folded,model}_295541511.csv
+python scripts/toi1117/rv_toi1117.py            # -> data/{rv_harps,rvfit,rv_ephemeris}_295541511.csv
+python scripts/toi1117/checks_toi1117.py        # -> data/{falsealarm,epochs,checks,timing}_295541511.csv (about 25 min)
+python scripts/toi1117/pixels_toi1117.py        # -> data/{pixels,sources,apertures}_295541511.csv
+python scripts/toi1117/triceratops_toi1117.py   # -> data/triceratops_295541511.csv, data/triceratops_input_295541511.csv, data/triceratops/probs_295541511_*.csv
+python figures/make_figures.py toi1117
+```
+
+The MAST products (listed with their URIs in `work/295541511/dl/products.txt`) were retrieved on 2026-10-22 and listed
+again on 2026-10-23 (no new or changed product names); the arXiv source of Lockley et al. (2025) has sha256
+8076ff3adfbc1699395091e0fe8dfe7e75b64288de82f41dabf539472f3c5e7e. The HARPS velocities in
+`data/rv_harps_295541511.csv` are transcribed from that source. The transit models sample each exposure at the centres of
+equal parts (batman's `supersample_factor` is not used). The MCMC, false-alarm, injection and TRICERATOPS runs use explicit seeds;
+TRICERATOPS also depends on the TIC and Gaia DR3 queries made at run time, and a repeat of the four runs with the same seeds gave the same FPP and NFPP to four decimals. Without script in this repository: the search
+that selected the signal, the planet-b ephemeris used for masking, the Gaia DR3 values of section
+[6.10.1](6.10_TOI-1117c.md#6101-target) other than those in the Gaia DR3 cone, the values quoted from Lockley et al. (2025),
+the approximate contrast curve, and the catalogue and literature checks of section
+[6.10.7](6.10_TOI-1117c.md#6107-catalogue-and-literature-checks).
+
 Correction of 2026-10-22 (exposure sampling; no conclusion changed). batman's `supersample_factor` places the
 sub-exposures from one end of the exposure to the other, which smooths the model more than the exposure does (by
 factors of 1.07-1.73 in rms for 15 to 2 sub-exposures). The transit models of `fit_transits.py`, `make_tables.py`,

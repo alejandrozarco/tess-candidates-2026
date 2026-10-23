@@ -1,0 +1,12 @@
+# TOI-1117 c (TIC 295541511): one mid-transit time per sector (all transits of the sector together), shape fixed at the maximum-likelihood sample of rho_2min_pdc; scripts/toi1117/ephemeris_toi1117.py, 2026-10-23
+# epoch counted from Tref = BTJD 3345.95426 (maximum-likelihood sample); o_c_min = offset of the best mid-time from that sample's linear ephemeris (P = 4.5786537 d); err_lo/hi = chi2 + 1 interval (formal, white errors)
+# eph_err_min = posterior standard deviation of the adopted linear ephemeris at that epoch; depth_scale = depth relative to the adopted model at the best mid-time (chi2 + 1 half-width)
+# dchi2_null = chi2(no transit) - chi2(scaled model); in_fit = 1 if the sector is in the adopted fit (sector 13, 1800 s, is not); model averaged over each exposure (midpoint sampling)
+# injection tests (checks_295541511.csv, timing rows) show that formal timing errors of single sectors underestimate the scatter of recovered mid-times by factors of about 2-3
+sector,cadence_min,epoch,tc_btjd,o_c_min,err_lo_min,err_hi_min,eph_err_min,depth_scale,depth_scale_err,dchi2_null,in_fit
+13,30.0,-366,1670.15319,-19.9,6.5,7.0,7.5,1.12,0.18,35.6,0
+39,2.0,-211,2379.85805,-0.4,1.5,4.0,5.3,0.94,0.17,28.3,1
+100,2.0,163,4092.27418,-0.9,7.0,3.0,2.5,0.94,0.19,23.1,1
+101,2.0,168,4115.16919,+1.6,2.0,3.0,2.6,1.26,0.16,58.6,1
+102,2.0,173,4138.06141,+0.1,3.5,3.0,2.6,0.96,0.19,24.2,1
+103,2.0,180,4170.11129,-0.9,3.0,2.5,2.6,1.05,0.21,24.5,1

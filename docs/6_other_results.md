@@ -19,3 +19,4 @@ Subsections:
 - [6.7 TOI-620 b: decreasing transit duration](6.7_TOI-620b.md)
 - [6.8 TOI-6482.01: ephemeris from six TESS transits](6.8_TOI-6482.md)
 - [6.9 TOI-2638.01: transit depth increasing from 2019 to 2026](6.9_TOI-2638.md)
+- [6.10 TOI-1117 c: transit-like signal at the period and phase of a radial-velocity planet](6.10_TOI-1117c.md)

@@ -22,7 +22,7 @@
   TIC 402710280 the QLP-minus-TESScut time-stamp differences measured in sectors 100 and 102 are within $`\pm 1.7`$ min
   (medians $`+0.3`$ and $`-0.3`$ min), far below the 24-29 min deviations of section [1.3](1_TIC402710280.md#13-transit-epochs-and-o-c). Exception: the mid-transit times of
   TOI-6482.01 (section [6.8](6.8_TOI-6482.md)) come from QLP light curves; in sector 99 the QLP time stamps differ from
-  SPOC full-frame-image time stamps referred to the target position by $`+1.71`$ to $`+2.04`$ s (orbits 209 and 210).
+  SPOC full-frame-image time stamps referred to the target position by $`+1.71`$ to $`+2.04`$ s (orbits 209 and 210). For TOI-1117 c (section [6.10](6.10_TOI-1117c.md)) the ephemeris comes from SPOC 2-min data; QLP sectors 100-103 enter only the depth and timing cross-checks.
 - The 2.3" neighbour of TIC 402710280 (Gaia DR3 5828441289812582656; TIC 1208600633, without TIC stellar parameters) is
   6.4 mag fainter and lies in the background. TRICERATOPS treats it with solar parameters by default; the run with
   K-dwarf parameters gives the same FPP within the seed-to-seed scatter.
@@ -129,6 +129,18 @@
   gravity-darkened model was fitted. The ellipsoidal limit uses PDCSAP fluxes. The precession estimate is an order of
   magnitude for assumed apsidal constant and moment of inertia, and the stellar obliquity is not measured. The
   ground-based photometry, imaging and spectroscopy listed on ExoFOP were not used.
+- TOI-1117 c (section [6.10](6.10_TOI-1117c.md)): the signal rests on TESS data (six sectors, 27 transits, S/N 12-14) and the
+  published HARPS velocities; it is not validated. In the pixel data a $`G = 19.59`$ star at 34" is disfavoured only at
+  $`\Delta\chi^2 = 7.5`$ (summed over six pixel sets; it fits better than the target in two of them), with a Gaussian-mixture
+  PSF rather than the TESS PRF. The adopted transit needs $`b = 0.85`$ with the stellar density of Lockley et al. (2025);
+  the fit without that prior, also using uniform limb-darkening parameters, favours a boxier shape, with $`\chi^2`$ lower
+  by 3.5 (not calibrated as a statistical significance); eccentricity was fixed at zero. Odd and even depths
+  differ by 2.1 $`\sigma`$, and the sector-13 transits are 13-22 min early (1.2-2.0 $`\sigma`$ with empirical timing errors).
+  The RV conjunction constrains the phase only to $`\pm 0.11`$ d. The TRICERATOPS runs use an approximate contrast curve
+  written from the text of Lockley et al. (2025). ExoFOP was unreachable during all checks (2026-10-22 23:22 UTC to
+  2026-10-23 00:48 UTC), so ExoFOP notes, files and live TOI/community-TOI lists are unchecked; the arXiv API check returned
+  no records even for an alias present in a known abstract. The transit and RV fits use the stellar parameters of Lockley
+  et al. (2025); TRICERATOPS uses TIC stellar parameters.
 - Eclipsing binaries of section [6.3](6.3_eclipsing_binaries.md): no spectroscopy; the periods come from TESS full-frame images, with QLP eclipse
   times in sectors 99-104 (timing notice above); TIC 13957664 and TIC 342194997 rest on one eclipse each and their
   periods on the Gaia orbits, TIC 304936165 on two eclipses, and the period of CPD-62 2890 is not determined; the

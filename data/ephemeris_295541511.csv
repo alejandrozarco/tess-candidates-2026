@@ -1,0 +1,8 @@
+# TOI-1117 c (TIC 295541511): linear ephemerides from the transit fits of mcmc_toi1117.py (circular, stellar-density prior); scripts/toi1117/ephemeris_toi1117.py, 2026-10-23
+# adopted: rho_2min_pdc (SPOC 2-min sectors 39, 100-103, PDCSAP); alternative: rho_all_pdc (also TESS-SPOC sector 13 at 1800 s)
+# Tref_btjd = posterior median of the mid-transit time at the reference epoch (near the data-weighted centre); _lo/_hi = distances to the 16th/84th percentiles; _sd = posterior standard deviation
+# cov_Tref_P_d2 and corr: posterior covariance and correlation of Tref and P; t(n) = Tref + n P, sigma(n)^2 = Tref_sd^2 + n^2 P_sd^2 + 2 n cov
+# n_s101 = epoch (from Tref) of the transit near BTJD 4115.17 (sector 101); tc_s101 = its posterior median time and standard deviation; BTJD = BJD_TDB - 2457000
+config,role,Tref_btjd,Tref_lo_d,Tref_hi_d,Tref_sd_d,P_d,P_lo_d,P_hi_d,P_sd_d,cov_Tref_P_d2,corr,n_s101,tc_s101_btjd,tc_s101_sd_d
+rho_2min_pdc,adopted,3345.95453,0.00183,0.00160,0.00200,4.5786510,0.0000085,0.0000087,0.0000104,-1.1453e-08,-0.551,168,4115.16798,0.00179
+rho_all_pdc,alternative,3345.95328,0.00272,0.00181,0.00225,4.5786591,0.0000092,0.0000139,0.0000116,-1.4690e-08,-0.564,168,4115.16807,0.00198

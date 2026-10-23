@@ -1,0 +1,31 @@
+# TOI-1117 c (TIC 295541511): depth and S/N tests of the 4.5787-d signal; scripts/toi1117/fit_toi1117.py, 2026-10-23
+# box measurements at P = 4.57866 d, T0 = BTJD 1670.1655 (duration scan: T0 = BTJD 1670.168 plus the offset given); see depths_295541511.csv and pertransit_295541511.csv for the definitions
+# err_emp_ppm, snr_emp: empirical error from 300 random phase shifts (empty where not computed)
+test,variant,depth_ppm,err_ppm,err_emp_ppm,snr,snr_emp
+duration scan (SPOC 2-min PDCSAP),"best D = 1.625 h, T0 offset -3.6 min",485,40,,12.18,
+duration scan (SPOC 2-min PDCSAP),D = 1.000 h (best T0 offset),556,51,,10.97,
+duration scan (SPOC 2-min PDCSAP),D = 1.250 h (best T0 offset),535,45,,11.79,
+duration scan (SPOC 2-min PDCSAP),D = 1.500 h (best T0 offset),492,41,,11.90,
+duration scan (SPOC 2-min PDCSAP),D = 1.625 h (best T0 offset),485,40,,12.18,
+duration scan (SPOC 2-min PDCSAP),D = 1.750 h (best T0 offset),465,38,,12.15,
+duration scan (SPOC 2-min PDCSAP),D = 2.000 h (best T0 offset),412,36,,11.49,
+duration scan (SPOC 2-min PDCSAP),D = 2.500 h (best T0 offset),341,32,,10.66,
+duration scan (SPOC 2-min PDCSAP),D = 3.250 h (best T0 offset),268,28,,9.57,
+"per-sector S/N (per-transit depths, weighted mean)","sector 13, 5 transits",461,87,,5.29,
+"leave one sector out (per-transit depths, weighted mean)",without sector 13,502,39,,12.86,
+"per-sector S/N (per-transit depths, weighted mean)","sector 39, 5 transits",459,81,,5.67,
+"leave one sector out (per-transit depths, weighted mean)",without sector 39,503,40,,12.70,
+"per-sector S/N (per-transit depths, weighted mean)","sector 100, 4 transits",440,93,,4.72,
+"leave one sector out (per-transit depths, weighted mean)",without sector 100,504,39,,13.09,
+"per-sector S/N (per-transit depths, weighted mean)","sector 101, 5 transits",610,77,,7.88,
+"leave one sector out (per-transit depths, weighted mean)",without sector 101,464,40,,11.57,
+"per-sector S/N (per-transit depths, weighted mean)","sector 102, 4 transits",463,89,,5.23,
+"leave one sector out (per-transit depths, weighted mean)",without sector 102,501,39,,12.89,
+"per-sector S/N (per-transit depths, weighted mean)","sector 103, 4 transits",505,102,,4.94,
+"leave one sector out (per-transit depths, weighted mean)",without sector 103,493,38,,12.99,
+"all transits (per-transit depths, weighted mean)",27 transits,495,36,,13.90,
+"stacked box depth, sectors 13 (TESS-SPOC) + 39, 100-103 (SPOC 2-min) PDCSAP",biweight window 0.5 d,468,39,38,12.07,12.24
+"stacked box depth, sectors 13 (TESS-SPOC) + 39, 100-103 (SPOC 2-min) PDCSAP",biweight window 0.75 d,485,39,41,12.48,11.73
+"stacked box depth, sectors 13 (TESS-SPOC) + 39, 100-103 (SPOC 2-min) PDCSAP",biweight window 1.0 d,484,39,42,12.46,11.65
+"stacked box depth, sectors 13 (TESS-SPOC) + 39, 100-103 (SPOC 2-min) PDCSAP",biweight window 1.5 d,487,39,41,12.52,11.94
+"stacked box depth, sectors 13 (TESS-SPOC) + 39, 100-103 (SPOC 2-min) PDCSAP",biweight window 2.5 d,494,39,43,12.71,11.38

@@ -1,0 +1,9 @@
+# TOI-1117 (TIC 295541511): APPROXIMATE contrast curve (separation arcsec, delta mag), written by hand on 2026-10-22 from the text of Lockley et al. (2025, MNRAS 541, 919):
+# Gemini South/Zorro speckle "no companion within 5-8 magnitudes" from 0.02" to 1.2"; SOAR I band 4.2 mag at 1"; not the measured curve (not used here); used only in scripts/toi1117/triceratops_toi1117.py
+0.02,3.5
+0.05,4.5
+0.1,5.0
+0.2,5.5
+0.5,6.5
+1.0,7.0
+1.2,7.0

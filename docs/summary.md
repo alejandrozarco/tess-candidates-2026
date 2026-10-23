@@ -5,7 +5,7 @@
 Transit candidates TIC 402710280, TIC 324429952, TIC 89247735, TIC 455017950 and TIC 311179599 (sections [1](1_TIC402710280.md)-[5](5_TIC311179599.md)), with a
 candidate second transit signal on TIC 311179599 (section [5.10](5_TIC311179599.md#510-a-second-transit-signal-candidate-c)); the eclipsing binaries TIC 11613676 and TIC 124751008
 and the planet TOI-540 b (sections [6.1](6.1_TIC11613676.md), [6.4](6.4_TIC124751008.md), [6.2](6.2_TOI-540b.md)); nine new eclipsing binaries (section [6.3](6.3_eclipsing_binaries.md)); candidate decreases of the
-transit durations of the known planets L 98-59 d and TOI-620 b (sections [6.6](6.6_L98-59d.md), [6.7](6.7_TOI-620b.md)); an ephemeris update of TOI-6482.01 (section [6.8](6.8_TOI-6482.md)); an increasing transit depth of the planet candidate TOI-2638.01 (section [6.9](6.9_TOI-2638.md)).
+transit durations of the known planets L 98-59 d and TOI-620 b (sections [6.6](6.6_L98-59d.md), [6.7](6.7_TOI-620b.md)); an ephemeris update of TOI-6482.01 (section [6.8](6.8_TOI-6482.md)); an increasing transit depth of the planet candidate TOI-2638.01 (section [6.9](6.9_TOI-2638.md)); a transit-like signal at the period and phase of the radial-velocity planet TOI-1117 c (section [6.10](6.10_TOI-1117c.md)).
 
 Five stars observed in TESS full-frame images show periodic transit-shaped dips that are not listed as TOI or CTOI, in
 the NASA Exoplanet Archive, VSX, SIMBAD, the Gaia DR3 variability and non-single-star tables, VizieR or ADS (checks
@@ -93,6 +93,18 @@ from a change of dilution is only about 2.6-3.1 $`\sigma`$. A grazing companion 
 about 1.00 to 0.95, for example by nodal precession driven by the oblateness of the rapidly rotating star, describes
 the data; the cause and the nature of the companion are not established. TESS sectors 111-113 (2026-11 to 2027-02)
 test the extrapolation (about 4.2 ppt and 106 min in the linear trends). Only TESS data are used (section [6.9](6.9_TOI-2638.md)).
+
+TOI-1117 (TIC 295541511) has a transiting sub-Neptune b and two planets, c and d, known from HARPS radial velocities and
+described as non-transiting (Lockley et al. 2025). TESS sectors 13, 39 and 100-103 show a transit-like signal at
+$`P = 4.5786510^{+0.0000087}_{-0.0000085}`$ d, about 490 ppm deep and 1.85 h long (BLS S/N 12.4; 27 transits, all with
+positive depth), whose ephemeris agrees with the RV orbit of c within 1.0 $`\sigma`$ at every epoch and in period
+(0.16 $`\sigma`$). If it is the transit of c, $`R_\mathrm{p} = 2.73^{+0.16}_{-0.15}\,R_\oplus`$ and, with
+$`K_c = 3.47 \pm 0.45`$ m/s from the published velocities at the transit ephemeris, $`M_\mathrm{p} = 8.9 \pm 1.2\,M_\oplus`$.
+The signal is not validated: a $`G = 19.6`$ star at 34" is disfavoured as its source only at $`\Delta\chi^2 = 7.5`$ in the
+pixel data, the shape with the stellar-density prior needs $`b = 0.85`$ while the fit without it (with uniform limb-darkening
+parameters) favours a boxier transit ($`\chi^2`$ lower by 3.5, not calibrated as a statistical significance), and the
+TRICERATOPS false-positive probabilities do not reach the validation thresholds (with an approximate contrast curve FPP
+0.0146-0.0149, just below 0.015, but NFPP 0.013, above 0.001). Only TESS data and the published velocities are used (section [6.10](6.10_TOI-1117c.md)).
 
 Nine eclipsing binaries without a previous eclipse report in the catalogues checked (section [6.3](6.3_eclipsing_binaries.md)): TIC 13957664, a
 single 2.0 % eclipse at the conjunction predicted by its Gaia DR3 astrometric+spectroscopic orbit ($`P = 245.66`$ d,

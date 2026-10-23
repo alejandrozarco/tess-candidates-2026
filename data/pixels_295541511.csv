@@ -1,0 +1,12 @@
+# TOI-1117 c (TIC 295541511): pixel-level tests per pixel set; scripts/toi1117/pixels_toi1117.py, 2026-10-23
+# ephemeris P = 4.57866 d, T0 = BTJD 1670.1655, box D = 1.625 h; planet b masked; PSF = pixel-integrated double Gaussian (sigma1, sigma2 in px, weight eta of sigma1) fitted to the out-of-transit image (not the TESS PRF)
+# diff_snr = summed deficit / its error; target_depth_ppm = PSF amplitude at the target position / modelled target flux; free_offset_px = distance of the free-position PSF fit from the target, jk_sx/jk_sy = jackknife errors over transits, offset_sigma = offset / hypot(jk_sx, jk_sy)
+# independent = 1 for the six pixel sets summed in sources_295541511.csv (TSPOC39 duplicates SPOC39)
+pixel_set,file,n_transits,diff_snr,target_depth_ppm,target_depth_err_ppm,free_offset_px,jk_sx_px,jk_sy_px,offset_sigma,psf_sigma1_px,psf_sigma2_px,psf_eta,independent
+TSPOC13,hlsp_tess-spoc_tess_phot_0000000295541511-s0013_tess_v1_tp.fits,5,2.1,436,193,1.55,0.68,1.64,0.87,0.52,1.42,0.61,1
+SPOC39,tess2021146024351-s0039-0000000295541511-0210-s_tp.fits,5,3.5,496,133,0.69,0.26,0.20,2.11,0.66,1.26,0.64,1
+SPOC100,tess2026033082000-s0100-0000000295541511-0302-s_tp.fits,4,0.6,369,150,1.44,0.20,1.61,0.89,0.51,1.05,0.52,1
+SPOC101,tess2026060005000-s0101-0000000295541511-0303-s_tp.fits,5,4.2,667,147,0.08,0.32,0.30,0.19,0.61,1.69,0.81,1
+SPOC102,tess2026086090000-s0102-0000000295541511-0304-s_tp.fits,4,1.1,479,187,1.00,0.20,0.34,2.56,0.55,1.49,0.62,1
+SPOC103,tess2026111101500-s0103-0000000295541511-0305-s_tp.fits,4,2.5,815,192,1.28,0.28,0.68,1.75,0.36,1.16,0.51,1
+TSPOC39,hlsp_tess-spoc_tess_phot_0000000295541511-s0039_tess_v1_tp.fits,5,3.1,399,121,0.74,0.26,0.13,2.56,0.69,1.48,0.71,0

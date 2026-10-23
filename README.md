@@ -1,6 +1,6 @@
 # TESS transit candidates and other TESS results, 2026
 
-Status: computational results from public data, not peer reviewed. Date of this record: 2026-10-22 (UTC); first version 2026-10-18. Author: A. Zarco.
+Status: computational results from public data, not peer reviewed. Date of this record: 2026-10-23 (UTC); first version 2026-10-18. Author: A. Zarco.
 
 > [!IMPORTANT]
 > **Produced by AI models** under the direction of the repository owner; not peer reviewed, and not checked by a
@@ -12,7 +12,8 @@ Status: computational results from public data, not peer reviewed. Date of this 
 This record reports periodic transit-shaped signals on five stars observed in TESS full-frame images, a candidate
 second transit signal on one of them, and further TESS results: eclipsing binaries whose eclipses change, nine
 eclipsing binaries without a previous eclipse report, dimming events of a young M dwarf, and changes in the transits
-of three known planets and of one TESS planet candidate (TOI-2638.01). Each object has a detail page in [`docs/`](docs/); the section numbers of the earlier single-page
+of three known planets and of one TESS planet candidate (TOI-2638.01), and a transit-like signal at the period and phase
+of TOI-1117 c, a planet known from radial velocities. Each object has a detail page in [`docs/`](docs/); the section numbers of the earlier single-page
 version are kept. The full summary paragraphs are in [docs/summary.md](docs/summary.md).
 
 ## Summary of all objects
@@ -42,6 +43,7 @@ version are kept. The full summary paragraphs are in [docs/summary.md](docs/summ
 | TOI-620 b | known planet, transit-duration change candidate (weaker) | $`-2.9 \pm 0.4`$ min/yr (about 80 to 62 min, 2019-2026) | slope depends on the aperture; five epochs | TTV report: Naponiello (2026) | [section 6.7](docs/6.7_TOI-620b.md) |
 | TOI-6482.01 (TIC 189300053) | known TOI, ephemeris update | $`P = 20.047937 \pm 0.000060`$ d (six TESS transits, 2019-2026; TOI table: 1483.5175 d), about 9.4 ppt, $`R_\mathrm{p} \approx 17\,R_\oplus`$ (TIC stellar radius) | planet candidate (TOI); nature not established | TOI (TESS project); TFOP period 20.04753 d in the ExoFOP notes; earlier version of this ephemeris: ExoFOP upload 2026-10-20 | [section 6.8](docs/6.8_TOI-6482.md) |
 | TOI-2638.01 (TIC 458342769) | known TOI, transit depth increasing | $`P = 3.92995`$ d; depth 1.8 ppt (2021) to 4.3 ppt (2026) in SPOC PDCSAP, $`+384 \pm 56`$ ppm/yr; grazing; A-type host, $`v \sin i = 110`$ km/s | change seen in every TESS product and on the target in pixel-level fits; the shape change that separates a geometric change from dilution is about 2.6-3.1 $`\sigma`$; cause and companion nature not established; TESS data only | TOI (TESS project); no earlier report of the change found | [section 6.9](docs/6.9_TOI-2638.md) |
+| TOI-1117 c (TIC 295541511) | known RV planet, transit-like signal | $`P = 4.5786510`$ d, about 490 ppm, $`T_{14} = 1.85`$ h, $`R_\mathrm{p} = 2.73^{+0.16}_{-0.15}\,R_\oplus`$ if on the target; times within 1.0 $`\sigma`$ of the RV-predicted conjunctions of c | not confirmed; a $`G = 19.6`$ star at 34" disfavoured only at $`\Delta\chi^2 = 7.5`$; impact parameter 0.85 with the stellar-density prior, boxier shape without it ($`\chi^2`$ lower by 3.5, not calibrated as a significance); TRICERATOPS FPP 0.0146-0.0149 with an approximate contrast curve, NFPP 0.013 (above the 0.001 threshold); TESS data and published RVs only | planet c: Lockley et al. (2025), RVs, described as non-transiting; no earlier transit report found (ExoFOP unreachable) | [section 6.10](docs/6.10_TOI-1117c.md) |
 
 Earlier public records. Two of the five signals were reported publicly by others before this record: TIC 402710280 by
 R. Vora (Zenodo, 2026-10-15) and TIC 89247735 by F. Molina (Zenodo, 2026-10-17); see sections
@@ -77,6 +79,10 @@ software versions are in section [8](docs/8_data_and_reproduction.md). The figur
 - The depth change of TOI-2638.01 rests on seven TESS sectors (one of them QLP only); the shape change that distinguishes
   a change of the transit geometry from a change of dilution is about 2.6-3.1 $`\sigma`$. Only TESS data are used; the
   ground-based follow-up listed on ExoFOP is not used.
+- The transit-like signal of TOI-1117 c (section 6.10) rests on TESS data and the published HARPS velocities. It is not
+  validated: the pixel data disfavour a $`G = 19.6`$ star at 34" only at $`\Delta\chi^2 = 7.5`$, the transit needs an impact
+  parameter of 0.85 with the stellar-density prior, the sector-13 transits are 13-22 min early, and ExoFOP could not be
+  checked for earlier reports.
 - QLP light curves carry a barycentric timing notice for sectors 99-104. QLP-derived mid-times enter the ephemerides of
   TOI-6482.01 (section 6.8) and TOI-2638.01 (sector 10 only; section 6.9). The TOI-2638 product comparisons also use QLP
   timestamps, including sector 99. See section [7](docs/7_caveats.md) for the timing qualifications.

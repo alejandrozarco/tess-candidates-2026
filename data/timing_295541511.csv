@@ -1,0 +1,42 @@
+# TOI-1117 (TIC 295541511): per-product mid-transit offsets of c and b from their linear ephemerides with an exposure-integrated trapezoid; scripts/toi1117/checks_toi1117.py, 2026-10-23
+# c: adopted ephemeris (ephemeris_295541511.csv, Tref = BTJD 3345.95453, P = 4.5786510 d), trapezoid T14 = 1.85 h, ingress 0.25 h; b: P = 2.2281823 d, T0 = BTJD 2917.27774, T14 = 2.015 h, ingress 0.06 h
+# each light curve: 0.25 d trimmed at gaps, the other planet masked, biweight 1.0 d with the planet's own transits masked; one offset for all transits of the light curve (0.72-min grid, chi2 + 1 half-width = err_min, white errors)
+# injection rows: 150 trapezoids of 550 ppm injected at random phases (0.2-0.8 P from c) into the same light curve with c removed; inj_mean_min, inj_sd_min = mean and standard deviation of the recovered offsets; z = o_c_min / inj_sd_min
+# epoch = median epoch number of the transits in the light curve (c: from Tref; b: from its T0); the trapezoid is averaged over each exposure (midpoint sampling)
+product,planet,epoch,o_c_min,err_min,inj_mean_min,inj_sd_min,z
+TSPOC_13_pdc,c,-366,-22.3,7.2,,,
+TSPOC_13_pdc,b,-560,+2.2,3.2,,,
+TSPOC_13_sap,c,-366,-24.5,7.9,,,
+TSPOC_13_sap,b,-560,+2.9,3.2,,,
+QLP_13_ksp,c,-366,-13.0,7.6,,,
+QLP_13_ksp,b,-560,+0.0,4.7,,,
+ELE_13_corr,c,-366,-11.5,19.1,,,
+ELE_13_corr,b,-561,-5.8,4.3,,,
+SPOC_39_pdc,c,-211,+0.0,2.9,,,
+SPOC_39_pdc,b,-244,+5.0,0.7,,,
+FAST_39_pdc,c,-211,-1.4,4.7,,,
+FAST_39_pdc,b,-244,-15.1,1.1,,,
+TSPOC_39_pdc,c,-211,-4.3,5.0,,,
+TSPOC_39_pdc,b,-244,+5.0,2.5,,,
+QLP_39_ksp,c,-213,-17.3,11.5,,,
+QLP_39_ksp,b,-245,-10.1,4.0,,,
+SPOC_100_pdc,c,163,-1.4,4.3,,,
+SPOC_100_pdc,b,524,-8.6,1.8,,,
+SPOC_101_pdc,c,168,+2.9,2.9,,,
+SPOC_101_pdc,b,538,+5.8,0.7,,,
+SPOC_102_pdc,c,173,+1.4,5.4,,,
+SPOC_102_pdc,b,548,+5.8,0.7,,,
+SPOC_103_pdc,c,180,-2.2,4.0,,,
+SPOC_103_pdc,b,559,-18.7,1.4,,,
+QLP_100_ksp,c,161,-3.6,5.8,,,
+QLP_100_ksp,b,524,-13.0,1.8,,,
+QLP_101_ksp,c,168,-0.7,2.9,,,
+QLP_101_ksp,b,536,-6.5,1.4,,,
+QLP_102_ksp,c,173,-2.2,5.4,,,
+QLP_102_ksp,b,547,+0.7,2.2,,,
+QLP_103_ksp,c,180,-15.1,6.5,,,
+QLP_103_ksp,b,559,-24.5,6.1,,,
+TSPOC_13_pdc,c (injection test),-366,-22.3,7.2,-0.3,8.1,-2.77
+QLP_13_ksp,c (injection test),-366,-13.0,7.6,-0.4,7.7,-1.67
+SPOC_39_pdc,c (injection test),-211,+0.0,2.9,-0.8,7.8,+0.00
+SPOC_101_pdc,c (injection test),168,+2.9,2.9,-1.4,6.6,+0.44

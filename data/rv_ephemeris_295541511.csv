@@ -1,0 +1,12 @@
+# TOI-1117 c (TIC 295541511): adopted transit ephemeris (Tref = BTJD 3345.95453, P = 4.5786510 d) against the RV-only orbit of c (rvfit_295541511.csv, mode free); scripts/toi1117/rv_toi1117.py, 2026-10-23
+# epoch counted from Tref; transit_btjd = linear transit ephemeris at that epoch (transit_err_min its 1-sigma); rv_conj_btjd, rv_conj_sd_d = median and standard deviation of the RV-predicted conjunction at the same epoch (P_c - T_c samples)
+# z = (transit - RV) / RV standard deviation; last row: periods (transit_err in seconds); the epochs listed are those of the per-sector transit times and the epoch where the RV prediction is most precise
+epoch_label,epoch,transit_btjd,transit_err_min,rv_conj_btjd,rv_conj_sd_d,z
+sector 13,-366,1670.1683,7.5,1670.131,1.072,+0.03
+sector 39,-211,2379.8592,5.3,2379.877,0.588,-0.03
+sector 100,163,4092.2746,2.6,4092.494,0.867,-0.25
+sector 101,168,4115.1679,2.6,4115.387,0.883,-0.25
+sector 102,173,4138.0612,2.6,4138.280,0.899,-0.24
+sector 103,180,4170.1117,2.6,4170.330,0.921,-0.24
+epoch of the smallest RV-predicted uncertainty,-62,3062.0782,3.5,3062.185,0.106,-1.01
+period,,4.5786510,0.90 s,4.57927,0.00390,-0.16

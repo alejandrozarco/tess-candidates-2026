@@ -1,0 +1,9 @@
+# TOI-1117 c (TIC 295541511): TRICERATOPS 1.1.0 runs; scripts/toi1117/triceratops_toi1117.py, 2026-10-23; input light curve triceratops_input_295541511.csv
+# P = 4.5786510 d, depth 501 ppm (PDCSAP model depth, dilution_corrected = True), SPOC optimal apertures of sectors 39, 100, 101, 102, 103; label nocc = no contrast curve, ccapprox = triceratops/cc_295541511_approx_Zorro832.txt (approximate, written from the text of Lockley et al. 2025; not the measured curve)
+# P_TP = probability of the transiting-planet scenario on the target; largest_off_target = the three largest scenario probabilities on other stars; runtime_s = wall-clock time of the run
+# nearest TRICERATOPS stars (TIC, Tmag, separation ", flux ratio, depth required on that star): 295541511 10.41 0.0 0.9563 0.0005; 1688975811 18.20 16.0 0.0007 0.7147; 1688975816 20.69 18.2 0.0001 0.0000; 1688973856 19.77 19.6 0.0002 0.0000; 1688975814 18.37 21.2 0.0005 0.9028; 1688975795 18.97 21.7 0.0003 0.0000; 1688975813 18.50 27.1 0.0004 0.0000; 1688975812 19.58 28.9 0.0001 0.0000
+label,seed,N,FPP,NFPP,P_TP,largest_off_target,runtime_s
+nocc,1,300000,0.0571,0.0106,0.7479,NTP on TIC 295541505: 0.0057; NEB on TIC 295541517: 0.0018; NEB on TIC 295541519: 0.0015,89
+nocc,2,300000,0.0576,0.0108,0.7538,NTP on TIC 295541505: 0.0057; NEB on TIC 295541517: 0.0019; NEB on TIC 295541519: 0.0015,82
+ccapprox,1,300000,0.0146,0.0132,0.9358,NTP on TIC 295541505: 0.0071; NEB on TIC 295541517: 0.0023; NEB on TIC 295541519: 0.0018,83
+ccapprox,2,300000,0.0149,0.0134,0.9343,NTP on TIC 295541505: 0.0071; NEB on TIC 295541517: 0.0023; NEB on TIC 295541519: 0.0018,82

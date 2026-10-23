@@ -1,0 +1,44 @@
+# TOI-1117 c (TIC 295541511): summary of the checks; scripts/toi1117/checks_toi1117.py, 2026-10-23
+# box measurements at P = 4.57866 d, T0 = BTJD 1670.1655, D = 1.625 h on TESS-SPOC sector 13 + SPOC 2-min sectors 39, 100-103 PDCSAP (c masked during detrending), as in depths_295541511.csv
+# value and err in the units of the variant (ppm for depths); see falsealarm_295541511.csv, epochs_295541511.csv and timing_295541511.csv for the details
+check,variant,value,err,note
+"RV-window search (P = 4.579 +- 0.0114 d), real data",BLS S/N; period; depth,12.42,,"P = 4.578662 d, duration 1.60 h, depth 455 ppm"
+"RV-window search, inverted flux (2 - f)",BLS S/N,5.37,,P = 4.583227 d
+"false alarms: pseudo windows, real data with c removed",1000 windows: max; 99th percentile; median,6.39,,"p99 6.07, median 4.93; 0 of 1000 reach the observed 12.42; 0 reach 8"
+"false alarms: pseudo windows, inverted flux with c removed",1000 windows: max; 99th percentile; median,6.09,,"p99 5.94, median 4.83; 0 of 1000 reach the observed 12.42; 0 reach 8"
+"false alarms: per-sector random time shifts (c kept), RV window",500 shuffles: max; 99th percentile; median,8.78,,"p99 8.24, median 6.54; 0 of 500 reach 12.42"
+"sectors 13 + 39 only, real data: RV-window search",BLS S/N,7.15,,P = 4.57878 d
+"sectors 13 + 39 only, real data: blind BLS 1-15 d (82005 periods)",highest S/N; top five peaks (P d: S/N),6.92,,4.5961: 6.92; 4.5786: 6.74; 4.6079: 6.71; 9.2404: 6.37; 2.2893: 6.07
+"sectors 13 + 39 only, inverted flux: RV-window search",BLS S/N,5.26,,P = 4.58738 d
+"sectors 13 + 39 only, inverted flux: blind BLS 1-15 d (82005 periods)",highest S/N; top five peaks (P d: S/N),6.21,,1.1695: 6.21; 14.5407: 6.12; 2.3413: 6.01; 1.8373: 5.77; 2.3357: 5.77
+stacked box depth,sectors 13 + 39,457,76,S/N 6.0
+stacked box depth,sectors 100-103,493,45,S/N 10.9
+"flux-weighted centroid in transit minus local baseline, stacked over transits (SPOC / TESS-SPOC MOM_CENTR)",column (mpx),0.08,0.06,28 transits
+"flux-weighted centroid in transit minus local baseline, stacked over transits (SPOC / TESS-SPOC MOM_CENTR)",row (mpx),0.09,0.07,28 transits
+momentum dumps (QUALITY bit 32),sector 13,3.38,,median spacing (d); 8 dumps
+momentum dumps (QUALITY bit 32),sector 39,6.55,,median spacing (d); 6 dumps
+momentum dumps (QUALITY bit 32),sector 100,6.73,,median spacing (d); 5 dumps
+momentum dumps (QUALITY bit 32),sector 101,6.49,,median spacing (d); 5 dumps
+momentum dumps (QUALITY bit 32),sector 102,6.26,,median spacing (d); 5 dumps
+momentum dumps (QUALITY bit 32),sector 103,6.32,,median spacing (d); 6 dumps
+momentum dumps,smallest time between a dump and a covered transit (h),6.8,,median 46.7 h; covered = more than half of the box with QUALITY = 0
+"odd and even transits (box, sectors 13-103)",odd,567,56,
+"odd and even transits (box, sectors 13-103)",even,402,54,
+"odd and even transits (box, sectors 13-103)",difference / error,2.13,,
+"odd and even transits (box), per group",sector 13,0.08,,"odd 473 +- 134, even 460 +- 112 ppm (sigma of the difference in value)"
+"odd and even transits (box), per group",sector 39,0.63,,"odd 499 +- 109, even 392 +- 132 ppm (sigma of the difference in value)"
+"odd and even transits (box), per group",sectors 100-101,1.95,,"odd 651 +- 91, even 415 +- 80 ppm (sigma of the difference in value)"
+"odd and even transits (box), per group",sectors 102-103,1.12,,"odd 540 +- 97, even 387 +- 95 ppm (sigma of the difference in value)"
+secondary eclipse (box D at phase 0.5),depth (ppm),-35,40,
+"secondary eclipse, phase scan 0.30-0.70",largest S/N; phase,2.14,,phase 0.485
+stacked box depth without the flagged transits,6 epochs dropped,471,44,S/N_emp 11.3
+data-validation report TCEs,hlsp_tess-spoc_tess_phot_0000000295541511-s0039-s0039_tess_v1_dvr.xml,1,,periods (d): 2.2259
+data-validation report TCEs,tess2021147062104-s0039-s0039-0000000295541511-00491_dvr.xml,1,,periods (d): 2.2265
+data-validation report TCEs,tess2026111123513-s0103-s0103-0000000295541511-01130_dvr.xml,1,,periods (d): 2.2266
+tess-point: sectors with the star on silicon,sector 13,"camera 2, CCD 1",,"column 1004.8, row 1858.4"
+tess-point: sectors with the star on silicon,sector 39,"camera 2, CCD 2",,"column 1583.4, row 1806.6"
+tess-point: sectors with the star on silicon,sector 100,"camera 4, CCD 4",,"column 179.2, row 577.2"
+tess-point: sectors with the star on silicon,sector 101,"camera 4, CCD 1",,"column 992.0, row 423.2"
+tess-point: sectors with the star on silicon,sector 102,"camera 3, CCD 1",,"column 1190.1, row 1364.5"
+tess-point: sectors with the star on silicon,sector 103,"camera 2, CCD 1",,"column 1937.9, row 1628.7"
+tess-point: sectors with the star on silicon,sector 114,"camera 4, CCD 4",,"column 732.0, row 1973.9"
