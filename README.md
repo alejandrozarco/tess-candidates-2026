@@ -46,7 +46,7 @@ version are kept. The full summary paragraphs are in [docs/summary.md](docs/summ
 | TOI-1117 c (TIC 295541511) | known RV planet, transit-like signal | $`P = 4.5786510`$ d, about 490 ppm, $`T_{14} = 1.85`$ h, $`R_\mathrm{p} = 2.73^{+0.16}_{-0.15}\,R_\oplus`$ if on the target; times within 1.0 $`\sigma`$ of the RV-predicted conjunctions of c | not confirmed; a $`G = 19.6`$ star at 34" disfavoured only at $`\Delta\chi^2 = 7.5`$; impact parameter 0.85 with the stellar-density prior, boxier shape without it ($`\chi^2`$ lower by 3.5, not calibrated as a significance); TRICERATOPS FPP 0.0146-0.0149 with an approximate contrast curve, NFPP 0.013 (above the 0.001 threshold); TESS data and published RVs only | planet c: Lockley et al. (2025), RVs, described as non-transiting; no earlier transit report found (ExoFOP unreachable) | [section 6.10](docs/6.10_TOI-1117c.md) |
 
 Earlier public records. Two of the five signals were reported publicly by others before this record: TIC 402710280 by
-R. Vora (Zenodo, 2026-10-15) and TIC 89247735 by F. Molina (Zenodo, 2026-10-17); see sections
+R. Vora (Zenodo, 2026-10-15) and TIC 89247735 by F. Molina (Zenodo, 2026-10-17, doi:10.5281/zenodo.23443245); see sections
 [1.8](docs/1_TIC402710280.md#18-catalogue-and-literature-checks) and [3.8](docs/3_TIC89247735.md#38-catalogue-and-literature-checks).
 TIC 402710280 is also listed in a public duotransit table (2025-10-23), and a single sector-13 transit of TIC 324429952
 was marked by a Planet Hunters TESS volunteer in 2019 (section [2.7](docs/2_TIC324429952.md#27-catalogue-and-literature-checks)).
