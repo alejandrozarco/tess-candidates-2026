@@ -106,6 +106,18 @@ parameters) favours a boxier transit ($`\chi^2`$ lower by 3.5, not calibrated as
 TRICERATOPS false-positive probabilities do not reach the validation thresholds (with an approximate contrast curve FPP
 0.0146-0.0149, just below 0.015, but NFPP 0.013, above 0.001). Only TESS data and the published velocities are used (section [6.10](6.10_TOI-1117c.md)).
 
+LHS 475 b (TIC 369327947, GJ 4102), an Earth-sized planet on a 2.03-d orbit whose transmission spectrum was measured
+with JWST, shows a candidate decrease of its transit duration in ten TESS sectors: from $`42.6 \pm 0.9`$ min in 2019-2021
+to $`35.4 \pm 0.9`$ min in 2025-2026, with the transit shape fixed to the published fit. At $`a/R_\star = 15.77`$ the impact
+parameter rises at $`+0.0156 \pm 0.0043`$ yr$`^{-1}`$ with per-sector errors calibrated by injection-recovery (local
+3.7 $`\sigma`$; 3.0-4.4 $`\sigma`$ for other calibrations; $`+0.0185 \pm 0.0045`$ yr$`^{-1}`$ with the fit errors). The planet
+was selected from a screen of 271 known planets, which leaves about 2-3 $`\sigma`$; the rate in $`b`$ depends on the adopted
+$`a/R_\star`$; the change appears in SPOC, QLP and own photometry, which share the same photons. An own refit of the two
+public JWST transits of 2022 gives $`T_{14} = 39.85 \pm 0.10`$ (stat) $`\pm 0.2`$ (sys) min, the value of the TESS trend at that
+epoch, 3.1 $`\sigma`$ from a constant at the 2019-2021 value, but consistent with a constant near the TESS mean, so it does not
+confirm the change. The linear trend gives $`T_{14} \approx 34`$ min in late 2026 against 39-43 min for the constant
+alternatives; TESS sector 114 (about 2027-02/03) and precise ground-based or JWST transits test it (section [6.11](6.11_LHS475b.md)).
+
 Nine eclipsing binaries without a previous eclipse report in the catalogues checked (section [6.3](6.3_eclipsing_binaries.md)): TIC 13957664, a
 single 2.0 % eclipse at the conjunction predicted by its Gaia DR3 astrometric+spectroscopic orbit ($`P = 245.66`$ d,
 $`i = 91.1 \pm 0.8`$ deg); TIC 304936165, an eccentric 61.7-d Gaia SB1 with one eclipse per orbit near periastron;

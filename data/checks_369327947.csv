@@ -1,0 +1,53 @@
+# LHS 475 b = TIC 369327947: tests of the per-sector impact-parameter trend, vetting record, 2026-10-28 and 2026-10-29 (no script in this repository; section 8)
+# fits as in sectors_369327947.csv unless stated (template k = 0.03124, a/R* = 15.77, limb darkening (0.1529, 0.4604); SPOC 2-min PDCSAP); slopes against year in 1/yr
+# group, test, setting, value, err, unit, note; "uncalibrated" = Jacobian errors scaled by sqrt(chi2_red); "empirical" = errors from injection-recovery (injection_369327947.csv)
+group,test,setting,value,err,unit,note
+selection,screen,271 known planets,271,,planets,"LHS 475 b was the most significant change of b among 271 known planets in a screen of TESS data (screen not in this repository); injected constant-b copies in that screen: 5 of 271 above 3 sigma (0.7 expected)"
+selection,trials adjustment,local 3.7 sigma (p = 2.2e-4) x 271,1.9,,sigma,"Bonferroni-type factor; assumes independent trials and Gaussian tails"
+selection,trials adjustment,local 4.4 sigma (p = 1.1e-5) x 271,3.0,,sigma,"most favourable calibration; same assumptions"
+screen,injected constant-b copy,same sectors, phase +0.3,0.6,,sigma,"screen-level copy: b = 0.680 / 0.691 / 0.707 in 2019.9 / 2023.2 / 2025.9"
+injection,bias slope,b_injected = 0.736,-0.0003,0.0010,1/yr,slope of the per-sector bias against year
+injection,bias slope,b_injected = 0.78,-0.0001,0.0006,1/yr,slope of the per-sector bias against year; largest |bias| per sector 0.009
+injection,bias slope,b_injected = 0.84,-0.0000,0.0008,1/yr,slope of the per-sector bias against year
+injection,null slope distribution,b_injected = 0.78 (48 realisations),-0.0001,0.0042,1/yr,"mean and standard deviation of the slope of a constant b; largest z 1.69; 1 of 48 with |z| >= 3"
+injection,null late-minus-early difference,b_injected = 0.78 (48 realisations),-0.0010,0.0243,,mean and standard deviation; the observed difference is 0.104
+injection,error ratio,b_injected = 0.78,1.32,,,"mean over sectors of (standard deviation of recovered b / mean reported error); 1.10-1.59 by sector"
+calibration,observed slope against the null slope,b_injected = 0.78,4.4,,sigma,+0.0185 / 0.0042
+calibration,slope with empirical errors,b_injected = 0.78,0.0156,0.0043,1/yr,3.7 sigma; chi2 = 7.1 for 8 dof
+calibration,slope with empirical errors,b_injected = 0.736,0.0173,0.0044,1/yr,3.9 sigma
+calibration,slope with empirical errors,b_injected = 0.84,0.0148,0.0041,1/yr,3.6 sigma (3.4 sigma with per-sector debiasing)
+calibration,late-minus-early against the null,b_injected = 0.78,4.3,,sigma,0.104 / 0.024
+profile,likelihood ratio linear vs constant b,a/R* = 15.77,15.6,,dchi2,"chi2(b) profiles per sector on a grid of b, shift and baselines re-optimised; 4.0 sigma uncalibrated, 3.0 sigma with errors inflated by 1.32; slope +0.0185 [0.0155, 0.0220]"
+profile,likelihood ratio linear vs constant b,a/R* = 14.4,12.7,,dchi2,"3.6 sigma uncalibrated, 2.7 sigma inflated by 1.32; slope +0.0145 [0.0120, 0.0170]; summed chi2 minima differ by 1.9 from a/R* = 15.77"
+profile,secondary minimum,sector 102,0.76,,b,"dchi2 = 6.7 above the minimum at b = 0.885 (shift -7.1 min); shallow secondary minima also in sectors 27 and 101"
+template,b slope,k = 0.03171 a/R* = 15.32 (archive values of Ment et al. 2024),0.0170,0.0040,1/yr,early to late b 0.756 to 0.851
+template,b slope,a/R* = 17.5,0.0262,0.0042,1/yr,early to late b 0.665 to 0.810
+template,b slope,a/R* = 14.0,0.0080,0.0034,1/yr,local fitter; sector 102 falls into its secondary minimum (b 0.808)
+template,b slope,k = 0.0300,0.0171,0.0048,1/yr,early to late b 0.730 to 0.824
+template,b slope,limb darkening (0.30 0.30),0.0186,0.0045,1/yr,
+template,b slope,limb darkening (0.05 0.60),0.0184,0.0044,1/yr,
+free parameters,b slope,a/R* free per sector,0.035,0.020,1/yr,"b and a/R* correlated (-0.96 to -0.99) within a sector; a/R* slope -0.87 +- 0.59 /yr"
+free parameters,b slope,k free per sector,0.0198,0.0052,1/yr,k slope -0.00024 +- 0.00025 /yr
+free parameters,b slope,per transit (b and baseline free),0.0126,0.0035,1/yr,106 transits; chi2 = 136 for 104 dof
+shape,constant transit (M0),45 early / 61 late transits,30631.9,,chi2,b 0.819; a/R* 14.39
+shape,chord change (M1: b early and late; a/R* shared),45 early / 61 late transits,18.7,,dchi2,b 0.743 +- 0.055 to 0.830 +- 0.033; a/R* 15.68
+shape,speed change (M2: a/R* early and late; b shared),45 early / 61 late transits,15.1,,dchi2,a/R* 14.27 to 17.12
+fold,shoulder/core depth ratio,2019-2021 (45 transits),0.55,0.08,,"core |dt| < 10 min: 1025 +- 57 ppm; shoulders 16-21 min: 565 +- 81 ppm; linear baseline from |dt| > 35 min"
+fold,shoulder/core depth ratio,2023 (20 transits),0.24,0.14,,core 878 +- 85 ppm; shoulders 209 +- 121 ppm
+fold,shoulder/core depth ratio,2025-2026 (41 transits),0.20,0.09,,core 902 +- 57 ppm; shoulders 184 +- 81 ppm
+fold,early minus late ratio,PDCSAP,0.35,0.12,,2.9 sigma; SAP: 0.55 to 0.24
+instrument,b slope,camera 3 CCD 1 (sectors 12 39 66 93),0.0162,0.0060,1/yr,
+instrument,b slope,camera 3 CCD 2 (sectors 13 27 67 94),0.0202,0.0054,1/yr,
+instrument,CROWDSAP,10 sectors,0.969-0.989,,,no trend; median background 0.10-0.17
+noise,beta factor 10-40 min,out-of-transit windows,0.94-0.99,,,per sector; out-of-transit rms / pipeline error 0.97-1.04
+noise,flare events,10 sectors,0,,events,">= 2 consecutive points > 4 sigma above a 0.5-d running median; the upward clip removes 0 points within +-25 min of a transit"
+noise,clip and window,no clip; half-width 0.12 or 0.30 d,0.008,,b,largest change of a per-sector b
+timing,sector mid-time shifts,b free,-1.4 to +3.3,1.0,min,relative to the ExoFOP ephemeris; no TTV at the minute level
+timing,sector-mean O-C chi2,b fixed 0.78,27.8,,chi2,"9 dof; injected zero-TTV transits give 14.6-34.4"
+timing,O-C periodogram,best period,5.94,,d,false-alarm probability 0.09 (injected: 0.16-0.87)
+contamination,Gaia DR3 sources within 42 arcsec,G = 18.10 at 9.8 arcsec,0.002,,flux fraction,"also G = 18.04 at 36 arcsec and G = 15.08 at 39.2 arcsec (about 2 % in RP); proper motion 1.28 arcsec/yr"
+star,M_K,Gaia DR3 parallax 80.113 +- 0.021 mas; 2MASS Ks 7.686 +- 0.042,7.204,0.042,mag,
+star,mass,Mann et al. (2019),0.2625,0.0074,Msun,
+star,radius,Mann et al. (2015),0.2875,0.0094,Rsun,
+star,density,,15.6,1.4,g/cm3,
+star,a/R*,P = 2.0291 d,15.02,0.46,,"template value 15.77 +- 0.77 (Ment et al. 2024)"

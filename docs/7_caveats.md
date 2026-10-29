@@ -141,6 +141,18 @@
   2026-10-23 00:48 UTC), so ExoFOP notes, files and live TOI/community-TOI lists are unchecked; the arXiv API check returned
   no records even for an alias present in a known abstract. The transit and RV fits use the stellar parameters of Lockley
   et al. (2025); TRICERATOPS uses TIC stellar parameters.
+- LHS 475 b (section [6.11](6.11_LHS475b.md)): the duration change rests on ten TESS sectors of one instrument; the SAP, QLP and own
+  full-frame-image photometry share the same photons, so their agreement tests the extraction, not the statistics. The
+  per-transit S/N is about 4, the per-sector likelihood in $`b`$ is non-Gaussian, and the fit errors are about 1.32 times too
+  small (injection-recovery); the adopted 3.7 $`\sigma`$ uses the calibrated errors and is local: the planet was selected from
+  a screen of 271 planets, which leaves about 2-3 $`\sigma`$ for independent trials with Gaussian tails, and the screen
+  statistic has heavier tails. Sectors 101 ($`b = 0.763`$, camera 4) and 102 ($`b = 0.884`$) differ by 2.3-3.6 $`\sigma`$, and
+  sector 102 has a secondary solution at $`b = 0.76`$. The rate in $`b`$ scales with the fixed $`a/R_\star`$ (+0.008 to +0.026
+  yr$`^{-1}`$ for 14.0-17.5), which the TESS data do not determine; the duration change is the more robust quantity. The
+  JWST epoch (2022.67) lies mid-baseline and is consistent with a constant near the TESS mean; JWST and TESS differ in band
+  and limb darkening. The companion masses of section [6.11.7](6.11_LHS475b.md#6117-interpretation-order-of-magnitude) are orders of magnitude; no companion is detected.
+  The recorded forecast understates the error of the trend at 2022.67 (0.005 instead of 0.012). There is no independent
+  confirmation.
 - Eclipsing binaries of section [6.3](6.3_eclipsing_binaries.md): no spectroscopy; the periods come from TESS full-frame images, with QLP eclipse
   times in sectors 99-104 (timing notice above); TIC 13957664 and TIC 342194997 rest on one eclipse each and their
   periods on the Gaia orbits, TIC 304936165 on two eclipses, and the period of CPD-62 2890 is not determined; the

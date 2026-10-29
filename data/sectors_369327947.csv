@@ -1,0 +1,66 @@
+# LHS 475 b = TIC 369327947 (GJ 4102, TOI-910.01): per-sector impact parameter b and transit duration T14 (P = 2.029107654 d), vetting record of 2026-10-28 (no script in this repository; section 8)
+# fit per sector and light-curve product: batman, circular orbit, k = 0.03124, a/R* = 15.77, quadratic limb darkening (0.1529, 0.4604) fixed (Ment et al. 2024, arXiv version); b free; one mid-time shift per sector on the
+# linear ephemeris P = 2.029107654 d, T0 = BTJD 3854.162728 (ExoFOP TOI-910.01); quadratic baseline per +-0.2 d window; upward 4-sigma clip per window; errors from the Jacobian scaled by sqrt(chi2_red)
+# T14 = first to fourth contact of the fitted b at the fixed template; T14_err_min = half the T14 range of b +- b_err; year = mean epoch of the fitted transits
+# b_err_empirical = max(b_err, standard deviation of b recovered from 48 injections of a constant b = 0.78 into the same sector, injection_369327947.csv); err_ratio_empirical = that standard deviation / mean reported error (PDCSAP only)
+# camera, ccd: tess-point 0.9.5; pipeline: SPOC version from the light-curve headers; own TESScut photometry: circular aperture of radius r on 21 x 21 px cutouts; QLP: KSPSAP or DET_FLUX
+# all products share the same TESS photons; tc_shift = mid-time shift of the sector relative to the linear ephemeris
+variant,sector,year,camera,ccd,cadence_s,pipeline,n_transits,b,b_err,b_err_empirical,err_ratio_empirical,T14_min,T14_err_min,T14_err_empirical_min,tc_shift_min,tc_shift_err_min,chi2_red
+SPOC 2-min PDCSAP,12,2019.4289,3,1,120,spoc-5.0.22,10,0.7168,0.0315,0.0371,1.31,43.79,1.80,2.12,2.48,0.96,1.034
+SPOC 2-min PDCSAP,13,2019.5067,3,2,120,spoc-5.0.22,12,0.7431,0.0284,0.0320,1.23,42.23,1.75,1.96,3.32,0.94,1.072
+SPOC 2-min PDCSAP,27,2020.5428,3,2,120,spoc-5.0.9,10,0.7117,0.0322,0.0417,1.59,44.08,1.82,2.35,1.41,0.97,0.995
+SPOC 2-min PDCSAP,39,2021.4402,3,1,120,spoc-5.0.35,13,0.7578,0.0247,0.0302,1.27,41.31,1.58,1.93,0.06,0.85,1.018
+SPOC 2-min PDCSAP,66,2023.4513,3,1,120,spoc-5.0.96,11,0.7857,0.0255,0.0346,1.26,39.45,1.77,2.41,-0.68,0.97,0.954
+SPOC 2-min PDCSAP,67,2023.5260,3,2,120,spoc-5.0.96,9,0.8069,0.0252,0.0359,1.34,37.93,1.87,2.67,-0.33,1.03,0.998
+SPOC 2-min PDCSAP,93,2025.4549,3,1,120,spoc-5.0.122,10,0.8179,0.0232,0.0290,1.10,37.10,1.79,2.24,0.24,0.98,0.983
+SPOC 2-min PDCSAP,94,2025.5310,3,2,120,spoc-5.0.122,10,0.8465,0.0218,0.0350,1.28,34.80,1.85,2.99,-0.90,1.04,1.010
+SPOC 2-min PDCSAP,101,2026.1932,4,2,120,spoc-5.0.126,10,0.7631,0.0272,0.0354,1.37,40.97,1.77,2.31,2.04,0.96,1.112
+SPOC 2-min PDCSAP,102,2026.2674,3,3,120,spoc-5.0.126,11,0.8842,0.0186,0.0390,1.49,31.36,1.83,3.87,-1.40,1.06,1.060
+SPOC 2-min SAP,12,2019.4289,3,1,120,spoc-5.0.22,10,0.7195,0.0328,,,43.63,1.89,,2.60,1.01,1.190
+SPOC 2-min SAP,13,2019.5067,3,2,120,spoc-5.0.22,12,0.7417,0.0292,,,42.32,1.78,,3.55,0.96,1.188
+SPOC 2-min SAP,27,2020.5428,3,2,120,spoc-5.0.9,10,0.7162,0.0311,,,43.82,1.77,,1.15,0.94,1.032
+SPOC 2-min SAP,39,2021.4402,3,1,120,spoc-5.0.35,13,0.7552,0.0253,,,41.47,1.61,,-0.28,0.86,1.088
+SPOC 2-min SAP,66,2023.4513,3,1,120,spoc-5.0.96,11,0.7944,0.0243,,,38.84,1.74,,-0.68,0.95,1.021
+SPOC 2-min SAP,67,2023.5260,3,2,120,spoc-5.0.96,9,0.8065,0.0257,,,37.97,1.91,,-0.45,1.05,1.093
+SPOC 2-min SAP,93,2025.4549,3,1,120,spoc-5.0.122,10,0.8256,0.0227,,,36.51,1.79,,0.61,0.99,1.033
+SPOC 2-min SAP,94,2025.5310,3,2,120,spoc-5.0.122,10,0.8486,0.0224,,,34.62,1.92,,-0.96,1.08,1.151
+SPOC 2-min SAP,101,2026.1932,4,2,120,spoc-5.0.126,10,0.7675,0.0269,,,40.68,1.77,,1.98,0.96,1.135
+SPOC 2-min SAP,102,2026.2674,3,3,120,spoc-5.0.126,11,0.8817,0.0197,,,31.60,1.92,,-1.87,1.11,1.228
+QLP,12,2019.4325,3,1,1800,QLP,7,0.7176,0.0930,,,43.74,5.40,,4.61,2.97,0.901
+QLP,13,2019.5073,3,2,1800,QLP,10,0.6215,0.1172,,,48.59,5.30,,3.83,2.76,0.942
+QLP,27,2020.5458,3,2,600,QLP,11,0.7319,0.0450,,,42.91,2.68,,0.78,1.44,1.073
+QLP,39,2021.4377,3,1,600,QLP,12,0.7883,0.0344,,,39.27,2.42,,-1.51,1.33,0.986
+QLP,67,2023.5296,3,2,200,QLP,11,0.7903,0.0284,,,39.13,2.01,,-1.48,1.09,1.116
+QLP,93,2025.4549,3,1,200,QLP,10,0.8819,0.0203,,,31.58,1.99,,1.31,1.16,0.894
+QLP,101,2026.1932,4,2,200,QLP,10,0.8180,0.0245,,,37.09,1.89,,-1.57,1.05,0.953
+QLP,102,2026.2635,3,3,200,QLP,8,0.9071,0.0292,,,28.98,3.21,,-1.05,1.93,0.736
+own TESScut photometry r = 2.0 px,12,2019.4284,3,1,1800,TESScut (SPOC-calibrated FFI),10,0.7134,0.0947,,,43.98,5.43,,2.81,2.97,0.986
+own TESScut photometry r = 2.0 px,13,2019.5027,3,2,1800,TESScut (SPOC-calibrated FFI),13,0.6730,0.0806,,,46.14,4.13,,3.47,2.24,0.925
+own TESScut photometry r = 2.0 px,27,2020.5458,3,2,600,TESScut (SPOC-calibrated FFI),11,0.6945,0.0510,,,45.02,2.75,,2.73,1.46,1.155
+own TESScut photometry r = 2.0 px,39,2021.4402,3,1,600,TESScut (SPOC-calibrated FFI),13,0.7567,0.0407,,,41.38,2.60,,-1.28,1.41,1.099
+own TESScut photometry r = 2.0 px,66,2023.4538,3,1,200,TESScut (SPOC-calibrated FFI),13,0.7891,0.0256,,,39.21,1.80,,-0.57,0.98,1.009
+own TESScut photometry r = 2.0 px,67,2023.5329,3,2,200,TESScut (SPOC-calibrated FFI),13,0.8577,0.0243,,,33.82,2.15,,-3.46,1.22,1.322
+own TESScut photometry r = 2.0 px,93,2025.4548,3,1,200,TESScut (SPOC-calibrated FFI),11,0.8409,0.0233,,,35.27,1.94,,1.55,1.09,0.975
+own TESScut photometry r = 2.0 px,94,2025.5305,3,2,200,TESScut (SPOC-calibrated FFI),11,0.8420,0.0244,,,35.17,2.04,,-1.73,1.15,1.091
+own TESScut photometry r = 2.0 px,101,2026.1932,4,2,200,TESScut (SPOC-calibrated FFI),10,0.8274,0.0265,,,36.36,2.11,,0.18,1.17,0.920
+own TESScut photometry r = 2.0 px,102,2026.2676,3,3,200,TESScut (SPOC-calibrated FFI),12,0.8777,0.0208,,,31.99,2.00,,-2.35,1.16,1.103
+own TESScut photometry r = 2.5 px,12,2019.4284,3,1,1800,TESScut (SPOC-calibrated FFI),10,0.6594,0.1138,,,46.82,5.68,,5.23,2.98,1.095
+own TESScut photometry r = 2.5 px,13,2019.5027,3,2,1800,TESScut (SPOC-calibrated FFI),13,0.6355,0.0996,,,47.96,4.65,,2.91,2.49,0.889
+own TESScut photometry r = 2.5 px,27,2020.5458,3,2,600,TESScut (SPOC-calibrated FFI),11,0.6952,0.0533,,,44.98,2.88,,2.63,1.53,1.053
+own TESScut photometry r = 2.5 px,39,2021.4402,3,1,600,TESScut (SPOC-calibrated FFI),13,0.7598,0.0415,,,41.18,2.68,,-1.66,1.46,1.123
+own TESScut photometry r = 2.5 px,66,2023.4538,3,1,200,TESScut (SPOC-calibrated FFI),13,0.7901,0.0259,,,39.14,1.82,,-0.74,1.00,1.015
+own TESScut photometry r = 2.5 px,67,2023.5329,3,2,200,TESScut (SPOC-calibrated FFI),13,0.8605,0.0226,,,33.58,2.02,,-3.08,1.15,1.124
+own TESScut photometry r = 2.5 px,93,2025.4548,3,1,200,TESScut (SPOC-calibrated FFI),11,0.8042,0.0273,,,38.13,2.01,,0.04,1.10,0.978
+own TESScut photometry r = 2.5 px,94,2025.5305,3,2,200,TESScut (SPOC-calibrated FFI),11,0.8263,0.0252,,,36.45,2.00,,-1.77,1.11,1.032
+own TESScut photometry r = 2.5 px,101,2026.1932,4,2,200,TESScut (SPOC-calibrated FFI),10,0.8486,0.0261,,,34.62,2.24,,-0.46,1.26,0.921
+own TESScut photometry r = 2.5 px,102,2026.2676,3,3,200,TESScut (SPOC-calibrated FFI),12,0.8764,0.0211,,,32.11,2.01,,-2.34,1.16,1.058
+own TESScut photometry r = 3.0 px,12,2019.4284,3,1,1800,TESScut (SPOC-calibrated FFI),10,0.6618,0.1259,,,46.70,6.35,,6.03,3.36,1.139
+own TESScut photometry r = 3.0 px,13,2019.5027,3,2,1800,TESScut (SPOC-calibrated FFI),13,0.6297,0.1135,,,48.22,5.24,,2.90,2.78,0.909
+own TESScut photometry r = 3.0 px,27,2020.5458,3,2,600,TESScut (SPOC-calibrated FFI),11,0.6954,0.0594,,,44.97,3.22,,2.18,1.71,1.075
+own TESScut photometry r = 3.0 px,39,2021.4402,3,1,600,TESScut (SPOC-calibrated FFI),13,0.7759,0.0433,,,40.12,2.93,,-1.92,1.60,1.192
+own TESScut photometry r = 3.0 px,66,2023.4538,3,1,200,TESScut (SPOC-calibrated FFI),13,0.7967,0.0272,,,38.68,1.96,,-1.13,1.07,1.014
+own TESScut photometry r = 3.0 px,67,2023.5329,3,2,200,TESScut (SPOC-calibrated FFI),13,0.8645,0.0236,,,33.22,2.15,,-2.68,1.23,1.085
+own TESScut photometry r = 3.0 px,93,2025.4548,3,1,200,TESScut (SPOC-calibrated FFI),11,0.8353,0.0269,,,35.72,2.20,,2.30,1.23,0.987
+own TESScut photometry r = 3.0 px,94,2025.5305,3,2,200,TESScut (SPOC-calibrated FFI),11,0.8160,0.0277,,,37.25,2.12,,-1.76,1.17,1.045
+own TESScut photometry r = 3.0 px,101,2026.1932,4,2,200,TESScut (SPOC-calibrated FFI),10,0.8505,0.0271,,,34.45,2.34,,-0.46,1.32,0.921
+own TESScut photometry r = 3.0 px,102,2026.2676,3,3,200,TESScut (SPOC-calibrated FFI),12,0.8831,0.0217,,,31.46,2.14,,-2.12,1.24,1.021

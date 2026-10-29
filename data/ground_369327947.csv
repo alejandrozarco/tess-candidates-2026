@@ -1,0 +1,11 @@
+# LHS 475 b = TIC 369327947: fits of public ground-based transit light curves (ExoFOP TFOP files; MEarth DR11 survey data), vetting record, 2026-10-29 (no script in this repository; section 8)
+# batman, a/R* = 15.77, quadratic limb darkening (0.153, 0.460) for RG715 and zs, (0.45, 0.30) for gp; linear baseline plus airmass per telescope-night; emcee; k free unless stated
+# values: median and 16th/84th-percentile distances
+data,year,b,b_minus,b_plus,T14_min,T14_minus,T14_plus,k,note
+LCO-SAAO-1m 2019-08-17 zs,2019.63,0.57,0.30,0.16,50.7,7.7,7.7,,rms 1.3 ppt per 1.2 min
+LCO-CTIO-1m 2021-08-07 zs,2021.60,0.62,0.38,0.12,48.8,6.2,10.4,,rms 1.1 ppt; sky and x detrending; mid-time prior 5 min
+TFOP 2019 joint: MEarth-South (5 nights) and LCO 1-m zs (gp excluded),2019.65,0.653,0.032,0.026,47.8,1.4,1.4,0.0395,dominated by the night of 2019-08-28
+TFOP 2019 joint without MEarth-South 2019-08-28,2019.65,0.774,0.057,0.030,40.3,2.0,3.5,0.0318,k = 0.0318 +- 0.0020
+TFOP 2019 joint without MEarth-South 2019-08-28 (k fixed 0.03124),2019.65,0.767,0.054,0.032,40.7,2.2,3.3,0.03124,
+MEarth-South 2019-08-28 alone,2019.66,0.13,,,61.8,1,1,0.056,"depth 3.1 ppt, about 3 times the TESS and JWST depth; 7 telescopes"
+MEarth DR11 survey 2016-10 to 2018-08 (33 nights),2017.5,0.47,0.31,0.33,,,,,transit detected at dchi2 5-6 only; with k fixed the T14 posterior equals its prior

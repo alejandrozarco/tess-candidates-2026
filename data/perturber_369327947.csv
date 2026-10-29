@@ -1,0 +1,12 @@
+# LHS 475 b = TIC 369327947: order-of-magnitude mass of an outer companion that would drive the observed rate by nodal precession, vetting record, 2026-10-28 (no script in this repository; section 8)
+# rate: db/dt = +0.0185 /yr at a/R* = 15.77, i.e. di/dt = -0.067 deg/yr; Laplace-Lagrange nodal rate with the Laplace coefficient b_{3/2}^{(1)} (not the small-ratio expansion); M* = 0.27 Msun; circular orbits
+# m_c_sin_imut: companion mass times sin(mutual inclination) in Earth masses; K_*: radial-velocity semi-amplitude of the star for mutual inclination 90 or 5 deg (blank: not computed)
+P_c_d,m_c_sin_imut_Mearth,K_imut90_m_s,K_imut5_m_s
+3,0.05,,
+4,0.18,,
+5.7,0.6,0.5,5.7
+8,1.4,,
+11.5,3.3,,
+16,6.9,4.2,48
+32,30,14,
+64,123,47,

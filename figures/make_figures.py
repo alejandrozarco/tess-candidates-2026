@@ -19,6 +19,8 @@ Figures: fold_<tic>  (TTV-corrected fold of the detrended epochs with 20-min bin
        trapezoid duration, with model M2 and the extrapolation to 2027.0).
 'toi1117': fold_295541511 (the 4.5787-d signal of TOI-1117 c folded on the selected model sample of the adopted fit: SPOC 2-min sectors 39, 100-103 and
        TESS-SPOC sector 13, with the adopted and the free-density transit models).
+'lhs475': tdur_369327947 (transit duration and impact parameter of LHS 475 b per TESS sector, the JWST GO 1981 fit, the linear trend
+       with its recorded forecast, and the constant-duration alternatives).
 """
 import csv, os, sys
 import matplotlib
@@ -455,10 +457,40 @@ def fig_toi1117(t, name):
     fig.tight_layout(); save(fig, t, name)
 
 
+def fig_lhs475(t, name):
+    S = read("sectors_369327947.csv"); J = read("jwst_369327947.csv"); F = read("forecast_369327947.csv"); TR = read("trend_369327947.csv")
+    fig, (ax, bx) = plt.subplots(1, 2, figsize=(13, 4.8)); fig.patch.set_facecolor(t["surface"])
+    c = F["kind"] == "curve"; f = F["kind"] == "forecast"; yy = F["year"][c]
+    m = S["variant"] == "SPOC 2-min PDCSAP"; j = list(J["config"]).index("aRfix")
+    i = list(TR["variant"]).index("SPOC 2-min PDCSAP, empirical errors")
+    ax.axvspan(2027.126, 2027.203, color=t["grid"], lw=0, label="TESS sector 114 (dates extrapolated)")
+    ax.plot(yy, F["trend_T14_min"][c], "-", color=t["ink"], lw=1.0, label="linear trend in b (uncalibrated fit), as T14")
+    ax.fill_between(F["year"][f], F["trend_T14_lo_min"][f], F["trend_T14_hi_min"][f], color=t["mark"], alpha=0.18, lw=0, label="recorded forecast, 2026.9-2030 (1 sigma)")
+    ax.plot(yy, F["const_early_T14_min"][c], "--", color=t["mark2"], lw=1.0, label="constant at the 2019-2021 value (42.7 min)")
+    ax.plot(yy, F["const_mean_T14_min"][c], ":", color=t["muted"], lw=1.2, label="constant at about the TESS mean (39.2 min)")
+    ax.errorbar(S["year"][m], S["T14_min"][m], S["T14_err_empirical_min"][m], fmt="o", color=t["mark"], ms=5, capsize=2,
+                label="TESS SPOC 2-min PDCSAP per sector (empirical errors)")
+    ax.errorbar(J["year"][j], J["T14_min"][j], np.hypot(0.5 * (J["T14_minus"][j] + J["T14_plus"][j]), 0.2), fmt="D", color=t["mark3"], ms=6, capsize=2,
+                label="JWST NIRSpec G395H, 2 transits (own fit, +0.2 min sys.)")
+    ax.set_xlim(2019.0, 2030.1); ax.set_ylim(14, 50); ax.set_xlabel("year"); ax.set_ylabel("transit duration T14 (min)"); style(ax, t)
+    title(ax, t, f"LHS 475 b: transit duration (first to fourth contact) per TESS sector and JWST\n(b slope {TR['value'][i]:+.4f} $\\pm$ {TR['err'][i]:.4f} /yr with empirical errors, local; selected from 271 planets)")
+    ax.legend(loc="lower left", fontsize=7.2, frameon=False, labelcolor=t["ink2"])
+    for v, fmt, col, off, lab in (("SPOC 2-min PDCSAP", "o", t["mark"], 0.0, "SPOC 2-min PDCSAP"), ("SPOC 2-min SAP", "s", t["ink2"], 0.06, "SPOC 2-min SAP"),
+                                  ("QLP", "^", t["mark2"], 0.12, "QLP"), ("own TESScut photometry r = 2.0 px", "P", t["mark3"], -0.06, "own TESScut photometry, r = 2.0 px")):
+        k = S["variant"] == v
+        bx.errorbar(S["year"][k] + off, S["b"][k], S["b_err"][k], fmt=fmt, color=col, ms=4.5, capsize=1.5, alpha=0.9, label=lab + " (fit errors)")
+    bx.errorbar(J["year"][j], J["b"][j], 0.5 * (J["b_minus"][j] + J["b_plus"][j]), fmt="D", color=t["mark3"], mfc="none", ms=6, capsize=2, label="JWST, a/R* fixed at 15.77")
+    bx.plot(yy, F["trend_b"][c], "-", color=t["ink"], lw=1.0, label="linear trend (uncalibrated fit)")
+    bx.set_xlim(2019.0, 2026.8); bx.set_xlabel("year"); bx.set_ylabel("impact parameter b"); style(bx, t)
+    title(bx, t, "LHS 475 b: impact parameter per sector and light-curve product\n(all products share the TESS photons; b depends on the fixed a/R* = 15.77)")
+    bx.legend(loc="upper left", fontsize=7.2, frameon=False, labelcolor=t["ink2"])
+    fig.tight_layout(); save(fig, t, name)
+
+
 if __name__ == "__main__":
     for th, t in THEMES.items():
         plt.rcParams.update({"text.color": t["ink"], "axes.edgecolor": t["axis"], "axes.titlecolor": t["ink"]})
-        sel = sys.argv[1:] or [str(x) for x in TICS] + ["other", "c311179599", "eb124751008", "tdv", "toi6482", "jwstchrom", "toi2638", "toi1117"]
+        sel = sys.argv[1:] or [str(x) for x in TICS] + ["other", "c311179599", "eb124751008", "tdv", "toi6482", "jwstchrom", "toi2638", "toi1117", "lhs475"]
         if "other" in sel:
             fig_eb_history(t, f"eb_history_11613676_{th}.svg"); fig_eb_profiles(t, f"eb_profiles_11613676_{th}.svg")
             fig_toi540_sectors(t, f"toi540_sectors_{th}.svg"); fig_toi540_depths(t, f"toi540_depths_{th}.svg")
@@ -476,7 +508,9 @@ if __name__ == "__main__":
             fig_toi2638(t, f"depth_t14_458342769_{th}.svg")
         if "toi1117" in sel:
             fig_toi1117(t, f"fold_295541511_{th}.svg")
-        for tic in [int(x) for x in sel if x not in ("other", "c311179599", "eb124751008", "tdv", "toi6482", "jwstchrom", "toi2638", "toi1117")]:
+        if "lhs475" in sel:
+            fig_lhs475(t, f"tdur_369327947_{th}.svg")
+        for tic in [int(x) for x in sel if x not in ("other", "c311179599", "eb124751008", "tdv", "toi6482", "jwstchrom", "toi2638", "toi1117", "lhs475")]:
             fig_fold(t, f"fold_{tic}_{th}.svg", tic)
             fig_epochs(t, f"epochs_{tic}_{th}.svg", tic)
             fig_oc(t, f"oc_{tic}_{th}.svg", tic)

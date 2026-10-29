@@ -1,0 +1,43 @@
+# LHS 475 b = TIC 369327947: trends of the per-sector impact parameter b and duration T14, epoch groups, and comparison with the JWST epoch; scripts/lhs475/trend_lhs475.py from sectors_369327947.csv and jwst_369327947.csv
+# slopes: weighted linear fits against year (reference 2022.0), errors scaled by sqrt(chi2/dof) when it exceeds 1; z = value / err; empirical errors = b_err_empirical of sectors_369327947.csv; T14 at the template k = 0.03124, a/R* = 15.77
+# all values depend on the fixed a/R* (section 6.11.4); the significances are local (the planet was selected from a screen of 271 planets)
+quantity,variant,value,err,z,unit,note
+b slope,SPOC 2-min PDCSAP,0.0185,0.0045,4.15,1/yr,10 sectors; chi2 = 15.6 for 8 dof; error scaled by 1.40; b(2022.0) = 0.768
+b slope,"SPOC 2-min PDCSAP, empirical errors",0.0156,0.0043,3.67,1/yr,10 sectors; chi2 = 7.1 for 8 dof; error scaled by 1.00; b(2022.0) = 0.766
+"b slope, leaving out one sector","SPOC 2-min PDCSAP, without sector 12",0.0183,0.0053,3.42,1/yr,empirical errors: +0.0150 +- 0.0048 (3.1 sigma)
+"b slope, leaving out one sector","SPOC 2-min PDCSAP, without sector 13",0.0201,0.0053,3.77,1/yr,empirical errors: +0.0173 +- 0.0050 (3.5 sigma)
+"b slope, leaving out one sector","SPOC 2-min PDCSAP, without sector 27",0.0174,0.0049,3.56,1/yr,empirical errors: +0.0146 +- 0.0044 (3.3 sigma)
+"b slope, leaving out one sector","SPOC 2-min PDCSAP, without sector 39",0.0185,0.0050,3.69,1/yr,empirical errors: +0.0157 +- 0.0045 (3.5 sigma)
+"b slope, leaving out one sector","SPOC 2-min PDCSAP, without sector 66",0.0184,0.0047,3.88,1/yr,empirical errors: +0.0157 +- 0.0043 (3.6 sigma)
+"b slope, leaving out one sector","SPOC 2-min PDCSAP, without sector 67",0.0185,0.0047,3.91,1/yr,empirical errors: +0.0155 +- 0.0043 (3.6 sigma)
+"b slope, leaving out one sector","SPOC 2-min PDCSAP, without sector 93",0.0190,0.0049,3.92,1/yr,empirical errors: +0.0158 +- 0.0046 (3.4 sigma)
+"b slope, leaving out one sector","SPOC 2-min PDCSAP, without sector 94",0.0178,0.0049,3.66,1/yr,empirical errors: +0.0146 +- 0.0045 (3.3 sigma)
+"b slope, leaving out one sector","SPOC 2-min PDCSAP, without sector 101",0.0218,0.0033,6.52,1/yr,empirical errors: +0.0195 +- 0.0046 (4.2 sigma)
+"b slope, leaving out one sector","SPOC 2-min PDCSAP, without sector 102",0.0141,0.0042,3.40,1/yr,empirical errors: +0.0133 +- 0.0046 (2.9 sigma)
+"b, epoch group","SPOC 2-min PDCSAP, 2019-2021",0.7364,0.0144,51.29,,"sectors 12, 13, 27, 39; weighted mean; empirical errors: 0.737 +- 0.017"
+"T14, epoch group","SPOC 2-min PDCSAP, 2019-2021",42.64,0.86,49.35,min,T14 of the group b at the template; with the empirical error +- 1.04 min
+"b, epoch group","SPOC 2-min PDCSAP, 2023",0.7964,0.0179,44.43,,"sectors 66, 67; weighted mean; empirical errors: 0.796 +- 0.025"
+"T14, epoch group","SPOC 2-min PDCSAP, 2023",38.70,1.29,30.07,min,T14 of the group b at the template; with the empirical error +- 1.79 min
+"b, epoch group","SPOC 2-min PDCSAP, 2025-2026",0.8396,0.0110,76.05,,"sectors 93, 94, 101, 102; weighted mean; empirical errors: 0.825 +- 0.017"
+"T14, epoch group","SPOC 2-min PDCSAP, 2025-2026",35.38,0.91,38.70,min,T14 of the group b at the template; with the empirical error +- 1.41 min
+"b at the stellar-density a/R*, epoch group","SPOC 2-min PDCSAP, 2019-2021",0.769,,,,"b with T14 = 42.64 min at a/R* = 15.02 (k fixed); 0.787 at a/R* = 14.56, 0.749 at 15.48; a conversion, not a fit"
+"b at the stellar-density a/R*, epoch group","SPOC 2-min PDCSAP, 2023",0.821,,,,"b with T14 = 38.70 min at a/R* = 15.02 (k fixed); 0.835 at a/R* = 14.56, 0.806 at 15.48; a conversion, not a fit"
+"b at the stellar-density a/R*, epoch group","SPOC 2-min PDCSAP, 2025-2026",0.859,,,,"b with T14 = 35.38 min at a/R* = 15.02 (k fixed); 0.871 at a/R* = 14.56, 0.847 at 15.48; a conversion, not a fit"
+"b difference, 2025-2026 minus 2019-2021",SPOC 2-min PDCSAP,0.1032,0.0181,5.70,,empirical errors: +- 0.024
+b of the linear trend at 2022.67,SPOC 2-min PDCSAP,0.7801,0.0120,64.87,,empirical errors: 0.7764 +- 0.0111
+T14 of the linear trend at 2022.67,SPOC 2-min PDCSAP,39.84,0.82,48.53,min,
+JWST b minus hypothesis,linear trend; allowance 0.000,0.0015,0.0121,0.12,,JWST b = 0.7816 +- 0.0015 (a/R* = 15.77); hypothesis b = 0.7801 +- 0.0120
+JWST b minus hypothesis,constant at 2019-2021; allowance 0.000,0.0452,0.0144,3.13,,JWST b = 0.7816 +- 0.0015 (a/R* = 15.77); hypothesis b = 0.7364 +- 0.0144
+JWST b minus hypothesis,constant at 2025-2026; allowance 0.000,-0.0580,0.0111,-5.20,,JWST b = 0.7816 +- 0.0015 (a/R* = 15.77); hypothesis b = 0.8396 +- 0.0110
+JWST b minus hypothesis,linear trend; allowance 0.005,0.0015,0.0131,0.11,,JWST b = 0.7816 +- 0.0015 (a/R* = 15.77); hypothesis b = 0.7801 +- 0.0120
+JWST b minus hypothesis,constant at 2019-2021; allowance 0.005,0.0452,0.0153,2.96,,JWST b = 0.7816 +- 0.0015 (a/R* = 15.77); hypothesis b = 0.7364 +- 0.0144
+JWST b minus hypothesis,constant at 2025-2026; allowance 0.005,-0.0580,0.0122,-4.75,,JWST b = 0.7816 +- 0.0015 (a/R* = 15.77); hypothesis b = 0.8396 +- 0.0110
+JWST b minus hypothesis,linear trend; allowance 0.010,0.0015,0.0157,0.09,,JWST b = 0.7816 +- 0.0015 (a/R* = 15.77); hypothesis b = 0.7801 +- 0.0120
+JWST b minus hypothesis,constant at 2019-2021; allowance 0.010,0.0452,0.0176,2.58,,JWST b = 0.7816 +- 0.0015 (a/R* = 15.77); hypothesis b = 0.7364 +- 0.0144
+JWST b minus hypothesis,constant at 2025-2026; allowance 0.010,-0.0580,0.0150,-3.87,,JWST b = 0.7816 +- 0.0015 (a/R* = 15.77); hypothesis b = 0.8396 +- 0.0110
+JWST b minus hypothesis,"constant at 2019-2021, empirical group error; allowance 0.000",0.0452,0.0173,2.62,,group error 0.0172 from the empirical per-sector errors
+b slope,SPOC 2-min SAP,0.0184,0.0042,4.37,1/yr,10 sectors; chi2 = 13.3 for 8 dof; error scaled by 1.29; b(2022.0) = 0.769
+b slope,QLP,0.0227,0.0071,3.21,1/yr,8 sectors; chi2 = 9.7 for 6 dof; error scaled by 1.27; b(2022.0) = 0.776
+b slope,own TESScut photometry r = 2.0 px,0.0216,0.0054,3.98,1/yr,10 sectors; chi2 = 8.4 for 8 dof; error scaled by 1.03; b(2022.0) = 0.772
+b slope,own TESScut photometry r = 2.5 px,0.0207,0.0067,3.11,1/yr,10 sectors; chi2 = 11.7 for 8 dof; error scaled by 1.21; b(2022.0) = 0.772
+b slope,own TESScut photometry r = 3.0 px,0.0201,0.0066,3.05,1/yr,10 sectors; chi2 = 10.1 for 8 dof; error scaled by 1.12; b(2022.0) = 0.781

@@ -22,3 +22,4 @@ pandas==2.3.3             # scripts/toi2638/pixels_toi2638.py
 # scripts/toi1117/ (section 6.10): download_toi1117.py, fit_toi1117.py, checks_toi1117.py and pixels_toi1117.py with the versions above
 # (tess-point 0.9.5.post1, wotan 1.10, pandas 2.3.3); mcmc_toi1117.py, ephemeris_toi1117.py, rv_toi1117.py and triceratops_toi1117.py
 # with Python 3.11.15: emcee==3.1.6, batman-package==2.5.3, numpy==1.26.4, scipy==1.13.1, astropy==7.2.3, pandas==3.0.6, triceratops==1.1.0
+# scripts/lhs475/ (section 6.11): trend_lhs475.py with the versions above (numpy only)

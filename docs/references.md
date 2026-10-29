@@ -60,5 +60,7 @@
 
 - Lockley, I. S., et al. 2025, MNRAS 541, 919 (TOI-1117; doi:10.1093/mnras/staf939; arXiv:2506.05521); Melton, E. J., et al.
   2024, AJ 167, 203 (DTARPS II).
+- Lustig-Yaeger, J., et al. 2023, Nat. Astron. 7, 1317 (LHS 475 b, JWST); Ment, K., et al. 2024, AJ 167, 197 (LHS 475 b);
+  Murray, C. D., & Dermott, S. F. 1999, Solar System Dynamics (Cambridge University Press).
 
-References of sections 6.6-6.10 are listed at the end of those sections.
+References of sections 6.6-6.11 are listed at the end of those sections.

@@ -1,0 +1,13 @@
+# LHS 475 b = TIC 369327947: fits of own white-light curves of the two JWST NIRSpec/BOTS G395H transits of GO 1981 (visits 041, 2022-08-31, and 043, 2022-09-04), vetting record, 2026-10-29 (no script in this repository; section 8)
+# white light per detector from the x1dints products (CAL_VER 3.0.0), NRS1 1238 columns (2.88-3.72 um), NRS2 2034 columns (3.82-5.17 um); first 150 integrations trimmed; linear baseline per light curve
+# batman, circular orbit, P = 2.029107654 d; shared b (and a/R*), k per detector, one mid-time per visit; quadratic limb darkening per detector with uniform q1, q2 (Kipping 2013) unless fixed; errors = white rms x beta red-noise factor; emcee
+# values: median and 16th/84th-percentile distances; T14 = first to fourth contact, T12 = ingress; epoch 2022.67; visit 045 (2023-06-21) has only target-acquisition exposures (VISITSTA = UNSUCCESSFUL)
+config,description,visits,year,b,b_minus,b_plus,aR,aR_minus,aR_plus,T14_min,T14_minus,T14_plus,T12_min,T12_err,k_mean,k_err,tc_bmjd_tdb
+aRfix,a/R* fixed at 15.77 (TESS template); limb darkening fitted,041+043,2022.67,0.7816,0.0015,0.0015,15.77,0.00,0.00,39.88,0.10,0.11,3.12,0.03,0.03286,0.00025,59822.876251;59826.934529
+aRfree,a/R* free; limb darkening fitted,041+043,2022.67,0.7712,0.0208,0.0185,16.09,0.56,0.60,39.78,0.21,0.21,2.99,0.23,0.03275,0.00027,59822.876255;59826.934529
+aRgaia,a/R* prior 15.02 +- 0.46 (stellar density); limb darkening fitted,041+043,2022.67,0.7912,0.0115,0.0113,15.47,0.36,0.36,39.98,0.16,0.17,3.25,0.17,0.03291,0.00027,59822.876252;59826.934530
+aRfree_v041,visit 041 only; a/R* free,041,2022.67,0.7814,0.0267,0.0238,15.74,0.76,0.80,39.98,0.33,0.33,3.13,0.33,0.03294,0.00034,59822.876262
+aRfree_v043,visit 043 only; a/R* free,043,2022.67,0.7583,0.0319,0.0258,16.47,0.76,0.86,39.63,0.26,0.27,2.83,0.30,0.03258,0.00032,59826.934532
+ldfix_low,"a/R* 15.77; limb darkening fixed low (0.05, 0.15 / 0.03, 0.12)",041+043,2022.67,0.7837,0.0013,0.0012,15.77,0.00,0.00,39.69,0.09,0.09,3.08,0.01,0.03234,0.00012,59822.876251;59826.934529
+ldfix_high,"a/R* 15.77; limb darkening fixed high (0.20, 0.25 / 0.15, 0.20)",041+043,2022.67,0.7786,0.0013,0.0012,15.77,0.00,0.00,40.08,0.08,0.08,3.10,0.01,0.03280,0.00012,59822.876258;59826.934537
+aRfree_notrim_quad,"a/R* free; no trimmed integrations, quadratic baseline",041+043,2022.67,0.7721,0.0224,0.0188,16.07,0.59,0.64,39.78,0.22,0.23,3.01,0.24,0.03286,0.00026,59822.876250;59826.934510

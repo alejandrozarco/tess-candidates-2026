@@ -340,6 +340,25 @@ that selected the signal, the planet-b ephemeris used for masking, the Gaia DR3 
 the approximate contrast curve, and the catalogue and literature checks of section
 [6.10.7](6.10_TOI-1117c.md#6107-catalogue-and-literature-checks).
 
+For LHS 475 b (section [6.11](6.11_LHS475b.md)), run from the repository root with the versions of `requirements.txt`:
+
+```
+python scripts/lhs475/trend_lhs475.py      # -> data/{trend,forecast}_369327947.csv from data/{sectors,jwst}_369327947.csv
+python figures/make_figures.py lhs475
+```
+
+Without script in this repository (vetting record of 2026-10-28 and 2026-10-29): the per-sector fits of
+`data/sectors_369327947.csv` (SPOC 2-min PDCSAP and SAP light curves of sectors 12-102, QLP light curves and own TESScut
+photometry, from MAST, as used in the vetting of 2026-10-28; batman models with `supersample_factor`, i.e. the sampling that the
+correction of 2026-10-22 below replaced elsewhere, applied identically to every 120-s sector), the injection-recovery of
+`data/injection_369327947.csv`, the tests of `data/checks_369327947.csv` (including the chi-square profiles, the template
+variants, the shape and fold tests, the noise and timing checks and the stellar density from the Gaia DR3 parallax and the
+2MASS $`K_s`$ magnitude), the fits of the JWST GO 1981 `x1dints` products (CAL_VER 3.0.0, MAST, retrieved 2026-10-29) in
+`data/jwst_369327947.csv`, the fits of the ExoFOP TFOP light curves and the MEarth DR11 survey photometry in
+`data/ground_369327947.csv`, the companion estimates of `data/perturber_369327947.csv`, the screen of 271 planets that
+selected the planet, the TESS sector and ground-based observing windows of section [6.11.8](6.11_LHS475b.md#6118-forecast-and-decisive-tests), and the catalogue and
+literature checks of section [6.11.9](6.11_LHS475b.md#6119-catalogue-and-literature-checks).
+
 Correction of 2026-10-22 (exposure sampling; no conclusion changed). batman's `supersample_factor` places the
 sub-exposures from one end of the exposure to the other, which smooths the model more than the exposure does (by
 factors of 1.07-1.73 in rms for 15 to 2 sub-exposures). The transit models of `fit_transits.py`, `make_tables.py`,
