@@ -1,0 +1,77 @@
+# TOI-421 c = TIC 94986319: rates, epoch-group values and variants; scripts/toi421/fit_toi421.py, ffi_toi421.py, make_tables_toi421.py
+# slopes: weighted linear fits against year (errors scaled by sqrt(chi2/dof) if > 1); early = 2018-2020 (sectors 5, 6, 32), late = 2025-2026 (98, 107); step = late - early
+# template unless stated: k 0.05459, a/R* 31.91, u 0.401/0.222, circular; b depends on the adopted a/R*, the trapezoid durations do not
+test,variant,quantity,value,err,z,chi2,dof,early,early_err,late,late_err,step,step_err,step_z,note
+baseline,"per transit, SPOC 2-min PDCSAP (adopted)",db/dt (1/yr),-0.0051,0.001,-5.1043,8.7249,10,0.7654,0.0046,0.7295,0.005,-0.0359,0.0068,-5.2895,12 transits
+baseline,"per sector, b free",db/dt (1/yr),-0.0049,0.0012,-4.022,4.433,3,0.7654,0.0046,0.731,0.005,-0.0344,0.0068,-5.0707,
+baseline,"per sector, b and k free",db/dt (1/yr),-0.0047,0.0013,-3.6728,5.1181,3,0.7659,0.0046,0.7322,0.005,-0.0337,0.0068,-4.9646,
+baseline,"per sector, k with b free",dk/dt (1/yr),0.0,0.0001,0.2949,5.1437,3,0.0549,0.0005,0.0552,0.0005,0.0003,0.0008,0.4431,
+leave one sector out,without sector 5,db/dt (1/yr),-0.0048,0.0012,-4.0944,7.3292,8,0.7626,0.0057,0.7295,0.005,-0.0332,0.0076,-4.3794,
+leave one sector out,without sector 6,db/dt (1/yr),-0.0057,0.0012,-4.9146,7.4516,8,0.7678,0.0057,0.7295,0.005,-0.0383,0.0076,-5.048,
+leave one sector out,without sector 32,db/dt (1/yr),-0.0049,0.001,-4.7765,7.8367,8,0.7658,0.0055,0.7295,0.005,-0.0364,0.0074,-4.8865,
+leave one sector out,without sector 98,db/dt (1/yr),-0.0036,0.0013,-2.8071,3.1008,6,0.7654,0.0046,0.739,0.0081,-0.0264,0.0093,-2.8461,
+leave one sector out,without sector 107,db/dt (1/yr),-0.0062,0.0012,-5.2128,5.0332,8,0.7654,0.0046,0.7235,0.0064,-0.0419,0.0079,-5.3266,
+a/R* fixed,a/R* = 27.00,db/dt (1/yr),-0.0031,0.0008,-3.8712,7.828,10,0.8355,0.0038,0.8131,0.004,-0.0225,0.0055,-4.1126,
+a/R* fixed,a/R* = 29.20,db/dt (1/yr),-0.0039,0.0009,-4.4351,8.2437,10,0.8062,0.0041,0.7784,0.0044,-0.0278,0.006,-4.6309,
+a/R* fixed,a/R* = 31.91,db/dt (1/yr),-0.0051,0.001,-5.1043,8.7249,10,0.7654,0.0046,0.7295,0.005,-0.0359,0.0068,-5.2895,
+a/R* fixed,a/R* = 34.00,db/dt (1/yr),-0.0062,0.0011,-5.5667,9.2056,10,0.7296,0.0051,0.6863,0.0056,-0.0433,0.0076,-5.7387,
+a/R* fixed,a/R* = 36.00,db/dt (1/yr),-0.0074,0.0012,-6.0084,9.5631,10,0.6913,0.0056,0.6394,0.0063,-0.0519,0.0084,-6.1545,
+a/R* free,one a/R* and one b for all 12 transits,a/R*,33.2937,0.8595,,,,,,,,,,,b = 0.7221 +- 0.0171
+a/R* profile,"a/R* = 24, b per epoch group",b late - b early,-0.0166,0.0049,-3.39,,,0.8706,0.0034,0.854,0.0036,-0.0166,0.0049,-3.39,
+a/R* profile,"a/R* = 25, b per epoch group",b late - b early,-0.0181,0.0051,-3.5567,,,0.8595,0.0035,0.8415,0.0037,-0.0181,0.0051,-3.5567,
+a/R* profile,"a/R* = 26, b per epoch group",b late - b early,-0.02,0.0053,-3.7986,,,0.848,0.0036,0.8279,0.0038,-0.02,0.0053,-3.7986,
+a/R* profile,"a/R* = 27, b per epoch group",b late - b early,-0.0221,0.0055,-4.0453,,,0.8357,0.0037,0.8135,0.004,-0.0221,0.0055,-4.0453,
+a/R* profile,"a/R* = 28, b per epoch group",b late - b early,-0.0246,0.0057,-4.3146,,,0.8228,0.0039,0.7982,0.0042,-0.0246,0.0057,-4.3146,
+a/R* profile,"a/R* = 29, b per epoch group",b late - b early,-0.0272,0.0059,-4.5726,,,0.8092,0.004,0.7821,0.0044,-0.0272,0.0059,-4.5726,
+a/R* profile,"a/R* = 30, b per epoch group",b late - b early,-0.0298,0.0062,-4.7985,,,0.795,0.0042,0.7652,0.0046,-0.0298,0.0062,-4.7985,
+a/R* profile,"a/R* = 31, b per epoch group",b late - b early,-0.0326,0.0065,-5.0215,,,0.7801,0.0044,0.7475,0.0048,-0.0326,0.0065,-5.0215,
+a/R* profile,"a/R* = 32, b per epoch group",b late - b early,-0.0356,0.0068,-5.2435,,,0.7643,0.0046,0.7287,0.005,-0.0356,0.0068,-5.2435,
+a/R* profile,"a/R* = 33, b per epoch group",b late - b early,-0.0391,0.0071,-5.4772,,,0.7478,0.0048,0.7087,0.0053,-0.0391,0.0071,-5.4772,
+a/R* profile,"a/R* = 34, b per epoch group",b late - b early,-0.0429,0.0075,-5.71,,,0.7302,0.005,0.6873,0.0056,-0.0429,0.0075,-5.71,
+a/R* profile,"a/R* = 35, b per epoch group",b late - b early,-0.0473,0.0079,-5.9601,,,0.7116,0.0053,0.6644,0.0059,-0.0473,0.0079,-5.9601,
+a/R* profile,"a/R* = 36, b per epoch group",b late - b early,-0.0521,0.0084,-6.2091,,,0.692,0.0056,0.6399,0.0063,-0.0521,0.0084,-6.2091,
+a/R* profile,"a/R* = 37, b per epoch group",b late - b early,-0.0571,0.0089,-6.4077,,,0.671,0.0059,0.6139,0.0067,-0.0571,0.0089,-6.4077,
+a/R* profile,"a/R* = 38, b per epoch group",b late - b early,-0.0627,0.0095,-6.5938,,,0.6487,0.0062,0.586,0.0072,-0.0627,0.0095,-6.5938,
+a/R* profile,"a/R* = 39, b per epoch group",b late - b early,-0.069,0.0102,-6.7634,,,0.6249,0.0066,0.556,0.0078,-0.069,0.0102,-6.7634,
+a/R* profile,"a/R* = 40, b per epoch group",b late - b early,-0.0759,0.011,-6.8998,,,0.5994,0.0071,0.5235,0.0084,-0.0759,0.011,-6.8998,
+a/R* free per sector,prior a/R* 29.2 +- 1.5,db/dt (1/yr),-0.0055,0.0029,-1.9123,0.4388,3,0.7811,0.0117,0.7414,0.0159,-0.0397,0.0198,-2.0091,a/R* slope +0.070 +- 0.155 /yr
+a/R* free per sector,prior a/R* 31.9 +- 3.0,db/dt (1/yr),-0.0061,0.0044,-1.3983,0.8865,3,0.7434,0.0182,0.7017,0.0234,-0.0417,0.0297,-1.4042,a/R* slope +0.040 +- 0.215 /yr
+a/R* free per sector,no prior,db/dt (1/yr),-0.0059,0.0054,-1.0997,1.8599,3,0.733,0.023,0.6943,0.0278,-0.0387,0.0361,-1.0724,a/R* slope +0.032 +- 0.269 /yr
+limb darkening,"u = 0.401, 0.222 (template)",db/dt (1/yr),-0.0051,0.001,-5.1043,8.7249,10,0.7654,0.0046,0.7295,0.005,-0.0359,0.0068,-5.2895,
+limb darkening,"u = 0.44, 0.20",db/dt (1/yr),-0.0051,0.001,-5.0324,8.6391,10,0.7641,0.0047,0.728,0.0051,-0.0361,0.0069,-5.2157,
+limb darkening,"u = 0.30, 0.25",db/dt (1/yr),-0.005,0.0009,-5.2996,9.3579,10,0.77,0.0043,0.735,0.0047,-0.035,0.0064,-5.4988,
+limb darkening,"u = 0.50, 0.15",db/dt (1/yr),-0.0051,0.001,-4.9699,8.4793,10,0.7631,0.0048,0.7268,0.0052,-0.0363,0.0071,-5.1513,
+limb darkening,"linear law, u = 0.60",db/dt (1/yr),-0.0051,0.001,-4.9852,8.3986,10,0.7661,0.0047,0.7301,0.0051,-0.036,0.0069,-5.1736,
+limb darkening,"u fitted jointly to all transits, then fixed",db/dt (1/yr),-0.0047,0.0009,-5.3456,11.7065,10,0.7806,0.0038,0.7472,0.0041,-0.0335,0.0056,-6.0155,
+limb darkening,LD free in each epoch group,b late - b early,-0.0305,0.0084,-3.6192,,,0.7801,0.0059,0.7496,0.006,,,,"u early 0.41/-0.07, late 0.24/0.03"
+dilution,"SAP, own crowding correction with the SPOC CROWDSAP",db/dt (1/yr),-0.0049,0.001,-4.7992,7.2753,10,0.7644,0.0049,0.7299,0.005,-0.0345,0.007,-4.9148,
+dilution,"SAP, no crowding correction",db/dt (1/yr),-0.0049,0.001,-4.9245,7.39,10,0.7654,0.0048,0.7309,0.0049,-0.0345,0.0068,-5.0398,
+dilution,"PDCSAP, crowding shifted: early sectors -0.01, late +0.01",db/dt (1/yr),-0.0052,0.001,-5.225,8.7975,10,0.7659,0.0045,0.7291,0.0051,-0.0368,0.0068,-5.4127,
+dilution,"PDCSAP, crowding shifted: early sectors +0.01, late -0.01",db/dt (1/yr),-0.005,0.001,-4.9853,8.6479,10,0.765,0.0046,0.7299,0.005,-0.0351,0.0068,-5.1692,
+dilution,"PDCSAP, crowding shifted: early sectors -0.02, late +0.02",db/dt (1/yr),-0.0053,0.001,-5.331,8.8588,10,0.7663,0.0045,0.7287,0.0051,-0.0376,0.0068,-5.5198,
+dilution,"per transit, k free: b",db/dt (1/yr),-0.0049,0.001,-4.9816,9.964,10,0.7663,0.0046,0.7313,0.005,-0.035,0.0068,-5.1616,
+dilution,"per transit, k free: k",dk/dt (1/yr),0.0,0.0001,0.2696,11.4215,10,0.055,0.0005,0.0552,0.0005,0.0002,0.0008,0.3178,
+duration (trapezoid),per transit,dT14/dt (min/yr),1.4058,0.5358,2.6238,17.6306,10,159.5625,1.9038,169.4374,1.939,9.8749,2.7174,3.634,
+duration (trapezoid),per transit,dT23/dt (min/yr),1.091,0.5448,2.0025,18.603,10,124.5742,1.896,131.7939,1.9095,7.2197,2.6909,2.683,
+duration (trapezoid),per transit,dT12/dt (min/yr),0.1603,0.4754,0.3371,18.6757,10,17.5507,1.6465,18.8914,1.6669,1.3407,2.3429,0.5722,
+duration (trapezoid),per transit,ddepth/dt (ppm/yr),14.3166,12.0957,1.1836,10.9589,10,2817.543,55.1036,2919.9055,55.8317,102.3625,78.4448,1.3049,
+duration (trapezoid),"per transit, SAP",dT14/dt (min/yr),1.2297,0.5016,2.4516,15.1516,10,159.2988,1.9345,168.2091,1.8918,8.9103,2.7058,3.2931,
+duration (trapezoid),epoch groups 2018-2020 / 2025-2026 (convention-free),T14 (min),11.1488,2.735,4.0764,,,158.4127,1.8855,169.5616,1.9811,11.1488,2.735,4.0764,joint trapezoid fit of each group
+duration (trapezoid),epoch groups 2018-2020 / 2025-2026 (convention-free),T23 (min),5.192,2.7184,1.9099,,,124.403,1.8682,129.595,1.9747,5.192,2.7184,1.9099,joint trapezoid fit of each group
+duration (trapezoid),epoch groups 2018-2020 / 2025-2026 (convention-free),T12 (min),2.9784,2.3584,1.2629,,,17.0049,1.6261,19.9833,1.7081,2.9784,2.3584,1.2629,joint trapezoid fit of each group
+duration (trapezoid),epoch groups 2018-2020 / 2025-2026,depth (ppm),121.1298,78.032,1.5523,,,2794.0369,54.5488,2915.1668,55.798,121.1298,78.032,1.5523,
+cadence,20-s light curves for sectors 98 and 107,db/dt (1/yr),-0.005,0.0009,-5.3316,6.3355,10,0.7654,0.0046,0.7307,0.0044,-0.0347,0.0063,-5.473,
+cadence,all sectors binned to 600 s,db/dt (1/yr),-0.0048,0.0011,-4.3687,10.1985,10,0.7644,0.0051,0.7294,0.0053,-0.0349,0.0074,-4.7405,
+cadence,all sectors binned to 1800 s,db/dt (1/yr),-0.0045,0.0024,-1.8634,19.136,9,0.7585,0.0068,0.7217,0.0086,-0.0368,0.011,-3.3531,
+cadence,"late sectors binned to 1800 s, early at 120 s",db/dt (1/yr),-0.0062,0.0014,-4.3683,5.4723,9,0.7654,0.0046,0.7217,0.0086,-0.0437,0.0097,-4.4977,
+cadence,"early sectors binned to 1800 s, late at 120 s",db/dt (1/yr),-0.0035,0.0018,-1.9049,21.593,10,0.7585,0.0068,0.7295,0.005,-0.029,0.0085,-3.4172,
+stellar activity,"per transit, 4-sigma clipping",db/dt (1/yr),-0.0051,0.001,-5.1665,9.037,10,0.7659,0.0046,0.7295,0.005,-0.0364,0.0068,-5.3878,
+stellar activity,leave one transit out (12 fits),z range,,,,,,,,,,,,,z from -4.35 to -5.37
+timing,"per sector, one mid-time offset per sector on the linear ephemeris",db/dt (1/yr),-0.0048,0.001,-4.8187,2.8292,3,0.7653,0.0046,0.7319,0.005,-0.0334,0.0068,-4.9078,
+timing,linear ephemeris of the 12 per-transit mid-times,chi2 of O-C,48.4961,,,48.4961,10,,,,,,,,O-C from -3.6 to +4.6 min
+own TESScut photometry (no PDC),"per transit, r = 2.0 px",db/dt (1/yr),-0.0039,0.0014,-2.8758,8.4133,10,0.7629,0.007,0.7354,0.0052,-0.0274,0.0087,-3.1523,
+own TESScut photometry (no PDC),"per transit, r = 2.5 px",db/dt (1/yr),-0.0046,0.0013,-3.5614,9.0346,10,0.7651,0.0065,0.7335,0.0051,-0.0316,0.0083,-3.8158,
+own TESScut photometry (no PDC),"per transit, r = 3.0 px",db/dt (1/yr),-0.0048,0.0014,-3.4994,11.0037,10,0.7653,0.0065,0.732,0.0052,-0.0333,0.0084,-3.9797,
+injection,constant b = 0.748,per-transit slope z,-0.0005,0.001,-0.3793,,,,,,,,,,"n 34 offsets; z std 0.75, max abs z 2.14; sector-fit z mean -0.34"
+injection,injected trend -0.0051 /yr,per-transit slope z,-0.0054,0.0011,-4.173,,,,,,,,,,"n 18 offsets; z std 0.85, max abs z 5.79; sector-fit z mean -4.11"
+look-elsewhere,"adopted local z 4.5 over 271 screened planets (independent trials, Gaussian tails)",global z,3.1149,,,,,,,,,,,,"two-sided p local 6.80e-06, global 1.84e-03"

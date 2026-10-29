@@ -1,0 +1,50 @@
+{
+ "frozen_utc": "2026-10-28T14:10:47Z",
+ "conventions": "b: a/R* 13.76 fixed, k 0.0279 (TESS band), circular, P 5.19759807, T0 BTJD 1441.283952; c: a/R* 31.910 fixed, k 0.05459, P 16.0675076, T0 BTJD 2195.30635; linear trend in b vs time from TESS per-sector fits (b: own FFI R2.5; c: SPOC 2-min); 68% intervals, trend error only (no band/LD systematics)",
+ "constant_alternative": {
+  "b": "~0.944 (2018-2020 mean)",
+  "c": "~0.766 (2018-2020 mean)"
+ },
+ "predictions": {
+  "b: CHEOPS 2021-11-19": {
+   "year": 2021.885,
+   "b": 0.9548,
+   "sig": 0.0078
+  },
+  "b: CHEOPS 2021-12-10": {
+   "year": 2021.942,
+   "b": 0.9551,
+   "sig": 0.0077
+  },
+  "b: CHEOPS 2022-01-10": {
+   "year": 2022.027,
+   "b": 0.9555,
+   "sig": 0.0076
+  },
+  "b: CHEOPS 2022-11-28": {
+   "year": 2022.908,
+   "b": 0.9594,
+   "sig": 0.0063
+  },
+  "b: JWST NIRSpec 2023-09-10": {
+   "year": 2023.692,
+   "b": 0.9629,
+   "sig": 0.0052
+  },
+  "b: JWST NIRISS 2023-11-06": {
+   "year": 2023.849,
+   "b": 0.9636,
+   "sig": 0.0051
+  },
+  "c: CHEOPS 2022-12-04": {
+   "year": 2022.924,
+   "b": 0.7487,
+   "sig": 0.0049
+  },
+  "c: CHEOPS 2022-12-20": {
+   "year": 2022.968,
+   "b": 0.7485,
+   "sig": 0.0049
+  }
+ }
+}

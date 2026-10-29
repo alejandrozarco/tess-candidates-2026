@@ -21,6 +21,9 @@ Figures: fold_<tic>  (TTV-corrected fold of the detrended epochs with 20-min bin
        TESS-SPOC sector 13, with the adopted and the free-density transit models).
 'lhs475': tdur_369327947 (transit duration and impact parameter of LHS 475 b per TESS sector, the JWST GO 1981 fit, the linear trend
        with its recorded forecast, and the constant-duration alternatives).
+'toi421': bt14_94986319 (impact parameter and transit duration of TOI-421 c per TESS transit and sector, CHEOPS, the linear
+       trend with the recorded predictions and the constant alternative), planetb_94986319 (impact parameter and 60-min box
+       depth of TOI-421 b per TESS sector and epoch group, CHEOPS and JWST, the linear trend and the recorded predictions).
 """
 import csv, os, sys
 import matplotlib
@@ -487,10 +490,84 @@ def fig_lhs475(t, name):
     fig.tight_layout(); save(fig, t, name)
 
 
+def fig_toi421_c(t, name):
+    S = read("sectors_94986319.csv"); A = read("pertransit_94986319.csv"); F = read("forecast_94986319.csv")
+    C = read("cheops_94986319.csv"); TR = read("trend_94986319.csv")
+    fig, (ax, bx) = plt.subplots(1, 2, figsize=(13, 4.9)); fig.patch.set_facecolor(t["surface"])
+    cu = F["kind"] == "curve"; pr = F["kind"] == "recorded prediction"; yy = F["year"][cu]
+    i = list(TR["variant"]).index("per transit, SPOC 2-min PDCSAP (adopted)")
+    ax.fill_between(yy, F["c_b"][cu] - F["c_b_err"][cu], F["c_b"][cu] + F["c_b_err"][cu], color=t["mark"], alpha=0.15, lw=0)
+    ax.plot(yy, F["c_b"][cu], "-", color=t["ink"], lw=1.0, label="linear trend of the per-transit fits (1 sigma band)")
+    ax.axhline(0.7654, ls="--", color=t["mark2"], lw=1.0, label="constant at the 2018-2020 value (0.765)")
+    ax.plot([2026.75, 2026.95], [0.755, 0.755], "-", color=t["mark2"], lw=2.2, label="sectors 109/110 kill threshold (mean b >= 0.755)")
+    ax.errorbar(A["year"], A["b"], A["b_err"], fmt=".", color=t["pts"], ms=5, capsize=0, label="SPOC 2-min PDCSAP, per transit")
+    m = (S["planet"] == "c") & (S["product"] == "SPOC 2-min PDCSAP")
+    ax.errorbar(S["year"][m], S["b"][m], S["b_err"][m], fmt="o", color=t["mark"], ms=5.5, capsize=2, label="SPOC 2-min PDCSAP, per sector")
+    m = (S["planet"] == "c") & (S["product"] == "own TESScut photometry r = 2.5 px")
+    ax.errorbar(S["year"][m] + 0.12, S["b"][m], S["b_err"][m], fmt="s", color=t["mark3"], mfc="none", ms=5, capsize=1.5, label="own TESScut photometry (no PDC), r = 2.5 px")
+    for prod, fmt in (("PIPE", "D"), ("DRP", "d")):
+        k = (C["planet"] == "c") & (C["product"] == prod) & (C["group"] == "jcall") & (C["variant"] == "kfree_LDatlas")
+        ax.errorbar(C["year"][k] + (0.0 if prod == "PIPE" else 0.12), C["b"][k], 0.5 * (C["b_minus"][k] + C["b_plus"][k]), fmt=fmt, color=t["ink2"], ms=6, capsize=2,
+                    label=f"CHEOPS {prod}, visits 5-6 (k free; LD variants span 0.743-0.766)")
+    ax.errorbar(F["year"][pr][:5], F["c_b"][pr][:5], F["c_b_err"][pr][:5], fmt="x", color=t["mark"], ms=6, capsize=2, label="recorded predictions (2026.79-2028.0)")
+    ax.set_xlim(2018.3, 2028.4); ax.set_ylim(0.66, 0.83); ax.set_xlabel("year"); ax.set_ylabel("impact parameter b (a/R* = 31.91, k = 0.05459)"); style(ax, t)
+    title(ax, t, f"TOI-421 c: impact parameter at a fixed transit template\n(slope {TR['value'][i]:+.4f} $\\pm$ {TR['err'][i]:.4f} /yr, local; b depends on the adopted a/R*)")
+    ax.legend(loc="lower left", fontsize=6.8, frameon=False, labelcolor=t["ink2"], ncol=2)
+    m = (S["planet"] == "c") & (S["product"] == "SPOC 2-min PDCSAP")
+    bx.errorbar(A["year"], A["trap_T14_min"], A["trap_T14_err_min"], fmt=".", color=t["pts"], ms=5, capsize=0, label="trapezoid T14, per transit")
+    bx.errorbar(S["year"][m], S["trap_T14_min"][m], S["trap_T14_err_min"][m], fmt="s", color=t["mark3"], ms=5.5, capsize=2, label="trapezoid T14, per sector (convention-free)")
+    j = (TR["test"] == "duration (trapezoid)") & (TR["quantity"] == "T14 (min)")
+    for yr0, yr1, v, e in ((2018.8, 2021.0, TR["early"][j][0], TR["early_err"][j][0]), (2025.8, 2026.8, TR["late"][j][0], TR["late_err"][j][0])):
+        bx.fill_between([yr0, yr1], [v - e] * 2, [v + e] * 2, color=t["mark3"], alpha=0.2, lw=0)
+    bx.errorbar(S["year"][m] + 0.12, S["T14_model_min"][m], S["T14_model_err_min"][m], fmt="o", color=t["mark"], ms=5.5, capsize=2, label="T14 of the template at the fitted b, per sector")
+    bx.plot(yy, F["c_T14_min"][cu], "-", color=t["ink"], lw=1.0, label="linear trend in b, as template T14")
+    bx.axhline(F["c_T14_const_min"][0], ls="--", color=t["mark2"], lw=1.0, label="constant at the 2018-2020 b, as template T14")
+    bx.plot(F["year"][pr][:5], F["c_T14_min"][pr][:5], "x", color=t["mark"], ms=6, label="recorded predictions (template T14)")
+    bx.axvspan(2027.3, 2027.7, color=t["grid"], lw=0, label="about 2027.5: JWST GO 11672 transits of c (Cycle 5)")
+    bx.set_xlim(2018.3, 2028.4); bx.set_ylim(145, 190); bx.set_xlabel("year"); bx.set_ylabel("transit duration T14 (min)"); style(bx, t)
+    title(bx, t, f"TOI-421 c: transit duration\n(trapezoid epoch groups {TR['early'][j][0]:.1f} to {TR['late'][j][0]:.1f} min; template T14 is 7-9 min longer)")
+    bx.legend(loc="upper left", fontsize=6.8, frameon=False, labelcolor=t["ink2"], ncol=2)
+    fig.tight_layout(); save(fig, t, name)
+
+
+def fig_toi421_b(t, name):
+    S = read("sectors_94986319.csv"); P = read("planetb_94986319.csv"); F = read("forecast_94986319.csv")
+    C = read("cheops_94986319.csv"); J = read("jwst_94986319.csv")
+    fig, (ax, bx) = plt.subplots(1, 2, figsize=(13, 4.9)); fig.patch.set_facecolor(t["surface"])
+    cu = (F["kind"] == "curve") & (F["year"] <= 2028.5); pr = F["kind"] == "recorded prediction"; yy = F["year"][cu]
+    ax.plot(yy, F["b_b"][cu], "-", color=t["ink"], lw=1.0, label="linear between the SPOC epoch folds")
+    for prod, fmt, col, off in (("SPOC 2-min PDCSAP", "o", t["mark"], 0.0), ("own TESScut photometry r = 2.5 px", "s", t["mark3"], 0.12)):
+        m = (S["planet"] == "b") & (S["product"] == prod)
+        ax.errorbar(S["year"][m] + off, S["b"][m], S["b_err"][m], fmt=fmt, color=col, mfc="none" if off else col, ms=5, capsize=1.5, label=prod + ", per sector")
+    k = (P["product"] == "SPOC 2-min PDCSAP") & (P["quantity"] == "b (k 0.0279, a/R* 13.76)")
+    ax.errorbar(P["year"][k], P["value"][k], P["err"][k], fmt="o", color=t["ink"], ms=8, mfc="none", capsize=3, label="SPOC epoch folds 2018-2020 / 2025-2026")
+    ax.axhline(P["value"][k][0], ls="--", color=t["mark2"], lw=1.0, label="constant at the 2018-2020 fold (0.935)")
+    for grp, lab in (("jb2021", "visits 1-3"), ("v4", "visit 4")):
+        q = (C["planet"] == "b") & (C["product"] == "PIPE") & (C["group"] == grp) & (C["variant"] == "kfix_LDatlas")
+        ax.errorbar(C["year"][q], C["b"][q], 0.5 * (C["b_minus"][q] + C["b_plus"][q]), fmt="D", color=t["ink2"], ms=5.5, capsize=2, label=f"CHEOPS PIPE {lab} (k fixed)")
+    q = J["variant"] == "b"
+    ax.errorbar(J["year"][q], J["b"][q], J["b_sigma_x_beta"][q], fmt="^", color=t["mark2"], ms=6, capsize=2, label="JWST GO 1935 (NIRSpec, NIRISS), LD fixed")
+    ax.errorbar(F["year"][pr][:5], F["b_b"][pr][:5], F["b_b_err"][pr][:5], fmt="x", color=t["mark"], ms=6, capsize=2, label="recorded predictions (2026.79-2028.0)")
+    ax.set_xlim(2018.3, 2028.4); ax.set_ylim(0.88, 1.02); ax.set_xlabel("year"); ax.set_ylabel("impact parameter b (a/R* = 13.76, k = 0.0279)"); style(ax, t)
+    title(ax, t, "TOI-421 b: impact parameter at a fixed transit template\n(near grazing: mainly a measure of T14 and depth; the bands differ)")
+    ax.legend(loc="lower right", fontsize=6.8, frameon=False, labelcolor=t["ink2"], ncol=2)
+    for prod, fmt, col, off in (("SPOC 2-min PDCSAP", "o", t["mark"], 0.0), ("own TESScut photometry r = 2.5 px", "s", t["mark3"], 0.15)):
+        k = (P["product"] == prod) & (P["quantity"] == "depth in a 60-min box (ppm)") & (P["group"] != "late - early")
+        bx.errorbar(P["year"][k] + off, P["value"][k], P["err"][k], fmt=fmt, color=col, ms=6, capsize=2, label=prod + ", epoch folds")
+    bx.plot(yy, F["b_box60_depth_ppm"][cu], "-", color=t["ink"], lw=1.0, label="template depth along the linear b")
+    bx.axhline(F["b_box60_depth_const_ppm"][0], ls="--", color=t["mark2"], lw=1.0, label="constant at the 2018-2020 fold (about 545 ppm)")
+    bx.plot([2026.75, 2026.95], [450, 450], "-", color=t["mark2"], lw=2.2, label="sectors 109/110 kill threshold (depth >= 450 ppm)")
+    bx.plot(F["year"][pr][:5], F["b_box60_depth_ppm"][pr][:5], "x", color=t["mark"], ms=6, label="recorded predictions")
+    bx.set_xlim(2018.3, 2028.4); bx.set_ylim(0, 750); bx.set_xlabel("year"); bx.set_ylabel("mean depth within 30 min of mid-transit (ppm)"); style(bx, t)
+    title(bx, t, "TOI-421 b: transit depth in a 60-min box (TESS)")
+    bx.legend(loc="lower left", fontsize=6.8, frameon=False, labelcolor=t["ink2"])
+    fig.tight_layout(); save(fig, t, name)
+
+
 if __name__ == "__main__":
     for th, t in THEMES.items():
         plt.rcParams.update({"text.color": t["ink"], "axes.edgecolor": t["axis"], "axes.titlecolor": t["ink"]})
-        sel = sys.argv[1:] or [str(x) for x in TICS] + ["other", "c311179599", "eb124751008", "tdv", "toi6482", "jwstchrom", "toi2638", "toi1117", "lhs475"]
+        sel = sys.argv[1:] or [str(x) for x in TICS] + ["other", "c311179599", "eb124751008", "tdv", "toi6482", "jwstchrom", "toi2638", "toi1117", "lhs475", "toi421"]
         if "other" in sel:
             fig_eb_history(t, f"eb_history_11613676_{th}.svg"); fig_eb_profiles(t, f"eb_profiles_11613676_{th}.svg")
             fig_toi540_sectors(t, f"toi540_sectors_{th}.svg"); fig_toi540_depths(t, f"toi540_depths_{th}.svg")
@@ -510,7 +587,9 @@ if __name__ == "__main__":
             fig_toi1117(t, f"fold_295541511_{th}.svg")
         if "lhs475" in sel:
             fig_lhs475(t, f"tdur_369327947_{th}.svg")
-        for tic in [int(x) for x in sel if x not in ("other", "c311179599", "eb124751008", "tdv", "toi6482", "jwstchrom", "toi2638", "toi1117", "lhs475")]:
+        if "toi421" in sel:
+            fig_toi421_c(t, f"bt14_94986319_{th}.svg"); fig_toi421_b(t, f"planetb_94986319_{th}.svg")
+        for tic in [int(x) for x in sel if x not in ("other", "c311179599", "eb124751008", "tdv", "toi6482", "jwstchrom", "toi2638", "toi1117", "lhs475", "toi421")]:
             fig_fold(t, f"fold_{tic}_{th}.svg", tic)
             fig_epochs(t, f"epochs_{tic}_{th}.svg", tic)
             fig_oc(t, f"oc_{tic}_{th}.svg", tic)

@@ -118,6 +118,17 @@ epoch, 3.1 $`\sigma`$ from a constant at the 2019-2021 value, but consistent wit
 confirm the change. The linear trend gives $`T_{14} \approx 34`$ min in late 2026 against 39-43 min for the constant
 alternatives; TESS sector 114 (about 2027-02/03) and precise ground-based or JWST transits test it (section [6.11](6.11_LHS475b.md)).
 
+TOI-421 (TIC 94986319) has two transiting planets, b (5.20 d) and c (16.07 d). In five TESS sectors (2018-2026), the
+impact parameter of c fitted at a fixed transit template decreases from $`0.765 \pm 0.005`$ (2018-2020) to
+$`0.729 \pm 0.005`$ (2025-2026), $`\mathrm{d}b/\mathrm{d}t = -0.0051 \pm 0.0010`$ yr$`^{-1}`$ (local about 4.5 $`\sigma`$), and
+its trapezoid transit duration increases from $`158.4 \pm 1.9`$ to $`169.6 \pm 2.0`$ min (4.1 $`\sigma`$, independent of the
+template). In the same data the impact parameter of b rises from $`0.935 \pm 0.007`$ to $`0.979 \pm 0.005`$ and its depth
+within 30 min of mid-transit falls from $`547 \pm 47`$ to $`320 \pm 54`$ ppm. The data are effectively two epochs; without
+sector 98 the slope of c is 2.8 $`\sigma`$; c was selected from a screen of 271 planets, which leaves about 3.1 $`\sigma`$;
+the rate in $`b`$ depends on the adopted $`a/R_\star`$; the public CHEOPS transits of 2022 do not discriminate; and the implied
+mutual inclination (about 10 deg) lies at the $`-1\sigma`$ edge of the published Rossiter-McLaughlin value. Recorded
+predictions for TESS sectors 109-110 and for 2027-2028, with kill criteria, are in section [6.12](6.12_TOI-421.md).
+
 Nine eclipsing binaries without a previous eclipse report in the catalogues checked (section [6.3](6.3_eclipsing_binaries.md)): TIC 13957664, a
 single 2.0 % eclipse at the conjunction predicted by its Gaia DR3 astrometric+spectroscopic orbit ($`P = 245.66`$ d,
 $`i = 91.1 \pm 0.8`$ deg); TIC 304936165, an eccentric 61.7-d Gaia SB1 with one eclipse per orbit near periastron;

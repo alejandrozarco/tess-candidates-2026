@@ -21,3 +21,4 @@ Subsections:
 - [6.9 TOI-2638.01: transit depth increasing from 2019 to 2026](6.9_TOI-2638.md)
 - [6.10 TOI-1117 c: transit-like signal at the period and phase of a radial-velocity planet](6.10_TOI-1117c.md)
 - [6.11 LHS 475 b: candidate decrease of the transit duration, 2019-2026](6.11_LHS475b.md)
+- [6.12 TOI-421 c and b: candidate change of the transit chords, 2018-2026](6.12_TOI-421.md)

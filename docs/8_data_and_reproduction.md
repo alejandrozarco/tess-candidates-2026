@@ -359,6 +359,16 @@ variants, the shape and fold tests, the noise and timing checks and the stellar 
 selected the planet, the TESS sector and ground-based observing windows of section [6.11.8](6.11_LHS475b.md#6118-forecast-and-decisive-tests), and the catalogue and
 literature checks of section [6.11.9](6.11_LHS475b.md#6119-catalogue-and-literature-checks).
 
+For TOI-421 (section [6.12](6.12_TOI-421.md)), run from the repository root; the commands are listed in section
+[6.12.11](6.12_TOI-421.md#61211-reproduction). Inputs: SPOC 2-min and 20-s light curves of sectors 5, 6, 32, 98 and 107
+(MAST, retrieved 2026-10-29; sha256 checked by `download_toi421.py`), TESScut cutouts of the same sectors (retrieved
+2026-10-29), the CHEOPS PIPE photometry of Krenn et al. (2024) (VizieR J/A+A/686/A301/cheops1) and DRP light curves (DACE,
+archive revision V0300), the JWST GO 1935 white-light curve of Davenport et al. (2025) (Zenodo 10.5281/zenodo.15176438)
+and `x1dints` products (MAST, CAL_VER 3.0.0). The TESS, full-frame-image, N-body and prediction steps were run for this
+record; the CHEOPS and JWST Markov-chain fits were run on 2026-10-28 with the same scripts and only re-tabulated. The
+screen of 271 planets that selected TOI-421 c and the catalogue and literature checks of section
+[6.12.10](6.12_TOI-421.md#61210-catalogue-and-literature-checks) have no script here.
+
 Correction of 2026-10-22 (exposure sampling; no conclusion changed). batman's `supersample_factor` places the
 sub-exposures from one end of the exposure to the other, which smooths the model more than the exposure does (by
 factors of 1.07-1.73 in rms for 15 to 2 sub-exposures). The transit models of `fit_transits.py`, `make_tables.py`,

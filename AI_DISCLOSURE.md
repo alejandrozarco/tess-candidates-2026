@@ -44,7 +44,12 @@ of the Gaia DR3 documentation for the correlation vector (predicted BTJD 4089.06
 the detection-stage description of the eclipses as fading was superseded by "decreased and then increased", and the
 third-light inclination fits were recomputed after the per-eclipse inclination grid was found to truncate the 2019
 values (nodal period 20.2 ± 4.5 yr instead of 12.0 ± 1.8 yr); the candidate-c fit of TIC 311179599 was repeated with a
-longer sampler chain on the TESScut time stamps (P = 73.86721 instead of 73.86712 d).
+longer sampler chain on the TESScut time stamps (P = 73.86721 instead of 73.86712 d). For TOI-421 (README section 6.12) a first
+fit of planet b on the archive ephemeris placed the late transits at the edge of the fitted time range and gave a
+spurious near-grazing impact parameter (about 1.00); it was discarded after the ephemeris was refined
+(P = 5.19759807 d). In the first 20-s fits of TOI-421 c the big-endian FITS arrays were passed to batman's C code
+without conversion, which gave wrong models; the arrays are now converted to native byte order (the 2-min results
+were not affected).
 
 **What the software checks and what is trusted.** The scripts recompute the tables from public products (TESScut, SPOC,
 QLP, TESS-SPOC, TARS, Gaia DR3, TIC, ESO archive); exceptions are listed in README.md (Data and reproduction). Stellar

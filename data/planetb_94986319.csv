@@ -1,0 +1,15 @@
+# TOI-421 b = TIC 94986319 b: early (sectors 5, 6, 32) and late (98, 107) folds; one mid-time offset per epoch group, quadratic baseline per window, c transits masked; scripts/toi421/planet_b_toi421.py, ffi_toi421.py
+# b at the fixed template k 0.0279, a/R* 13.76, u 0.401/0.222 (circular); near grazing b mainly measures T14 and depth at this template; dt_min = mid-time offset of the group
+product,group,year,n_transits,quantity,value,err,dt_min,note
+SPOC 2-min PDCSAP,early,2019.4825,11,"b (k 0.0279, a/R* 13.76)",0.935,0.007,-3.5319,
+SPOC 2-min PDCSAP,late,2026.1527,10,"b (k 0.0279, a/R* 13.76)",0.979,0.0054,-3.0308,
+SPOC 2-min PDCSAP,early,2019.4825,11,depth in a 60-min box (ppm),546.8556,47.4038,,
+SPOC 2-min PDCSAP,late,2026.1527,10,depth in a 60-min box (ppm),319.5901,53.7715,,
+SPOC 2-min PDCSAP,early,2019.4825,11,trapezoid T14 (min),68.3591,4.97,-2.8299,depth 582 +- 51 ppm
+SPOC 2-min PDCSAP,late,2026.1527,10,trapezoid T14 (min),74.6223,13.5523,0.7846,depth 437 +- 105 ppm
+own TESScut photometry r = 2.5 px,early,2019.6714,11,"b (k 0.0279, a/R* 13.76)",0.9402,0.0118,-3.8375,
+own TESScut photometry r = 2.5 px,late,2026.2025,16,"b (k 0.0279, a/R* 13.76)",0.978,0.0044,-1.0728,
+own TESScut photometry r = 2.5 px,early,2019.6714,11,depth in a 60-min box (ppm),496.7886,60.2049,,
+own TESScut photometry r = 2.5 px,late,2026.2025,16,depth in a 60-min box (ppm),291.6391,42.9355,,
+SPOC 2-min PDCSAP,late - early,,,db/dt (1/yr),0.0066,0.0013,,z 5.0
+SPOC 2-min PDCSAP,late - early,,,depth in a 60-min box (ppm),-227.2655,71.6833,,z -3.2

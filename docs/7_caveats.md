@@ -153,6 +153,16 @@
   and limb darkening. The companion masses of section [6.11.7](6.11_LHS475b.md#6117-interpretation-order-of-magnitude) are orders of magnitude; no companion is detected.
   The recorded forecast understates the error of the trend at 2022.67 (0.005 instead of 0.012). There is no independent
   confirmation.
+- TOI-421 (section [6.12](6.12_TOI-421.md)): the TESS data are effectively two epochs (2018-2020 and 2025-2026), so a steady
+  trend cannot be separated from a one-time step or from a systematic effect specific to 2025-2026; within the late epoch
+  the change goes the other way at 1.4 $`\sigma`$. Sector 98 carries most of the late weight; without it the slope of c is
+  2.8 $`\sigma`$. The local significance (about 4.5 $`\sigma`$) does not include the selection from 271 screened planets,
+  after which about 3.1 $`\sigma`$ remains for independent trials with Gaussian tails. The rate in $`b`$ depends on the
+  adopted $`a/R_\star`$; the trapezoid duration change (4.1 $`\sigma`$) does not. The light-curve shape does not separate a
+  chord change from a change of the crossing speed. The public CHEOPS transits of c (2022) do not discriminate between the
+  trend and a constant; the CHEOPS and JWST values of b at a fixed template cross bands and depend on that template. The
+  implied mutual inclination lies at the $`-1\sigma`$ edge of the Rossiter-McLaughlin value of Bourrier et al. (2025). The
+  N-body rates are orders of magnitude for the published masses. There is no independent check.
 - Eclipsing binaries of section [6.3](6.3_eclipsing_binaries.md): no spectroscopy; the periods come from TESS full-frame images, with QLP eclipse
   times in sectors 99-104 (timing notice above); TIC 13957664 and TIC 342194997 rest on one eclipse each and their
   periods on the Gaia orbits, TIC 304936165 on two eclipses, and the period of CPD-62 2890 is not determined; the

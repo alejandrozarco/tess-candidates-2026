@@ -63,4 +63,7 @@
 - Lustig-Yaeger, J., et al. 2023, Nat. Astron. 7, 1317 (LHS 475 b, JWST); Ment, K., et al. 2024, AJ 167, 197 (LHS 475 b);
   Murray, C. D., & Dermott, S. F. 1999, Solar System Dynamics (Cambridge University Press).
 
-References of sections 6.6-6.11 are listed at the end of those sections.
+- Carleo, I., et al. 2020, AJ 160, 114 (TOI-421); Krenn, A. F., et al. 2024, A&A 686, A301 (TOI-421, CHEOPS); Davenport, B.,
+  et al. 2025, ApJL 984, L44 (TOI-421 b, JWST); Bourrier, V., et al. 2025, A&A 701, A190 (TOI-421, ESPRESSO).
+
+References of sections 6.6-6.12 are listed at the end of those sections.
